@@ -175,7 +175,7 @@ function fillNoAdmin() {
       <button
   className="backBTN"
   onClick={() => navigate("/")}>
-  ← Retour au menu
+  Retour au menu
 </button>
     <div className="containerAuth">
       <h1 className="titre_page">Compte</h1>
