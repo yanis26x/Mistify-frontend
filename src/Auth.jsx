@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import "./App.css";
+import { useNavigate } from "react-router-dom";
+import "./auth.css";
 
 const API = "http://localhost:3000/auth";
 
 export default function Auth() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
@@ -169,13 +171,19 @@ function fillNoAdmin() {
   }
 
   return (
-    <div className="container">
-      <h1>Mistify Auth</h1>
-      <h2 >ughhhh hello..?!</h2>
-      <h3>pr admin signin avec : yanis26x@hotmail.com mdp</h3>
+    <div className="authDiv">
+      <button
+  className="backBTN"
+  onClick={() => navigate("/")}>
+  ← Retour au menu
+</button>
+    <div className="containerAuth">
+      <h1 className="titre_page">Compte</h1>
+      <h2 style={{ color: "red" }} >ughhhh hello..?!</h2>
+      <h3 style={{ color: "red" }}>pr admin signin avec : yanis26x@hotmail.com mdp</h3>
 
       <div className="box">
-        <h2>Signup</h2>
+        <h2 style={{ color: "red" }}>Signup</h2>
         <form onSubmit={handleSignup}>
           <input
             type="text"
@@ -200,7 +208,7 @@ function fillNoAdmin() {
       </div>
 
 <div className="box">
-  <h2>Signin</h2>
+  <h2 style={{ color: "red" }}>Signin</h2>
 
   <div className="buttons">
     <button type="button" onClick={fillAdmin}>
@@ -232,7 +240,7 @@ function fillNoAdmin() {
 </div>
 
       <div className="box">
-        <h2>Session</h2>
+        <h2 style={{ color: "red" }}>Session</h2>
         <div className="buttons">
           <button onClick={handleWhoAmI}>Who am I</button>
           <button onClick={handleSignout}>Sign out</button>
@@ -244,7 +252,7 @@ function fillNoAdmin() {
       </div>
 
       <div className="box">
-        <h2>Admin - Users</h2>
+        <h2 style={{ color: "red" }}>Admin - Users</h2>
 
         <div className="buttons">
           <button onClick={handleGetAllUsers}>Voir tous les users</button>
@@ -270,11 +278,12 @@ function fillNoAdmin() {
         </pre>
       </div>
       <div className="box image-section">
-  <h2>Run me yo blood</h2>
+  <h2 style={{ color: "red" }}>Run me yo blood</h2>
 
   <img src="/bloodd.png"
     className="mistify-image"/>
 </div>
+    </div>
     </div>
   );
 }

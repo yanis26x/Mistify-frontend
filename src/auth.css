@@ -1,32 +1,30 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
   background-color: black;
-
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.authDiv{
+  margin: 0;
+  background-color: black;
   background-image: url("/bloodd.png");
   background-size: cover;        /* l'image remplit l'écran */
   background-position: center;   /* centrée */
   background-repeat: no-repeat;  /* pas répétée */
   background-attachment: fixed;  /* effet propre quand on scroll */
 }
-
-.container {
+.containerAuth {
   max-width: 700px;
   margin: 40px auto;
   padding: 20px;
+  
 }
 
-h1 {
+.titre_page{
   text-align: center;
-  color: red;
+  color: rgb(255, 0, 200);
 }
-h2 {
-  color: rgb(255, 255, 255);
-}
-h3 {
 
-  color: red;
-}
+
+
 
 .box {
   background: rgba(192, 94, 160, 0.301);
@@ -64,16 +62,16 @@ button {
 }
 
 .message {
-  color: #2563eb;
+  color: #3cff00;
   font-weight: bold;
 }
 
 pre {
-  background: #3500f567;
+  background: #f706063d;
   padding: 10px;
   border-radius: 8px;
   overflow-x: auto;
-  color: white;
+  color: rgb(30, 255, 0);
 }
 .image-section {
   text-align: center;
@@ -84,4 +82,16 @@ pre {
   height: auto;
   border-radius: 10px;
   margin-top: 10px;
+}
+
+.backBTN {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 14px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
