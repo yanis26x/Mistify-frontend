@@ -1,0 +1,47 @@
+.chercherSection {
+  text-align: center;
+
+}
+
+.chercherTitre {
+  font-size: 40px;
+  font-weight: 900;
+  color: white;
+}
+
+.chercherBox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.chercherBox input {
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.chercherBox button {
+  border-radius: 10px;
+  background: white;
+  color: black;
+  font-weight: 900;
+}
+
+.chercherMessage {
+  color: white;
+}
+
+.chercherResultats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.parfumTrouve {
+  width: 250px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  backdrop-filter: blur(8px);
+}

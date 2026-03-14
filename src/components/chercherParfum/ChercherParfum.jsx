@@ -1,0 +1,61 @@
+import { useState } from "react";
+import axios from "axios";
+import "./ChercherParfum.css";
+
+export default function ChercherParfum() {
+  const [search, setSearch] = useState("");
+  const [parfums, setParfums] = useState([]);
+  const [message, setMessage] = useState("");
+
+  async function handleSearch() {
+    setMessage("");
+
+    try {
+      const res = await axios.get("http://localhost:3000/parfums");
+
+      const resultats = res.data.filter((parfum) =>
+        parfum.name.toLowerCase().includes(search.toLowerCase())
+      );
+
+      setParfums(resultats);
+
+      if (resultats.length === 0) {
+        setMessage("Aucun parfum trouvé");
+      } else {
+        setMessage(`${resultats.length} parfums trouvé!!!`);
+      }
+    } catch (error) {
+      setMessage("Erreur lors de la recherche");
+    }
+  }
+
+  return (
+    <section className="chercherSection">
+      <h2 className="chercherTitre">Chercher un parfum</h2>
+
+      <div className="chercherBox">
+        <input
+          type="text"
+          placeholder="Écris le nom du parfum..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        <button onClick={handleSearch}>Chercher</button>
+      </div>
+
+      {message && <p className="chercherMessage">{message}</p>}
+
+      <div className="chercherResultats">
+        {parfums.map((parfum) => (
+          <div key={parfum.id} className="parfumTrouve">
+            <p><strong>ID :</strong> {parfum.id}</p>
+            <p><strong>Nom :</strong> {parfum.name}</p>
+            <p><strong>Marque :</strong> {parfum.brand}</p>
+            <p><strong>Prix :</strong> {parfum.price}$</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

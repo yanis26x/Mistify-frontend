@@ -3,6 +3,7 @@ import "./home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import UserStatus from "../components/userStatus/UserStatus";
+import ChercherParfum from "../components/chercherParfum/ChercherParfum";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ export default function Home() {
         <span>Compte</span>
       </button>
 
+
       <section className="heroSection">
         <h1 className="titreHome">Bienvenue sur Mistify</h1>
         <p className="soustitreHome">
@@ -100,8 +102,10 @@ export default function Home() {
         </div>
       </div>
 
+      <ChercherParfum/>
+
       <section className="vendreSection">
-        <h2 className="titreVendre">Vendez vos parfums sur Mistify !</h2>
+        <h2 className="titreVendre">Vende/ajoute des parfums sur Mistify !</h2>
         <p className="texteVendre">
           Vous avez un parfum que vous n’utilisez plus!? (ou vous manquez vraiment d'argent...)
           Sur Mistify, vous pouvez facilement vendre vos parfums et les partager avec d'autres passionnés!
