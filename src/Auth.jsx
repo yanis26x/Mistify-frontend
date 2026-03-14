@@ -171,7 +171,7 @@ function fillNoAdmin() {
   return (
     <div className="container">
       <h1>Mistify Auth</h1>
-      <h2>ughhhh hello..?!</h2>
+      <h2 >ughhhh hello..?!</h2>
       <h3>pr admin signin avec : yanis26x@hotmail.com mdp</h3>
 
       <div className="box">
@@ -269,6 +269,12 @@ function fillNoAdmin() {
             : "Aucun user chargé"}
         </pre>
       </div>
+      <div className="box image-section">
+  <h2>Run me yo blood</h2>
+
+  <img src="/bloodd.png"
+    className="mistify-image"/>
+</div>
     </div>
   );
 }

@@ -1,7 +1,13 @@
- body {
+body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background-color: black;
+
+  background-image: url("/bloodd.png");
+  background-size: cover;        /* l'image remplit l'écran */
+  background-position: center;   /* centrée */
+  background-repeat: no-repeat;  /* pas répétée */
+  background-attachment: fixed;  /* effet propre quand on scroll */
 }
 
 .container {
@@ -12,10 +18,18 @@
 
 h1 {
   text-align: center;
+  color: red;
+}
+h2 {
+  color: rgb(255, 255, 255);
+}
+h3 {
+
+  color: red;
 }
 
 .box {
-  background: white;
+  background: rgba(192, 94, 160, 0.301);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -31,12 +45,16 @@ form {
 input {
   padding: 10px;
   font-size: 16px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
 }
 
 button {
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  background-color: #f80202fb;
+  color: rgb(255, 255, 255);
 }
 
 .buttons {
@@ -51,8 +69,19 @@ button {
 }
 
 pre {
-  background: #eee;
+  background: #3500f567;
   padding: 10px;
   border-radius: 8px;
   overflow-x: auto;
+  color: white;
+}
+.image-section {
+  text-align: center;
+}
+
+.mistify-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
 }
