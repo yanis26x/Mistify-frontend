@@ -134,20 +134,16 @@ body {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: none;
 background-color: white;
   background-image: url("/bloodd.png"); /* image différente */
   background-size: cover;
   background-position: center;
-
   display: flex;
   align-items: flex-end;
   justify-content: center;
-
   color: rgb(0, 0, 0);
   font-weight: 900;
   font-size: 17px;
-
   padding-bottom: 8px;
 }
 
@@ -171,4 +167,35 @@ background-color: white;
   padding-bottom: 8px;
   cursor: pointer;
   background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.BTNcommentaireTop {
+  position: absolute;
+  top: 30px;
+  right: 370px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-image: url("/msglogo.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  font-weight: 900;
+  font-size: 17px;
+  padding-bottom: 8px;
+  cursor: pointer;
 }

@@ -6,26 +6,29 @@ export default function Home() {
   const navigate = useNavigate();
   const backgrounds = [
     "/bluePurpleBackground.jpg",
-    "/SpotifyLogoRed.webp"
+    "/SpotifyLogoRed.webp",
+    "/frutigerBG.jpg"
   ];
 
     const [bgIndex, setBgIndex] = useState(0);
 
-      function changeBackground() {
-    setBgIndex((prev) => (prev === 0 ? 1 : 0));
-  }
+function changeBackground() {
+  setBgIndex((prev) => (prev + 1) % backgrounds.length);
+}
   return (
     <div className="homeDiv" style={{ backgroundImage: `url(${backgrounds[bgIndex]})` }}>
       
+      <button className="BTNcommentaireTop" onClick={() => navigate("/Commentaire")}>
+  <span>Commentaires</span>
+</button>
+
+
 <button
   className="BTNchangeBg"
   onClick={changeBackground}
   style={{
-    // a changer !!!!
-    backgroundImage: `url(${backgrounds[bgIndex === 0 ? 1 : 0]})` 
-  }}
->
-  light/dark
+    backgroundImage: `url(${backgrounds[(bgIndex + 1) % backgrounds.length]})`}}>
+  theme
 </button>
 
       <button className="BTNvendreTop" onClick={() => navigate("/vendreParfum")}>
