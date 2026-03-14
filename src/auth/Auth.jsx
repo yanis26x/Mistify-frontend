@@ -171,16 +171,41 @@ function fillNoAdmin() {
   }
 
   return (
-    <div className="authDiv">
-      <button
-  className="backBTN"
-  onClick={() => navigate("/")}>
-  Retour au menu
-</button>
+  <div className="authDiv">
+    <button
+      className="backBTN"
+      onClick={() => navigate("/")}
+    >
+      Retour au menu
+    </button>
+
     <div className="containerAuth">
       <h1 className="titre_page">Compte</h1>
-      <h2 style={{ color: "red" }} >ughhhh hello..?!</h2>
-      <h3 style={{ color: "red" }}>pr admin signin avec : yanis26x@hotmail.com mdp</h3>
+
+      <div className="whoami">
+        {user ? (
+          <>
+            <h1 className="titreWhoAmi">
+              CONNECTÉ EN TANT QUE : {user.name}
+            </h1>
+            <p className="adminOUpas">
+              {user.admin ? "ADMIN" : "PAS ADMIN"}
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className="titreWhoAmi">
+              CONNECTE-TOI MAINTENANT OU CRÉE UN COMPTE MAINTENANT !
+            </h1>
+            <p className="adminOUpas">AUCUN UTILISATEUR CONNECTÉ</p>
+          </>
+        )}
+      </div>
+
+      <h2 style={{ color: "red" }}>ughhhh hello..?!</h2>
+      <h2 style={{ color: "red" }}>
+        (changez admin a true ou false dans user.entity)
+      </h2>
 
       <div className="box">
         <h2 style={{ color: "red" }}>Signup</h2>
@@ -207,37 +232,37 @@ function fillNoAdmin() {
         </form>
       </div>
 
-<div className="box">
-  <h2 style={{ color: "red" }}>Signin</h2>
+      <div className="box">
+        <h2 style={{ color: "red" }}>Signin</h2>
 
-  <div className="buttons">
-    <button type="button" onClick={fillAdmin}>
-      ADMIN
-    </button>
+        <div className="buttons">
+          <button type="button" onClick={fillAdmin}>
+            ADMIN
+          </button>
 
-    <button type="button" onClick={fillNoAdmin}>
-      PAS ADMIN
-    </button>
-  </div>
+          <button type="button" onClick={fillNoAdmin}>
+            PAS ADMIN
+          </button>
+        </div>
 
-  <form onSubmit={handleSignin}>
-    <input
-      type="email"
-      placeholder="Email"
-      value={signinEmail}
-      onChange={(e) => setSigninEmail(e.target.value)}
-    />
+        <form onSubmit={handleSignin}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={signinEmail}
+            onChange={(e) => setSigninEmail(e.target.value)}
+          />
 
-    <input
-      type="password"
-      placeholder="Mot de passe"
-      value={signinPassword}
-      onChange={(e) => setSigninPassword(e.target.value)}
-    />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            value={signinPassword}
+            onChange={(e) => setSigninPassword(e.target.value)}
+          />
 
-    <button type="submit">Se connecter</button>
-  </form>
-</div>
+          <button type="submit">Se connecter</button>
+        </form>
+      </div>
 
       <div className="box">
         <h2 style={{ color: "red" }}>Session</h2>
@@ -277,13 +302,12 @@ function fillNoAdmin() {
             : "Aucun user chargé"}
         </pre>
       </div>
-      <div className="box image-section">
-  <h2 style={{ color: "red" }}>Run me yo blood</h2>
 
-  <img src="/bloodd.png"
-    className="mistify-image"/>
-</div>
+      <div className="box image-section">
+        <h2 style={{ color: "red" }}>Run me yo blood</h2>
+
+        <img src="/bloodd.png" className="mistify-image" />
+      </div>
     </div>
-    </div>
-  );
-}
+  </div>
+)};

@@ -43,8 +43,9 @@ function changeBackground() {
       <section className="heroSection">
         <h1 className="titreHome">Bienvenue sur Mistify</h1>
         <p className="soustitreHome">
-          I'm having withdrawals, I feel uneasy <br/>
-          Skittles got me feeling tranquil, they're so relieving <br/>
+          “You can never have too many friends.” — Hello Kitty, Sanrio <br/>
+          Hey Hachi, no matter how much or how often people hurt each other, loving someone is never a waste.<br/>
+          
           ughhhh hello...?!
         </p>
       </section>
