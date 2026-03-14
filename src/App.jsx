@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Auth from "./Auth";
+import Home from "./home/Home";
+import Auth from "./auth/Auth";
 
 export default function App() {
   return (
