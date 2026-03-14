@@ -4,7 +4,7 @@ import "./App.css";
 
 const API = "http://localhost:3000/auth";
 
-export default function App() {
+export default function Auth() {
   const [name, setName] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
@@ -13,6 +13,8 @@ export default function App() {
   const [signinPassword, setSigninPassword] = useState("");
 
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [deleteUserId, setDeleteUserId] = useState("");
   const [message, setMessage] = useState("");
 
   async function handleSignup(e) {
@@ -97,6 +99,75 @@ export default function App() {
     }
   }
 
+  async function handleGetAllUsers() {
+    setMessage("");
+
+    try {
+      const res = await axios.get(`${API}`, {
+        withCredentials: true,
+      });
+
+      setUsers(res.data);
+      setMessage("Tous les users récupérés");
+    } catch (err) {
+      setMessage(err?.response?.data?.message || "Erreur récupération users");
+    }
+  }
+
+  async function handleDeleteUser() {
+    if (!deleteUserId) {
+      setMessage("Entre un id à supprimer");
+      return;
+    }
+
+    setMessage("");
+
+    try {
+      await axios.delete(`${API}/${deleteUserId}`, {
+        withCredentials: true,
+      });
+
+      setMessage(`User ${deleteUserId} supprimé`);
+      setDeleteUserId("");
+
+      setUsers((prev) =>
+        prev.filter((u) => String(u.id) !== String(deleteUserId))
+      );
+
+      if (user && String(user.id) === String(deleteUserId)) {
+        setUser(null);
+      }
+    } catch (err) {
+      setMessage(err?.response?.data?.message || "Erreur suppression user");
+    }
+  }
+
+  function fillAdmin() {
+  setSigninEmail("yanis26x@hotmail.com");
+  setSigninPassword("mdp");
+}
+
+function fillNoAdmin() {
+  setSigninEmail("noAdmin@mail.com");
+  setSigninPassword("mdp");
+}
+
+  async function handleDeleteAllUsers() {
+    setMessage("");
+
+    try {
+      await axios.delete(`${API}`, {
+        withCredentials: true,
+      });
+
+      setUsers([]);
+      setUser(null);
+      setMessage("Tous les users ont été supprimés");
+    } catch (err) {
+      setMessage(err?.response?.data?.message || "Erreur suppression totale");
+    }
+  }
+
   return (
     <div className="container">
       <h1>Mistify Auth</h1>
@@ -128,24 +199,37 @@ export default function App() {
         </form>
       </div>
 
-      <div className="box">
-        <h2>Signin</h2>
-        <form onSubmit={handleSignin}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={signinEmail}
-            onChange={(e) => setSigninEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            value={signinPassword}
-            onChange={(e) => setSigninPassword(e.target.value)}
-          />
-          <button type="submit">Se connecter</button>
-        </form>
-      </div>
+<div className="box">
+  <h2>Signin</h2>
+
+  <div className="buttons">
+    <button type="button" onClick={fillAdmin}>
+      ADMIN
+    </button>
+
+    <button type="button" onClick={fillNoAdmin}>
+      PAS ADMIN
+    </button>
+  </div>
+
+  <form onSubmit={handleSignin}>
+    <input
+      type="email"
+      placeholder="Email"
+      value={signinEmail}
+      onChange={(e) => setSigninEmail(e.target.value)}
+    />
+
+    <input
+      type="password"
+      placeholder="Mot de passe"
+      value={signinPassword}
+      onChange={(e) => setSigninPassword(e.target.value)}
+    />
+
+    <button type="submit">Se connecter</button>
+  </form>
+</div>
 
       <div className="box">
         <h2>Session</h2>
@@ -157,6 +241,33 @@ export default function App() {
         {message && <p className="message">{message}</p>}
 
         <pre>{user ? JSON.stringify(user, null, 2) : "Aucun user connecté"}</pre>
+      </div>
+
+      <div className="box">
+        <h2>Admin - Users</h2>
+
+        <div className="buttons">
+          <button onClick={handleGetAllUsers}>Voir tous les users</button>
+          <button onClick={handleDeleteAllUsers}>Supprimer tous les users</button>
+        </div>
+
+        <div style={{ marginTop: "15px" }}>
+          <input
+            type="number"
+            placeholder="ID du user"
+            value={deleteUserId}
+            onChange={(e) => setDeleteUserId(e.target.value)}
+          />
+          <button onClick={handleDeleteUser} style={{ marginTop: "10px" }}>
+            Supprimer ce user
+          </button>
+        </div>
+
+        <pre>
+          {users.length > 0
+            ? JSON.stringify(users, null, 2)
+            : "Aucun user chargé"}
+        </pre>
       </div>
     </div>
   );
