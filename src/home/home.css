@@ -187,13 +187,15 @@ background-color: white;
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background-image: url("/msglogo.png");
+  background-color:black;
+
+  background-image: url("/Hello-kitty.webp");
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 246, 246);
   font-weight: 900;
   font-size: 17px;
   padding-bottom: 8px;
