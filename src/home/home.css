@@ -150,3 +150,25 @@ background-color: white;
 
   padding-bottom: 8px;
 }
+
+
+
+.BTNchangeBg {
+  position: absolute;
+  top: 30px;
+  right: 260px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 17px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  background-color: black;
+}
