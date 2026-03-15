@@ -15,7 +15,6 @@ body {
   margin: 0 auto;
 }
 
-
 .titreHome {
   font-size: 52px;
   margin-bottom: 25px;
@@ -23,7 +22,6 @@ body {
   text-shadow: 0 4px 20px rgb(255, 255, 255);
   font-weight: 900;
 }
-
 
 .soustitreHome {
   font-size: 26px;
@@ -54,24 +52,19 @@ body {
   padding-bottom: 8px;
 }
 
-
-
 .horizonImg {
   display: flex;
   gap: 25px;
   padding: 40px;
 }
 
-
 .carteImg {
   min-width: 260px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
-
 
 .carteParfum {
   width: 100%;
@@ -87,33 +80,26 @@ body {
   text-align: center;
 }
 
-
-
-
-
-
 /* SECTION VENDRE ! */
 
-
-
-.vendreSection{
+.vendreSection {
   text-align: center;
 }
 
-.titreVendre{
+.titreVendre {
   font-size: 40px;
   font-weight: 900;
   color: white;
 }
 
-.texteVendre{
+.texteVendre {
   font-size: 20px;
   color: white;
   max-width: 700px; /* A CHANGER !!! */
   margin: 0 auto 25px; /* A CHANGER !!! */
 }
 
-.BTNvendre{
+.BTNvendre {
   font-size: 18px;
   font-weight: bold;
   padding: 15px;
@@ -122,11 +108,6 @@ body {
   color: black;
 }
 
-
-
-
-
-
 .BTNvendreTop {
   position: absolute;
   top: 30px;
@@ -134,7 +115,7 @@ body {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-background-color: white;
+  background-color: white;
   background-image: url("/bloodd.png"); /* image différente */
   background-size: cover;
   background-position: center;
@@ -146,8 +127,6 @@ background-color: white;
   font-size: 17px;
   padding-bottom: 8px;
 }
-
-
 
 .BTNchangeBg {
   position: absolute;
@@ -169,17 +148,6 @@ background-color: white;
   background-color: black;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .BTNcommentaireTop {
   position: absolute;
   top: 30px;
@@ -187,8 +155,7 @@ background-color: white;
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background-color:black;
-
+  background-color: black;
   background-image: url("/Hello-kitty.webp");
   background-size: cover;
   background-position: center;

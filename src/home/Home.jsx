@@ -9,11 +9,13 @@ export default function Home() {
   const navigate = useNavigate();
 
   const backgrounds = [
-    
+    "/girl-interrupted.jpg",
+    "/idkok.jpeg",
+    "/idk2.jpeg",
     "/SpotifyLogoRed.webp",
     "/frutigerBG.jpg",
 "/sillentHill.jpg",
-"/bluePurpleBackground.jpg",
+
   ];
 
   const [bgIndex, setBgIndex] = useState(0);
@@ -71,11 +73,10 @@ export default function Home() {
       <section className="heroSection">
         <h1 className="titreHome">Bienvenue sur Mistify</h1>
         <p className="soustitreHome">
-          “Friendship is the sweetest thing in the world.” — Hello Kitty<br />
-          Skittles got me feeling tranquil, they're so relieving <br />
-          ughhhh hello...?!
+ok....?
         </p>
       </section>
+
 
       <div className="horizonImg">
         <div className="carteImg">
