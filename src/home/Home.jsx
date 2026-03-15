@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import UserStatus from "../components/userStatus/UserStatus";
 import ChercherParfum from "../components/chercherParfum/ChercherParfum";
+import ParfumDumoment from "../components/parfumDuMoment/ParfumDumoment";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -77,33 +78,8 @@ ok....?
         </p>
       </section>
 
-
-      <div className="horizonImg">
-        <div className="carteImg">
-          <img src="/bloodd.png" className="carteParfum" />
-          <p className="cardText">ok..?</p>
-        </div>
-
-        <div className="carteImg">
-          <img src="/bloodd.png" className="carteParfum" />
-          <p className="cardText">ok..?</p>
-        </div>
-
-        <div className="carteImg">
-          <img src="/bloodd.png" className="carteParfum" />
-          <p className="cardText">ok..?</p>
-        </div>
-
-        <div className="carteImg">
-          <img src="/bloodd.png" className="carteParfum" />
-          <p className="cardText">ok..?</p>
-        </div>
-
-        <div className="carteImg">
-          <img src="/bloodd.png" className="carteParfum" />
-          <p className="cardText">ok..?</p>
-        </div>
-      </div>
+{/* <ParfumDumoment/> */}
+      
 
       <ChercherParfum/>
 
@@ -120,6 +96,8 @@ ok....?
           Vendre un parfum
         </button>
       </section>
+
+      <ParfumDumoment/>
     </div>
   );
 }
