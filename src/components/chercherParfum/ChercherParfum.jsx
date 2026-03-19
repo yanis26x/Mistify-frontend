@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./ChercherParfum.css";
 
 export default function ChercherParfum() {
   const [search, setSearch] = useState("");
   const [parfums, setParfums] = useState([]);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   async function handleSearch() {
     setMessage("");
@@ -22,7 +24,7 @@ export default function ChercherParfum() {
       if (resultats.length === 0) {
         setMessage("Aucun parfum trouvé");
       } else {
-        setMessage(`${resultats.length} parfums trouvé!!!`);
+        setMessage(`${resultats.length} parfum(s) trouvé(s)`);
       }
     } catch (error) {
       setMessage("Erreur lors de la recherche");
@@ -41,7 +43,9 @@ export default function ChercherParfum() {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <button onClick={handleSearch}>Chercher</button>
+        <button className="chercherBtn" onClick={handleSearch}>
+          Chercher
+        </button>
       </div>
 
       {message && <p className="chercherMessage">{message}</p>}
@@ -49,18 +53,27 @@ export default function ChercherParfum() {
       <div className="chercherResultats">
         {parfums.map((parfum) => (
           <div key={parfum.id} className="parfumTrouve">
-
-            {/* 🔥 IMAGE */}
             <img
               src={parfum.imageUrl || "/bloodd.png"}
               alt={parfum.name}
               className="parfumImage"
+              onError={(e) => (e.target.src = "/bloodd.png")}
             />
 
-            <p><strong>ID :</strong> {parfum.id}</p>
-            <p><strong>Nom :</strong> {parfum.name}</p>
-            <p><strong>Marque :</strong> {parfum.brand}</p>
-            <p><strong>Prix :</strong> {parfum.price}$</p>
+            <div className="parfumContenu">
+              <p className="parfumNom">{parfum.name}</p>
+              <p className="parfumMarque">{parfum.brand}</p>
+              <p className="parfumPrix">
+                {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
+              </p>
+
+              <button
+                className="savoirPlusBtn"
+                onClick={() => navigate(`/parfum/${parfum.id}`)}
+              >
+                En savoir plus
+              </button>
+            </div>
           </div>
         ))}
       </div>

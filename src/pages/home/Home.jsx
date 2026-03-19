@@ -2,19 +2,17 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ChercherParfum from "../components/chercherParfum/ChercherParfum";
-import ParfumDumoment from "../components/parfumDuMoment/ParfumDumoment";
-import Navbar from "../components/navbar/Navbar";
-import Bienvenue from "../components/salut/Bienvenue";
-import Stat from "../components/stat/Stat";
-
+import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
+import ParfumDumoment from "../../components/parfumDuMoment/ParfumDumoment";
+import Navbar from "../../components/navbar/Navbar";
+import Bienvenue from "../../components/salut/Bienvenue";
+import Stat from "../../components/stat/Stat";
 
 export default function Home() {
   const navigate = useNavigate();
 
   const backgrounds = [
     "/girl-interrupted.jpg",
-    "/SpotifyLogoRed.webp",
     "/frutigerBG.jpg",
     "/sillentHill.jpg",
     "/rymApasDESwag.webp",
@@ -54,34 +52,30 @@ export default function Home() {
         onChangeTheme={changeBackground}
         onGoToVendre={() => navigate("/vendreParfum")}
         nextBackground={backgrounds[(bgIndex + 1) % backgrounds.length]}
-  onGoToCompte={() => navigate("/compte")}
+        onGoToCompte={() => navigate("/compte")}
       />
 
+      <Bienvenue />
 
-      <Bienvenue/>
+        <ParfumDumoment />
+        
 
-<div className="sectionCool">
-<ParfumDumoment />
-<Stat/>
-</div>
-      
 
       <ChercherParfum />
 
       <section className="vendreSection">
         <h2 className="titreVendre">Vende/ajoute des parfums sur Mistify !</h2>
         <p className="texteVendre">
-          Vous avez un parfum que vous n’utilisez plus!? (ou vous manquez vraiment
-          d'argent...) Sur Mistify, vous pouvez facilement vendre vos parfums et
-          les partager avec d'autres passionnés!
+          Vous avez un parfum que vous n’utilisez plus!? (ou vous manquez
+          vraiment d'argent...) Sur Mistify, vous pouvez facilement vendre vos
+          parfums et les partager avec d'autres passionnés!
         </p>
-        <button
-          className="BTNvendre"
-          onClick={() => navigate("/vendreParfum")}
-        >
+        <button className="BTNvendre" onClick={() => navigate("/vendreParfum")}>
           Vendre un parfum
         </button>
       </section>
+
+      <Stat />
     </div>
   );
 }

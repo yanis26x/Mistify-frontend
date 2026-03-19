@@ -13,9 +13,9 @@
   padding: 25px;
   border-radius: 24px;
 
-  background: rgba(0, 0, 0, 0.471);
+  background: rgb(0, 0, 0);
   backdrop-filter: blur(12px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
 
   color: white;
 }
@@ -32,8 +32,6 @@
   border-radius: 999px;
   font-size: 13px;
   font-weight: 900;
-
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .statContent {
@@ -53,9 +51,10 @@
 }
 
 .statItem {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255, 254, 254);
   border-radius: 16px;
   padding: 14px 16px;
+  color: black;
 }
 
 .statLabel {

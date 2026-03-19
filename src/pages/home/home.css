@@ -182,17 +182,3 @@ body {
   font-family: "Courier New", monospace; 
 }
 
-.sectionCool {
-  display: flex;
-  justify-content: center; /* centre le bloc */
-  align-items: stretch; /* même hauteur */
-  gap: 20px; /* espace entre les 2 */
-
-  padding: 30px 40px;
-  flex-wrap: wrap; /* responsive */
-}
-
-.sectionCool > * {
-  flex: 1;
-  max-width: 600px; /* évite que ça soit trop large */
-}
