@@ -5,6 +5,9 @@ import axios from "axios";
 import ChercherParfum from "../components/chercherParfum/ChercherParfum";
 import ParfumDumoment from "../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../components/navbar/Navbar";
+import Bienvenue from "../components/salut/Bienvenue";
+import Stat from "../components/stat/Stat";
+
 
 export default function Home() {
   const navigate = useNavigate();
@@ -55,14 +58,13 @@ export default function Home() {
       />
 
 
-      <div className="titrecool">
-        MISTIFY
-        <div className="soustitrecool">meilleur que tout les autres et + cool !</div>
-        <div className="soustitrecool2">fait par : @yanis26x + @el24s + @rym31  </div>
+      <Bienvenue/>
 
-      </div>
-
-      <ParfumDumoment />
+<div className="sectionCool">
+<ParfumDumoment />
+<Stat/>
+</div>
+      
 
       <ChercherParfum />
 

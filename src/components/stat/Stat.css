@@ -1,0 +1,71 @@
+.statSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.statCard {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  min-height: 290px;
+
+  padding: 25px;
+  border-radius: 24px;
+
+  background: rgba(0, 0, 0, 0.471);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+  color: white;
+}
+
+.labelStat {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+
+  background: #ff0000;
+  color: white;
+  padding: 6px 14px;
+
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.statContent {
+  margin-top: 10px;
+}
+
+.statTitle {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.statList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.statItem {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+
+.statLabel {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+.statValue {
+  margin: 5px 0 0 0;
+  font-size: 28px;
+  font-weight: 900;
+}
