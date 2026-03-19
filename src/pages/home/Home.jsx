@@ -13,9 +13,9 @@ export default function Home() {
 
   const backgrounds = [
     "/girl-interrupted.jpg",
-    "/frutigerBG.jpg",
     "/sillentHill.jpg",
     "/rymApasDESwag.webp",
+    "/coolBlue.jpeg"
   ];
 
   const [bgIndex, setBgIndex] = useState(0);

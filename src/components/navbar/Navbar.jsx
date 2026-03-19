@@ -34,6 +34,14 @@ export default function Navbar({
           <span>Vendre</span>
         </button>
 
+<button
+  className="panierBtn"
+  onClick={() => navigate("/panier")}
+>
+  <img src="/bloody_bands.webp" alt="Panier" />
+  <span className="panierText">Panier</span>
+</button>
+
       </div>
     </nav>
   );
