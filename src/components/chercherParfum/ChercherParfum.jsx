@@ -49,6 +49,14 @@ export default function ChercherParfum() {
       <div className="chercherResultats">
         {parfums.map((parfum) => (
           <div key={parfum.id} className="parfumTrouve">
+
+            {/* 🔥 IMAGE */}
+            <img
+              src={parfum.imageUrl || "/bloodd.png"}
+              alt={parfum.name}
+              className="parfumImage"
+            />
+
             <p><strong>ID :</strong> {parfum.id}</p>
             <p><strong>Nom :</strong> {parfum.name}</p>
             <p><strong>Marque :</strong> {parfum.brand}</p>

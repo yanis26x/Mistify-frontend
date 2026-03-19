@@ -1,13 +1,37 @@
 .userStatus {
-  position: absolute;
-  top: 30px;
-  left: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px 18px;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.userStatus:hover {
+  transform: scale(1.05);
+}
+
+.userAvatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.userText {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.online {
+  color: #00ff88;
+}
+
+.offline {
   color: white;
-  font-size: 16px;
-  backdrop-filter: blur(5px);
-  max-width: 320px;
-  text-align: left;
+  opacity: 0.85;
 }

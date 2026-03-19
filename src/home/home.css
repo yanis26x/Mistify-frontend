@@ -11,14 +11,14 @@ body {
   background-repeat: no-repeat;
   position: relative;
   text-align: center;
-  padding: 120px 20px 60px;
+
   margin: 0 auto;
 }
 
 .titreHome {
   font-size: 52px;
   margin-bottom: 25px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-shadow: 0 4px 20px rgb(255, 255, 255);
   font-weight: 900;
 }
@@ -141,4 +141,43 @@ body {
   font-size: 17px;
   padding-bottom: 8px;
   cursor: pointer;
+}
+
+
+
+
+
+
+.titrecool {
+  display: inline-block;
+  color: white;
+  font-size: 65px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  padding: 12px 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+
+.soustitrecool {
+  margin-top: 10px;
+
+  font-size: 23px;
+  font-weight: 4000;
+  letter-spacing: 2px;
+  color: rgb(0, 47, 255);
+  font-family: "Courier New", monospace; 
+}
+
+.soustitrecool2 {
+  margin-top: 10px;
+  font-size: 23px;
+  font-weight: 4000;
+  letter-spacing: 2px;
+  color: rgb(0, 47, 255);
+  font-family: "Courier New", monospace; 
 }

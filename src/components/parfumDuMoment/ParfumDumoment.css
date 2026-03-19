@@ -1,27 +1,77 @@
-.horizonImg {
-  display: flex;
-  gap: 25px;
-  padding: 40px;
-}
-
-.carteImg {
-  min-width: 260px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.carteParfum {
+.heroSection {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.cardText {
-  padding: 15px;
-  font-size: 20px;
-  font-weight: 700;
+.miniParfumCard {
+  position: relative; 
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 25px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
   color: white;
-  text-align: center;
 }
+
+
+.labelMoment {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: #ff002f;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+
+.miniParfumImage {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 18px;
+  flex-shrink: 0;
+}
+
+/* INFOS */
+.miniParfumInfos {
+  flex: 1;
+}
+
+.miniParfumName {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.miniParfumBrand,
+.miniParfumDescription {
+  font-size: 16px;
+  margin: 6px 0;
+  opacity: 0.9;
+}
+
+.miniParfumPrice {
+  margin-top: 12px;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.miniBtn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  color: black;
+
+}
+

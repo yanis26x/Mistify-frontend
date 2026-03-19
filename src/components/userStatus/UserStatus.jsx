@@ -1,13 +1,26 @@
 import "./UserStatus.css";
 
-export default function UserStatus({ user }) {
+export default function UserStatus({ user, onGoToCompte }) {
   return (
-    <div className="userStatus">
+    <div className="userStatus" onClick={onGoToCompte}>
       {user ? (
-        <span>{user.name} is online</span>
+        <>
+         <img
+  src={
+    user.admin
+      ? user.profileImage || "/Hello-kitty.webp"
+      : "/loginPfp.jpeg"
+  }
+  alt="Photo de profil"
+  className="logged-avatar"
+/>
+          <span className="userText online">
+            {user.email} is online
+          </span>
+        </>
       ) : (
-        <span>
-          crée un compte ou connecte toi pour ne pas mourir, clique sur le bouton compte
+        <span className="userText offline">
+          Crée un compte ou connecte-toi
         </span>
       )}
     </div>

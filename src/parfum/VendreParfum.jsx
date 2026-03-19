@@ -10,6 +10,7 @@ export default function VendreParfum() {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const [parfums, setParfums] = useState([]);
   const [oneId, setOneId] = useState("");
@@ -26,16 +27,19 @@ export default function VendreParfum() {
     setMessage("");
 
     try {
+      const bodyData = {
+        name: name,
+        brand: brand,
+        price: price ? Number(price) : undefined,
+        imageUrl: imageUrl.trim() || undefined,
+      };
+
       const response = await fetch(API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: name,
-          brand: brand,
-          price: Number(price),
-        }),
+        body: JSON.stringify(bodyData),
       });
 
       const data = await response.json();
@@ -49,6 +53,7 @@ export default function VendreParfum() {
       setName("");
       setBrand("");
       setPrice("");
+      setImageUrl("");
     } catch (error) {
       setMessage("Erreur serveur");
     }
@@ -105,7 +110,7 @@ export default function VendreParfum() {
         return;
       }
 
-      const data = await response.json();
+      await response.json();
       setMessage("Prix modifié avec succès");
       setUpdateId("");
       setNewPrice("");
@@ -168,6 +173,13 @@ export default function VendreParfum() {
           onChange={(e) => setPrice(e.target.value)}
         />
 
+        <input
+          type="text"
+          placeholder="URL de l'image (optionnelle)"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+
         <button onClick={createParfum}>Ajouter</button>
       </div>
 
@@ -182,35 +194,25 @@ export default function VendreParfum() {
               <p><strong>Nom :</strong> {parfum.name}</p>
               <p><strong>Marque :</strong> {parfum.brand}</p>
               <p><strong>Prix :</strong> {parfum.price}$</p>
+
+              {parfum.imageUrl && (
+                <div>
+                  <p><strong>Image :</strong></p>
+                  <img
+                    src={parfum.imageUrl}
+                    alt={parfum.name}
+                    style={{ width: "120px", borderRadius: "10px" }}
+                  />
+                </div>
+              )}
+
               <hr />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="section">
-        <h2>Voir un parfum</h2>
 
-        <input
-          type="number"
-          placeholder="ID du parfum"
-          value={oneId}
-          onChange={(e) => setOneId(e.target.value)}
-        />
-
-        <button onClick={getOneParfum}>Chercher</button>
-
-        <div className="resultBox">
-          {oneParfum && (
-            <div>
-              <p><strong>ID :</strong> {oneParfum.id}</p>
-              <p><strong>Nom :</strong> {oneParfum.name}</p>
-              <p><strong>Marque :</strong> {oneParfum.brand}</p>
-              <p><strong>Prix :</strong> {oneParfum.price}$</p>
-            </div>
-          )}
-        </div>
-      </div>
 
       <div className="section">
         <h2>Modifier le prix d’un parfum</h2>
