@@ -15,7 +15,7 @@ export default function UserStatus({ user, onGoToCompte }) {
   className="logged-avatar"
 />
           <span className="userText online">
-            {user.email} is online
+            {user.name} is online
           </span>
         </>
       ) : (

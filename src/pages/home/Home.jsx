@@ -5,17 +5,14 @@ import axios from "axios";
 import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
 import ParfumDumoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
-import Bienvenue from "../../components/salut/Bienvenue";
-import Stat from "../../components/stat/Stat";
+
 
 export default function Home() {
   const navigate = useNavigate();
 
   const backgrounds = [
+    "/coolBlue.jpeg",
     "/girl-interrupted.jpg",
-    "/sillentHill.jpg",
-    "/rymApasDESwag.webp",
-    "/coolBlue.jpeg"
   ];
 
   const [bgIndex, setBgIndex] = useState(0);
@@ -55,7 +52,6 @@ export default function Home() {
         onGoToCompte={() => navigate("/compte")}
       />
 
-      <Bienvenue />
 
         <ParfumDumoment />
         
@@ -63,19 +59,7 @@ export default function Home() {
 
       <ChercherParfum />
 
-      <section className="vendreSection">
-        <h2 className="titreVendre">Vende/ajoute des parfums sur Mistify !</h2>
-        <p className="texteVendre">
-          Vous avez un parfum que vous n’utilisez plus!? (ou vous manquez
-          vraiment d'argent...) Sur Mistify, vous pouvez facilement vendre vos
-          parfums et les partager avec d'autres passionnés!
-        </p>
-        <button className="BTNvendre" onClick={() => navigate("/vendreParfum")}>
-          Vendre un parfum
-        </button>
-      </section>
 
-      <Stat />
     </div>
   );
 }

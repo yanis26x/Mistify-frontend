@@ -55,33 +55,7 @@ body {
 
 
 
-/* SECTION VENDRE ! */
 
-.vendreSection {
-  text-align: center;
-}
-
-.titreVendre {
-  font-size: 40px;
-  font-weight: 900;
-  color: white;
-}
-
-.texteVendre {
-  font-size: 20px;
-  color: white;
-  max-width: 700px; /* A CHANGER !!! */
-  margin: 0 auto 25px; /* A CHANGER !!! */
-}
-
-.BTNvendre {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 15px;
-  border-radius: 10px;
-  background: white;
-  color: black;
-}
 
 .BTNvendreTop {
   position: absolute;

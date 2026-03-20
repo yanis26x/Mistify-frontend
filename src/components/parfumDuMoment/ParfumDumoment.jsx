@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ParfumDumoment.css";
 import { useNavigate } from "react-router-dom";
+import SellSection from "../sell/SellSection";
 
 export default function ParfumDumoment() {
   const [parfums, setParfums] = useState([]);
@@ -31,48 +32,90 @@ export default function ParfumDumoment() {
   const parfum = parfums[currentIndex];
 
   return (
-    <section className="heroSection">
-      {parfum && (
-        <div className="miniParfumCard">
+    <section className="momentSection">
+      <div className="momentIntro">
+        <h1 className="momentTitle">Mistify</h1>
+        <p className="momentSubtitle">
+        </p>
+      </div>
 
-          <div className="labelMoment">Parfum du moment !</div>
+      <div className="momentContent">
+        {parfum && (
+          <div className="momentCard">
+            <div className="momentLabel">Parfum du moment</div>
 
-          <img
-            src={parfum.imageUrl || "/bloodd.png"}
-            onError={(e) => (e.target.src = "/bloodd.png")}
-            alt={parfum.name}
-            className="miniParfumImage"
-          />
+            <img
+              src={parfum.imageUrl || "/bloodd.png"}
+              onError={(e) => (e.target.src = "/bloodd.png")}
+              alt={parfum.name}
+              className="momentImage"
+            />
 
-          <div className="miniParfumInfos">
-            <h2 className="miniParfumName">{parfum.name}</h2>
+            <div className="momentInfos">
+              <h2 className="momentParfumName">{parfum.name}</h2>
 
-            <p className="miniParfumBrand">
-              <strong>Marque :</strong> {parfum.brand}
-            </p>
+              <p className="momentBrand">
+                <strong >Marque :</strong> {parfum.brand}
+              </p>
 
-            <p className="miniParfumDescription">
-              <strong>Description :</strong>{" "}
-              {parfum.description || "Aucune description"}
-            </p>
+              <p className="momentDescription">
+                <strong>Description :</strong>{" "}
+                {parfum.description || "Aucune description"}
+              </p>
+{/* RATING A FAIRE !!!!!!!!!!!!! */}
+              <p className="momentDescription"> 
+                <strong>NOTE :</strong>{" "}
+                0/5
+              </p>
 
-            <p className="miniParfumPrice">
-              {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
-            </p>
+              <p className="momentPrice">
+                {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
+              </p>
 
-            <button className="miniBtn" onClick={nextParfum}>
-              Découvrir un autre parfum
-            </button>
+              <div className="momentButtons">
+                <button className="momentBtn" onClick={nextParfum}>
+                  Découvrir un autre parfum
+                </button>
 
-            <button
-  className="miniBtn secondary"
-  onClick={() => navigate(`/parfum/${parfum.id}`)}
->
-  En savoir plus
-</button>
+                <button
+                  className="momentBtn secondary"
+                  onClick={() => navigate(`/parfum/${parfum.id}`)}
+                >
+                  En savoir plus
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="statsCard">
+          <div className="statsLabel">want 2 know + about us?</div>
+
+          <div className="statsList">
+            <div className="statItem">
+              <p className="statName">Aicha-Rym Souane</p>
+              <h3 className="statValue">@rym31</h3>
+            </div>
+
+            <div className="statItem">
+              <p className="statName">Ellyn Saint-Firmin</p>
+              <h3 className="statValue">
+                @el24s
+              </h3>
+            </div>
+
+            <div className="statItem">
+              <p className="statName">Djenadi yanis</p>
+              <h3 className="statValue small">
+                @yanis26x
+              </h3>
+            </div>
+
+
           </div>
         </div>
-      )}
+      </div>
+      <SellSection parfums={parfums} />
     </section>
   );
 }

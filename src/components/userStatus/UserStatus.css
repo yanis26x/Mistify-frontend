@@ -3,7 +3,7 @@
   align-items: center;
   gap: 10px;
   padding: 8px 14px;
-  border-radius: 999px;
+
 
   cursor: pointer;
   transition: 0.2s;
@@ -16,7 +16,6 @@
 .userAvatar {
   width: 35px;
   height: 35px;
-  border-radius: 50%;
   object-fit: cover;
 }
 .userText {
