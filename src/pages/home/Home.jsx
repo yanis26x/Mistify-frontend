@@ -12,7 +12,10 @@ export default function Home() {
 
   const backgrounds = [
     "/coolBlue.jpeg",
-    "/girl-interrupted.jpg",
+    "/frutiger/materialdictionary178_129.jpg",
+    "/frutiger/materialdictionary178_130.jpg",
+    "/frutiger/materialdictionary206_10.jpg",
+
   ];
 
   const [bgIndex, setBgIndex] = useState(0);

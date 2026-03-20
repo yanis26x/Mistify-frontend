@@ -12,6 +12,10 @@ body {
   padding: 120px 20px 60px;
   position: relative;
   box-sizing: border-box;
+  background:
+    url("/girl-interrupted.jpg") center / cover no-repeat fixed;
+
+  
 }
 
 .retourBtn {
