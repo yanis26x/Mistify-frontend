@@ -5,6 +5,7 @@ import axios from "axios";
 import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
 import ParfumDumoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 
 
 export default function Home() {
@@ -61,6 +62,9 @@ export default function Home() {
 
 
       <ChercherParfum />
+
+      
+      <Footer/>
 
 
     </div>

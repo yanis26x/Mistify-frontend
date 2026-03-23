@@ -20,6 +20,8 @@ export default function SavoirPlusParfum() {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
+  const [deletingParfum, setDeletingParfum] = useState(false);
+
   useEffect(() => {
     fetchParfum();
     fetchCommentaires();
@@ -157,6 +159,41 @@ export default function SavoirPlusParfum() {
     }
   }
 
+  async function handleDeleteParfum() {
+    const confirmDelete = window.confirm(
+      "Tu veux vraiment supprimer ce parfum ?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      setDeletingParfum(true);
+
+      const res = await fetch(`http://localhost:3000/parfums/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      let data = null;
+      try {
+        data = await res.json();
+      } catch {}
+
+      if (!res.ok) {
+        alert(data?.message || "Impossible de supprimer le parfum");
+        return;
+      }
+
+      alert("Parfum supprimé avec succès.");
+      navigate("/");
+    } catch (err) {
+      console.log("Erreur suppression parfum");
+      alert("Erreur lors de la suppression du parfum.");
+    } finally {
+      setDeletingParfum(false);
+    }
+  }
+
   if (!parfum || loadingUser) {
     return (
       <div className="parfumPage">
@@ -212,7 +249,22 @@ export default function SavoirPlusParfum() {
                 <span className="metaLabel">Nombre d’avis</span>
                 <span className="metaValue">{commentaires.length}</span>
               </div>
+
+              <div className="metaBox">
+                <span className="metaLabel">BTN ajouter au panier</span>
+                <span className="metaValue">A FAIRE</span>
+              </div>
             </div>
+
+            {user?.admin && (
+              <button
+                className="deleteParfumBtn"
+                onClick={handleDeleteParfum}
+                disabled={deletingParfum}
+              >
+                {deletingParfum ? "Suppression..." : "Supprimer le parfum"}
+              </button>
+            )}
           </div>
         </div>
       </div>

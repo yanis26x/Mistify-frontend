@@ -368,3 +368,29 @@
 .deleteCommentBtn:hover {
   background: #8e0019;
 }
+
+
+.deleteParfumBtn {
+  margin-top: 18px;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  background: #b00020;
+  color: white;
+  transition: 0.2s ease;
+  align-self: center;
+}
+
+.deleteParfumBtn:hover {
+  background: #8e0019;
+  transform: translateY(-1px);
+}
+
+.deleteParfumBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
