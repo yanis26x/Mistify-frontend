@@ -152,7 +152,7 @@ export default function Compte() {
 
       setMessage(`Utilisateur ${userId} supprimé.`);
     } catch (err) {
-      setMessage(err?.response?.data?.message || "Erreur suppression user.");
+      setMessage(err?.response?.data?.message || "Erreur suppression user!");
     }
   }
 
@@ -166,24 +166,23 @@ export default function Compte() {
 
       setUsers([]);
       setUser(null);
-      setMessage("Tous les utilisateurs ont été supprimés.");
+      setMessage("Tous les utilisateurs ont été supprimés!");
     } catch (err) {
-      setMessage(err?.response?.data?.message || "Erreur suppression totale.");
+      setMessage(err?.response?.data?.message || "euuuuu...");
     }
   }
 
   return (
     <div className="compte-page">
-      <button className="back-btn" onClick={() => navigate("/")}>
+      <button className="BTNretour" onClick={() => navigate("/")}>
         ← Retour au menu
       </button>
 
       <div className="compte-container">
-        <h1 className="page-title">Compte</h1>
+        <h1 className="pTitre">Compte</h1>
 
         {loading ? (
-          <div className="compte-panel">
-            <p className="status-text">Chargement de la session...</p>
+          <div className="comptee">
           </div>
         ) : user ? (
           <Logged

@@ -118,27 +118,9 @@
   border: 1px solid rgba(0, 255, 106, 0.12);
 }
 
-.logged-role-badge {
-  display: inline-block;
-  margin: 0;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-}
 
-.logged-role-badge.admin {
-  background: rgba(255, 0, 85, 0.18);
-  color: #ff7aa8;
-  border: 1px solid rgba(255, 0, 85, 0.32);
-}
 
-.logged-role-badge.user {
-  background: rgba(0, 255, 136, 0.14);
-  color: #88ffc5;
-  border: 1px solid rgba(0, 255, 136, 0.24);
-}
+
 
 .logged-delete-row {
   display: flex;
@@ -159,13 +141,3 @@
 }
 
 
-
-@media (max-width: 768px) {
-  .logged-topbar {
-    justify-content: center;
-  }
-
-  .logged-delete-row {
-    flex-direction: column;
-  }
-}

@@ -1,93 +1,70 @@
-.createacc-grid-two {
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-
-  
 }
 
-.createacc-panel {
-  background: rgba(221, 209, 209, 0.454);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.card {
+  background: rgba(221, 209, 209, 0.45);
   border-radius: 16px;
   padding: 22px;
-  margin-bottom: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(4px);
 }
 
-.createacc-section-title {
-  margin: 0 0 18px;
+.titre {
+  margin-bottom: 18px;
   font-size: 22px;
   font-weight: 800;
   color: #0d00ff;
 }
 
-.createacc-form-block {
+.form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.createacc-form-block input {
-  width: 100%;
-  padding: 12px 14px;
+.form input {
+  padding: 12px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(5, 5, 5, 0.88);
+  background: #111;
   color: white;
-  font-size: 15px;
-  outline: none;
-  transition: 0.2s ease;
+  border: 1px solid #333;
 }
 
-
-.createacc-primary-btn,
-.createacc-secondary-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-
-
-.createacc-primary-btn {
+.btn-principal {
   background: #0d00ff;
   color: white;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.createacc-secondary-btn {
-  background: rgba(255, 255, 255, 0.509);
-  color: rgb(22, 22, 22);
-  border: 1px solid rgba(0, 17, 255, 0.941);
+.btn-secondaire {
+  background: #ffffff80;
+  color: black;
+  border: 1px solid blue;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.createacc-quick-buttons {
+.btn-rapide {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.createacc-message {
-  margin: 0 0 18px;
-  padding: 12px 14px;
+.msg {
+  padding: 12px;
   border-radius: 10px;
-  font-weight: 700;
+  margin-bottom: 16px;
+  font-weight: bold;
 }
 
-.createacc-success-message {
-  background: rgba(5, 216, 93, 0.763);
-  border: 1px solid rgba(0, 255, 106, 0.2);
-  color: #ffffff;
+.msg-ok {
+  background: #00ff8866;
 }
 
-@media (max-width: 768px) {
-  .createacc-grid-two {
-    grid-template-columns: 1fr;
-  }
-}

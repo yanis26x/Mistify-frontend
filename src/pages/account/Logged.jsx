@@ -37,7 +37,7 @@ export default function Logged({
               Connecté en tant que <strong>{user.name}</strong>
             </p>
 
-            <p className={`logged-role-badge ${user.admin ? "admin" : "user"}`}>
+            <p className={`roleCompte`}>
               {user.admin ? "ADMIN" : "UTILISATEUR"}
             </p>
           </div>

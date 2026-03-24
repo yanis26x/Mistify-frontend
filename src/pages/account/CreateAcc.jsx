@@ -9,12 +9,12 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
   const [signinEmail, setSigninEmail] = useState("");
   const [signinPassword, setSigninPassword] = useState("");
 
-  function fillAdmin() {
+  function autoAdmin() {
     setSigninEmail("yanis26x@hotmail.com");
     setSigninPassword("mdp");
   }
 
-  function fillNoAdmin() {
+  function autoNormal() {
     setSigninEmail("noAdmin@mail.com");
     setSigninPassword("mdp");
   }
@@ -40,13 +40,13 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
 
   return (
     <>
-      {message && <p className="createacc-message createacc-success-message">{message}</p>}
+      {message && <p className="msg msg-ok">{message}</p>}
 
-      <div className="createacc-grid-two">
-        <div className="createacc-panel">
-          <h2 className="createacc-section-title">Créer un compte</h2>
+      <div className="grid">
+        <div className="card">
+          <h2 className="titre">Créer un compte</h2>
 
-          <form onSubmit={handleSubmitSignup} className="createacc-form-block">
+          <form onSubmit={handleSubmitSignup} className="form">
             <input
               type="text"
               placeholder="Nom"
@@ -68,30 +68,26 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
               onChange={(e) => setSignupPassword(e.target.value)}
             />
 
-            <button type="submit" className="createacc-primary-btn">
+            <button type="submit" className="btn-principal">
               Créer un compte
             </button>
           </form>
         </div>
 
-        <div className="createacc-panel">
-          <h2 className="createacc-section-title">Connexion</h2>
+        <div className="card">
+          <h2 className="titre">Connexion</h2>
 
-          <div className="createacc-quick-buttons">
-            <button type="button" className="createacc-secondary-btn" onClick={fillAdmin}>
-              Remplir admin
+          <div className="btn-rapide">
+            <button type="button" className="btn-secondaire" onClick={autoAdmin}>
+              Admin
             </button>
 
-            <button
-              type="button"
-              className="createacc-secondary-btn"
-              onClick={fillNoAdmin}
-            >
-              Remplir user
+            <button type="button" className="btn-secondaire" onClick={autoNormal}>
+              User
             </button>
           </div>
 
-          <form onSubmit={handleSubmitSignin} className="createacc-form-block">
+          <form onSubmit={handleSubmitSignin} className="form">
             <input
               type="email"
               placeholder="Email"
@@ -106,7 +102,7 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
               onChange={(e) => setSigninPassword(e.target.value)}
             />
 
-            <button type="submit" className="createacc-primary-btn">
+            <button type="submit" className="btn-principal">
               Se connecter
             </button>
           </form>
