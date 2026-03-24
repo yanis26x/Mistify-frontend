@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./ChercherParfum.css";
 
 export default function ChercherParfum() {
-  const [search, setSearch] = useState("");
+  const [recherche, setRecherche] = useState("");
   const [parfums, setParfums] = useState([]);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -16,15 +16,15 @@ export default function ChercherParfum() {
       const res = await axios.get("http://localhost:3000/parfums");
 
       const resultats = res.data.filter((parfum) =>
-        parfum.name.toLowerCase().includes(search.toLowerCase())
+        parfum.name.toLowerCase().includes(recherche.toLowerCase())
       );
 
       setParfums(resultats);
 
       if (resultats.length === 0) {
-        setMessage("Aucun parfum trouvé");
+        setMessage("Aucun parfum trouvé...");
       } else {
-        setMessage(`${resultats.length} parfum(s) trouvé(s)`);
+        setMessage(`${resultats.length} parfum trouvé!`);
       }
     } catch (error) {
       setMessage("Erreur lors de la recherche");
@@ -39,8 +39,8 @@ export default function ChercherParfum() {
         <input
           type="text"
           placeholder="Écris le nom du parfum..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={recherche}
+          onChange={(e) => setRecherche(e.target.value)}
         />
 
         <button className="chercherBtn" onClick={handleSearch}>

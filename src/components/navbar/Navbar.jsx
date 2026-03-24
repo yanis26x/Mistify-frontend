@@ -10,11 +10,11 @@ export default function Navbar({
 }) {
   return (
     <nav className="navbarMistify">
-      <div className="navbarLeft">
+      <div className="navbarGauche">
         <UserStatus user={user} onGoToCompte={onGoToCompte} />
       </div>
 
-      <div className="navbarRight">
+      <div className="navbarDroite">
      
 
         <button

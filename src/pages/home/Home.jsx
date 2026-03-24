@@ -16,7 +16,6 @@ export default function Home() {
     "/frutiger/materialdictionary178_129.jpg",
     "/frutiger/materialdictionary178_130.jpg",
     "/frutiger/materialdictionary206_10.jpg",
-
   ];
 
   const [bgIndex, setBgIndex] = useState(0);

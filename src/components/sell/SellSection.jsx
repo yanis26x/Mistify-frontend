@@ -15,37 +15,35 @@ export default function SellSection({ parfums }) {
   return (
     <div className="sellSection">
       <div className="statsCard">
-        <div className="statsLabel">Statistiques</div>
+        <div className="statsNotif">Statistiques</div>
 
         <div className="statsList">
           <div className="statItem">
-            <p className="statName">Parfums total</p>
-            <h3 className="statValue">{parfums.length}</h3>
+            <p className="statNom">Parfums total</p>
+            <h3 className="statValeur">{parfums.length}</h3>
           </div>
 
           <div className="statItem">
-            <p className="statName">Utilisateurs total</p>
-            <h3 className="statValue">au moin 3....</h3>
+            <p className="statNom">Utilisateurs total</p>
+            <h3 className="statValeur">au moin 3....</h3>
           </div>
 
 
 
           <div className="statItem">
-            <p className="statName">Moyenne des Prix</p>
-            <h3 className="statValue">{moyenne}$</h3>
+            <p className="statNom">Moyenne des Prix</p>
+            <h3 className="statValeur">{moyenne}$</h3>
           </div>
         </div>
       </div>
 
       <div className="sellContent">
-        <h2 className="sellTitle">
+        <h2 className="sellTitre">
           Vendre / ajouter des parfums sur Mistify !
         </h2>
 
-        <p className="sellSubtitle">
-          Vous avez un parfum que vous n’utilisez plus!? (ou vous manquez
-          vraiment d'argent...) Sur Mistify, vous pouvez facilement vendre vos
-          parfums et les partager avec d'autres passionnés!
+        <p className="sellSoustitre">
+          (essayer de melanger vos parfum avec de l'eau pour augmenter le prix de vente...)
         </p>
 
         <button

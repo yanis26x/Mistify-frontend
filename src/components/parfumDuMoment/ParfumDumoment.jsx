@@ -33,16 +33,16 @@ export default function ParfumDumoment() {
 
   return (
     <section className="momentSection">
-      <div className="momentIntro">
-        <h1 className="momentTitle">Mistify</h1>
-        <p className="momentSubtitle">
+        <h1 className="momentTitre">Mistify</h1>
+        <p className="momentSousTitre">
+          They didn't release you 'cause you're better, Daisy, they just gave up. You call this a life, hmm?
         </p>
-      </div>
+
 
       <div className="momentContent">
         {parfum && (
-          <div className="momentCard">
-            <div className="momentLabel">Parfum du moment</div>
+          <div className="momentCarte">
+            <div className="momentNotif">Parfum du moment</div>
 
             <img
               src={parfum.imageUrl || "/bloodd.png"}
@@ -72,41 +72,47 @@ export default function ParfumDumoment() {
                 {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
               </p>
 
-              <div className="momentButtons">
-                <button className="momentBtn" onClick={nextParfum}>
-                  Découvrir un autre parfum
-                </button>
-
+              <div className="momentAutreParfum">
                 <button
                   className="momentBtn secondary"
                   onClick={() => navigate(`/parfum/${parfum.id}`)}
                 >
                   En savoir plus
                 </button>
+                <button className="momentBtn" onClick={nextParfum}>
+                  Next ➜
+                </button>
+
+                
               </div>
             </div>
           </div>
         )}
 
+
+
+
+        {/* STAT */}
+
         <div className="statsCard">
-          <div className="statsLabel">want 2 know + about us?</div>
+          <div className="statsNotif">want 2 know + about us?</div>
 
           <div className="statsList">
             <div className="statItem">
-              <p className="statName">Aicha-Rym Souane</p>
-              <h3 className="statValue">@rym31</h3>
+              <p className="statNom">Aicha-Rym Souane</p>
+              <h3 className="statValeur">@rym31</h3>
             </div>
 
             <div className="statItem">
-              <p className="statName">Ellyn Saint-Firmin</p>
-              <h3 className="statValue">
+              <p className="statNom">Ellyn Saint-Firmin</p>
+              <h3 className="statValeur">
                 @el24s
               </h3>
             </div>
 
             <div className="statItem">
-              <p className="statName">Djenadi yanis</p>
-              <h3 className="statValue small">
+              <p className="statNom">Djenadi yanis</p>
+              <h3 className="statValeur small">
                 @yanis26x
               </h3>
             </div>
