@@ -6,20 +6,15 @@ import "./SavoirPlusParfum.css";
 export default function SavoirPlusParfum() {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const AUTH_API = "http://localhost:3000/auth/whoami";
-
   const [parfum, setParfum] = useState(null);
   const [commentaires, setCommentaires] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
-
   const [newComment, setNewComment] = useState("");
   const [newRating, setNewRating] = useState(5);
   const [sendingComment, setSendingComment] = useState(false);
-
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
-
   const [deletingParfum, setDeletingParfum] = useState(false);
 
   useEffect(() => {
@@ -207,12 +202,12 @@ export default function SavoirPlusParfum() {
   }
 
   return (
-    <div className="parfumPage">
-      <button className="back-btn" onClick={() => navigate("/")}>
+    <div className="parfum">
+      <button className="BTNretour" onClick={() => navigate("/")}>
         ← Retour au menu
       </button>
 
-      <div className="parfumContainer">
+      <div className="parfum1">
         <div className="parfumCard">
           <img
             src={parfum.imageUrl || "/bloodd.png"}
@@ -222,39 +217,55 @@ export default function SavoirPlusParfum() {
           />
 
           <div className="parfumInfos">
-            <h1 className="parfumTitle">{parfum.name}</h1>
+            <h1 className="parfumTitre">{parfum.name}</h1>
 
-            <p className="parfumBrand">{parfum.brand}</p>
+            <p className="parfumMarque">{parfum.brand}</p>
 
             <p className="parfumDesc">
               {parfum.description || "Aucune description disponible."}
             </p>
 
-            <p className="parfumPrice">
-              {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
+            <p className="parfumPrix">
+              {parfum.price}$
             </p>
 
-            <div className="parfumMeta">
-              <div className="metaBox">
-                <span className="metaLabel">ID</span>
-                <span className="metaValue">{parfum.id}</span>
+            <div className="parfumMiniInfo">
+              <div className="miniInfoBox">
+                <span className="miniInfoTitre">ID</span>
+                <span className="miniInfoVal">{parfum.id}</span>
               </div>
 
-              <div className="metaBox">
-                <span className="metaLabel">Marque</span>
-                <span className="metaValue">{parfum.brand}</span>
+              <div className="miniInfoBox">
+                <span className="miniInfoTitre">Marque</span>
+                <span className="miniInfoVal">{parfum.brand}</span>
               </div>
 
-              <div className="metaBox">
-                <span className="metaLabel">Nombre d’avis</span>
-                <span className="metaValue">{commentaires.length}</span>
+              <div className="miniInfoBox">
+                <span className="miniInfoTitre">Prix</span>
+                <span className="miniInfoVal">{parfum.price}$</span>
               </div>
 
-              <div className="metaBox">
-                <span className="metaLabel">BTN ajouter au panier</span>
-                <span className="metaValue">A FAIRE</span>
+              <div className="miniInfoBox">
+                <span className="miniInfoTitre">nbr 2 Commentaire</span>
+                <span className="miniInfoVal">A FAIRE </span>
               </div>
+
+              <div className="miniInfoBox">
+                <span className="miniInfoTitre">BTN ajouter panier/buy now</span>
+                <span className="miniInfoVal">A FAIRE </span>
+              </div>
+
+              <div className="miniInfoBox">
+                <span className="miniInfoTitre">BTN modif info quand admin</span>
+                <span className="miniInfoVal">A FAIRE </span>
+              </div>
+
+            
+
+
             </div>
+
+            
 
             {user?.admin && (
               <button
@@ -270,14 +281,14 @@ export default function SavoirPlusParfum() {
       </div>
 
       <div className="commentSection">
-        <h2 className="commentTitle">Commentaires</h2>
+        <h2 className="commentTitre">Commentaires</h2>
 
         {user ? (
           <form className="commentForm" onSubmit={handleAddComment}>
-            <h3 className="commentSubtitle">Ajouter un commentaire</h3>
+            <h3 className="commentSousTitre">Ajouter un commentaire</h3>
 
             <textarea
-              className="commentTextarea"
+              className="commentSectionInput"
               placeholder="Écris ton avis sur ce parfum..."
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
@@ -309,15 +320,15 @@ export default function SavoirPlusParfum() {
             </div>
           </form>
         ) : (
-          <p className="commentEmpty">
-            Connecte-toi pour ajouter un commentaire.
+          <p className="connecteToiprComment">
+            Connecte-toi pour ajouter un commentaire!
           </p>
         )}
 
         {loadingComments ? (
-          <p className="commentEmpty">Chargement des commentaires...</p>
+          <p className="connecteToiprComment">Chargement des commentaires...</p>
         ) : commentaires.length === 0 ? (
-          <p className="commentEmpty">Aucun commentaire pour ce parfum.</p>
+          <p className="connecteToiprComment">Aucun commentaire pour ce parfum.</p>
         ) : (
           <div className="commentList">
             {commentaires.map((commentaire) => (

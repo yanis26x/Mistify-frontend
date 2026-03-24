@@ -52,9 +52,9 @@ export default function ParfumDumoment() {
             />
 
             <div className="momentInfos">
-              <h2 className="momentParfumName">{parfum.name}</h2>
+              <h2 className="momentParfumNom">{parfum.name}</h2>
 
-              <p className="momentBrand">
+              <p className="momentMarque">
                 <strong >Marque :</strong> {parfum.brand}
               </p>
 
@@ -68,7 +68,7 @@ export default function ParfumDumoment() {
                 0/5
               </p>
 
-              <p className="momentPrice">
+              <p className="momentPrix">
                 {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
               </p>
 
