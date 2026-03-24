@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import UserStatus from "../userStatus/UserStatus";
-
+import { useNavigate } from "react-router-dom"; 
 export default function Navbar({
   user,
   onChangeTheme,
@@ -8,6 +8,8 @@ export default function Navbar({
   nextBackground,
   onGoToCompte,
 }) {
+  const navigate = useNavigate(); 
+
   return (
     <nav className="navbarMistify">
       <div className="navbarGauche">
@@ -15,8 +17,6 @@ export default function Navbar({
       </div>
 
       <div className="navbarDroite">
-     
-
         <button
           className="navBtn navThemeBtn"
           onClick={onChangeTheme}
@@ -31,14 +31,13 @@ export default function Navbar({
           <span>Vendre</span>
         </button>
 
-<button
-  className="panierBtn"
-  onClick={() => navigate("/panier")}
->
-  <img src="/bloody_bands.webp" alt="Panier" />
-  <span className="panierText">Panier</span>
-</button>
-
+        <button
+          className="panierBtn"
+          onClick={() => navigate("/panier")}
+        >
+          <img src="/bloody_bands.webp" alt="Panier" />
+          <span className="panierText">Panier</span>
+        </button>
       </div>
     </nav>
   );

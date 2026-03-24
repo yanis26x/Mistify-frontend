@@ -120,6 +120,13 @@
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
+.momentBtn.avantSecondary {
+  
+  background: #6175adda;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
 
 
 
@@ -180,4 +187,25 @@
 
 .statValeur.small {
   font-size: 18px;
+}
+
+
+
+.ajouterPanierBtn {
+  margin-top: 12px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  background-color: #2025b2;
+  color: white;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ajouterPanierBtn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
 }

@@ -65,6 +65,29 @@ export default function SavoirPlusParfum() {
     }
   }
 
+
+  function ajouterAuPanier() {
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+  const deja = panier.find((item) => item.id === parfum.id);
+
+  if (deja) {
+    deja.quantite += 1;
+  } else {
+    panier.push({
+      id: parfum.id,
+      name: parfum.name,
+      price: parfum.price,
+      imageUrl: parfum.imageUrl,
+      quantite: 1,
+    });
+  }
+
+  localStorage.setItem("panier", JSON.stringify(panier));
+
+  alert("Ajouté au panier !");
+}
+
   async function fetchCommentaires() {
     try {
       setLoadingComments(true);
@@ -317,6 +340,11 @@ export default function SavoirPlusParfum() {
                 <span className="miniInfoTitre">Prix</span>
                 <span className="miniInfoVal">{parfum.price}$</span>
               </div>
+
+
+              <button className="ajouterPanierBtn" onClick={ajouterAuPanier}>
+  Ajouter au panier
+</button>
 
               <div className="miniInfoBox">
                 <span className="miniInfoTitre">Commentaires</span>

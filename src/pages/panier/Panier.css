@@ -1,0 +1,318 @@
+.pagePanier {
+  min-height: 100vh;
+  padding: 40px 24px 60px;
+  background: url("girl-interrupted.jpg") center / cover no-repeat fixed;
+}
+
+.btnRetourMenu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  z-index: 100;
+}
+
+.hautPanier {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.titrePanier {
+  font-size: 48px;
+  color: white;
+  margin: 0;
+  text-shadow: 0 0 10px black;
+}
+
+.sousTitrePanier {
+  color: white;
+  margin-top: 10px;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.panierVide {
+  text-align: center;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 60px;
+}
+
+.layoutPanier {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.gauchePanier {
+  width: 100%;
+}
+
+.ligneTitrePanier {
+  display: grid;
+  grid-template-columns: 2.4fr 1fr 0.8fr 0.9fr;
+  gap: 16px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 14px;
+  padding: 0 14px;
+}
+
+.listePanier {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cartePanier {
+  display: grid;
+  grid-template-columns: 2.4fr 1fr 0.8fr 0.9fr;
+  gap: 16px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 18px;
+  padding: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.colProduit {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.imagePanier {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.infoProduit {
+  color: white;
+  min-width: 0;
+}
+
+.nomProduit {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.marqueProduit {
+  margin: 0;
+  opacity: 0.85;
+}
+
+.colQuantite {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btnQuantite {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(0, 0, 255, 0.438);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.boxQuantite {
+  min-width: 40px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-weight: bold;
+}
+
+.colPrix,
+.colTotal {
+  color: white;
+  text-align: center;
+}
+
+.colPrix p,
+.colTotal p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.colTotal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btnSupprimer {
+
+  border: none;
+  border-radius: 8px;
+  color: rgb(255, 2, 2);
+  font-size: 20px;
+  cursor: pointer;
+  background-color:rgba(255, 255, 255, 0);
+}
+
+.droitePanier {
+  width: 100%;
+}
+
+.carteResume {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 18px;
+  padding: 24px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: white;
+  position: sticky;
+  top: 100px;
+}
+
+.titreResume {
+  margin: 0 0 20px;
+  font-size: 28px;
+}
+
+.ligneResume {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 17px;
+}
+
+.petitTexteResume {
+  margin: 20px 0;
+  opacity: 0.85;
+  font-size: 14px;
+}
+
+.btnValider,
+.btnVider {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+    background: rgba(134, 28, 28, 0.605);
+  color: white;
+}
+
+.btnValider {
+  background: rgba(48, 49, 129, 0.623);
+  color: white;
+}
+
+
+
+.pasConnecteBox {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  background-color: rgba(0, 0, 0, 0.609);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.btnCompte {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  background: #000000;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.paiementBox {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.paiementTitre {
+  margin: 0 0 14px;
+  font-size: 22px;
+  color: white;
+}
+
+.listePaiement {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logoPaiement {
+  width: 55px;
+  height: 34px;
+  object-fit: contain;
+  padding: 4px 6px;
+}
+
+.texteSangBox {
+  position: relative;
+  min-height: 90px;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.fondSangPaiement {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.texteSangPaiement {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+

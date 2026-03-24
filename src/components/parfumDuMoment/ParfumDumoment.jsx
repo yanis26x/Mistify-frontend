@@ -24,6 +24,28 @@ export default function ParfumDumoment() {
     }
   }
 
+   function ajouterAuPanier() {
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+  const deja = panier.find((item) => item.id === parfum.id);
+
+  if (deja) {
+    deja.quantite += 1;
+  } else {
+    panier.push({
+      id: parfum.id,
+      name: parfum.name,
+      price: parfum.price,
+      imageUrl: parfum.imageUrl,
+      quantite: 1,
+    });
+  }
+
+  localStorage.setItem("panier", JSON.stringify(panier));
+
+  alert("Ajouté au panier !");
+}
+
   function nextParfum() {
     if (parfums.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % parfums.length);
@@ -73,6 +95,12 @@ export default function ParfumDumoment() {
               </p>
 
               <div className="momentAutreParfum">
+
+
+                <button className="momentBtn avantSecondary" onClick={ajouterAuPanier}>
+  Ajouter au panier
+</button>
+
                 <button
                   className="momentBtn secondary"
                   onClick={() => navigate(`/parfum/${parfum.id}`)}

@@ -3,6 +3,7 @@ import Home from "./pages/home/Home";
 import VendreParfum from "./pages/vendre/VendreParfum";
 import Compte from "./pages/account/Compte";
 import SavoirPlusParfum from "./pages/savoirPlusParfum/SavoirPlusParfum";
+import Panier from "./pages/panier/Panier";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/vendreParfum" element={<VendreParfum />} />
       <Route path="/compte" element={<Compte />} />
       <Route path="/parfum/:id" element={<SavoirPlusParfum />} />
+      <Route path="/panier" element={<Panier />} />
     </Routes>
   );
 }

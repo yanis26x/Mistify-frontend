@@ -283,7 +283,7 @@
   font-size: 13px;
   font-weight: 800;
   cursor: pointer;
-  background: #b00020;
+  background: #ff002f;
   color: white;
   transition: 0.2s ease;
 }
@@ -301,7 +301,7 @@
   font-size: 14px;
   font-weight: 900;
   cursor: pointer;
-  background: #b00020;
+  background: #ff002f;
   color: white;
   transition: 0.2s ease;
   align-self: center;
@@ -380,4 +380,26 @@
   cursor: pointer;
   background: #2025b2;
   color: white;
+}
+
+
+
+
+.ajouterPanierBtn {
+  margin-top: 12px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  background-color: #2025b2;
+  color: white;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ajouterPanierBtn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
 }
