@@ -24,9 +24,9 @@ export default function Navbar({
             backgroundImage: `url(${nextBackground})`,
           }}
         >
-          theme
+          Theme
         </button>
-
+         
         <button className="navBtn" onClick={onGoToVendre}>
           <span>Vendre</span>
         </button>

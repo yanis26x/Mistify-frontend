@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "./ParfumDumoment.css";
+import "./ParfumDuMoment.css";
 import { useNavigate } from "react-router-dom";
 import SellSection from "../sell/SellSection";
 
-export default function ParfumDumoment() {
+export default function ParfumDuMoment() {
   const [parfums, setParfums] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
