@@ -87,12 +87,9 @@ export default function ParfumDuMoment() {
 {/* RATING A FAIRE !!!!!!!!!!!!! */}
               <p className="momentDescription"> 
                 <strong>NOTE :</strong>{" "}
-                0/5
+A FAIRE !!!
               </p>
 
-              <p className="momentPrix">
-                {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
-              </p>
 
               <div className="momentAutreParfum">
 
