@@ -140,6 +140,7 @@ body {
 
 .parfumPreview {
   width: 140px;
+  height: auto;
   border-radius: 12px;
   display: block;
 }
