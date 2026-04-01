@@ -13,6 +13,7 @@ export default function App() {
       <Route path="/compte" element={<Compte />} />
       <Route path="/parfum/:id" element={<SavoirPlusParfum />} />
       <Route path="/panier" element={<Panier />} />
+      {/* <Route path="/profil" element={00} */}
     </Routes>
   );
 }
