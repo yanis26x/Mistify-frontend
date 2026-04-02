@@ -14,6 +14,15 @@ export default function Navbar({
     <nav className="navbarMistify">
       <div className="navbarGauche">
         <UserStatus user={user} onGoToCompte={onGoToCompte} />
+        <button
+          className="profilBtn"
+          onClick={() => navigate("/profil")}
+        >
+          <span> Profil </span>
+          {/* TO SEE -> comment tu mets t images moi d'habje fais juste sous */}
+          {/* <img src="" alt="Profil" /> */}
+          
+        </button>
       </div>
 
       <div className="navbarDroite">

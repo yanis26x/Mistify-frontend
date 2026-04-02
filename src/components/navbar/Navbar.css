@@ -70,3 +70,23 @@
   transform: scale(1.08);
   filter: brightness(1.2);
 }
+
+.profilBtn{
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  /* left: 50%; */
+  right: 70%;
+  /* transform: translate(-50%, -50%);  */
+  color: rgb(255, 255, 255);
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.profilBtn:hover{
+  transform: scale(1.08);
+  filter: brightness(1.2);
+}
