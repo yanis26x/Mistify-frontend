@@ -1,7 +1,7 @@
 .pagePanier {
   min-height: 100vh;
   padding: 40px 24px 60px;
-  background: url("girl-interrupted.jpg") center / cover no-repeat fixed;
+  background: linear-gradient(180deg, #fff8fc 0%, #ffe5f1 45%, #ffd2e7 100%);
 }
 
 .btnRetourMenu {
@@ -9,12 +9,11 @@
   top: 20px;
   left: 20px;
   padding: 10px 14px;
-  border-radius: 10px;
-  background: black;
-  color: white;
+  border-radius: 12px;
+  background: white;
+  color: #ff3d8d;
   font-weight: bold;
-  cursor: pointer;
-  border: none;
+  border: 1px solid #ffb6d2;
   z-index: 100;
 }
 
@@ -26,21 +25,19 @@
 
 .titrePanier {
   font-size: 48px;
-  color: white;
+  color: #ff3d8d;
   margin: 0;
-  text-shadow: 0 0 10px black;
 }
 
 .sousTitrePanier {
-  color: white;
+  color: #a84d74;
   margin-top: 10px;
   font-size: 16px;
-  opacity: 0.9;
 }
 
 .panierVide {
   text-align: center;
-  color: white;
+  color: #ff3d8d;
   font-size: 22px;
   font-weight: bold;
   margin-top: 60px;
@@ -48,7 +45,7 @@
 
 .layoutPanier {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 60px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 30px;
@@ -63,7 +60,7 @@
   display: grid;
   grid-template-columns: 2.4fr 1fr 0.8fr 0.9fr;
   gap: 16px;
-  color: white;
+  color: #c23a77;
   font-weight: bold;
   margin-bottom: 14px;
   padding: 0 14px;
@@ -80,11 +77,11 @@
   grid-template-columns: 2.4fr 1fr 0.8fr 0.9fr;
   gap: 16px;
   align-items: center;
-  background: rgba(0, 0, 0, 0.55);
-  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ffc1dc;
+  border-radius: 20px;
   padding: 18px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 120, 170, 0.15);
 }
 
 .colProduit {
@@ -98,12 +95,14 @@
   width: 90px;
   height: 90px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 14px;
   flex-shrink: 0;
+  border: 2px solid #ffd1e4;
+  background: white;
 }
 
 .infoProduit {
-  color: white;
+  color: #5e2240;
   min-width: 0;
 }
 
@@ -114,7 +113,7 @@
 
 .marqueProduit {
   margin: 0;
-  opacity: 0.85;
+  color: #b35a81;
 }
 
 .colQuantite {
@@ -128,11 +127,10 @@
   width: 34px;
   height: 34px;
   border: none;
-  border-radius: 8px;
-  background: rgba(0, 0, 255, 0.438);
+  border-radius: 10px;
+  background: #ff5ca0;
   color: white;
   font-size: 18px;
-  cursor: pointer;
 }
 
 .boxQuantite {
@@ -141,15 +139,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  color: white;
+  border-radius: 10px;
+  background: #fff0f7;
+  color: #c23a77;
   font-weight: bold;
+  border: 1px solid #ffc3dd;
 }
 
 .colPrix,
 .colTotal {
-  color: white;
+  color: #5e2240;
   text-align: center;
 }
 
@@ -167,13 +166,11 @@
 }
 
 .btnSupprimer {
-
   border: none;
   border-radius: 8px;
-  color: rgb(255, 2, 2);
+  color: #ff2f6d;
   font-size: 20px;
-  cursor: pointer;
-  background-color:rgba(255, 255, 255, 0);
+  background: transparent;
 }
 
 .droitePanier {
@@ -181,12 +178,12 @@
 }
 
 .carteResume {
-  background: rgba(0, 0, 0, 0.55);
-  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #ffc1dc;
+  border-radius: 20px;
   padding: 24px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  color: white;
+  box-shadow: 0 10px 30px rgba(255, 120, 170, 0.15);
+  color: #5e2240;
   position: sticky;
   top: 100px;
 }
@@ -194,6 +191,7 @@
 .titreResume {
   margin: 0 0 20px;
   font-size: 28px;
+  color: #ff3d8d;
 }
 
 .ligneResume {
@@ -206,7 +204,7 @@
 
 .petitTexteResume {
   margin: 20px 0;
-  opacity: 0.85;
+  color: #a85d7c;
   font-size: 14px;
 }
 
@@ -214,21 +212,21 @@
 .btnVider {
   width: 100%;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 14px;
   font-weight: bold;
-  cursor: pointer;
   margin-top: 12px;
-    background: rgba(134, 28, 28, 0.605);
-  color: white;
+}
+
+.btnVider {
+  background: #ffe3ef;
+  color: #c23a77;
 }
 
 .btnValider {
-  background: rgba(48, 49, 129, 0.623);
+  background: #ff4fa0;
   color: white;
 }
-
-
 
 .pasConnecteBox {
   min-height: 80vh;
@@ -237,35 +235,36 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  color: white;
+  color: #c23a77;
   text-align: center;
   font-size: 30px;
-  background-color: rgba(0, 0, 0, 0.609);
-  backdrop-filter: blur(6px);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ffc1dc;
+  border-radius: 24px;
   padding: 30px;
+  max-width: 900px;
+  margin: 100px auto 40px;
 }
 
 .btnCompte {
   padding: 12px 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
-  background: #000000;
+  background: #ff4fa0;
   color: white;
   font-weight: bold;
-  cursor: pointer;
 }
 
 .paiementBox {
   margin-top: 28px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid #ffd3e5;
 }
 
 .paiementTitre {
   margin: 0 0 14px;
   font-size: 22px;
-  color: white;
+  color: #ff3d8d;
 }
 
 .listePaiement {
@@ -281,18 +280,22 @@
   height: 34px;
   object-fit: contain;
   padding: 4px 6px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #ffd3e5;
 }
 
 .texteSangBox {
   position: relative;
   min-height: 90px;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.04);
+  background: #fff4f9;
+  border: 1px solid #ffd3e5;
 }
 
 .fondSangPaiement {
@@ -304,6 +307,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  opacity: 0.9;
 }
 
 .texteSangPaiement {
@@ -312,7 +316,5 @@
   margin: 0;
   font-size: 12px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.82);
+  color: #a84d74;
 }
-
-
