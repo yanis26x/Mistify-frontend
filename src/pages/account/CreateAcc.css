@@ -4,7 +4,7 @@
 }
 
 .card {
-  background: rgba(221, 209, 209, 0.45);
+  background: rgba(30, 40, 126, 0.393);
   border-radius: 16px;
   padding: 22px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
@@ -19,7 +19,7 @@
   margin: 0 0 18px;
   font-size: 28px;
   font-weight: 800;
-  color: #0d00ff;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -38,9 +38,6 @@
   outline: none;
 }
 
-.form input:focus {
-  border-color: #0d00ff;
-}
 
 .btn-principal {
   background: #0d00ff;
@@ -50,17 +47,11 @@
   font-weight: bold;
   cursor: pointer;
   border: none;
-  transition: 0.2s;
-}
-
-.btn-principal:hover {
-  transform: translateY(-1px);
 }
 
 .btn-secondaire {
-  background: #ffffff80;
+  background: #ffffff;
   color: black;
-  border: 1px solid blue;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -76,7 +67,7 @@
 .texte-switch {
   margin: 18px 0 0;
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-weight: 600;
 }
 
@@ -86,9 +77,6 @@
   font-weight: 800;
 }
 
-.lien-switch:hover {
-  text-decoration: underline;
-}
 
 .msg {
   padding: 12px;
