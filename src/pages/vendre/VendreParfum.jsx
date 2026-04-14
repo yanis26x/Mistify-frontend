@@ -205,7 +205,6 @@ export default function VendreParfum() {
           ← Retour
         </button>
 
-
         <div className="accessCard">
           <h1>Accès refusé</h1>
           <p>
@@ -237,140 +236,159 @@ export default function VendreParfum() {
 
       {message && <p className="message">{message}</p>}
 
-      <div className="section createSection">
-        <h2>Créer un parfum</h2>
+      <div className="zoneSections">
+        <div className="colonneGauche">
+          <div className="section createSection">
+            <h2>Créer un parfum</h2>
 
-        <input
-          type="text"
-          placeholder="Nom"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+            <input
+              type="text"
+              placeholder="Nom"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
 
-        <input
-          type="text"
-          placeholder="Marque"
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-        />
+            <input
+              type="text"
+              placeholder="Marque"
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
+            />
 
-        <input
-          type="number"
-          placeholder="Prix"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
+            <input
+              type="number"
+              placeholder="Prix"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
 
-        <input
-          type="text"
-          placeholder="URL de l'image (optionnelle)"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
+            <input
+              type="text"
+              placeholder="URL de l'image (optionnelle)"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
 
-        <button onClick={createParfum}>Ajouter</button>
+            <button onClick={createParfum}>Ajouter</button>
+          </div>
+
+          {user.admin && (
+            <div className="section">
+              <h2>Voir tous les parfums</h2>
+              <button onClick={getAllParfums}>Charger les parfums</button>
+
+              <div className="resultBox">
+                {parfums.map((parfum) => (
+                  <div key={parfum.id} className="parfumItem">
+                    <p><strong>ID :</strong> {parfum.id}</p>
+                    <p><strong>Nom :</strong> {parfum.name}</p>
+                    <p><strong>Marque :</strong> {parfum.brand}</p>
+                    <p><strong>Prix :</strong> {parfum.price}$</p>
+
+                    {parfum.imageUrl && (
+                      <div className="imageBox">
+                        <img
+                          src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
+                          alt={parfum.name}
+                          className="parfumPreview"
+                          onError={(e) => (e.target.src = "/bloodd.png")}
+                        />
+                      </div>
+                    )}
+
+                    <hr />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {user.admin && (
+          <div className="colonneDroite">
+            <div className="section">
+              <h2>Voir un parfum</h2>
+
+              <input
+                type="number"
+                placeholder="ID du parfum"
+                value={oneId}
+                onChange={(e) => setOneId(e.target.value)}
+              />
+
+              <button onClick={getOneParfum}>Chercher</button>
+
+              <div className="resultBox">
+                {oneParfum && (
+                  <div className="parfumItem">
+                    <p><strong>ID :</strong> {oneParfum.id}</p>
+                    <p><strong>Nom :</strong> {oneParfum.name}</p>
+                    <p><strong>Marque :</strong> {oneParfum.brand}</p>
+                    <p><strong>Prix :</strong> {oneParfum.price}$</p>
+
+                    {oneParfum.imageUrl && (
+                      <div className="imageBox">
+                        <img
+                          src={oneParfum.imageUrl ? `${BACKEND_URL}${oneParfum.imageUrl}` : "/bloodd.png"}
+                          alt={oneParfum.name}
+                          className="parfumPreview"
+                          onError={(e) => (e.target.src = "/bloodd.png")}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="section">
+              <h2>Modifier le prix d’un parfum</h2>
+
+              <input
+                type="number"
+                placeholder="ID du parfum"
+                value={updateId}
+                onChange={(e) => setUpdateId(e.target.value)}
+              />
+
+              <input
+                type="number"
+                placeholder="Nouveau prix"
+                value={newPrice}
+                onChange={(e) => setNewPrice(e.target.value)}
+              />
+
+              <button onClick={updateParfum}>Modifier</button>
+            </div>
+
+            <div className="section deleteSection">
+              <h2>Supprimer un parfum</h2>
+
+              <input
+                type="number"
+                placeholder="ID du parfum"
+                value={deleteId}
+                onChange={(e) => setDeleteId(e.target.value)}
+              />
+
+              <button onClick={deleteParfum}>Supprimer</button>
+            </div>
+          </div>
+        )}
       </div>
 
-      {user.admin && (
-        <>
-          <div className="section">
-            <h2>Voir tous les parfums</h2>
-            <button onClick={getAllParfums}>Charger les parfums</button>
-
-            <div className="resultBox">
-              {parfums.map((parfum) => (
-                <div key={parfum.id} className="parfumItem">
-                  <p><strong>ID :</strong> {parfum.id}</p>
-                  <p><strong>Nom :</strong> {parfum.name}</p>
-                  <p><strong>Marque :</strong> {parfum.brand}</p>
-                  <p><strong>Prix :</strong> {parfum.price}$</p>
-
-                  {parfum.imageUrl && (
-                    <div className="imageBox">
-                      <img
-                        src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
-                        alt={parfum.name}
-                        className="parfumPreview"
-                        onError={(e) => (e.target.src = "/bloodd.png")}
-                      />
-                    </div>
-                  )}
-
-                  <hr />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="section">
-            <h2>Voir un parfum</h2>
-
-            <input
-              type="number"
-              placeholder="ID du parfum"
-              value={oneId}
-              onChange={(e) => setOneId(e.target.value)}
-            />
-
-            <button onClick={getOneParfum}>Chercher</button>
-
-            <div className="resultBox">
-              {oneParfum && (
-                <div className="parfumItem">
-                  <p><strong>ID :</strong> {oneParfum.id}</p>
-                  <p><strong>Nom :</strong> {oneParfum.name}</p>
-                  <p><strong>Marque :</strong> {oneParfum.brand}</p>
-                  <p><strong>Prix :</strong> {oneParfum.price}$</p>
-
-                  {oneParfum.imageUrl && (
-                    <div className="imageBox">
-                      <img
-                        src={oneParfum.imageUrl ? `${BACKEND_URL}${oneParfum.imageUrl}` : "/bloodd.png"}
-                        alt={oneParfum.name}
-                        className="parfumPreview"
-                        onError={(e) => (e.target.src = "/bloodd.png")}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="section">
-            <h2>Modifier le prix d’un parfum</h2>
-
-            <input
-              type="number"
-              placeholder="ID du parfum"
-              value={updateId}
-              onChange={(e) => setUpdateId(e.target.value)}
-            />
-
-            <input
-              type="number"
-              placeholder="Nouveau prix"
-              value={newPrice}
-              onChange={(e) => setNewPrice(e.target.value)}
-            />
-
-            <button onClick={updateParfum}>Modifier</button>
-          </div>
-
-          <div className="section deleteSection">
-            <h2>Supprimer un parfum</h2>
-
-            <input
-              type="number"
-              placeholder="ID du parfum"
-              value={deleteId}
-              onChange={(e) => setDeleteId(e.target.value)}
-            />
-
-            <button onClick={deleteParfum}>Supprimer</button>
-          </div>
-        </>
-      )}
+      <div className="explicationProjet">
+        <h2 className="explicationTitre">"pourquoi jpx ajouter un parfum a un site de parfum c'est quoi ce site de @#$!&"</h2>
+        <p className="explicationTexte">
+          {`0n eSt pAs uN mArKeTpLaCe , c’EsT n0uS lEs vEnDeUrS.
+	 0n a dÉjÀ n0s pArFuMs vIa n0tRe aPi. mAiS sI t’En vEuX uN qUi eSt pAs sUr lE sItE , tU pEuX lE pR0p0sEr iCi.
+	 mAiS tU dEcIdE pAs lE pRiX. c’EsT n0uS qUi dEcId0nS sI 0n v0uS aRnAqUe 0u pAs
+	 qUaNd tU aJ0uTeS uN pArFuM , iL eSt eNv0yÉ dAnS n0tRe aPi eT vIsIbLe pAr t0uS lEs aUtReS uTiLiSaTeUrS. mAiS iL rEsTe eN “eN aTtEnTe dE vAlIdAtI0n”.
+	 uN aDmIn (n0uS) vA pAsSeR dEsSuS , vÉrIfIeR sI 0n pEuT sE fAiRe uN mInImUm dArGeNt aVeC….
+	 sI tAiMe pAs lE f0nCtI0nNeMeNt dU sItE , tU pEuX dÉgAgEr vErS uN aUtRe mAgAsIn gEnRe sEpH0rA.c0m.
+	 tFaC0n 0n vEnD pAs a dEs iMbEcIlEs`}
+        </p>
+      </div>
     </div>
   );
 }
