@@ -179,11 +179,10 @@ export default function Compte() {
       </button>
 
       <div className="compte-container">
-        <h1 className="pTitre">Compte</h1>
+        <h1 className="pTitre">Compte𖤐</h1>
 
         {loading ? (
-          <div className="comptee">
-          </div>
+          <div className="comptee"></div>
         ) : user ? (
           <Logged
             user={user}
