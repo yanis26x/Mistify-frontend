@@ -69,8 +69,8 @@ export default function ParfumDumoment() {
             <div className="momentNotif">Parfum du moment</div>
 
             <img
-              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
-              onError={(e) => (e.target.src = "/bloodd.png")}
+              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/browser.png"}
+              onError={(e) => (e.target.src = "/browser.png")}
               alt={parfum.name}
               className="momentImage"
               />
