@@ -57,7 +57,7 @@ export default function ParfumDumoment() {
 
   return (
     <section className="momentSection">
-        <h1 className="momentTitre">Mistify</h1>
+        <h1 className="momentTitre">Mistify𖤐</h1>
         <p className="momentSousTitre">
           They didn't release you 'cause you're better, Daisy, they just gave up. You call this a life, hmm?
         </p>

@@ -226,7 +226,7 @@ export default function VendreParfum() {
       </button>
 
       <div className="pageHeader">
-        <h1>Vendre un parfum</h1>
+        <h1>Vendre un parfum𖤐</h1>
         <p className="pageSubtitle">
           {user.admin
             ? "Mode admin : accès complet à la gestion des parfums."
