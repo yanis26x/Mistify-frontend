@@ -7,6 +7,7 @@
   background-color: #FFFAF5;
   border-top: 1px solid #EEE;
   box-sizing: border-box;
+  border-radius: 20px 20px 0 0;
 }
 
 .footer-section {

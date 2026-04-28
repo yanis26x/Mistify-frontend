@@ -97,7 +97,6 @@ export default function Contact() {
       </div>
 
       <div className="contact-container">
-        {/* FORMULAIRE */}
         <div className="form-section">
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
@@ -223,3 +222,4 @@ export default function Contact() {
     </div>
   );
 }
+
