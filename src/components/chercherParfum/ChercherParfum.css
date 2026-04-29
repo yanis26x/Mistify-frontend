@@ -1,110 +1,232 @@
 .chercherSection {
+  padding: 30px 20px;
   text-align: center;
-  padding: 40px 20px;
 }
 
 .chercherTitre {
-  font-size: 42px;
-  font-weight: 900;
+  font-size: 40px;
+  font-weight: bold;
   color: white;
+  margin-bottom: 30px;
+}
 
+.filtresSection {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hideFiltersBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.hideFiltersBtn:hover {
+  text-decoration: underline;
+}
+
+.filtresContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.filtresGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtresGroup label {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.filtresGroup select,
+.filtresGroup input {
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtresGroup select option {
+  background-color: white;
+  color: black;
+}
+
+.filtresGroup input::placeholder {
+  color: #999;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.clearFiltersBtn {
+  padding: 10px 20px;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.clearFiltersBtn:hover {
+  background-color: #b91c1c;
+}
+
+.showFiltersBtn {
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.showFiltersBtn:hover {
+  background-color: #f3f4f6;
 }
 
 .chercherBox {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
-  margin-bottom: 18px;
 }
 
 .chercherBox input {
-  width: 320px;
-  max-width: 90%;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.08);
+  width: 300px;
+  padding: 12px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.chercherBox input::placeholder {
+  color: #999;
+}
+
+.chercherBtn {
+  padding: 12px 25px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chercherBtn:hover {
+  background-color: #f3f4f6;
+}
+
+.chercherMessage {
   color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
   font-size: 16px;
 }
 
 
-
-.chercherBtn {
-  padding: 14px 18px;
-  border-radius: 14px;
-  background: white;
-  color: black;
-  font-weight: 900;
-}
-
-
-
-.chercherMessage {
-  color: white;
-  margin-bottom: 22px;
-  font-weight: 700;
-}
-
 .chercherResultats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .parfumTrouve {
-  width: 270px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 15px;
   overflow: hidden;
-  border-radius: 20px;
   color: white;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  transition: transform 0.3s;
 }
 
-
+.parfumTrouve:hover {
+  transform: scale(1.05);
+}
 
 .parfumImage {
   width: 100%;
-  height: 190px;
+  height: 200px;
   object-fit: cover;
   display: block;
 }
 
 .parfumContenu {
-  padding: 16px;
+  padding: 15px;
 }
 
 .parfumNom {
-  margin: 0 0 6px 0;
-  font-size: 22px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
   color: white;
 }
 
 .parfumMarque {
+  font-size: 14px;
   margin: 0 0 10px 0;
-  font-size: 15px;
+  color: #ccc;
 }
 
 .parfumPrix {
-  margin: 0 0 14px 0;
-  font-size: 20px;
-  font-weight: 800;
-  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  color: #ffd700;
 }
 
 .savoirPlusBtn {
-  padding: 10px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
   font-size: 14px;
-  font-weight: 800;
+  cursor: pointer;
+}
+
+.savoirPlusBtn:hover {
+  background-color: #f3f4f6;
 }

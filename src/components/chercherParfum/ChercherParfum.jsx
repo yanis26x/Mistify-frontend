@@ -3,10 +3,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ChercherParfum.css";
 
+const BACKEND_URL = "http://localhost:3000";
+
 export default function ChercherParfum() {
   const [recherche, setRecherche] = useState("");
   const [parfums, setParfums] = useState([]);
   const [message, setMessage] = useState("");
+  const [filterGender, setFilterGender] = useState("All");
+  const [Year, setYear] = useState("");
+  const [Price, setPrice] = useState("");
+  const [showFilters, setShowFilters] = useState(true);
   const navigate = useNavigate();
 
   async function handleSearch() {
@@ -15,9 +21,13 @@ export default function ChercherParfum() {
     try {
       const res = await axios.get("http://localhost:3000/parfums");
 
-      const resultats = res.data.filter((parfum) =>
-        parfum.name.toLowerCase().includes(recherche.toLowerCase())
-      );
+      const resultats = res.data.filter((parfum) => {
+        const matchName = parfum.name.toLowerCase().includes(recherche.toLowerCase());
+        const matchGender = filterGender === "All" || parfum.gender === filterGender;
+        const matchYear = !Year || parfum.year >= parseInt(Year);
+        const matchPrice = !Price || parfum.price <= parseInt(Price);
+        return matchName && matchGender && matchYear && matchPrice;
+      });
 
       setParfums(resultats);
 
@@ -34,6 +44,60 @@ export default function ChercherParfum() {
   return (
     <section className="chercherSection">
       <h2 className="chercherTitre">Chercher un parfum</h2>
+
+      {showFilters && (
+        <div className="filtresSection">
+          <button className="hideFiltersBtn" onClick={() => setShowFilters(false)}>
+            🔻 Hide Filters
+          </button>
+          
+          <div className="filtresContainer">
+            <div className="filtresGroup">
+              <label>Gender</label>
+              <select value={filterGender} onChange={(e) => setFilterGender(e.target.value)}>
+                <option value="All">All</option>
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+                <option value="Unisexe">Unisexe</option>
+              </select>
+            </div>
+            
+            <div className="filtresGroup">
+              <label>Year</label>
+              <input
+                type="number"
+                placeholder="e.g., 2000"
+                value={Year}
+                onChange={(e) => setYear(e.target.value)}
+              />
+            </div>
+            
+            <div className="filtresGroup">
+              <label>Price</label>
+              <input
+                type="number"
+                placeholder="e.g., 50"
+                value={Price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+          </div>
+          
+          <button className="clearFiltersBtn" onClick={() => {
+            setFilterGender("All");
+            setYear("");
+            setPrice("");
+          }}>
+            ✕ Clear Filters
+          </button>
+        </div>
+      )}
+
+      {!showFilters && (
+        <button className="showFiltersBtn" onClick={() => setShowFilters(true)}>
+          🔼 Show Filters
+        </button>
+      )}
 
       <div className="chercherBox">
         <input
@@ -54,7 +118,7 @@ export default function ChercherParfum() {
         {parfums.map((parfum) => (
           <div key={parfum.id} className="parfumTrouve">
             <img
-              src={parfum.imageUrl || "/bloodd.png"}
+              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
               alt={parfum.name}
               className="parfumImage"
               onError={(e) => (e.target.src = "/bloodd.png")}

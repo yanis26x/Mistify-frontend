@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Panier.css";
 
+const BACKEND_URL = "http://localhost:3000";
+
 export default function Panier() {
   const navigate = useNavigate();
 
@@ -133,7 +135,7 @@ export default function Panier() {
                 <div key={parfum.id} className="cartePanier">
                   <div className="colProduit">
                     <img
-                      src={parfum.imageUrl || "/bloodd.png"}
+                      src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
                       alt={parfum.name}
                       className="imagePanier"
                     />

@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./DetailsParfum.css";
 
+const BACKEND_URL = "http://localhost:3000";
+
 export default function SavoirPlusParfum() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -311,7 +313,7 @@ export default function SavoirPlusParfum() {
       <div className="parfum1">
         <div className="parfumCard">
           <img
-            src={parfum.imageUrl || "/bloodd.png"}
+            src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
             onError={(e) => (e.target.src = "/bloodd.png")}
             alt={parfum.name}
             className="parfumImage"

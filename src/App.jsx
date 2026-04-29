@@ -4,6 +4,7 @@ import VendreParfum from "./pages/vendre/VendreParfum";
 import Compte from "./pages/account/Compte";
 import DetailsParfum from "./pages/detailsParfum/DetailsParfum";
 import Panier from "./pages/panier/Panier";
+import Contact from "./pages/contact/Contact";
 import Profil from "./pages/profil/Profil"
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Route path="/parfum/:id" element={<DetailsParfum />} />
       <Route path="/panier" element={<Panier />} />
       <Route path="/profil" element={<Profil />}/>
+      <Route path="/contact" element={<Contact />} />
     </Routes>
   );
 }

@@ -3,6 +3,8 @@ import "./ParfumDuMoment.css";
 import { useNavigate } from "react-router-dom";
 import SellSection from "../sell/SellSection";
 
+const BACKEND_URL = "http://localhost:3000";
+
 export default function ParfumDuMoment() {
   const [parfums, setParfums] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -67,11 +69,11 @@ export default function ParfumDuMoment() {
             <div className="momentNotif">Parfum du moment</div>
 
             <img
-              src={parfum.imageUrl || "/bloodd.png"}
+              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
               onError={(e) => (e.target.src = "/bloodd.png")}
               alt={parfum.name}
               className="momentImage"
-            />
+              />
 
             <div className="momentInfos">
               <h2 className="momentParfumNom">{parfum.name}</h2>
