@@ -5,8 +5,6 @@ import "./DetailsParfum.css";
 
 const BACKEND_URL = "http://localhost:3000";
 
-const BACKEND_URL = "http://localhost:3000";
-
 export default function SavoirPlusParfum() {
   const { id } = useParams();
   const navigate = useNavigate();

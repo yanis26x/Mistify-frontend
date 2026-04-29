@@ -3,7 +3,7 @@ import "./home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
-import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDuMoment";
+import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { FiCloud} from "react-icons/fi";
@@ -64,7 +64,7 @@ export default function Home() {
       />
 
 
-      <ParfumDumoment />
+      <ParfumDuMoment />
 
 
 
