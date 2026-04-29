@@ -71,6 +71,7 @@ export default function Panier() {
     sauvegarderPanier(nouveauPanier);
   }
 
+  // VIDER LE PANIER ENTRE USERRRR
   function viderPanier() {
     localStorage.removeItem("panier");
     setPanier([]);

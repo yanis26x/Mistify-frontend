@@ -9,7 +9,7 @@ export default function SellSection({ parfums }) {
       ? (
           parfums.reduce((acc, parfum) => acc + (Number(parfum.price) || 0), 0) /
           parfums.length
-        ).toFixed(1)
+        ).toFixed(2)
       : "0";
 
   return (
@@ -19,13 +19,13 @@ export default function SellSection({ parfums }) {
 
         <div className="statsList">
           <div className="statItem">
-            <p className="statNom">Parfums total</p>
+            <p className="statNom">Parfums Total</p>
             <h3 className="statValeur">{parfums.length}</h3>
           </div>
 
           <div className="statItem">
-            <p className="statNom">Utilisateurs total</p>
-            <h3 className="statValeur">au moin 3....</h3>
+            <p className="statNom">Utilisateurs Total</p>
+            <h3 className="statValeur">Au moins 3....</h3>
           </div>
 
 
@@ -56,3 +56,4 @@ export default function SellSection({ parfums }) {
     </div>
   );
 }
+

@@ -8,9 +8,14 @@
   position: sticky; 
   top: 0;
   z-index: 1000;
+<<<<<<< HEAD
+  backdrop-filter: blur(2px);
+  background-color: white;
+=======
   background-color: #F5EBE0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   min-height: 80px;
+>>>>>>> eb0346911ed266de13cfdede8d337301b0cd6afb
 }
 
 .navbarGauche {
@@ -28,7 +33,11 @@
   padding: 10px 16px;
   font-size: 14px;
   font-weight: 900;
+<<<<<<< HEAD
+  color: black;
+=======
   color: #A73A5E;
+>>>>>>> eb0346911ed266de13cfdede8d337301b0cd6afb
   border: none;
   background: rgba(167, 58, 94, 0.1);
   transition: all 0.3s ease;
@@ -65,9 +74,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
+<<<<<<< HEAD
+  color: black;
+=======
   color: #A73A5E;
+>>>>>>> eb0346911ed266de13cfdede8d337301b0cd6afb
   font-weight: 900;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 

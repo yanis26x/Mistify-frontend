@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./SavoirPlusParfum.css";
+import "./DetailsParfum.css";
+
+const BACKEND_URL = "http://localhost:3000";
 
 const BACKEND_URL = "http://localhost:3000";
 

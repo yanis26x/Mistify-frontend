@@ -3,7 +3,7 @@ import "./home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
-import ParfumDumoment from "../../components/parfumDuMoment/ParfumDumoment";
+import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDuMoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { FiCloud} from "react-icons/fi";
@@ -56,6 +56,8 @@ export default function Home() {
         onGoToAuth={() => navigate("/auth")}
         onGoToCommentaires={() => navigate("/Commentaire")}
         onChangeTheme={changeBackground}
+        // best way i think would be with context
+        onGoToProfil={() => navigate("/profil", {state: {user}})}
         onGoToVendre={() => navigate("/vendreParfum")}
         nextBackground={backgrounds[(bgIndex + 1) % backgrounds.length]}
         onGoToCompte={() => navigate("/compte")}
