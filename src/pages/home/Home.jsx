@@ -6,7 +6,6 @@ import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
 import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDuMoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import Profil from "../profil/Profil"
 
 
 export default function Home() {
@@ -49,17 +48,17 @@ export default function Home() {
       <Navbar
         user={user}
         onGoToAuth={() => navigate("/auth")}
-        onGoToProfil={() => navigate("/profil")}
-        // TO SEE -> does it even do something ???
         onGoToCommentaires={() => navigate("/Commentaire")}
         onChangeTheme={changeBackground}
+        // best way i think would be with context
+        onGoToProfil={() => navigate("/profil", {state: {user}})}
         onGoToVendre={() => navigate("/vendreParfum")}
         nextBackground={backgrounds[(bgIndex + 1) % backgrounds.length]}
         onGoToCompte={() => navigate("/compte")}
       />
 
 
-        <ParfumDuMoment />
+      <ParfumDuMoment />
         
 
 
