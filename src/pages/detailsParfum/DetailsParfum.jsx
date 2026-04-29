@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./SavoirPlusParfum.css";
+import "./DetailsParfum.css";
 
 export default function SavoirPlusParfum() {
   const { id } = useParams();
