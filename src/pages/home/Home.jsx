@@ -6,6 +6,12 @@ import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
 import ParfumDumoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { FiCloud} from "react-icons/fi";
+import { LuFlower } from "react-icons/lu";
+import { FaWind } from "react-icons/fa";
+import { FaEarthAmericas } from "react-icons/fa6";
+import { LuTrees } from "react-icons/lu";
+import { IoIosIceCream } from "react-icons/io";
 
 
 export default function Home() {
@@ -56,14 +62,82 @@ export default function Home() {
       />
 
 
-        <ParfumDumoment />
-        
+      <ParfumDumoment />
+
 
 
       <ChercherParfum />
 
-      
-      <Footer/>
+
+
+      <div className="info-cards">
+        <div className="info-card">
+          <div className="info-icon">
+            <LuFlower size={20} />
+          </div>
+          <p className="info-content">Floral</p>
+        </div>
+
+        <div className="info-card">
+          <div className="info-icon">
+            <FaWind size={20} />
+          </div>
+          <p className="info-content">Frais</p>
+        </div>
+
+        <div className="info-card">
+          <div className="info-icon">
+            <FaEarthAmericas size={20} />
+          </div>
+          <p className="info-content">Oriental</p>
+        </div>
+
+        <div className="info-card">
+          <div className="info-icon">
+            <LuTrees size={20} />
+          </div>
+          <p className="info-content">Boisé</p>
+        </div>
+
+        <div className="info-card">
+          <div className="info-icon">
+            <IoIosIceCream size={20} />
+          </div>
+          <p className="info-content">Gourmand</p>
+        </div>
+
+        <div className="info-card">
+          <div className="info-icon">
+            <FiCloud size={20} />
+          </div>
+          <p className="info-content">Musk</p>
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+<div className="home-demandeParfum">
+
+  <div className="home-demandeParfum-text">
+    <h2 className="home-demandeParfum-title">Vous ne trouvez pas votre parfum ?</h2>
+    <p className="home-demandeParfum-description">
+      Faites-nous part de votre désir olfactif, et nous nous efforcerons de le trouver pour vous.
+    </p>
+  </div>
+
+
+  <button className="home-demandeParfum-button" onClick={() => navigate("/demandeAjoutParfum")}>
+    Demander un parfum
+  </button>
+</div>
+
+
+      <Footer />
 
 
     </div>
