@@ -6,6 +6,7 @@ import DetailsParfum from "./pages/detailsParfum/DetailsParfum";
 import Panier from "./pages/panier/Panier";
 import Contact from "./pages/contact/Contact";
 import Profil from "./pages/profil/Profil"
+import { AjoutParfum } from "./pages/AjoutParfum/AjoutParfum";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/vendreParfum" element={<VendreParfum />} />
       <Route path="/compte" element={<Compte />} />
       <Route path="/parfum/:id" element={<DetailsParfum />} />
+      <Route path="/ajout-parfum/" element={<AjoutParfum />} />
       <Route path="/panier" element={<Panier />} />
       <Route path="/profil" element={<Profil />}/>
       <Route path="/contact" element={<Contact />} />

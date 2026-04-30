@@ -58,8 +58,9 @@ export default function Navbar({
       </Link>
 
       <nav className="nav-links">
-        <Link to="/" className="nav-link">ACCEUIL</Link>
+        <Link to="/" className="nav-link">ACCUEIL</Link>
         <Link to="/parfums" className="nav-link">PARFUMS</Link>
+        <Link to="/ajout-parfum" className="nav-link"> DEMANDE PARFUM </Link>
         <Link to="/contact" className="nav-link">CONTACT</Link>
       </nav>
 
