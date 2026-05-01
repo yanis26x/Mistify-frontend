@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../../components/navbar/Navbar";
+import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
 import "./Panier.css";
+import { FaCcVisa, FaCcMastercard, FaCcAmex, FaCcPaypal, FaApplePay } from "react-icons/fa";
+
+
 
 const BACKEND_URL = "http://localhost:3000";
+const LIVRAISON = 96;
 
 export default function Panier() {
   const navigate = useNavigate();
@@ -15,14 +21,8 @@ export default function Panier() {
   const API_AUTH = "http://localhost:3000/auth/whoami";
 
   useEffect(() => {
-    chargerPanier();
     verifierUtilisateur();
   }, []);
-
-  function chargerPanier() {
-    const data = JSON.parse(localStorage.getItem("panier")) || [];
-    setPanier(data);
-  }
 
   async function verifierUtilisateur() {
     try {
@@ -30,59 +30,69 @@ export default function Panier() {
         withCredentials: true,
       });
       setUtilisateur(res.data);
+
+      const reponsePanier = await axios.get(`${BACKEND_URL}/panier`, {
+        withCredentials: true,
+      });
+      setPanier(Array.isArray(reponsePanier.data) ? reponsePanier.data : []);
     } catch {
       setUtilisateur(null);
+      setPanier([]);
     } finally {
       setChargementUser(false);
     }
   }
 
-  function sauvegarderPanier(nouveauPanier) {
-    localStorage.setItem("panier", JSON.stringify(nouveauPanier));
-    setPanier(nouveauPanier);
+  async function ajouterQuantite(id) {
+    const parfum = panier.find((item) => item.id === id);
+    if (!parfum) return;
+
+    const res = await axios.patch(
+      `${BACKEND_URL}/panier/${id}`,
+      { quantite: parfum.quantite + 1 },
+      { withCredentials: true }
+    );
+    setPanier(Array.isArray(res.data) ? res.data : []);
+    window.dispatchEvent(new Event("panier-change"));
   }
 
-  function ajouterQuantite(id) {
-    const nouveauPanier = panier.map((parfum) => {
-      if (parfum.id === id) {
-        return { ...parfum, quantite: parfum.quantite + 1 };
-      }
-      return parfum;
+  async function enleverQuantite(id) {
+    const parfum = panier.find((item) => item.id === id);
+    if (!parfum) return;
+
+    const res = await axios.patch(
+      `${BACKEND_URL}/panier/${id}`,
+      { quantite: parfum.quantite - 1 },
+      { withCredentials: true }
+    );
+    setPanier(Array.isArray(res.data) ? res.data : []);
+    window.dispatchEvent(new Event("panier-change"));
+  }
+
+  async function supprimerParfum(id) {
+    const res = await axios.delete(`${BACKEND_URL}/panier/${id}`, {
+      withCredentials: true,
     });
-
-    sauvegarderPanier(nouveauPanier);
+    setPanier(Array.isArray(res.data) ? res.data : []);
+    window.dispatchEvent(new Event("panier-change"));
   }
 
-  function enleverQuantite(id) {
-    const nouveauPanier = panier
-      .map((parfum) => {
-        if (parfum.id === id) {
-          return { ...parfum, quantite: parfum.quantite - 1 };
-        }
-        return parfum;
-      })
-      .filter((parfum) => parfum.quantite > 0);
-
-    sauvegarderPanier(nouveauPanier);
-  }
-
-  function supprimerParfum(id) {
-    const nouveauPanier = panier.filter((parfum) => parfum.id !== id);
-    sauvegarderPanier(nouveauPanier);
-  }
-
-  function viderPanier() {
-    localStorage.removeItem("panier");
-    setPanier([]);
+  async function viderPanier() {
+    const res = await axios.delete(`${BACKEND_URL}/panier`, {
+      withCredentials: true,
+    });
+    setPanier(Array.isArray(res.data) ? res.data : []);
+    window.dispatchEvent(new Event("panier-change"));
   }
 
   function validerPanier() {
-    window.open("https://github.com/yanis26x", "_blank");
+    navigate("/payment");
   }
 
-  const totalPanier = panier.reduce((total, parfum) => {
+  const sousTotal = panier.reduce((total, parfum) => {
     return total + parfum.price * parfum.quantite;
   }, 0);
+  const totalPanier = sousTotal + LIVRAISON;
 
   if (chargementUser) {
     return <p style={{ color: "#ff4fa0", textAlign: "center" }}>Chargement...</p>;
@@ -91,9 +101,17 @@ export default function Panier() {
   if (!utilisateur) {
     return (
       <div className="pagePanier">
-        <button className="btnRetourMenu" onClick={() => navigate("/")}>
-          ← Retour
-        </button>
+        <Navbar
+          user={utilisateur}
+          onChangeTheme={() => {}}
+          onGoToVendre={() => navigate("/vendreParfum")}
+          nextBackground="/bluePurpleBackground.jpg"
+          onGoToCompte={() => navigate("/compte")}
+        />
+        <DialoguePersona
+          nom="@yanis26x"
+          texte="tU pEuX pAs aVoIr Un pAnIeR sAnS cOmPtE... cEsT lA vIe."
+        />
 
         <div className="pasConnecteBox">
           <h2>tes serieux....? Cree toi un compte dabord et revien -_-</h2>
@@ -108,14 +126,22 @@ export default function Panier() {
 
   return (
     <div className="pagePanier">
-      <button className="btnRetourMenu" onClick={() => navigate("/")}>
-        ← Retour
-      </button>
+      <Navbar
+        user={utilisateur}
+        onChangeTheme={() => {}}
+        onGoToVendre={() => navigate("/vendreParfum")}
+        nextBackground="/bluePurpleBackground.jpg"
+        onGoToCompte={() => navigate("/compte")}
+      />
+      <DialoguePersona
+        nom="@yanis26x"
+        texte="C'est tout c'que tu prend.....?!!"
+      />
 
       <div className="hautPanier">
         <h1 className="titrePanier">Panier𖤐</h1>
         <p className="sousTitrePanier">
-          C'est tout c'que tu prend ?!! 
+          Sephora, c’est sûrement moins cher et + fiable... j’dis ça, j’dis rien.
         </p>
       </div>
 
@@ -194,18 +220,23 @@ export default function Panier() {
 
               <div className="ligneResume">
                 <span>Sous-total</span>
-                <span>{totalPanier}$</span>
+                <span>{sousTotal}$</span>
               </div>
 
               <div className="ligneResume">
                 <span>Livraison</span>
-                <span>Gratuite</span>
+                <span>{LIVRAISON}$</span>
               </div>
 
-              <div className="petitTexteResume">Livraison standard</div>
+              <div className="petitTexteResume">Livraison standard (7 à 10 mois)</div>
+
+              <div className="ligneResume totalResume">
+                <span>Total</span>
+                <span>{totalPanier}$</span>
+              </div>
 
               <button className="btnVider" onClick={viderPanier}>
-                Vider le panier psq jai pas les moyens de sentire bon
+                Vider tout le panier parce que t’as pas d’argent sale lâche
               </button>
 
               <button className="btnValider" onClick={validerPanier}>
@@ -215,26 +246,21 @@ export default function Panier() {
               <div className="paiementBox">
                 <h3 className="paiementTitre">Nous acceptons</h3>
 
+
+
+
                 <div className="listePaiement">
-                  <img src="/PayPal2.png" alt="PayPal" className="logoPaiement" />
-                  <img src="/visa.png" alt="Visa" className="logoPaiement" />
-                  <img src="/Mastercard.svg" alt="Mastercard" className="logoPaiement" />
-                  <img
-                    src="/american-express.png"
-                    alt="American Express"
-                    className="logoPaiement"
-                  />
-                  <img src="/apple-pay.png" alt="Apple Pay" className="logoPaiement" />
-                </div>
+  <FaCcPaypal className="logoPaiement" />
+  <FaCcVisa className="logoPaiement" />
+  <FaCcMastercard className="logoPaiement" />
+  <FaCcAmex className="logoPaiement" />
+  <FaApplePay className="logoPaiement" />
+</div>
 
                 <div className="texteSangBox">
-                  <img
-                    src="/bloodd.png"
-                    alt="sang"
-                    className="fondSangPaiement"
-                  />
+                  
                   <p className="texteSangPaiement">
-                    nous acceptons egalement les payments par litres de sangs
+                    aucun remboursement ne sera effectuer, garde la peche
                   </p>
                 </div>
               </div>

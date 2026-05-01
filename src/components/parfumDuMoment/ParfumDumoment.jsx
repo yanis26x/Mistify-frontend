@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ParfumDumoment.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import SellSection from "../sell/SellSection";
 
 const BACKEND_URL = "http://localhost:3000";
@@ -26,27 +27,22 @@ export default function ParfumDumoment() {
     }
   }
 
-   function ajouterAuPanier() {
-  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  async function ajouterAuPanier() {
+    if (!parfum) return;
 
-  const deja = panier.find((item) => item.id === parfum.id);
-
-  if (deja) {
-    deja.quantite += 1;
-  } else {
-    panier.push({
-      id: parfum.id,
-      name: parfum.name,
-      price: parfum.price,
-      imageUrl: parfum.imageUrl,
-      quantite: 1,
-    });
+    try {
+      await axios.post(
+        `${BACKEND_URL}/panier`,
+        { parfumId: parfum.id, quantite: 1 },
+        { withCredentials: true }
+      );
+      window.dispatchEvent(new Event("panier-change"));
+      alert("Ajouté au panier !");
+    } catch {
+      alert("Connecte-toi pour ajouter au panier.");
+      navigate("/compte");
+    }
   }
-
-  localStorage.setItem("panier", JSON.stringify(panier));
-
-  alert("Ajouté au panier !");
-}
 
   function nextParfum() {
     if (parfums.length === 0) return;
