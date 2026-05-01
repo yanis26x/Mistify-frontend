@@ -10,8 +10,8 @@ export default function ChercherParfum() {
   const [parfums, setParfums] = useState([]);
   const [message, setMessage] = useState("");
   const [filterGender, setFilterGender] = useState("All");
-  const [fromYear, setFromYear] = useState("");
-  const [toYear, setToYear] = useState("");
+  const [Year, setYear] = useState("");
+  const [Price, setPrice] = useState("");
   const [showFilters, setShowFilters] = useState(true);
   const navigate = useNavigate();
 
@@ -24,9 +24,9 @@ export default function ChercherParfum() {
       const resultats = res.data.filter((parfum) => {
         const matchName = parfum.name.toLowerCase().includes(recherche.toLowerCase());
         const matchGender = filterGender === "All" || parfum.gender === filterGender;
-        const matchFromYear = !fromYear || parfum.year >= parseInt(fromYear);
-        const matchToYear = !toYear || parfum.year <= parseInt(toYear);
-        return matchName && matchGender && matchFromYear && matchToYear;
+        const matchYear = !Year || parfum.year >= parseInt(Year);
+        const matchPrice = !Price || parfum.price <= parseInt(Price);
+        return matchName && matchGender && matchYear && matchPrice;
       });
 
       setParfums(resultats);
@@ -63,30 +63,30 @@ export default function ChercherParfum() {
             </div>
             
             <div className="filtresGroup">
-              <label>From Year</label>
+              <label>Year</label>
               <input
                 type="number"
                 placeholder="e.g., 2000"
-                value={fromYear}
-                onChange={(e) => setFromYear(e.target.value)}
+                value={Year}
+                onChange={(e) => setYear(e.target.value)}
               />
             </div>
             
             <div className="filtresGroup">
-              <label>To Year</label>
+              <label>Price</label>
               <input
                 type="number"
-                placeholder="e.g., 2024"
-                value={toYear}
-                onChange={(e) => setToYear(e.target.value)}
+                placeholder="e.g., 50"
+                value={Price}
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
           </div>
           
           <button className="clearFiltersBtn" onClick={() => {
             setFilterGender("All");
-            setFromYear("");
-            setToYear("");
+            setYear("");
+            setPrice("");
           }}>
             ✕ Clear Filters
           </button>

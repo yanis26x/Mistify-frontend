@@ -4,129 +4,133 @@ body {
 
 .vendrePage {
   min-height: 100vh;
-  padding: 40px 24px 60px;
-  background: linear-gradient(180deg, #fff8fc 0%, #ffe5f1 45%, #ffd2e7 100%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 120px 20px 60px;
+  position: relative;
+  box-sizing: border-box;
+  background:
+    url("/girl-interrupted.jpg") center / cover no-repeat fixed;
+
+  
 }
 
 .retourBtn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  padding: 10px 14px;
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.72);
+  color: white;
   border-radius: 12px;
-  background: white;
-  color: #ff3d8d;
-  font-weight: bold;
-  border: 1px solid #ffb6d2;
-  z-index: 100;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-weight: 800;
 }
 
+
 .pageHeader {
-  max-width: 1200px;
-  margin: 90px auto 24px;
-  text-align: center;
-  color: #5e2240;
+  margin-bottom: 20px;
+  color: white;
 }
 
 .pageHeader h1 {
   margin: 0 0 10px;
-  font-size: 48px;
+  font-size: 46px;
   font-weight: 900;
-  color: #ff3d8d;
 }
 
 .pageSubtitle {
   margin: 0;
   font-size: 17px;
-  color: #a84d74;
+  opacity: 0.8;
 }
 
 .message {
-  max-width: 1200px;
-  margin: 0 auto 20px;
-  font-weight: bold;
-  color: #c23a77;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px solid #ffc1dc;
-  text-align: center;
-}
-
-.zoneSections {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.colonneGauche,
-.colonneDroite {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px 16px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
 }
 
 .section {
-  background: rgba(255, 255, 255, 0.92);
-  padding: 24px;
-  border-radius: 22px;
-  border: 1px solid #ffc1dc;
-  box-shadow: 0 10px 30px rgba(255, 120, 170, 0.12);
-  color: #5e2240;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 560px;
+  backdrop-filter: blur(12px);
 }
 
+
+
 .deleteSection {
-  border: 1px solid #ff9cc4;
+  border: 1px solid rgba(255, 0, 85, 0.18);
 }
 
 .section h2 {
-  margin: 0 0 18px;
-  color: #ff3d8d;
+  margin-top: 0;
+  color: white;
   font-size: 28px;
 }
 
 .section input {
   width: 100%;
+  max-width: 360px;
   padding: 12px 14px;
-  margin-bottom: 12px;
+  margin: 10px auto;
+  display: block;
   border-radius: 12px;
-  border: 1px solid #ffc3dd;
-  background: #fff7fb;
-  color: #5e2240;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(0, 0, 0, 0.78);
+  color: white;
   font-size: 15px;
   outline: none;
-  box-sizing: border-box;
+}
+
+.section input:focus {
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .section button,
 .mainActionBtn {
   padding: 12px 18px;
-  background: #ff4fa0;
-  color: white;
-  font-weight: bold;
+  background: white;
+  color: black;
+  font-weight: 900;
   border-radius: 12px;
   border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.section button:hover,
+.mainActionBtn:hover {
+  transform: translateY(-2px);
 }
 
 .resultBox {
   margin-top: 18px;
-  color: #5e2240;
+  color: white;
   text-align: left;
 }
 
 .parfumItem {
-  margin-bottom: 16px;
-  padding: 16px;
-  border-radius: 16px;
-  background: #fff7fb;
-  border: 1px solid #ffd4e6;
+  margin-bottom: 18px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .parfumItem hr {
   border: none;
-  border-top: 1px solid #ffd7e8;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   margin-top: 14px;
 }
 
@@ -139,57 +143,28 @@ body {
   height: auto;
   border-radius: 12px;
   display: block;
-  border: 2px solid #ffd1e4;
-  background: white;
 }
 
 .accessCard {
   width: 100%;
-  max-width: 620px;
-  margin: 120px auto 0;
+  max-width: 560px;
   padding: 35px 25px;
-  border-radius: 24px;
-  color: #5e2240;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid #ffc1dc;
-  box-shadow: 0 10px 30px rgba(255, 120, 170, 0.12);
-  text-align: center;
+  border-radius: 22px;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
 }
 
 .accessCard h1 {
   margin-top: 0;
   margin-bottom: 12px;
   font-size: 38px;
-  color: #ff3d8d;
 }
 
 .accessCard p {
   font-size: 17px;
-  color: #8c4166;
+  opacity: 0.85;
   margin-bottom: 22px;
-}
-
-.explicationProjet {
-  max-width: 850px;
-  margin: 28px auto 0;
-  padding: 18px 20px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid #ffc1dc;
-  box-shadow: 0 10px 30px rgba(255, 120, 170, 0.08);
-}
-
-.explicationTitre {
-  margin: 0 0 10px;
-  font-size: 22px;
-  color: #ff3d8d;
-  text-align: center;
-}
-
-.explicationTexte {
-  margin: 0;
-  color: #8c4166;
-  font-size: 14px;
-  line-height: 1.7;
-  white-space: pre-line;
 }

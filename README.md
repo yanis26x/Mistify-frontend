@@ -1,15 +1,14 @@
 # Mistify Frontend 𖤐
 
-## POUR TESTER LANCE DABBORD LE BACKEND ET LANCE LE FRONTEND EN MEME TEMPS !
-#### dnas le frontend (ici)
 ```bash
 npm i
 ```
 ```bash
 npm run dev
 ```
+## POUR TESTER LANCE DABBORD LE BACKEND ET LANCE LE FRONTEND EN MEME TEMPS !
 
-#### dans le backend 
+#### ensuite dans le backend 
 ```bash
 npm run start:dev
 ```

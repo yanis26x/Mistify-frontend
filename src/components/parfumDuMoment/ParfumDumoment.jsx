@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import "./ParfumDumoment.css";
+import "./ParfumDuMoment.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SellSection from "../sell/SellSection";
 
 const BACKEND_URL = "http://localhost:3000";
 
-export default function ParfumDumoment() {
+export default function ParfumDuMoment() {
   const [parfums, setParfums] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export default function ParfumDumoment() {
 
   return (
     <section className="momentSection">
-        <h1 className="momentTitre">Mistify𖤐</h1>
+        <h1 className="momentTitre">Mistify</h1>
         <p className="momentSousTitre">
           They didn't release you 'cause you're better, Daisy, they just gave up. You call this a life, hmm?
         </p>
@@ -65,8 +65,8 @@ export default function ParfumDumoment() {
             <div className="momentNotif">Parfum du moment</div>
 
             <img
-              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/browser.png"}
-              onError={(e) => (e.target.src = "/browser.png")}
+              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
+              onError={(e) => (e.target.src = "/bloodd.png")}
               alt={parfum.name}
               className="momentImage"
               />
@@ -85,12 +85,9 @@ export default function ParfumDumoment() {
 {/* RATING A FAIRE !!!!!!!!!!!!! */}
               <p className="momentDescription"> 
                 <strong>NOTE :</strong>{" "}
-                0/5
+A FAIRE !!!
               </p>
 
-              <p className="momentPrix">
-                {parfum.price ? `${parfum.price}$` : "Prix non précisé"}
-              </p>
 
               <div className="momentAutreParfum">
 

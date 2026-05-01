@@ -2,8 +2,6 @@ import { useState } from "react";
 import "./CreateAcc.css";
 
 export default function CreateAcc({ onSignup, onSignin, message }) {
-  const [mode, setMode] = useState("signin");
-
   const [name, setName] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
@@ -41,113 +39,75 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
   }
 
   return (
-    <div className="zone-compte">
+    <>
       {message && <p className="msg msg-ok">{message}</p>}
 
-      <div className="card card-unique">
-        {mode === "signin" ? (
-          <>
-            <h2 className="titre">Connexion</h2>
+      <div className="grid">
+        <div className="card">
+          <h2 className="titre">Créer un compte</h2>
 
-            <div className="btn-rapide">
-              <button
-                type="button"
-                className="btn-secondaire"
-                onClick={autoAdmin}
-              >
-                Admin
-              </button>
+          <form onSubmit={handleSubmitSignup} className="form">
+            <input
+              type="text"
+              placeholder="Nom"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
 
-              <button
-                type="button"
-                className="btn-secondaire"
-                onClick={autoNormal}
-              >
-                User
-              </button>
-            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              value={signupEmail}
+              onChange={(e) => setSignupEmail(e.target.value)}
+            />
 
-            <form onSubmit={handleSubmitSignin} className="form">
-              <input
-                type="email"
-                placeholder="Email"
-                value={signinEmail}
-                onChange={(e) => setSigninEmail(e.target.value)}
-              />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={signupPassword}
+              onChange={(e) => setSignupPassword(e.target.value)}
+            />
 
-              <input
-                type="password"
-                placeholder="Mot de passe"
-                value={signinPassword}
-                onChange={(e) => setSigninPassword(e.target.value)}
-              />
+            <button type="submit" className="btn-principal">
+              Créer un compte
+            </button>
+          </form>
+        </div>
 
-              <button type="submit" className="btn-principal">
-                Se connecter
-              </button>
-            </form>
+        <div className="card">
+          <h2 className="titre">Connexion</h2>
 
-            <p className="texte-switch">
-              Pas de compte ?{" "}
-              <a
-                href="#"
-                className="lien-switch"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMode("signup");
-                }}
-              >
-                Créer un compte
-              </a>
-            </p>
-          </>
-        ) : (
-          <>
-            <h2 className="titre">Créer un compte</h2>
+          <div className="btn-rapide">
+            <button type="button" className="btn-secondaire" onClick={autoAdmin}>
+              Admin
+            </button>
 
-            <form onSubmit={handleSubmitSignup} className="form">
-              <input
-                type="text"
-                placeholder="Nom"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+            <button type="button" className="btn-secondaire" onClick={autoNormal}>
+              User
+            </button>
+          </div>
 
-              <input
-                type="email"
-                placeholder="Email"
-                value={signupEmail}
-                onChange={(e) => setSignupEmail(e.target.value)}
-              />
+          <form onSubmit={handleSubmitSignin} className="form">
+            <input
+              type="email"
+              placeholder="Email"
+              value={signinEmail}
+              onChange={(e) => setSigninEmail(e.target.value)}
+            />
 
-              <input
-                type="password"
-                placeholder="Mot de passe"
-                value={signupPassword}
-                onChange={(e) => setSignupPassword(e.target.value)}
-              />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={signinPassword}
+              onChange={(e) => setSigninPassword(e.target.value)}
+            />
 
-              <button type="submit" className="btn-principal">
-                Créer un compte
-              </button>
-            </form>
-
-            <p className="texte-switch">
-              Déjà un compte ?{" "}
-              <a
-                href="#"
-                className="lien-switch"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMode("signin");
-                }}
-              >
-                Se connecter
-              </a>
-            </p>
-          </>
-        )}
+            <button type="submit" className="btn-principal">
+              Se connecter
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

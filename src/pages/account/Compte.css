@@ -10,10 +10,14 @@ body {
   color: white;
 }
 
+
+
 .compte-page {
   min-height: 100vh;
   padding: 80px 20px 40px;
-  /* background: url("/frutigerBG.jpg") center / cover no-repeat fixed; */
+
+  background:
+    url("/frutigerBG.jpg") center / cover no-repeat fixed;
 }
 
 .compte-container {
@@ -21,13 +25,18 @@ body {
   margin: 0 auto;
 }
 
+
+
 .pTitre {
   margin: 0 0 30px;
   text-align: center;
   font-size: 48px;
   font-weight: 900;
-  color: #ffffff;
+  color: #000000;
+
 }
+
+
 
 .BTNretour {
   position: fixed;
@@ -40,8 +49,9 @@ body {
   border-radius: 10px;
   backdrop-filter: blur(6px);
   z-index: 100;
-  cursor: pointer;
 }
+
+
 
 .comptee {
   background: rgba(233, 4, 4, 0.06);
@@ -49,10 +59,14 @@ body {
   border-radius: 18px;
   padding: 24px;
   margin-bottom: 20px;
+
   box-shadow: 0 0 30px rgba(0, 150, 255, 0.15);
   backdrop-filter: blur(6px);
-  min-height: 200px;
 }
+
+
+
+
 
 .message {
   margin: 0 0 20px;
@@ -65,5 +79,9 @@ body {
 .success-message {
   background: rgba(101, 224, 152, 0.12);
   border: 1px solid rgba(0, 255, 106, 0.2);
-  color: #01fd55;
+  color: #86ffae;
 }
+
+
+
+
