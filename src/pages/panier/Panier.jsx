@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../../components/navbar/Navbar";
 import "./Panier.css";
 
 const BACKEND_URL = "http://localhost:3000";
@@ -71,14 +72,13 @@ export default function Panier() {
     sauvegarderPanier(nouveauPanier);
   }
 
-  // VIDER LE PANIER ENTRE USERRRR
   function viderPanier() {
     localStorage.removeItem("panier");
     setPanier([]);
   }
 
   function validerPanier() {
-    window.open("https://github.com/yanis26x", "_blank");
+    navigate("/payment");
   }
 
   const totalPanier = panier.reduce((total, parfum) => {
@@ -86,15 +86,19 @@ export default function Panier() {
   }, 0);
 
   if (chargementUser) {
-    return <p style={{ color: "white", textAlign: "center" }}>Chargement...</p>;
+    return <p style={{ color: "#ff4fa0", textAlign: "center" }}>Chargement...</p>;
   }
 
   if (!utilisateur) {
     return (
       <div className="pagePanier">
-        <button className="btnRetourMenu" onClick={() => navigate("/")}>
-          ← Retour
-        </button>
+        <Navbar
+          user={utilisateur}
+          onChangeTheme={() => {}}
+          onGoToVendre={() => navigate("/vendreParfum")}
+          nextBackground="/bluePurpleBackground.jpg"
+          onGoToCompte={() => navigate("/compte")}
+        />
 
         <div className="pasConnecteBox">
           <h2>tes serieux....? Cree toi un compte dabord et revien -_-</h2>
@@ -109,13 +113,19 @@ export default function Panier() {
 
   return (
     <div className="pagePanier">
-      <button className="btnRetourMenu" onClick={() => navigate("/")}>
-        ← Retour
-      </button>
+      <Navbar
+        user={utilisateur}
+        onChangeTheme={() => {}}
+        onGoToVendre={() => navigate("/vendreParfum")}
+        nextBackground="/bluePurpleBackground.jpg"
+        onGoToCompte={() => navigate("/compte")}
+      />
 
       <div className="hautPanier">
-        <h1 className="titrePanier">Panier</h1>
-        <p className="sousTitrePanier">c'est le moment de nous prouver que ta de largent ! </p>
+        <h1 className="titrePanier">Panier𖤐</h1>
+        <p className="sousTitrePanier">
+          C'est tout c'que tu prend ?!! 
+        </p>
       </div>
 
       {panier.length === 0 ? (
@@ -135,7 +145,11 @@ export default function Panier() {
                 <div key={parfum.id} className="cartePanier">
                   <div className="colProduit">
                     <img
-                      src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
+                      src={
+                        parfum.imageUrl
+                          ? `${BACKEND_URL}${parfum.imageUrl}`
+                          : "/bloodd.png"
+                      }
                       alt={parfum.name}
                       className="imagePanier"
                     />
@@ -197,41 +211,42 @@ export default function Panier() {
                 <span>Gratuite</span>
               </div>
 
-              <div className="petitTexteResume">
-                Livraison standard
-              </div>
-
+              <div className="petitTexteResume">Livraison standard</div>
 
               <button className="btnVider" onClick={viderPanier}>
-                Vider le panier psq jai pas les moyens de sentire bon 
+                Vider le panier psq jai pas les moyens de sentire bon
               </button>
 
               <button className="btnValider" onClick={validerPanier}>
                 Payer
               </button>
 
-
               <div className="paiementBox">
-  <h3 className="paiementTitre">Nous acceptons</h3>
+                <h3 className="paiementTitre">Nous acceptons</h3>
 
-  <div className="listePaiement">
-    <img src="/PayPal2.png" alt="PayPal" className="logoPaiement" />
-    <img src="/visa.png" alt="Visa" className="logoPaiement" />
-    <img src="/Mastercard.svg" alt="Mastercard" className="logoPaiement" />
-    <img src="/american-express.png" alt="American Express" className="logoPaiement" />
-    <img src="/apple-pay.png" alt="Apple Pay" className="logoPaiement" />
-  </div>
+                <div className="listePaiement">
+                  <img src="/PayPal2.png" alt="PayPal" className="logoPaiement" />
+                  <img src="/visa.png" alt="Visa" className="logoPaiement" />
+                  <img src="/Mastercard.svg" alt="Mastercard" className="logoPaiement" />
+                  <img
+                    src="/american-express.png"
+                    alt="American Express"
+                    className="logoPaiement"
+                  />
+                  <img src="/apple-pay.png" alt="Apple Pay" className="logoPaiement" />
+                </div>
 
-  <div className="texteSangBox">
-    <img src="/bloody_bands.webp" alt="sang" className="fondSangPaiement" />
-    <p className="texteSangPaiement">
-      nous acceptons egalement les payments par litres de sangs
-    </p>
-  </div>
-</div>
-              
-
-              
+                <div className="texteSangBox">
+                  <img
+                    src="/bloodd.png"
+                    alt="sang"
+                    className="fondSangPaiement"
+                  />
+                  <p className="texteSangPaiement">
+                    nous acceptons egalement les payments par litres de sangs
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

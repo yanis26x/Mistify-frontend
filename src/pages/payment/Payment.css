@@ -1,0 +1,131 @@
+.pagePaiement {
+  min-height: 100vh;
+  background: #ead7d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.boitePaiement {
+  width: 100%;
+  max-width: 500px;
+  background: #fffdfb;
+  border: 1px solid #f0e2df;
+  border-radius: 14px;
+  padding: 28px;
+  color: #6f1535;
+}
+
+.boitePaiement h1 {
+  margin: 0 0 10px;
+  font-size: 34px;
+}
+
+.boitePaiement p {
+  margin: 0 0 24px;
+  color: #6d6263;
+}
+
+.resumePaiement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 14px;
+  border: 1px solid #ead8d2;
+  border-radius: 10px;
+  background: #fff7f3;
+}
+
+.resumePaiement strong {
+  font-size: 20px;
+}
+
+.messagePaiement {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.erreurPaiement {
+  border: 1px solid #e3a3b1;
+  background: #fff0f3;
+  color: #8e1235;
+}
+
+.boitePaiement label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.boitePaiement input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #ead8d2;
+  border-radius: 10px;
+  background: #fffdfb;
+  color: #4b3235;
+  font-size: 15px;
+}
+
+.lignePaiement {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.boutonPayer,
+.boutonRetourPanier {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.boutonPayer {
+  border: none;
+  background: #6f1535;
+  color: #fffdfb;
+}
+
+.boutonPayer:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.boutonRetourPanier {
+  margin-top: 10px;
+  border: 1px solid #ead8d2;
+  background: #fffdfb;
+  color: #6f1535;
+}
+
+.confirmationPaiement {
+  text-align: center;
+}
+
+.confirmationPaiement .boutonPayer {
+  margin-top: 8px;
+}
+
+@media (max-width: 560px) {
+  .pagePaiement {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .boitePaiement {
+    padding: 20px;
+  }
+
+  .lignePaiement {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

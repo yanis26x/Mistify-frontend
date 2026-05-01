@@ -1,405 +1,571 @@
-.parfum {
+.pageDetails {
+  --rougeAction: #b51d3b;
   min-height: 100vh;
-  padding: 24px 16px 40px;
-  background: url("/frutigerBG.jpg") center / cover no-repeat fixed;
+  padding: 0 0 60px;
+  background: #ead7d0;
+  color: #6f1535;
 }
 
-.BTNretour {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  padding: 10px 14px;
-  border: 1px solid #2d2d2d;
-  border-radius: 10px;
-  background: #111;
-  color: white;
-  font-weight: 800;
-  cursor: pointer;
-  z-index: 100;
-  transition: 0.2s ease;
-}
-
-
-.parfum1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 70px;
-}
-
-.parfumCard {
+.pageDetails .navbarMistify {
+  max-width: none;
   width: 100%;
-  max-width: 980px;
-  display: flex;
-  gap: 24px;
-  padding: 20px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.294);
-  color: #111;
+  margin: 0;
+  padding: 10px 18px;
+  border: 1px solid #f1dfda;
+  border-radius: 0 0 14px 14px;
+  background: #fffdfb;
+  box-shadow: none;
 }
 
-.parfumImage {
-  width: 320px;
-  height: 420px;
+.titreDetails {
+  margin: 0;
+  color: #4b3235;
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.sousTitreDetails {
+  margin: 10px 0 22px;
+  color: #4b3235;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.layoutDetails {
+  width: calc(100% - 48px);
+  max-width: 1200px;
+  margin: 70px auto 30px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.carteDetails,
+.resumeDetails,
+.blocDetails,
+.detailsVide {
+  background: #fffdfb;
+  border: 1px solid #f0e2df;
+  border-radius: 14px;
+  color: #4b3235;
+}
+
+.carteDetails {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: 26px;
+  padding: 26px;
+}
+
+.imageDetails {
+  width: 100%;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  display: block;
+  border-radius: 10px;
+  border: 1px solid #ead8d2;
+  background: #f4d8d2;
 }
 
-.parfumInfos {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+.infosDetails {
+  min-width: 0;
+  color: #4b3235;
 }
 
-.parfumTitre {
-  margin: 0;
-  font-size: 40px;
-  font-weight: 900;
-  line-height: 1.1;
+.prixDetails {
+  margin-bottom: 14px;
+  color: #4b3235;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.parfumMarque {
-  margin: 8px 0 14px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #000000;
-}
-
-.parfumDesc {
-  max-width: 520px;
-  margin: 0 auto 16px;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #333;
-}
-
-.parfumPrix {
-  margin: 0 0 18px;
-  font-size: 28px;
-  font-weight: 900;
-  color: #000;
-}
-
-.parfumMiniInfo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.moyenneDansCarte {
+  display: inline-flex;
+  align-items: center;
   gap: 10px;
-}
-
-.miniInfoBox {
-  min-width: 110px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: #000000;
-  border: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.miniInfoTitre {
-  font-size: 11px;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-}
-
-.miniInfoVal {
+  margin-bottom: 18px;
+  color: #4b3235;
   font-size: 15px;
-  font-weight: 800;
-  color: #ffffff;
 }
 
-.loadingBox {
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 22px;
-  font-weight: 800;
+.moyenneDansCarte strong {
+  font-size: 16px;
 }
 
-.commentSection {
-  width: 100%;
-  max-width: 980px;
-  margin: 20px auto 0;
-  padding: 20px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.94);
-  color: #111;
-}
-
-.commentTitre {
+.resumeDetails h2,
+.blocDetails h2 {
   margin: 0 0 18px;
-  text-align: center;
+  color: #4b3235;
   font-size: 28px;
-  font-weight: 900;
+  font-weight: 400;
 }
 
-.commentSousTitre {
+.infosDetails h2 {
   margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: 800;
+  color: #4b3235;
+  font-size: 19px;
+  font-weight: 600;
 }
 
-.connecteToiprComment {
-  margin: 10px 0 0;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 700;
-  color: #000000;
-}
-
-.commentForm {
-  margin-bottom: 20px;
-  padding: 16px;
-  border-radius: 14px;
-  background: #1b19191e;
-}
-
-.commentSectionInput {
-  width: 100%;
-  min-height: 100px;
-  resize: vertical;
-  border: 1px solid #cfcfcf;
-  outline: none;
-  border-radius: 12px;
-  padding: 12px;
-  box-sizing: border-box;
-  font-size: 15px;
-  background: white;
-  color: #111;
-}
-
-
-.commentFormBottom {
-  margin-top: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.ratingBox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.ratingLabel {
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.ratingSelect {
-  padding: 9px 12px;
-  border-radius: 10px;
-  border: 1px solid #cfcfcf;
-  background: white;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.commentButton {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 16px;
-  font-size: 14px;
-  font-weight: 900;
-  cursor: pointer;
-  background: #111;
-  color: white;
-  transition: 0.2s ease;
-}
-
-
-
-.commentButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.commentList {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.commentCard {
-  padding: 14px;
-  border-radius: 14px;
-  background: #f8f8f8;
-  border: 1px solid #ddd;
-}
-
-.commentTop {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-
-.commentUser {
-  font-size: 15px;
-  font-weight: 900;
-  color: #111;
-}
-
-.commentRating {
-  font-size: 14px;
-  font-weight: 900;
-  color: #111;
-}
-
-.commentText {
+.infosDetails p {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #333;
+  color: #4b3235;
+  line-height: 1.6;
+  font-size: 16px;
 }
 
+.colonneResumeDetails {
+  position: sticky;
+  top: 100px;
+}
 
+.resumeDetails {
+  padding: 24px;
+}
 
-.commentTopLeft {
+.ligneDetails {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 17px;
+}
+
+.boutonPrincipal,
+.boutonSecondaire,
+.boutonDanger,
+.boutonAdmin {
+  width: 100%;
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.boutonPrincipal {
+  border: none;
+  background: #6f1535;
+  color: #fffdfb;
+}
+
+.boutonSecondaire {
+  border: 1px solid #ead8d2;
+  background: #fffdfb;
+  color: #6f1535;
+}
+
+.boutonDanger {
+  border: none;
+  background: var(--rougeAction);
+  color: #fffdfb;
+}
+
+.boutonAdmin {
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+}
+
+.boutonPrincipal:disabled,
+.boutonDanger:disabled,
+.boutonAdmin:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.actionsAdmin {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.adminDansCarte {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid #f0e2df;
+}
+
+.stockBox {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 13px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.stockAlerte {
+  background: #ffe8eb;
+  border: 1px solid var(--rougeAction);
+  color: var(--rougeAction);
+  animation: clignoteStock 0.45s infinite;
+}
+
+.stockNormal {
+  background: #f7eeeb;
+  border: 1px solid #ead8d2;
+  color: #6d6263;
+}
+
+.texteSansNote {
+  margin: -4px 0 16px;
+  color: #8d7a7d;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.boxTexteResume {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid #ead8d2;
+  border-radius: 10px;
+  background: #f7eeeb;
+}
+
+.boxTexteResume p {
+  margin: 0;
+  color: #6d6263;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.texteQibla {
+  color: #111;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.texteQibla span {
+  color: #111;
+}
+
+@keyframes clignoteStock {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.blocDetails {
+  width: calc(100% - 48px);
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding: 26px;
+}
+
+.formulaireDetails,
+.formulaireCommentaire {
+  display: grid;
+  gap: 14px;
+}
+
+.formulaireCommentaire {
+  margin: 26px 0 10px;
+  padding: 18px;
+  border: 1px solid #f0e2df;
+  border-radius: 10px;
+  background: #fffdfb;
+}
+
+.formulaireDetails input,
+.formulaireDetails textarea,
+.formulaireCommentaire textarea,
+.basCommentaire select {
+  width: 100%;
+  border: 1px solid #ead8d2;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fffdfb;
+  color: #4b3235;
+  font-size: 15px;
+}
+
+.formulaireDetails textarea,
+.formulaireCommentaire textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.basCommentaire {
+  display: grid;
+  grid-template-columns: 150px 180px;
+  gap: 14px;
+  align-items: center;
+}
+
+.choixPhotoProfil {
+  display: grid;
+  gap: 12px;
+}
+
+.choixPhotoProfil p {
+  margin: 0;
+  color: #6f1535;
+  font-weight: bold;
+}
+
+.listePhotosProfil {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.photoProfilOption {
+  border: 1px solid #ead8d2;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fffdfb;
+  color: #6f1535;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.photoProfilOption img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.photoProfilActive {
+  border-color: #6f1535;
+  box-shadow: 0 0 0 2px rgba(111, 21, 53, 0.14);
+}
+
+.texteDiscret {
+  margin: 0;
+  color: #8d7a7d;
+  font-weight: bold;
+}
+
+.avisClients {
+  padding: 44px 40px;
+}
+
+.enteteAvis {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 42px;
+}
+
+.enteteAvis h2 {
+  margin-bottom: 18px;
+  color: #1f1b1c;
+  font-size: 34px;
+}
+
+.enteteAvis p {
+  margin: 0;
+  color: #a19ca6;
+  font-size: 19px;
+}
+
+.boutonAvis {
+  min-width: 230px;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  padding: 18px 24px;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.listeCommentaires {
+  display: grid;
+}
+
+.carteCommentaire {
+  border: none;
+  border-bottom: 1px solid #f4eeee;
+  border-radius: 0;
+  padding: 36px 0 46px;
+  background: #fffdfb;
+}
+
+.carteCommentaire:last-child {
+  border-bottom: none;
+  padding-bottom: 10px;
+}
+
+.hautCommentaire {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.profilCommentaire {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.deleteCommentBtn {
-  border: none;
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-size: 13px;
-  font-weight: 800;
-  cursor: pointer;
-  background: #ff002f;
-  color: white;
-  transition: 0.2s ease;
+.avatarCommentaire {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 1px solid #f0dcd7;
+  background: #f0dcd7;
 }
 
-.deleteCommentBtn:hover {
-  background: #8e0019;
+.profilCommentaire strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #1f1b1c;
+  font-size: 20px;
 }
 
-
-.deleteParfumBtn {
-  margin-top: 18px;
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 14px;
-  font-weight: 900;
-  cursor: pointer;
-  background: #ff002f;
-  color: white;
-  transition: 0.2s ease;
-  align-self: center;
+.etoilesCommentaire {
+  color: #f49a00;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 1;
 }
 
-.deleteParfumBtn:hover {
-  background: #8e0019;
-  transform: translateY(-1px);
+.dateCommentaire {
+  color: #a19ca6;
+  font-size: 16px;
+  white-space: nowrap;
 }
 
-.deleteParfumBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-
-
-.adminActions {
-  margin-top: 18px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.editParfumBtn {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 14px;
-  font-weight: 900;
-  background: #0346d669;
-  color: rgb(0, 0, 0);
-
-}
-.editParfumSection {
-  width: 100%;
+.texteCommentaire {
   max-width: 980px;
-  margin: 20px auto 0;
-  padding: 20px;
-  border-radius: 18px;
-  background: rgba(101, 155, 202, 0.422);
-  color: #111;
-}
-
-.editParfumTitre {
-  margin: 0 0 16px;
+  margin: 0 auto;
+  color: #4f4c55;
+  font-size: 19px;
+  font-style: italic;
+  line-height: 1.8;
   text-align: center;
-  font-size: 26px;
-  font-weight: 900;
 }
 
-.editParfumForm {
+.texteCommentaireModifie {
+  margin: 14px 0 0;
+  color: #9f8790;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.formulaireModificationCommentaire {
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actionsCommentaire {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
   gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
 }
 
-.editInput,
-.editTextarea {
-  width: 100%;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 15px;
-  background: white;
-  color: #111;
+.actionsCommentaireAdmin {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
 }
 
-
-.sauvgarderModifBTN {
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 14px;
-  font-weight: 900;
-  cursor: pointer;
-  background: #2025b2;
-  color: white;
+.petitBouton {
+  width: auto;
+  margin-top: 14px;
+  padding: 10px 14px;
 }
 
-
-
-
-.ajouterPanierBtn {
-  margin-top: 12px;
-  padding: 12px;
-  width: 100%;
-  border-radius: 12px;
-  border: none;
-  background-color: #2025b2;
-  color: white;
-  font-weight: 900;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s ease;
+.detailsMessage,
+.detailsVide {
+  max-width: 900px;
+  margin: 100px auto 0;
+  padding: 30px;
+  text-align: center;
 }
 
-.ajouterPanierBtn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
+.detailsMessage {
+  color: #6f1535;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.detailsVide h1 {
+  margin: 0 0 18px;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .layoutDetails,
+  .carteDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .resumeDetails {
+    position: static;
+  }
+
+  .colonneResumeDetails {
+    position: static;
+  }
+
+  .imageDetails {
+    max-height: 520px;
+  }
+}
+
+@media (max-width: 560px) {
+  .layoutDetails,
+  .blocDetails {
+    width: calc(100% - 28px);
+  }
+
+  .layoutDetails {
+    margin-top: 42px;
+  }
+
+  .titreDetails {
+    font-size: 42px;
+  }
+
+  .carteDetails,
+  .resumeDetails,
+  .blocDetails {
+    padding: 18px;
+  }
+
+  .basCommentaire {
+    grid-template-columns: 1fr;
+  }
+
+  .avisClients {
+    padding: 24px 18px;
+  }
+
+  .enteteAvis,
+  .hautCommentaire {
+    flex-direction: column;
+  }
+
+  .boutonAvis {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .texteCommentaire {
+    font-size: 17px;
+  }
 }

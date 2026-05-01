@@ -1,522 +1,770 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../../components/navbar/Navbar";
+import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
 import "./DetailsParfum.css";
 
-const BACKEND_URL = "http://localhost:3000";
+const API_URL = "http://localhost:3000";
+const PHOTOS_PROFIL = [
+  { titre: "VaMP", src: "/vampp.jpeg" },
+  { titre: "hElL0 - kItTy", src: "/Hello-kitty.webp" },
+  { titre: "sora", src: "/sora.jpg" },
+  { titre: "I AM MUSIC", src: "/SpotifyLogoRed.webp" },
+];
 
-export default function SavoirPlusParfum() {
+export default function DetailsParfum() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const AUTH_API = "http://localhost:3000/auth/whoami";
 
   const [parfum, setParfum] = useState(null);
+  const [utilisateur, setUtilisateur] = useState(null);
   const [commentaires, setCommentaires] = useState([]);
-  const [loadingComments, setLoadingComments] = useState(true);
-  const [newComment, setNewComment] = useState("");
-  const [newRating, setNewRating] = useState(5);
-  const [sendingComment, setSendingComment] = useState(false);
-  const [user, setUser] = useState(null);
-  const [loadingUser, setLoadingUser] = useState(true);
-  const [deletingParfum, setDeletingParfum] = useState(false);
+  const [chargement, setChargement] = useState(true);
+  const [chargementCommentaires, setChargementCommentaires] = useState(true);
 
-  const [showEditForm, setShowEditForm] = useState(false);
-  const [updatingParfum, setUpdatingParfum] = useState(false);
+  const [texteCommentaire, setTexteCommentaire] = useState("");
+  const [noteCommentaire, setNoteCommentaire] = useState("5");
+  const [envoiCommentaire, setEnvoiCommentaire] = useState(false);
+  const [afficherFormulaireAvis, setAfficherFormulaireAvis] = useState(false);
+  const [photoChoisie, setPhotoChoisie] = useState(PHOTOS_PROFIL[0]);
+  const [photosParUtilisateur, setPhotosParUtilisateur] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("photosCommentaires")) || {};
+    } catch {
+      return {};
+    }
+  });
+  const [commentairesModifies, setCommentairesModifies] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("commentairesModifies")) || {};
+    } catch {
+      return {};
+    }
+  });
+  const [commentaireEnModification, setCommentaireEnModification] = useState(null);
+  const [texteModification, setTexteModification] = useState("");
+  const [noteModification, setNoteModification] = useState("5");
+  const [envoiModificationCommentaire, setEnvoiModificationCommentaire] = useState(false);
 
-  const [editName, setEditName] = useState("");
-  const [editBrand, setEditBrand] = useState("");
-  const [editDescription, setEditDescription] = useState("");
-  const [editImageUrl, setEditImageUrl] = useState("");
-  const [editPrice, setEditPrice] = useState("");
+  const [modifier, setModifier] = useState(false);
+  const [nom, setNom] = useState("");
+  const [marque, setMarque] = useState("");
+  const [prix, setPrix] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [envoiModification, setEnvoiModification] = useState(false);
+  const [suppression, setSuppression] = useState(false);
+  const [stockBlague, setStockBlague] = useState(false);
 
-  useEffect(() => {
-    fetchParfum();
-    fetchCommentaires();
-    checkUser();
+  const chargerParfum = useCallback(async () => {
+    try {
+      setChargement(true);
+      const reponse = await fetch(`${API_URL}/parfums/${id}`, {
+        credentials: "include",
+      });
+      const data = await reponse.json();
+
+      setParfum(data);
+      setNom(data.name || "");
+      setMarque(data.brand || "");
+      setPrix(data.price || "");
+      setImageUrl(data.imageUrl || "");
+      setDescription(data.description || "");
+    } catch {
+      setParfum(null);
+    } finally {
+      setChargement(false);
+    }
   }, [id]);
 
-  async function checkUser() {
-    setLoadingUser(true);
-
+  const chargerCommentaires = useCallback(async () => {
     try {
-      const res = await axios.get(AUTH_API, {
-        withCredentials: true,
-      });
-      setUser(res.data);
-    } catch (error) {
-      setUser(null);
-    } finally {
-      setLoadingUser(false);
-    }
-  }
-
-  async function fetchParfum() {
-    try {
-      const res = await fetch(`http://localhost:3000/parfums/${id}`, {
+      setChargementCommentaires(true);
+      const reponse = await fetch(`${API_URL}/parfums/${id}/commentaires`, {
         credentials: "include",
       });
-      const data = await res.json();
-      setParfum(data);
-      setEditName("");
-      setEditBrand("");
-      setEditDescription("");
-      setEditImageUrl("");
-      setEditPrice("");
-    } catch (err) {
-      console.log("Erreur parfum");
-    }
-  }
-
-
-  function ajouterAuPanier() {
-  let panier = JSON.parse(localStorage.getItem("panier")) || [];
-
-  const deja = panier.find((item) => item.id === parfum.id);
-
-  if (deja) {
-    deja.quantite += 1;
-  } else {
-    panier.push({
-      id: parfum.id,
-      name: parfum.name,
-      price: parfum.price,
-      imageUrl: parfum.imageUrl,
-      quantite: 1,
-    });
-  }
-
-  localStorage.setItem("panier", JSON.stringify(panier));
-
-  alert("Ajouté au panier !");
-}
-
-  async function fetchCommentaires() {
-    try {
-      setLoadingComments(true);
-
-      const res = await fetch(
-        `http://localhost:3000/parfums/${id}/commentaires`,
-        {
-          credentials: "include",
-        }
-      );
-      const data = await res.json();
-
-      if (Array.isArray(data)) {
-        setCommentaires(data);
-      } else {
-        setCommentaires([]);
-      }
-    } catch (err) {
-      console.log("Erreur commentaires");
+      const data = await reponse.json();
+      setCommentaires(Array.isArray(data) ? data : []);
+    } catch {
       setCommentaires([]);
     } finally {
-      setLoadingComments(false);
+      setChargementCommentaires(false);
     }
+  }, [id]);
+
+  const verifierUtilisateur = useCallback(async () => {
+    try {
+      const reponse = await axios.get(`${API_URL}/auth/whoami`, {
+        withCredentials: true,
+      });
+      setUtilisateur(reponse.data);
+    } catch {
+      setUtilisateur(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    chargerParfum();
+    chargerCommentaires();
+    verifierUtilisateur();
+  }, [chargerParfum, chargerCommentaires, verifierUtilisateur]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStockBlague(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  function ajouterAuPanier() {
+    const panier = JSON.parse(localStorage.getItem("panier")) || [];
+    const parfumDansPanier = panier.find((item) => item.id === parfum.id);
+
+    if (parfumDansPanier) {
+      parfumDansPanier.quantite += 1;
+    } else {
+      panier.push({
+        id: parfum.id,
+        name: parfum.name,
+        brand: parfum.brand,
+        price: parfum.price,
+        imageUrl: parfum.imageUrl,
+        quantite: 1,
+      });
+    }
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+    alert("Ajoute au panier !");
   }
 
-  async function handleAddComment(e) {
+  async function envoyerCommentaire(e) {
     e.preventDefault();
 
-    if (!newComment.trim()) {
-      alert("Écris un commentaire.");
+    if (!utilisateur) {
+      alert("Connecte-toi pour commenter.");
       return;
     }
 
-    if (!user) {
-      alert("Tu dois être connecté pour commenter.");
+    if (!texteCommentaire.trim()) {
+      alert("Ecris un commentaire.");
       return;
     }
 
     try {
-      setSendingComment(true);
+      setEnvoiCommentaire(true);
+      const reponse = await fetch(`${API_URL}/parfums/${id}/commentaires`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          content: texteCommentaire,
+          rating: Number(noteCommentaire),
+          userId: utilisateur.id,
+        }),
+      });
 
-      const bodyData = {
-        content: newComment,
-        rating: Number(newRating),
-        userId: user.id,
+      if (!reponse.ok) {
+        let erreur = null;
+        try {
+          erreur = await reponse.json();
+        } catch {
+          erreur = null;
+        }
+
+        alert(erreur?.message || "Impossible d'ajouter le commentaire.");
+        return;
+      }
+
+      const nouvellesPhotos = {
+        ...photosParUtilisateur,
+        [utilisateur.id]: photoChoisie,
       };
 
-      const res = await fetch(
-        `http://localhost:3000/parfums/${id}/commentaires`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      localStorage.setItem("photosCommentaires", JSON.stringify(nouvellesPhotos));
+      setPhotosParUtilisateur(nouvellesPhotos);
+      setTexteCommentaire("");
+      setNoteCommentaire("5");
+      setAfficherFormulaireAvis(false);
+      await chargerCommentaires();
+    } catch {
+      alert("Erreur pendant l'ajout du commentaire.");
+    } finally {
+      setEnvoiCommentaire(false);
+    }
+  }
+
+  async function supprimerCommentaire(commentaireId) {
+    const confirmation = window.confirm("Supprimer ce commentaire ?");
+    if (!confirmation) return;
+
+    try {
+      const reponse = await fetch(`${API_URL}/commentaires/${commentaireId}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      if (!reponse.ok) {
+        alert("Impossible de supprimer le commentaire.");
+        return;
+      }
+
+      await chargerCommentaires();
+    } catch {
+      alert("Erreur pendant la suppression.");
+    }
+  }
+
+  function ouvrirModificationCommentaire(commentaire) {
+    setCommentaireEnModification(commentaire.id);
+    setTexteModification(commentaire.content || "");
+    setNoteModification(String(commentaire.rating || 5));
+  }
+
+  function fermerModificationCommentaire() {
+    setCommentaireEnModification(null);
+    setTexteModification("");
+    setNoteModification("5");
+  }
+
+  async function modifierCommentaire(e, commentaireId) {
+    e.preventDefault();
+
+    if (!texteModification.trim()) {
+      alert("Ecris un commentaire.");
+      return;
+    }
+
+    try {
+      setEnvoiModificationCommentaire(true);
+
+      const donneesCommentaire = {
+        content: texteModification,
+        rating: Number(noteModification),
+      };
+
+      let reponse = await fetch(`${API_URL}/commentaires/${commentaireId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(donneesCommentaire),
+      });
+
+      if (!reponse.ok) {
+        reponse = await fetch(`${API_URL}/commentaires/${commentaireId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify(bodyData),
+          body: JSON.stringify(donneesCommentaire),
+        });
+      }
+
+      if (!reponse.ok) {
+        let erreur = null;
+        try {
+          erreur = await reponse.json();
+        } catch {
+          erreur = null;
         }
+
+        alert(erreur?.message || "Impossible de modifier le commentaire.");
+        return;
+      }
+
+      const nouveauxCommentairesModifies = {
+        ...commentairesModifies,
+        [commentaireId]: true,
+      };
+
+      localStorage.setItem(
+        "commentairesModifies",
+        JSON.stringify(nouveauxCommentairesModifies)
       );
-
-      let data = null;
-      try {
-        data = await res.json();
-      } catch {}
-
-      if (!res.ok) {
-        alert(data?.message || "Impossible d'ajouter le commentaire");
-        return;
-      }
-
-      setNewComment("");
-      setNewRating(5);
-      await fetchCommentaires();
-    } catch (err) {
-      console.log("Erreur ajout commentaire");
-      alert("Erreur lors de l'ajout du commentaire.");
+      setCommentairesModifies(nouveauxCommentairesModifies);
+      fermerModificationCommentaire();
+      await chargerCommentaires();
+    } catch {
+      alert("Erreur pendant la modification du commentaire.");
     } finally {
-      setSendingComment(false);
+      setEnvoiModificationCommentaire(false);
     }
   }
 
-  async function handleDeleteComment(commentId) {
-    const confirmDelete = window.confirm(
-      "Tu veux vraiment supprimer ce commentaire ?"
-    );
-
-    if (!confirmDelete) return;
-
-    try {
-      const res = await fetch(`http://localhost:3000/commentaires/${commentId}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-
-      let data = null;
-      try {
-        data = await res.json();
-      } catch {}
-
-      if (!res.ok) {
-        alert(data?.message || "Impossible de supprimer le commentaire");
-        return;
-      }
-
-      await fetchCommentaires();
-    } catch (err) {
-      console.log("Erreur suppression commentaire");
-      alert("Erreur lors de la suppression.");
-    }
-  }
-
-  async function handleDeleteParfum() {
-    const confirmDelete = window.confirm(
-      "Tu veux vraiment supprimer ce parfum ?"
-    );
-
-    if (!confirmDelete) return;
-
-    try {
-      setDeletingParfum(true);
-
-      const res = await fetch(`http://localhost:3000/parfums/${id}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-
-      let data = null;
-      try {
-        data = await res.json();
-      } catch {}
-
-      if (!res.ok) {
-        alert(data?.message || "Impossible de supprimer le parfum");
-        return;
-      }
-
-      alert("Parfum supprimé avec succès.");
-      navigate("/");
-    } catch (err) {
-      console.log("Erreur suppression parfum");
-      alert("Erreur lors de la suppression du parfum.");
-    } finally {
-      setDeletingParfum(false);
-    }
-  }
-
-  async function handleUpdateParfum(e) {
+  async function modifierParfum(e) {
     e.preventDefault();
 
     try {
-      setUpdatingParfum(true);
+      setEnvoiModification(true);
 
-      const bodyData = {};
+      const parfumModifie = {};
 
-      if (editName.trim() !== "") bodyData.name = editName;
-      if (editBrand.trim() !== "") bodyData.brand = editBrand;
-      if (editPrice !== "") bodyData.price = Number(editPrice);
+      if (nom.trim() !== "" && nom !== parfum.name) {
+        parfumModifie.name = nom.trim();
+      }
 
-      if (editDescription !== "") bodyData.description = editDescription;
-      if (editImageUrl !== "") bodyData.imageUrl = editImageUrl;
+      if (marque.trim() !== "" && marque !== parfum.brand) {
+        parfumModifie.brand = marque.trim();
+      }
 
-      if (Object.keys(bodyData).length === 0) {
-        alert("ta rien changer, tes serieux....?!");
+      if (prix !== "" && Number(prix) !== Number(parfum.price)) {
+        parfumModifie.price = Number(prix);
+      }
+
+      if (imageUrl.trim() !== "" && imageUrl !== parfum.imageUrl) {
+        parfumModifie.imageUrl = imageUrl.trim();
+      }
+
+      if (description !== parfum.description) {
+        parfumModifie.description = description;
+      }
+
+      if (Object.keys(parfumModifie).length === 0) {
+        alert("ta rien changer.");
         return;
       }
 
-      const res = await fetch(`http://localhost:3000/parfums/${id}`, {
+      const reponse = await fetch(`${API_URL}/parfums/${id}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(bodyData),
+        body: JSON.stringify(parfumModifie),
       });
 
-      let data = null;
-      try {
-        data = await res.json();
-      } catch {}
+      if (!reponse.ok) {
+        let erreur = null;
+        try {
+          erreur = await reponse.json();
+        } catch {
+          erreur = null;
+        }
 
-      if (!res.ok) {
-        alert(data?.message || "peut pas modifier le parfum....");
+        alert(erreur?.message || "Impossible de modifier le parfum.");
         return;
       }
 
+      const data = await reponse.json();
       setParfum(data);
-      setShowEditForm(false);
-
-      setEditName("");
-      setEditBrand("");
-      setEditDescription("");
-      setEditImageUrl("");
-      setEditPrice("");
-
-      alert("Parfum modifié c'est bon !");
-    } catch (err) {
-      console.log("Erreur lors de la modification du parfum......");
-      alert("Erreur lors de la modification....");
+      setModifier(false);
+    } catch {
+      alert("Erreur pendant la modification.");
     } finally {
-      setUpdatingParfum(false);
+      setEnvoiModification(false);
     }
   }
 
-  if (!parfum || loadingUser) {
-    return (
-      <div className="parfum">
-        <button className="BTNretour" onClick={() => navigate("/")}>
-          ← Retour au menu
-        </button>
+  async function supprimerParfum() {
+    const confirmation = window.confirm("Supprimer ce parfum ?");
+    if (!confirmation) return;
 
-        <div className="loadingBox">Chargement...!</div>
+    try {
+      setSuppression(true);
+      const reponse = await fetch(`${API_URL}/parfums/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      if (!reponse.ok) {
+        alert("Impossible de supprimer le parfum.");
+        return;
+      }
+
+      navigate("/");
+    } catch {
+      alert("Erreur pendant la suppression du parfum.");
+    } finally {
+      setSuppression(false);
+    }
+  }
+
+  if (chargement) {
+    return (
+      <div className="pageDetails">
+        <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
+        <p className="detailsMessage">Chargement...</p>
       </div>
     );
   }
 
-  return (
-    <div className="parfum">
-      <button className="BTNretour" onClick={() => navigate("/")}>
-        ← Retour au menu
-      </button>
+  if (!parfum) {
+    return (
+      <div className="pageDetails">
+        <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
+        <div className="detailsVide">
+          <h1>Parfum introuvable</h1>
+          <button className="boutonPrincipal" onClick={() => navigate("/")}>
+            Retour accueil
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-      <div className="parfum1">
-        <div className="parfumCard">
+  const sourceImage = parfum.imageUrl ? `${API_URL}${parfum.imageUrl}` : "/bloodd.png";
+
+  function donnerAvis() {
+    if (!utilisateur) {
+      alert("Connecte-toi pour donner ton avis.");
+      return;
+    }
+
+    setAfficherFormulaireAvis(!afficherFormulaireAvis);
+  }
+
+  function afficherEtoiles(note) {
+    const noteNombre = Number(note) || 0;
+    return "★".repeat(noteNombre) + "☆".repeat(5 - noteNombre);
+  }
+
+  function estAuteurCommentaire(commentaire) {
+    const auteurId = commentaire.userId || commentaire.user?.id || commentaire.user?._id;
+    const utilisateurId = utilisateur?.id || utilisateur?._id;
+
+    return Boolean(utilisateurId && auteurId && String(auteurId) === String(utilisateurId));
+  }
+
+  function peutSupprimerCommentaire(commentaire) {
+    return utilisateur?.admin || estAuteurCommentaire(commentaire);
+  }
+
+  function adminPeutSupprimerCommentaire(commentaire) {
+    return utilisateur?.admin && !estAuteurCommentaire(commentaire);
+  }
+
+  function afficherPhotoCommentaire(commentaire) {
+    const auteurId = commentaire.userId || commentaire.user?.id;
+    const photoSauvegardee = photosParUtilisateur[auteurId];
+    return commentaire.profileImage || photoSauvegardee?.src || "/vampp.jpeg";
+  }
+
+  function commentaireModifie(commentaire) {
+    if (commentairesModifies[commentaire.id]) return true;
+    if (commentaire.edited) return true;
+    if (!commentaire.createdAt || !commentaire.updatedAt) return false;
+
+    return new Date(commentaire.updatedAt).getTime() > new Date(commentaire.createdAt).getTime();
+  }
+
+  const notes = commentaires
+    .map((commentaire) => Number(commentaire.rating))
+    .filter((note) => !Number.isNaN(note) && note > 0);
+
+  const moyenneNotes =
+    notes.length > 0
+      ? notes.reduce((total, note) => total + note, 0) / notes.length
+      : null;
+
+  return (
+    <div className="pageDetails">
+      <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
+      <DialoguePersona
+        nom="@yanis26x"
+        texte="fReE dElIvErY iF u sPeNd m0Re tHaN 466$ 0kAy?!"
+      />
+
+      <main className="layoutDetails">
+        <section className="carteDetails">
           <img
-            src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
-            onError={(e) => (e.target.src = "/bloodd.png")}
+            className="imageDetails"
+            src={sourceImage}
             alt={parfum.name}
-            className="parfumImage"
+            onError={(e) => {
+              e.currentTarget.src = "/bloodd.png";
+            }}
           />
 
-          <div className="parfumInfos">
-            <h1 className="parfumTitre">{parfum.name}</h1>
-            <p className="parfumMarque">{parfum.brand}</p>
-            <p className="parfumDesc">
-              {parfum.description || "Aucune description disponible."}
-            </p>
-            <p className="parfumPrix">{parfum.price}$</p>
+          <div className="infosDetails">
+            <h1 className="titreDetails">{parfum.name}</h1>
+            <p className="sousTitreDetails">{parfum.brand || "Marque inconnue"}</p>
 
-            <div className="parfumMiniInfo">
-              <div className="miniInfoBox">
-                <span className="miniInfoTitre">ID</span>
-                <span className="miniInfoVal">{parfum.id}</span>
-              </div>
+            <div className="prixDetails">{parfum.price}$</div>
 
-              <div className="miniInfoBox">
-                <span className="miniInfoTitre">Marque</span>
-                <span className="miniInfoVal">{parfum.brand}</span>
-              </div>
-
-              <div className="miniInfoBox">
-                <span className="miniInfoTitre">Prix</span>
-                <span className="miniInfoVal">{parfum.price}$</span>
-              </div>
-
-
-              <button className="ajouterPanierBtn" onClick={ajouterAuPanier}>
-  Ajouter au panier
-</button>
-
-              <div className="miniInfoBox">
-                <span className="miniInfoTitre">Commentaires</span>
-                <span className="miniInfoVal">{commentaires.length}</span>
-              </div>
+            <div className="moyenneDansCarte">
+              <span>Moyenne</span>
+              <strong>
+                {moyenneNotes ? `${moyenneNotes.toFixed(1)} / 5` : "Aucune note"}
+              </strong>
             </div>
 
-            {user?.admin && (
-              <div className="adminActions">
-                <button
-                  className="editParfumBtn"
-                  onClick={() => setShowEditForm(!showEditForm)}
-                >
-                  {showEditForm
-                    ? "Fermer la modification"
-                    : "Modifier le parfum"}
-                </button>
+            {!moyenneNotes && (
+              <p className="texteSansNote">
+                ce parfum na pas encore ete noter, il doit etre vraiment null...
+              </p>
+            )}
 
-                <button
-                  className="deleteParfumBtn"
-                  onClick={handleDeleteParfum}
-                  disabled={deletingParfum}
-                >
-                  {deletingParfum ? "Suppression..." : "Supprimer le parfum"}
-                </button>
+            <h2>Description</h2>
+            <p>{parfum.description || "Aucune description disponible."}</p>
+
+            {utilisateur?.admin && (
+              <div className="adminDansCarte">
+                <div className="actionsAdmin">
+                  <button
+                    className="boutonAdmin"
+                    onClick={() => setModifier(!modifier)}
+                  >
+                    {modifier ? "modifie les infos mtn...." : "Modifier ce parfum (admin)"}
+                  </button>
+                  <button
+                    className="boutonAdmin"
+                    onClick={supprimerParfum}
+                    disabled={suppression}
+                  >
+                    {suppression ? "Suppression..." : "Supprimer ce parfum (admin)"}
+                  </button>
+                </div>
               </div>
             )}
           </div>
+        </section>
+
+        <div className="colonneResumeDetails">
+          <aside className="resumeDetails">
+            <h2>Resumé 𖤐</h2>
+
+            <div className={stockBlague ? "stockBox stockNormal" : "stockBox stockAlerte"}>
+              {stockBlague
+                ? "nah jrigole tqt il en reste plein tqt"
+                : "seulement 1 restant en stock!!"}
+            </div>
+
+            <div className="ligneDetails">
+              <span>Prix</span>
+              <strong>{parfum.price}$</strong>
+            </div>
+
+            <div className="ligneDetails">
+              <span>Commentaires</span>
+              <strong>{commentaires.length}</strong>
+            </div>
+
+            <button className="boutonPrincipal" onClick={ajouterAuPanier}>
+              Ajouter au panier
+            </button>
+          </aside>
+
+          <div className="boxTexteResume">
+            <h3>
+             hAs bEeN mIxEd wItH wAtEr  2 mAkE m0Re pR0fIt uGhHh....
+            </h3>
+            <h2 className="texteQibla">
+              INSTALLEZ <span>Qibla++</span> SUR L'APP STORE LES FRERES! 0kAyY?!
+            </h2>
+          </div>
         </div>
-      </div>
+      </main>
 
-      {user?.admin && showEditForm && (
-        <div className="editParfumSection">
-          <h2 className="editParfumTitre">Modifier les infos du parfum</h2>
+      {utilisateur?.admin && modifier && (
+        <section className="blocDetails">
+          <h2>Modifier le parfum</h2>
 
-          <form className="editParfumForm" onSubmit={handleUpdateParfum}>
+          <form className="formulaireDetails" onSubmit={modifierParfum}>
+            <input value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Nom" />
             <input
-              type="text"
-              className="editInput"
-              placeholder={parfum.name || "Nom"}
-              value={editName}
-              onChange={(e) => setEditName(e.target.value)}
+              value={marque}
+              onChange={(e) => setMarque(e.target.value)}
+              placeholder="Marque"
             />
-
-            <input
-              type="text"
-              className="editInput"
-              placeholder={parfum.brand || "Marque"}
-              value={editBrand}
-              onChange={(e) => setEditBrand(e.target.value)}
-            />
-
-            <input
-              type="text"
-              className="editInput"
-              placeholder={parfum.imageUrl || "Image URL"}
-              value={editImageUrl}
-              onChange={(e) => setEditImageUrl(e.target.value)}
-            />
-
             <input
               type="number"
-              className="editInput"
-              placeholder={String(parfum.price ?? "")}
-              value={editPrice}
-              onChange={(e) => setEditPrice(e.target.value)}
+              value={prix}
+              onChange={(e) => setPrix(e.target.value)}
+              placeholder="Prix"
             />
-
+            <input
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="Image URL"
+            />
             <textarea
-              className="editTextarea"
-              placeholder={parfum.description || "Description"}
-              value={editDescription}
-              onChange={(e) => setEditDescription(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
             />
-
-            <button
-              type="submit"
-              className="sauvgarderModifBTN"
-              disabled={updatingParfum}
-            >
-              {updatingParfum
-                ? "Modification..."
-                : "Enregistrer les modifications"}
+            <button className="boutonPrincipal" disabled={envoiModification}>
+              {envoiModification ? "Enregistrement..." : "Enregistrer"}
             </button>
           </form>
-        </div>
+        </section>
       )}
 
-      <div className="commentSection">
-        <h2 className="commentTitre">Commentaires</h2>
+      <section className="blocDetails avisClients">
+        <div className="enteteAvis">
+          <div>
+            <h2>Avis</h2>
+            <p>
+              {commentaires.length} commentaire
+              {commentaires.length > 1 ? "s" : ""}
+            </p>
+          </div>
 
-        {user ? (
-          <form className="commentForm" onSubmit={handleAddComment}>
-            <h3 className="commentSousTitre">Ajouter un commentaire</h3>
+          <button className="boutonAvis" onClick={donnerAvis}>
+            Donner mon avis
+          </button>
+        </div>
+
+        {afficherFormulaireAvis && (
+          <form className="formulaireCommentaire" onSubmit={envoyerCommentaire}>
+            <div className="choixPhotoProfil">
+              <p>Choisis ta photo de profil!</p>
+
+              <div className="listePhotosProfil">
+                {PHOTOS_PROFIL.map((photo) => (
+                  <button
+                    type="button"
+                    key={photo.src}
+                    className={
+                      photoChoisie.src === photo.src
+                        ? "photoProfilOption photoProfilActive"
+                        : "photoProfilOption"
+                    }
+                    onClick={() => setPhotoChoisie(photo)}
+                  >
+                    <img src={photo.src} alt={photo.titre} />
+                    <span>{photo.titre}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <textarea
-              className="commentSectionInput"
-              placeholder="Écris ton avis sur ce parfum..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
+              value={texteCommentaire}
+              onChange={(e) => setTexteCommentaire(e.target.value)}
+              placeholder="Ton avis sur ce parfum..."
             />
 
-            <div className="commentFormBottom">
-              <div className="ratingBox">
-                <label className="ratingLabel">Note :</label>
-                <select
-                  className="ratingSelect"
-                  value={newRating}
-                  onChange={(e) => setNewRating(e.target.value)}
-                >
-                  <option value={1}>1 / 5</option>
-                  <option value={2}>2 / 5</option>
-                  <option value={3}>3 / 5</option>
-                  <option value={4}>4 / 5</option>
-                  <option value={5}>5 / 5</option>
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                className="commentButton"
-                disabled={sendingComment}
+            <div className="basCommentaire">
+              <select
+                value={noteCommentaire}
+                onChange={(e) => setNoteCommentaire(e.target.value)}
               >
-                {sendingComment ? "Envoi..." : "Publier"}
+                <option value="1">1 / 5</option>
+                <option value="2">2 / 5</option>
+                <option value="3">3 / 5</option>
+                <option value="4">4 / 5</option>
+                <option value="5">5 / 5</option>
+              </select>
+
+              <button className="boutonPrincipal" disabled={envoiCommentaire}>
+                {envoiCommentaire ? "Envoi..." : "Publier"}
               </button>
             </div>
           </form>
-        ) : (
-          <p className="connecteToiprComment">
-            Connecte-toi pour ajouter un commentaire!
-          </p>
         )}
 
-        {loadingComments ? (
-          <p className="connecteToiprComment">Chargement des commentaires...</p>
+        {chargementCommentaires ? (
+          <p className="texteDiscret">Chargement des commentaires...</p>
         ) : commentaires.length === 0 ? (
-          <p className="connecteToiprComment">Aucun commentaire pour ce parfum.</p>
+          <p className="texteDiscret">Aucun commentaire pour ce parfum.</p>
         ) : (
-          <div className="commentList">
+          <div className="listeCommentaires">
             {commentaires.map((commentaire) => (
-              <div key={commentaire.id} className="commentCard">
-                <div className="commentTop">
-                  <div className="commentTopLeft">
-                    <span className="commentUser">
-                      {commentaire.user?.name || "Utilisateur"}
-                    </span>
+              <article className="carteCommentaire" key={commentaire.id}>
+                <div className="hautCommentaire">
+                  <div className="profilCommentaire">
+                    <img
+                      className="avatarCommentaire"
+                      src={afficherPhotoCommentaire(commentaire)}
+                      alt="Photo de profil"
+                    />
 
-                    <span className="commentRating">
-                      ⭐ {commentaire.rating}/5
-                    </span>
+                    <div>
+                      <strong>{commentaire.user?.name || "Utilisateur"}</strong>
+                      <div className="etoilesCommentaire">
+                        {afficherEtoiles(commentaire.rating)}
+                      </div>
+                    </div>
                   </div>
 
-                  {user?.admin && (
+                </div>
+
+                {commentaireEnModification === commentaire.id ? (
+                  <form
+                    className="formulaireCommentaire formulaireModificationCommentaire"
+                    onSubmit={(e) => modifierCommentaire(e, commentaire.id)}
+                  >
+                    <textarea
+                      value={texteModification}
+                      onChange={(e) => setTexteModification(e.target.value)}
+                    />
+
+                    <div className="basCommentaire">
+                      <select
+                        value={noteModification}
+                        onChange={(e) => setNoteModification(e.target.value)}
+                      >
+                        <option value="1">1 / 5</option>
+                        <option value="2">2 / 5</option>
+                        <option value="3">3 / 5</option>
+                        <option value="4">4 / 5</option>
+                        <option value="5">5 / 5</option>
+                      </select>
+
+                      <button
+                        className="boutonPrincipal"
+                        disabled={envoiModificationCommentaire}
+                      >
+                        {envoiModificationCommentaire ? "Enregistrement..." : "Enregistrer"}
+                      </button>
+                    </div>
+
                     <button
-                      className="deleteCommentBtn"
-                      onClick={() => handleDeleteComment(commentaire.id)}
+                      type="button"
+                      className="boutonSecondaire petitBouton"
+                      onClick={fermerModificationCommentaire}
+                    >
+                      Annuler
+                    </button>
+                  </form>
+                ) : (
+                  <>
+                    <p className="texteCommentaire">
+                      {commentaire.content || "Commentaire vide"}
+                    </p>
+
+                    {commentaireModifie(commentaire) && (
+                      <p className="texteCommentaireModifie">
+                        cette utilisateur a modifier sont commentaire, ugh..?!
+                      </p>
+                    )}
+                  </>
+                )}
+
+                {adminPeutSupprimerCommentaire(commentaire) &&
+                  commentaireEnModification !== commentaire.id && (
+                  <div className="actionsCommentaireAdmin">
+                    <button
+                      className="boutonAdmin petitBouton"
+                      onClick={() => supprimerCommentaire(commentaire.id)}
+                    >
+                      Supprimer ce commentaire (admin)
+                    </button>
+                  </div>
+                )}
+
+                {estAuteurCommentaire(commentaire) &&
+                  peutSupprimerCommentaire(commentaire) &&
+                  commentaireEnModification !== commentaire.id && (
+                  <div className="actionsCommentaire">
+                    <button
+                      className="boutonDanger petitBouton"
+                      onClick={() => supprimerCommentaire(commentaire.id)}
                     >
                       Supprimer
                     </button>
-                  )}
-                </div>
 
-                <p className="commentText">
-                  {commentaire.content || "Commentaire vide"}
-                </p>
-              </div>
+                    <button
+                      className="boutonSecondaire petitBouton"
+                      onClick={() => ouvrirModificationCommentaire(commentaire)}
+                    >
+                      Modifier
+                    </button>
+                  </div>
+                )}
+              </article>
             ))}
           </div>
         )}
-      </div>
+      </section>
     </div>
   );
 }
