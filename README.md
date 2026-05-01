@@ -59,7 +59,7 @@ Exemple de données attendues par le frontend :
   baseNotes: ["Ambroxan", "Cèdre"]
 }
 ```
-
+> Pour ajouter des parfums run node seedParfums.js dans Backend
 
 ## Structure du projet
 
