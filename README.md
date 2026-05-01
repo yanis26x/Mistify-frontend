@@ -1,5 +1,9 @@
 # Mistify Frontend 𖤐
 
+[ @yanis26x ](https://github.com/yanis26x)
+[ @el24s ](https://github.com/el24s)
+[ @rym31 ](https://github.com/rym31)
+
 Mistify est une application React pour consulter et acheter des parfums.
 Le frontend communique avec une API backend lancée en local sur `http://localhost:3000`.
 
