@@ -106,6 +106,16 @@
   font-size: 16px;
 }
 
+.notesOlfactives {
+  display: grid;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.notesOlfactives strong {
+  color: #6f1535;
+}
+
 .colonneResumeDetails {
   position: sticky;
   top: 100px;
@@ -203,12 +213,7 @@
   color: #6d6263;
 }
 
-.texteSansNote {
-  margin: -4px 0 16px;
-  color: #8d7a7d;
-  font-size: 14px;
-  line-height: 1.5;
-}
+
 
 .texteProfitCarte {
   margin-top: auto;

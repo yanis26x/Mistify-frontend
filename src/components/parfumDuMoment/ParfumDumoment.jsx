@@ -3,6 +3,7 @@ import "./ParfumDuMoment.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SellSection from "../sell/SellSection";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -65,7 +66,7 @@ export default function ParfumDuMoment() {
             <div className="momentNotif">Parfum du moment</div>
 
             <img
-              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
+              src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
               onError={(e) => (e.target.src = "/bloodd.png")}
               alt={parfum.name}
               className="momentImage"

@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
 import "./DetailsParfum.css";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const API_URL = "http://localhost:3000";
 const PHOTOS_PROFIL = [
@@ -399,7 +400,7 @@ export default function DetailsParfum() {
     );
   }
 
-  const sourceImage = parfum.imageUrl ? `${API_URL}${parfum.imageUrl}` : "/bloodd.png";
+  const sourceImage = getImageUrl(parfum.imageUrl, API_URL);
 
   function donnerAvis() {
     if (!utilisateur) {
@@ -413,6 +414,14 @@ export default function DetailsParfum() {
   function afficherEtoiles(note) {
     const noteNombre = Number(note) || 0;
     return "★".repeat(noteNombre) + "☆".repeat(5 - noteNombre);
+  }
+
+  function afficherNotesParfum(notes) {
+    if (Array.isArray(notes)) {
+      return notes.filter(Boolean).join(", ");
+    }
+
+    return notes || "";
   }
 
   function estAuteurCommentaire(commentaire) {
@@ -486,13 +495,29 @@ export default function DetailsParfum() {
               </strong>
             </div>
 
-            {!moyenneNotes && (
-              <p className="texteSansNote">
-                ce parfum na pas encore ete noter, il doit etre vraiment null...
-              </p>
-            )}
 
             <p>{parfum.description || "Aucune description disponible."}</p>
+
+            <div className="notesOlfactives">
+              {afficherNotesParfum(parfum.topNotes) && (
+                <p>
+                  <strong>Top notes :</strong> {afficherNotesParfum(parfum.topNotes)}
+                </p>
+              )}
+
+              {afficherNotesParfum(parfum.middleNotes) && (
+                <p>
+                  <strong>Middle notes :</strong> {afficherNotesParfum(parfum.middleNotes)}
+                </p>
+              )}
+
+              {afficherNotesParfum(parfum.baseNotes) && (
+                <p>
+                  <strong>Base notes :</strong> {afficherNotesParfum(parfum.baseNotes)}
+                </p>
+              )}
+            </div>
+
             <p className="texteProfitCarte">
               hAs bEeN mIxEd wItH wAtEr 2 mAkE m0Re pR0fIt uGhHh....
             </p>

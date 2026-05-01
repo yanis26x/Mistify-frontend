@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ChercherParfum.css";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -118,7 +119,7 @@ export default function ChercherParfum() {
         {parfums.map((parfum) => (
           <div key={parfum.id} className="parfumTrouve">
             <img
-              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
+              src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
               alt={parfum.name}
               className="parfumImage"
               onError={(e) => (e.target.src = "/bloodd.png")}

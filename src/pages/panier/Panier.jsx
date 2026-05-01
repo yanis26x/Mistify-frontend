@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
 import "./Panier.css";
+import { getImageUrl } from "../../utils/imageUrl";
 import { FaCcVisa, FaCcMastercard, FaCcAmex, FaCcPaypal, FaApplePay } from "react-icons/fa";
 
 
@@ -162,11 +163,7 @@ export default function Panier() {
                 <div key={parfum.id} className="cartePanier">
                   <div className="colProduit">
                     <img
-                      src={
-                        parfum.imageUrl
-                          ? `${BACKEND_URL}${parfum.imageUrl}`
-                          : "/bloodd.png"
-                      }
+                      src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
                       alt={parfum.name}
                       className="imagePanier"
                     />
