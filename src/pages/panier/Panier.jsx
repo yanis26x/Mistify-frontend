@@ -224,7 +224,7 @@ export default function Panier() {
               <div className="paiementBox">
                 <h3 className="paiementTitre">Nous acceptons</h3>
 
-                <div className="listePaiement">
+                {/* <div className="listePaiement">
                   <img src="/PayPal2.png" alt="PayPal" className="logoPaiement" />
                   <img src="/visa.png" alt="Visa" className="logoPaiement" />
                   <img src="/Mastercard.svg" alt="Mastercard" className="logoPaiement" />
@@ -234,7 +234,7 @@ export default function Panier() {
                     className="logoPaiement"
                   />
                   <img src="/apple-pay.png" alt="Apple Pay" className="logoPaiement" />
-                </div>
+                </div> */}
 
                 <div className="texteSangBox">
                   <img

@@ -3,9 +3,10 @@ import "./DialoguePersona.css";
 
 export default function DialoguePersona({
   nom = "@yanis26x",
-  texte = "Bienvenue sur la page details parfum.",
+  texte = "ughhh yea!?",
 }) {
   const [visible, setVisible] = useState(true);
+  const [disparition, setDisparition] = useState(false);
   const [nombreLettres, setNombreLettres] = useState(0);
 
   useEffect(() => {
@@ -22,6 +23,21 @@ export default function DialoguePersona({
     return () => clearInterval(interval);
   }, [texte]);
 
+  useEffect(() => {
+    const delaiDisparition = setTimeout(() => {
+      setDisparition(true);
+    }, 5000);
+
+    const retraitDialogue = setTimeout(() => {
+      setVisible(false);
+    }, 7000);
+
+    return () => {
+      clearTimeout(delaiDisparition);
+      clearTimeout(retraitDialogue);
+    };
+  }, []);
+
   const texteAffiche = texte.slice(0, nombreLettres);
 
   if (!visible) {
@@ -29,10 +45,11 @@ export default function DialoguePersona({
   }
 
   return (
-    <div className="dialoguePersona">
+    <div className={`dialoguePersona${disparition ? " dialoguePersonaDisparition" : ""}`}>
       <button
         className="fermerDialoguePersona"
         onClick={() => setVisible(false)}
+        aria-label="Fermer le dialogue"
       >
         X
       </button>

@@ -45,40 +45,52 @@
 
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { FiSearch, FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
+import { FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
+import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
 
 export default function Navbar({
   user,
-  onGoToCompte,}) {
+  onGoToCompte,
+}) {
+  const photoProfil = user?.admin ? "/vampp.jpeg" : "/Hello-kitty.webp";
 
   return (
     <header className="navbarMistify">
       <Link to="/" className="logo">
+        <img src="/SpotifyLogoRed.webp" alt="" className="logoImage" />
         Mistify
       </Link>
 
-      <nav className="nav-links">
-        <Link to="/" className="nav-link">ACCEUIL</Link>
-        <Link to="/parfums" className="nav-link">PARFUMS</Link>
-        <Link to="/contact" className="nav-link">CONTACT</Link>
-      </nav>
+      <NavbarRecherche />
 
-      <div className="nav-icons">
-        <Link to="/recherche" className="icon-button" title="Rechercher">
-          <FiSearch />
-        </Link>
+      <div className="navbarDroiteActuelle">
+        <nav className="nav-links">
+          <Link to="/parfums" className="nav-link">PARFUMS</Link>
+          <Link to="/contact" className="nav-link">CONTACT</Link>
+        </nav>
 
-        <Link to="/compte" className="icon-button" title="Compte" onClick={onGoToCompte}>
-          <FiUser />
-        </Link>
+        <div className="nav-icons">
+          <Link to="/favoris" className="icon-button" title="Favoris">
+            <FiHeart />
+          </Link>
 
-        <Link to="/favoris" className="icon-button" title="Favoris">
-          <FiHeart />
-        </Link>
+          <Link to="/panier" className="icon-button" title="Panier">
+            <FiShoppingCart />
+          </Link>
 
-        <Link to="/panier" className="icon-button" title="Panier">
-          <FiShoppingCart />
-        </Link>
+          <Link
+            to="/compte"
+            className={`icon-button ${user ? "profil-button" : ""}`}
+            title="Compte"
+            onClick={onGoToCompte}
+          >
+            {user ? (
+              <img src={photoProfil} alt="Compte" className="photoProfilNavbar" />
+            ) : (
+              <FiUser />
+            )}
+          </Link>
+        </div>
       </div>
     </header>
   );

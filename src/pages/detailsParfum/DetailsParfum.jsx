@@ -459,7 +459,8 @@ export default function DetailsParfum() {
       <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
       <DialoguePersona
         nom="@yanis26x"
-        texte="fReE dElIvErY iF u sPeNd m0Re tHaN 466$ 0kAy?!"
+        // texte="fReE dElIvErY iF u sPeNd m0Re tHaN 466$ 0kAy?!"
+        texte="sT0cK lImItEr c0mMaNdE t0uTesUiTe 0u rEgReTtE pLuStArD"
       />
 
       <main className="layoutDetails">
@@ -492,8 +493,10 @@ export default function DetailsParfum() {
               </p>
             )}
 
-            <h2>Description</h2>
             <p>{parfum.description || "Aucune description disponible."}</p>
+            <p className="texteProfitCarte">
+              hAs bEeN mIxEd wItH wAtEr 2 mAkE m0Re pR0fIt uGhHh....
+            </p>
 
             {utilisateur?.admin && (
               <div className="adminDansCarte">
@@ -523,7 +526,7 @@ export default function DetailsParfum() {
 
             <div className={stockBlague ? "stockBox stockNormal" : "stockBox stockAlerte"}>
               {stockBlague
-                ? "nah jrigole tqt il en reste plein tqt"
+                ? "Stock limité.."
                 : "seulement 1 restant en stock!!"}
             </div>
 
@@ -537,18 +540,18 @@ export default function DetailsParfum() {
               <strong>{commentaires.length}</strong>
             </div>
 
-            <button className="boutonPrincipal" onClick={ajouterAuPanier}>
+            <button
+              className="boutonPrincipal boutonAjouterPanierDetails"
+              onClick={ajouterAuPanier}
+            >
               Ajouter au panier
             </button>
           </aside>
 
           <div className="boxTexteResume">
-            <h3>
-             hAs bEeN mIxEd wItH wAtEr  2 mAkE m0Re pR0fIt uGhHh....
+            <h3 className="texteQibla">
+              INSTALLEZ <span>Qibla++</span> SUR L'APPSTORE! 0kAyY?!
             </h3>
-            <h2 className="texteQibla">
-              INSTALLEZ <span>Qibla++</span> SUR L'APP STORE LES FRERES! 0kAyY?!
-            </h2>
           </div>
         </div>
       </main>
@@ -598,7 +601,7 @@ export default function DetailsParfum() {
           </div>
 
           <button className="boutonAvis" onClick={donnerAvis}>
-            Donner mon avis
+            Donner un avis
           </button>
         </div>
 

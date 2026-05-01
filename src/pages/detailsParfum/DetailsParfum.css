@@ -6,16 +6,6 @@
   color: #6f1535;
 }
 
-.pageDetails .navbarMistify {
-  max-width: none;
-  width: 100%;
-  margin: 0;
-  padding: 10px 18px;
-  border: 1px solid #f1dfda;
-  border-radius: 0 0 14px 14px;
-  background: #fffdfb;
-  box-shadow: none;
-}
 
 .titreDetails {
   margin: 0;
@@ -63,12 +53,13 @@
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid #ead8d2;
-  background: #f4d8d2;
+
+
 }
 
 .infosDetails {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   color: #4b3235;
 }
@@ -149,6 +140,11 @@
   color: #fffdfb;
 }
 
+.boutonAjouterPanierDetails {
+  background: #111;
+  color: #fff;
+}
+
 .boutonSecondaire {
   border: 1px solid #ead8d2;
   background: #fffdfb;
@@ -212,6 +208,15 @@
   color: #8d7a7d;
   font-size: 14px;
   line-height: 1.5;
+}
+
+.texteProfitCarte {
+  margin-top: auto;
+  padding-top: 30px;
+  color: #8d7a7d;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
 }
 
 .boxTexteResume {
@@ -370,14 +375,11 @@
 
 .boutonAvis {
   min-width: 230px;
-  border: 1px solid #111;
   background: #111;
   color: #fff;
   padding: 18px 24px;
   font-size: 15px;
   font-weight: bold;
-  letter-spacing: 0;
-  text-transform: uppercase;
   cursor: pointer;
 }
 
