@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
-import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
 import "./DetailsParfum.css";
 import { getImageUrl } from "../../utils/imageUrl";
 
@@ -56,7 +55,6 @@ export default function DetailsParfum() {
   const [description, setDescription] = useState("");
   const [envoiModification, setEnvoiModification] = useState(false);
   const [suppression, setSuppression] = useState(false);
-  const [stockBlague, setStockBlague] = useState(false);
 
   const chargerParfum = useCallback(async () => {
     try {
@@ -110,14 +108,6 @@ export default function DetailsParfum() {
     chargerCommentaires();
     verifierUtilisateur();
   }, [chargerParfum, chargerCommentaires, verifierUtilisateur]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setStockBlague(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   async function ajouterAuPanier() {
     if (!utilisateur) {
@@ -465,11 +455,6 @@ export default function DetailsParfum() {
   return (
     <div className="pageDetails">
       <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
-      <DialoguePersona
-        nom="@yanis26x"
-        // texte="fReE dElIvErY iF u sPeNd m0Re tHaN 466$ 0kAy?!"
-        texte="sT0cK lImItEr c0mMaNdE t0uTesUiTe 0u rEgReTtE pLuStArD"
-      />
 
       <main className="layoutDetails">
         <section className="carteDetails">
@@ -518,9 +503,6 @@ export default function DetailsParfum() {
               )}
             </div>
 
-            <p className="texteProfitCarte">
-              hAs bEeN mIxEd wItH wAtEr 2 mAkE m0Re pR0fIt uGhHh....
-            </p>
 
             {utilisateur?.admin && (
               <div className="adminDansCarte">
@@ -547,12 +529,6 @@ export default function DetailsParfum() {
         <div className="colonneResumeDetails">
           <aside className="resumeDetails">
             <h2>Resumé 𖤐</h2>
-
-            <div className={stockBlague ? "stockBox stockNormal" : "stockBox stockAlerte"}>
-              {stockBlague
-                ? "Stock limité.."
-                : "seulement 1 restant en stock!!"}
-            </div>
 
             <div className="ligneDetails">
               <span>Prix</span>

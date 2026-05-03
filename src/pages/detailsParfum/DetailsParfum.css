@@ -192,51 +192,12 @@
   border-top: 1px solid #f0e2df;
 }
 
-.stockBox {
-  margin-bottom: 20px;
-  border-radius: 10px;
-  padding: 13px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.stockAlerte {
-  background: #ffe8eb;
-  border: 1px solid var(--rougeAction);
-  color: var(--rougeAction);
-  animation: clignoteStock 0.45s infinite;
-}
-
-.stockNormal {
-  background: #f7eeeb;
-  border: 1px solid #ead8d2;
-  color: #6d6263;
-}
-
-
-
-.texteProfitCarte {
-  margin-top: auto;
-  padding-top: 30px;
-  color: #8d7a7d;
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.45;
-}
-
 .boxTexteResume {
   margin-top: 18px;
   padding: 14px;
   border: 1px solid #ead8d2;
   border-radius: 10px;
   background: #f7eeeb;
-}
-
-.boxTexteResume p {
-  margin: 0;
-  color: #6d6263;
-  font-size: 14px;
-  line-height: 1.5;
 }
 
 .texteQibla {
@@ -247,17 +208,6 @@
 
 .texteQibla span {
   color: #111;
-}
-
-@keyframes clignoteStock {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.35;
-  }
 }
 
 .blocDetails {
@@ -513,66 +463,4 @@
 .detailsVide h1 {
   margin: 0 0 18px;
   font-weight: 400;
-}
-
-@media (max-width: 900px) {
-  .layoutDetails,
-  .carteDetails {
-    grid-template-columns: 1fr;
-  }
-
-  .resumeDetails {
-    position: static;
-  }
-
-  .colonneResumeDetails {
-    position: static;
-  }
-
-  .imageDetails {
-    max-height: 520px;
-  }
-}
-
-@media (max-width: 560px) {
-  .layoutDetails,
-  .blocDetails {
-    width: calc(100% - 28px);
-  }
-
-  .layoutDetails {
-    margin-top: 42px;
-  }
-
-  .titreDetails {
-    font-size: 42px;
-  }
-
-  .carteDetails,
-  .resumeDetails,
-  .blocDetails {
-    padding: 18px;
-  }
-
-  .basCommentaire {
-    grid-template-columns: 1fr;
-  }
-
-  .avisClients {
-    padding: 24px 18px;
-  }
-
-  .enteteAvis,
-  .hautCommentaire {
-    flex-direction: column;
-  }
-
-  .boutonAvis {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .texteCommentaire {
-    font-size: 17px;
-  }
 }
