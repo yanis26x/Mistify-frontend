@@ -20,7 +20,7 @@ export default function UserStatus({ user, onGoToCompte }) {
         </>
       ) : (
         <span className="userText offline">
-          Crée un compte ou connecte-toi...
+          Crée un compte ou connecte-toi
         </span>
       )}
     </div>

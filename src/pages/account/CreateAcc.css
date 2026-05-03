@@ -1,70 +1,299 @@
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+/* Color Palette & Font */
+:root {
+  --mist-burgundy: #5c162e;
+  --mist-beige: #f3e5e0;
+  --mist-input: #faf5f3;
+  --mist-text: #4a4a4a;
 }
 
+body {
+  background-color: var(--mist-beige);
+  font-family: 'Playfair Display', serif; /* Use a luxury serif font */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* The main container */
+.grid {
+  display: flex;
+  width: 900px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Left side (The Image) */
+/* In your JSX, you'll want to wrap the left side in a div or use a pseudo-element */
+.grid::before {
+  content: "";
+  flex: 1;
+  background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=1000');
+  background-size: cover;
+  background-position: center;
+  min-height: 600px;
+}
+
+/* Right side (The Form Container) */
 .card {
-  background: rgba(221, 209, 209, 0.45);
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(4px);
+  flex: 1.2;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .titre {
-  margin-bottom: 18px;
-  font-size: 22px;
-  font-weight: 800;
-  color: #0d00ff;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--mist-burgundy);
+  border-bottom: 1px solid var(--mist-burgundy);
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
 }
 
+/* Form Layout */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
 }
 
 .form input {
-  padding: 12px;
-  border-radius: 10px;
-  background: #111;
-  color: white;
-  border: 1px solid #333;
+  background-color: var(--mist-input);
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-family: inherit;
+  color: var(--mist-text);
 }
 
+.form input::placeholder {
+  color: #c4b5b0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+/* Buttons */
 .btn-principal {
-  background: #0d00ff;
+  background-color: var(--mist-burgundy);
   color: white;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: bold;
+  border: none;
+  padding: 15px;
+  margin-top: 10px;
   cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: opacity 0.3s;
+}
+
+.btn-principal:hover {
+  opacity: 0.9;
+}
+
+/* Admin/User quick buttons style */
+.btn-rapide {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
 }
 
 .btn-secondaire {
-  background: #ffffff80;
-  color: black;
-  border: 1px solid blue;
-  padding: 10px;
-  border-radius: 10px;
+  background: none;
+  border: 1px solid var(--mist-burgundy);
+  color: var(--mist-burgundy);
+  padding: 5px 15px;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
-.btn-rapide {
+/* Update your body to lose the grass */
+body {
+  background-color: #f3e5e0; /* That soft beige from the image */
+  margin: 0;
   display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Playfair Display', serif;
 }
 
-.msg {
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  font-weight: bold;
+/* Adjust the main container */
+.grid {
+  display: flex;
+  background: white;
+  width: 1000px; /* Slightly wider to fit both forms comfortably */
+  min-height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
 }
 
-.msg-ok {
-  background: #000000ad;
+/* Make sure the image container covers the full left side */
+.image-container { /* Add this class to your left div if you haven't */
+  flex: 1;
+  max-width: 40%;
 }
 
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The container for both forms */
+.wrapper { 
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  padding: 60px 40px;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.card {
+  flex: 1;
+}
+
+.titre {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #5c162e;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  color: #5c162e;
+  text-align: left;
+}
+
+/* Inputs - thin and elegant */
+.form input {
+  width: 100%;
+  box-sizing: border-box; /* Prevents input from overflowing */
+  background-color: #faf5f3;
+  border: 1px solid transparent;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #5c162e;
+  background-color: white;
+}
+
+/* The buttons */
+.btn-principal {
+  width: 100%;
+  padding: 14px;
+  background-color: #5c162e;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.preferences {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.title {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: #8a7a75; /* A muted brown/grey */
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.checkbox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 15px 10px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--mist-text);
+}
+
+/* Custom Checkbox Styling */
+.checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--mist-burgundy); /* Makes the checkmark burgundy */
+  border: 1px solid #e5d1cb;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkbox-item span {
+  font-family: 'Playfair Display', serif; /* Or a light sans-serif if you prefer */
+}
+
+.checkbox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Maintains the 3-column look */
+  gap: 12px 5px;
+  margin-top: 10px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center; /* Vertically centers the text with the box */
+  gap: 10px;           /* Space between box and text */
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;      /* Prevents text height from pushing the box down */
+}
+
+.checkbox-item input[type="checkbox"] {
+  /* Resets appearance to style it more accurately */
+  appearance: none;
+  -webkit-appearance: none;
+  
+  width: 16px;
+  height: 16px;
+  border: 1px solid #5c162e; /* Your burgundy color */
+  border-radius: 2px;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  margin: 0; /* Removes default browser margins that cause shifting */
+  display: grid;
+  place-content: center; /* Centers the checkmark perfectly inside */
+}
+
+/* Creating a custom checkmark to ensure it's never off-center */
+.checkbox-item input[type="checkbox"]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #5c162e; /* The checkmark color */
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.checkbox-item input[type="checkbox"]:checked::before {
+  transform: scale(1); /* Shows the mark when checked */
+}
+
+.checkbox-item span {
+  font-family: 'Playfair Display', serif; /* Keeps it high-end */
+  color: #333;
+}
