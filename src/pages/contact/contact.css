@@ -153,6 +153,29 @@
   font-weight: 600;
 }
 
+.disponibilites {
+  margin-top: 10px;
+}
+
+.disponibilites h2 {
+  color: #A73A5E;
+  font-size: 24px;
+  margin: 0 0 12px 0;
+}
+
+.liste-disponibilites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+.liste-disponibilites p {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
 @media (max-width: 760px) {
   .conteneur-contact {
     margin: 40px auto;

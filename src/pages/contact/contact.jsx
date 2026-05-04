@@ -4,7 +4,7 @@ import axios from "axios";
 import "./contact.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { FiMail, FiPhone } from "react-icons/fi";
+import { FiPhone } from "react-icons/fi";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -68,23 +68,20 @@ export default function Contact() {
           </section>
 
           <section className="carte-contact">
-            <h2>Nous contacter</h2>
+            <h2>Nous appeler</h2>
 
             <div className="coordonnees-contact">
               <div className="coordonnee-contact">
                 <FiPhone size={22} />
-                <span>+1 (514) 555-0199</span>
+                <span>1-877-737-4672</span>
               </div>
 
-              <div className="coordonnee-contact">
-                <FiMail size={22} />
-                <span>mistify@email.com</span>
-              </div>
+             <p>Numéro surtaxé, vérifiez nos disponibilités avant d’appeler dans le vide.</p>
             </div>
           </section>
 
           <section className="carte-contact">
-            <h2>Les createur</h2>
+            <h2>Les créateurs</h2>
 
             <div className="liste-createurs">
               <div className="personne-createur">
@@ -104,6 +101,19 @@ export default function Contact() {
             </div>
           </section>
         </div>
+
+        <section className="disponibilites">
+          <h2>Nos disponibilites</h2>
+          <div className="liste-disponibilites">
+            <p>Lundi : indisponible</p>
+            <p>Mardi : indisponible</p>
+            <p>Mercredi : 22h a 22h25</p>
+            <p>Jeudi : indisponible</p>
+            <p>Vendredi : indisponible</p>
+            <p>Samedi : indisponible</p>
+            <p>Dimanche : indisponible</p>
+          </div>
+        </section>
       </main>
 
       <Footer />
