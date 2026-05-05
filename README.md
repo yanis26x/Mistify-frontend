@@ -52,11 +52,9 @@ Exemple de données attendues par le frontend :
   name: "Sauvage",
   brand: "Dior",
   price: 120,
+  volume: 100,
   imageUrl: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539",
   description: "Un parfum frais et puissant.",
-  topNotes: ["Bergamote", "Poivre"],
-  middleNotes: ["Lavande", "Patchouli"],
-  baseNotes: ["Ambroxan", "Cèdre"]
 }
 ```
 > Pour ajouter des parfums run node seedParfums.js dans Backend
