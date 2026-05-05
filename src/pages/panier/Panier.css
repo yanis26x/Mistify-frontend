@@ -82,7 +82,7 @@
   display: grid;
   grid-template-columns: 2.4fr 1fr 0.8fr 0.9fr;
   gap: 16px;
-  color: #6f1535;
+  color: #000000;
   font-weight: bold;
   margin-bottom: 14px;
   padding: 0 14px;
@@ -92,7 +92,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: #fffdfb;
+
   border-radius: 14px;
   padding: 26px;
 }
@@ -231,6 +231,13 @@
   font-size: 17px;
 }
 
+.totalResume {
+  padding-top: 16px;
+  border-top: 1px solid #ead8d2;
+  color: #6f1535;
+  font-weight: 900;
+}
+
 .petitTexteResume {
   margin: 20px 0;
   color: #8d7a7d;
@@ -248,9 +255,9 @@
 }
 
 .btnVider {
-  background: #fffdfb;
-  color: #6f1535;
-  border: 1px solid #ead8d2;
+  background: #ffffff3d;
+  color: #000000;
+  border: 1px solid #ead2d2;
 }
 
 .btnValider {
@@ -294,7 +301,7 @@
 .paiementTitre {
   margin: 0 0 14px;
   font-size: 22px;
-  color: #6f1535;
+  color: #000000;
 }
 
 .listePaiement {
@@ -309,10 +316,7 @@
   width: 55px;
   height: 34px;
   object-fit: contain;
-  padding: 4px 6px;
-  background: #fffdfb;
-  border-radius: 8px;
-  border: 1px solid #ead8d2;
+color: black;
 }
 
 .texteSangBox {
@@ -324,21 +328,10 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: #f7eeeb;
+  background: #000000;
   border: 1px solid #ead8d2;
 }
 
-.fondSangPaiement {
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  opacity: 0.9;
-}
 
 .texteSangPaiement {
   position: relative;
@@ -346,5 +339,5 @@
   margin: 0;
   font-size: 12px;
   text-align: center;
-  color: #6f1535;
+  color: #ffffff;
 }

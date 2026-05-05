@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import "./NavbarRecherche.css";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const API_URL = "http://localhost:3000";
 
@@ -49,7 +50,7 @@ export default function NavbarRecherche() {
                 onMouseDown={() => navigate(`/parfum/${parfum.id}`)}
               >
                 <img
-                  src={parfum.imageUrl ? `${API_URL}${parfum.imageUrl}` : "/bloodd.png"}
+                  src={getImageUrl(parfum.imageUrl, API_URL)}
                   alt={parfum.name}
                   onError={(e) => {
                     e.currentTarget.src = "/bloodd.png";

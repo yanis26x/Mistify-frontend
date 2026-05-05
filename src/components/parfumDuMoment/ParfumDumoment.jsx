@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./ParfumDuMoment.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import SellSection from "../sell/SellSection";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -26,27 +28,22 @@ export default function ParfumDuMoment() {
     }
   }
 
-   function ajouterAuPanier() {
-  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  async function ajouterAuPanier() {
+    if (!parfum) return;
 
-  const deja = panier.find((item) => item.id === parfum.id);
-
-  if (deja) {
-    deja.quantite += 1;
-  } else {
-    panier.push({
-      id: parfum.id,
-      name: parfum.name,
-      price: parfum.price,
-      imageUrl: parfum.imageUrl,
-      quantite: 1,
-    });
+    try {
+      await axios.post(
+        `${BACKEND_URL}/panier`,
+        { parfumId: parfum.id, quantite: 1 },
+        { withCredentials: true }
+      );
+      window.dispatchEvent(new Event("panier-change"));
+      alert("Ajouté au panier !");
+    } catch {
+      alert("Connecte-toi pour ajouter au panier.");
+      navigate("/compte");
+    }
   }
-
-  localStorage.setItem("panier", JSON.stringify(panier));
-
-  alert("Ajouté au panier !");
-}
 
   function nextParfum() {
     if (parfums.length === 0) return;
@@ -69,7 +66,7 @@ export default function ParfumDuMoment() {
             <div className="momentNotif">Parfum du moment</div>
 
             <img
-              src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
+              src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
               onError={(e) => (e.target.src = "/bloodd.png")}
               alt={parfum.name}
               className="momentImage"

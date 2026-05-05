@@ -44,15 +44,49 @@
 // }
 
 import "./Navbar.css";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
 import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
+
+const API_URL = "http://localhost:3000";
 
 export default function Navbar({
   user,
   onGoToCompte,
 }) {
   const photoProfil = user?.admin ? "/vampp.jpeg" : "/Hello-kitty.webp";
+  const [nombrePanier, setNombrePanier] = useState(0);
+
+  useEffect(() => {
+    async function chargerNombrePanier() {
+      if (!user) {
+        setNombrePanier(0);
+        return;
+      }
+
+      try {
+        const res = await axios.get(`${API_URL}/panier`, {
+          withCredentials: true,
+        });
+        const panier = Array.isArray(res.data) ? res.data : [];
+        const total = panier.reduce((somme, parfum) => {
+          return somme + Number(parfum.quantite || 0);
+        }, 0);
+        setNombrePanier(total);
+      } catch {
+        setNombrePanier(0);
+      }
+    }
+
+    chargerNombrePanier();
+    window.addEventListener("panier-change", chargerNombrePanier);
+
+    return () => {
+      window.removeEventListener("panier-change", chargerNombrePanier);
+    };
+  }, [user]);
 
   return (
     <header className="navbarMistify">
@@ -74,8 +108,11 @@ export default function Navbar({
             <FiHeart />
           </Link>
 
-          <Link to="/panier" className="icon-button" title="Panier">
+          <Link to="/panier" className="icon-button panier-icon" title="Panier">
             <FiShoppingCart />
+            {nombrePanier > 0 && (
+              <span className="notifPanier">{nombrePanier}</span>
+            )}
           </Link>
 
           <Link

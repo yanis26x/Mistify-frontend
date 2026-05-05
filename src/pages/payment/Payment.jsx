@@ -1,25 +1,42 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Payment.css";
+
+const API_URL = "http://localhost:3000";
+const LIVRAISON = 96;
 
 export default function Payment() {
   const navigate = useNavigate();
   const [commandeValidee, setCommandeValidee] = useState(false);
   const [messageErreur, setMessageErreur] = useState("");
+  const [panier, setPanier] = useState([]);
+  const [chargement, setChargement] = useState(true);
 
-  const panier = useMemo(() => {
-    try {
-      return JSON.parse(localStorage.getItem("panier")) || [];
-    } catch {
-      return [];
+  useEffect(() => {
+    async function chargerPanier() {
+      try {
+        const res = await axios.get(`${API_URL}/panier`, {
+          withCredentials: true,
+        });
+        setPanier(Array.isArray(res.data) ? res.data : []);
+      } catch {
+        setMessageErreur("Connecte-toi avant de payer.");
+        setPanier([]);
+      } finally {
+        setChargement(false);
+      }
     }
+
+    chargerPanier();
   }, []);
 
-  const totalPanier = panier.reduce((total, parfum) => {
+  const sousTotal = panier.reduce((total, parfum) => {
     return total + Number(parfum.price || 0) * Number(parfum.quantite || 0);
   }, 0);
+  const totalPanier = sousTotal + LIVRAISON;
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setMessageErreur("");
 
@@ -35,8 +52,24 @@ export default function Payment() {
       return;
     }
 
-    localStorage.removeItem("panier");
-    setCommandeValidee(true);
+    try {
+      await axios.delete(`${API_URL}/panier`, {
+        withCredentials: true,
+      });
+      setPanier([]);
+      window.dispatchEvent(new Event("panier-change"));
+      setCommandeValidee(true);
+    } catch {
+      setMessageErreur("Impossible de vider le panier apres le paiement.");
+    }
+  }
+
+  if (chargement) {
+    return (
+      <div className="pagePaiement">
+        <div className="boitePaiement">Chargement...</div>
+      </div>
+    );
   }
 
   if (commandeValidee) {

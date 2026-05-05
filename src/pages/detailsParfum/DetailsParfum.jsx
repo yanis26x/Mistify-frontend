@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
-import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
 import "./DetailsParfum.css";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const API_URL = "http://localhost:3000";
 const PHOTOS_PROFIL = [
@@ -55,7 +55,6 @@ export default function DetailsParfum() {
   const [description, setDescription] = useState("");
   const [envoiModification, setEnvoiModification] = useState(false);
   const [suppression, setSuppression] = useState(false);
-  const [stockBlague, setStockBlague] = useState(false);
 
   const chargerParfum = useCallback(async () => {
     try {
@@ -110,45 +109,37 @@ export default function DetailsParfum() {
     verifierUtilisateur();
   }, [chargerParfum, chargerCommentaires, verifierUtilisateur]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setStockBlague(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  function ajouterAuPanier() {
-    const panier = JSON.parse(localStorage.getItem("panier")) || [];
-    const parfumDansPanier = panier.find((item) => item.id === parfum.id);
-
-    if (parfumDansPanier) {
-      parfumDansPanier.quantite += 1;
-    } else {
-      panier.push({
-        id: parfum.id,
-        name: parfum.name,
-        brand: parfum.brand,
-        price: parfum.price,
-        imageUrl: parfum.imageUrl,
-        quantite: 1,
-      });
+  async function ajouterAuPanier() {
+    if (!utilisateur) {
+      alert("Connecte-toi pour ajouter au panier.");
+      navigate("/compte");
+      return;
     }
 
-    localStorage.setItem("panier", JSON.stringify(panier));
-    alert("Ajoute au panier !");
+    try {
+      await axios.post(
+        `${API_URL}/panier`,
+        { parfumId: parfum.id, quantite: 1 },
+        { withCredentials: true }
+      );
+      window.dispatchEvent(new Event("panier-change"));
+      alert("Ajoute au panier !");
+      // ou montrer persona dialogue !!!!1
+    } catch {
+      alert("Impossible d'ajouter au panier.");
+    }
   }
 
   async function envoyerCommentaire(e) {
     e.preventDefault();
 
     if (!utilisateur) {
-      alert("Connecte-toi pour commenter.");
+      alert("Connecte-toi pour commenter.....");
       return;
     }
 
     if (!texteCommentaire.trim()) {
-      alert("Ecris un commentaire.");
+      alert("T'essaye vraiment de rien poster?! #$%!@");
       return;
     }
 
@@ -173,7 +164,7 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "Impossible d'ajouter le commentaire.");
+        alert(erreur?.message || "erreur....");
         return;
       }
 
@@ -189,14 +180,14 @@ export default function DetailsParfum() {
       setAfficherFormulaireAvis(false);
       await chargerCommentaires();
     } catch {
-      alert("Erreur pendant l'ajout du commentaire.");
+      alert("erreur.....");
     } finally {
       setEnvoiCommentaire(false);
     }
   }
 
   async function supprimerCommentaire(commentaireId) {
-    const confirmation = window.confirm("Supprimer ce commentaire ?");
+    const confirmation = window.confirm("tu veux vraimment supp ce commentaire?!?!");
     if (!confirmation) return;
 
     try {
@@ -206,13 +197,13 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("Impossible de supprimer le commentaire.");
+        alert("on arrive pas a le supprimer....");
         return;
       }
 
       await chargerCommentaires();
     } catch {
-      alert("Erreur pendant la suppression.");
+      alert("Erreur...");
     }
   }
 
@@ -232,7 +223,7 @@ export default function DetailsParfum() {
     e.preventDefault();
 
     if (!texteModification.trim()) {
-      alert("Ecris un commentaire.");
+      alert("T'essaye vraiment de rien poster?! #$%!@");
       return;
     }
 
@@ -268,7 +259,7 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "Impossible de modifier le commentaire.");
+        alert(erreur?.message || "on arrive pas a le modifier....");
         return;
       }
 
@@ -285,7 +276,7 @@ export default function DetailsParfum() {
       fermerModificationCommentaire();
       await chargerCommentaires();
     } catch {
-      alert("Erreur pendant la modification du commentaire.");
+      alert("erreur....");
     } finally {
       setEnvoiModificationCommentaire(false);
     }
@@ -320,7 +311,7 @@ export default function DetailsParfum() {
       }
 
       if (Object.keys(parfumModifie).length === 0) {
-        alert("ta rien changer.");
+        alert("tes serieux!? ta rien changer!");
         return;
       }
 
@@ -339,7 +330,7 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "Impossible de modifier le parfum.");
+        alert(erreur?.message || "on arrive pas a le modifier....");
         return;
       }
 
@@ -347,14 +338,14 @@ export default function DetailsParfum() {
       setParfum(data);
       setModifier(false);
     } catch {
-      alert("Erreur pendant la modification.");
+      alert("erreur....");
     } finally {
       setEnvoiModification(false);
     }
   }
 
   async function supprimerParfum() {
-    const confirmation = window.confirm("Supprimer ce parfum ?");
+    const confirmation = window.confirm("Tu veux vraiment supprimer ce parfum ?!");
     if (!confirmation) return;
 
     try {
@@ -365,13 +356,13 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("Impossible de supprimer le parfum.");
+        alert("on arrive pas a le supprimer....");
         return;
       }
 
       navigate("/");
     } catch {
-      alert("Erreur pendant la suppression du parfum.");
+      alert("Erreur....");
     } finally {
       setSuppression(false);
     }
@@ -381,7 +372,7 @@ export default function DetailsParfum() {
     return (
       <div className="pageDetails">
         <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
-        <p className="detailsMessage">Chargement...</p>
+        <p className="detailsMessage">en cours...</p>
       </div>
     );
   }
@@ -391,20 +382,20 @@ export default function DetailsParfum() {
       <div className="pageDetails">
         <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
         <div className="detailsVide">
-          <h1>Parfum introuvable</h1>
+          <h1>Parfum introuvable...</h1>
           <button className="boutonPrincipal" onClick={() => navigate("/")}>
-            Retour accueil
+            Retour accueil?!
           </button>
         </div>
       </div>
     );
   }
 
-  const sourceImage = parfum.imageUrl ? `${API_URL}${parfum.imageUrl}` : "/bloodd.png";
+  const sourceImage = getImageUrl(parfum.imageUrl, API_URL);
 
   function donnerAvis() {
     if (!utilisateur) {
-      alert("Connecte-toi pour donner ton avis.");
+      alert("Tu dois être connecté pour donner un avis.....");
       return;
     }
 
@@ -414,6 +405,14 @@ export default function DetailsParfum() {
   function afficherEtoiles(note) {
     const noteNombre = Number(note) || 0;
     return "★".repeat(noteNombre) + "☆".repeat(5 - noteNombre);
+  }
+
+  function afficherNotesParfum(notes) {
+    if (Array.isArray(notes)) {
+      return notes.filter(Boolean).join(", ");
+    }
+
+    return notes || "";
   }
 
   function estAuteurCommentaire(commentaire) {
@@ -457,16 +456,10 @@ export default function DetailsParfum() {
   return (
     <div className="pageDetails">
       <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
-      <DialoguePersona
-        nom="@yanis26x"
-        // texte="fReE dElIvErY iF u sPeNd m0Re tHaN 466$ 0kAy?!"
-        texte="sT0cK lImItEr c0mMaNdE t0uTesUiTe 0u rEgReTtE pLuStArD"
-      />
 
       <main className="layoutDetails">
         <section className="carteDetails">
           <img
-            className="imageDetails"
             src={sourceImage}
             alt={parfum.name}
             onError={(e) => {
@@ -474,9 +467,9 @@ export default function DetailsParfum() {
             }}
           />
 
-          <div className="infosDetails">
-            <h1 className="titreDetails">{parfum.name}</h1>
-            <p className="sousTitreDetails">{parfum.brand || "Marque inconnue"}</p>
+          <div>
+            <h1>{parfum.name}</h1>
+            <p>{parfum.brand || "Marque inconnue"}</p>
 
             <div className="prixDetails">{parfum.price}$</div>
 
@@ -487,34 +480,45 @@ export default function DetailsParfum() {
               </strong>
             </div>
 
-            {!moyenneNotes && (
-              <p className="texteSansNote">
-                ce parfum na pas encore ete noter, il doit etre vraiment null...
-              </p>
-            )}
 
-            <p>{parfum.description || "Aucune description disponible."}</p>
-            <p className="texteProfitCarte">
-              hAs bEeN mIxEd wItH wAtEr 2 mAkE m0Re pR0fIt uGhHh....
-            </p>
+            <p>{parfum.description || "Aucune description"}</p>
+
+            <div className="notesOlfactives">
+              {afficherNotesParfum(parfum.topNotes) && (
+                <p>
+                  <strong>notes primaire :</strong> {afficherNotesParfum(parfum.topNotes)}
+                </p>
+              )}
+
+              {afficherNotesParfum(parfum.middleNotes) && (
+                <p>
+                  <strong>notes du milieu :</strong> {afficherNotesParfum(parfum.middleNotes)}
+                </p>
+              )}
+
+              {afficherNotesParfum(parfum.baseNotes) && (
+                <p>
+                  <strong>notes la + faible :</strong> {afficherNotesParfum(parfum.baseNotes)}
+                </p>
+              )}
+            </div>
+
 
             {utilisateur?.admin && (
-              <div className="adminDansCarte">
-                <div className="actionsAdmin">
-                  <button
-                    className="boutonAdmin"
-                    onClick={() => setModifier(!modifier)}
-                  >
-                    {modifier ? "modifie les infos mtn...." : "Modifier ce parfum (admin)"}
-                  </button>
-                  <button
-                    className="boutonAdmin"
-                    onClick={supprimerParfum}
-                    disabled={suppression}
-                  >
-                    {suppression ? "Suppression..." : "Supprimer ce parfum (admin)"}
-                  </button>
-                </div>
+              <div className="actionsAdmin">
+                <button
+                  className="boutonAdmin"
+                  onClick={() => setModifier(!modifier)}
+                >
+                  {modifier ? "modifie les infos mtn...." : "Modifier ce parfum (admin)"}
+                </button>
+                <button
+                  className="boutonAdmin"
+                  onClick={supprimerParfum}
+                  disabled={suppression}
+                >
+                  {suppression ? "Suppression..." : "Supprimer ce parfum (admin)"}
+                </button>
               </div>
             )}
           </div>
@@ -523,12 +527,6 @@ export default function DetailsParfum() {
         <div className="colonneResumeDetails">
           <aside className="resumeDetails">
             <h2>Resumé 𖤐</h2>
-
-            <div className={stockBlague ? "stockBox stockNormal" : "stockBox stockAlerte"}>
-              {stockBlague
-                ? "Stock limité.."
-                : "seulement 1 restant en stock!!"}
-            </div>
 
             <div className="ligneDetails">
               <span>Prix</span>
@@ -541,7 +539,7 @@ export default function DetailsParfum() {
             </div>
 
             <button
-              className="boutonPrincipal boutonAjouterPanierDetails"
+              className="boutonAdmin"
               onClick={ajouterAuPanier}
             >
               Ajouter au panier
@@ -549,7 +547,7 @@ export default function DetailsParfum() {
           </aside>
 
           <div className="boxTexteResume">
-            <h3 className="texteQibla">
+            <h3>
               INSTALLEZ <span>Qibla++</span> SUR L'APPSTORE! 0kAyY?!
             </h3>
           </div>
@@ -593,22 +591,22 @@ export default function DetailsParfum() {
       <section className="blocDetails avisClients">
         <div className="enteteAvis">
           <div>
-            <h2>Avis</h2>
+            <h2>Commentaires</h2>
             <p>
-              {commentaires.length} commentaire
-              {commentaires.length > 1 ? "s" : ""}
+              {commentaires.length} au total
+              
             </p>
           </div>
 
-          <button className="boutonAvis" onClick={donnerAvis}>
-            Donner un avis
+          <button className="boutonAdmin boutonEntete" onClick={donnerAvis}>
+            Publier un avis
           </button>
         </div>
 
         {afficherFormulaireAvis && (
           <form className="formulaireCommentaire" onSubmit={envoyerCommentaire}>
             <div className="choixPhotoProfil">
-              <p>Choisis ta photo de profil!</p>
+              <p>Choisis ta photo de profil!!</p>
 
               <div className="listePhotosProfil">
                 {PHOTOS_PROFIL.map((photo) => (
@@ -657,21 +655,25 @@ export default function DetailsParfum() {
         {chargementCommentaires ? (
           <p className="texteDiscret">Chargement des commentaires...</p>
         ) : commentaires.length === 0 ? (
-          <p className="texteDiscret">Aucun commentaire pour ce parfum.</p>
+          <p className="texteDiscret">Aucun commentaire pour ce parfum.....</p>
         ) : (
           <div className="listeCommentaires">
             {commentaires.map((commentaire) => (
               <article className="carteCommentaire" key={commentaire.id}>
-                <div className="hautCommentaire">
+                <div>
                   <div className="profilCommentaire">
                     <img
-                      className="avatarCommentaire"
                       src={afficherPhotoCommentaire(commentaire)}
                       alt="Photo de profil"
                     />
 
                     <div>
-                      <strong>{commentaire.user?.name || "Utilisateur"}</strong>
+                      <p>
+                        <strong>{commentaire.user?.name || "Utilisateur"}</strong>
+                        {commentaireModifie(commentaire) && (
+                          <span>commentaire modifié</span>
+                        )}
+                      </p>
                       <div className="etoilesCommentaire">
                         {afficherEtoiles(commentaire.rating)}
                       </div>
@@ -682,7 +684,7 @@ export default function DetailsParfum() {
 
                 {commentaireEnModification === commentaire.id ? (
                   <form
-                    className="formulaireCommentaire formulaireModificationCommentaire"
+                    className="formulaireCommentaire"
                     onSubmit={(e) => modifierCommentaire(e, commentaire.id)}
                   >
                     <textarea
@@ -723,18 +725,12 @@ export default function DetailsParfum() {
                     <p className="texteCommentaire">
                       {commentaire.content || "Commentaire vide"}
                     </p>
-
-                    {commentaireModifie(commentaire) && (
-                      <p className="texteCommentaireModifie">
-                        cette utilisateur a modifier sont commentaire, ugh..?!
-                      </p>
-                    )}
                   </>
                 )}
 
                 {adminPeutSupprimerCommentaire(commentaire) &&
                   commentaireEnModification !== commentaire.id && (
-                  <div className="actionsCommentaireAdmin">
+                  <div className="actionsCommentaire">
                     <button
                       className="boutonAdmin petitBouton"
                       onClick={() => supprimerCommentaire(commentaire.id)}

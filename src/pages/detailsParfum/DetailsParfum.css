@@ -7,15 +7,14 @@
 }
 
 
-.titreDetails {
-  margin: 0;
+.carteDetails h1 {
   color: #4b3235;
   font-size: 38px;
   font-weight: 600;
   line-height: 1.15;
 }
 
-.sousTitreDetails {
+.carteDetails h1 + p {
   margin: 10px 0 22px;
   color: #4b3235;
   font-size: 18px;
@@ -49,15 +48,13 @@
   padding: 26px;
 }
 
-.imageDetails {
+.carteDetails > img {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-
-
 }
 
-.infosDetails {
+.carteDetails > div {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -92,18 +89,21 @@
   font-weight: 400;
 }
 
-.infosDetails h2 {
-  margin: 0 0 10px;
-  color: #4b3235;
-  font-size: 19px;
-  font-weight: 600;
-}
-
-.infosDetails p {
+.carteDetails > div > p:not(:first-of-type) {
   margin: 0;
   color: #4b3235;
   line-height: 1.6;
   font-size: 16px;
+}
+
+.notesOlfactives {
+  display: grid;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.notesOlfactives strong {
+  color: #6f1535;
 }
 
 .colonneResumeDetails {
@@ -140,11 +140,6 @@
   color: #fffdfb;
 }
 
-.boutonAjouterPanierDetails {
-  background: #111;
-  color: #fff;
-}
-
 .boutonSecondaire {
   border: 1px solid #ead8d2;
   background: #fffdfb;
@@ -171,88 +166,19 @@
 }
 
 .actionsAdmin {
-  margin-top: 14px;
-  display: grid;
-  gap: 12px;
-}
-
-.adminDansCarte {
   margin-top: 26px;
   padding-top: 20px;
   border-top: 1px solid #f0e2df;
-}
-
-.stockBox {
-  margin-bottom: 20px;
-  border-radius: 10px;
-  padding: 13px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.stockAlerte {
-  background: #ffe8eb;
-  border: 1px solid var(--rougeAction);
-  color: var(--rougeAction);
-  animation: clignoteStock 0.45s infinite;
-}
-
-.stockNormal {
-  background: #f7eeeb;
-  border: 1px solid #ead8d2;
-  color: #6d6263;
-}
-
-.texteSansNote {
-  margin: -4px 0 16px;
-  color: #8d7a7d;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.texteProfitCarte {
-  margin-top: auto;
-  padding-top: 30px;
-  color: #8d7a7d;
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.45;
+  display: grid;
+  gap: 12px;
 }
 
 .boxTexteResume {
   margin-top: 18px;
   padding: 14px;
-  border: 1px solid #ead8d2;
   border-radius: 10px;
-  background: #f7eeeb;
-}
-
-.boxTexteResume p {
-  margin: 0;
-  color: #6d6263;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.texteQibla {
-  color: #111;
-  font-weight: 900;
-  line-height: 1.25;
-}
-
-.texteQibla span {
-  color: #111;
-}
-
-@keyframes clignoteStock {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.35;
-  }
+  background: #000000;
+  color: #ffffff;
 }
 
 .blocDetails {
@@ -373,14 +299,11 @@
   font-size: 19px;
 }
 
-.boutonAvis {
+.boutonEntete {
+  width: auto;
   min-width: 230px;
-  background: #111;
-  color: #fff;
   padding: 18px 24px;
   font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 .listeCommentaires {
@@ -400,7 +323,7 @@
   padding-bottom: 10px;
 }
 
-.hautCommentaire {
+.carteCommentaire > div:first-child {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -414,7 +337,15 @@
   gap: 20px;
 }
 
-.avatarCommentaire {
+.profilCommentaire p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 8px;
+}
+
+.profilCommentaire img {
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -427,7 +358,6 @@
 
 .profilCommentaire strong {
   display: block;
-  margin-bottom: 8px;
   color: #1f1b1c;
   font-size: 20px;
 }
@@ -439,31 +369,26 @@
   line-height: 1;
 }
 
-.dateCommentaire {
-  color: #a19ca6;
-  font-size: 16px;
-  white-space: nowrap;
-}
-
 .texteCommentaire {
   max-width: 980px;
-  margin: 0 auto;
+  margin: 0;
   color: #4f4c55;
   font-size: 19px;
   font-style: italic;
   line-height: 1.8;
-  text-align: center;
+  text-align: left;
 }
 
-.texteCommentaireModifie {
-  margin: 14px 0 0;
+.profilCommentaire span {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
   color: #9f8790;
   font-size: 14px;
   font-weight: bold;
-  text-align: center;
 }
 
-.formulaireModificationCommentaire {
+.carteCommentaire .formulaireCommentaire {
   max-width: 880px;
   margin-left: auto;
   margin-right: auto;
@@ -472,14 +397,6 @@
 .actionsCommentaire {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 18px;
-  flex-wrap: wrap;
-}
-
-.actionsCommentaireAdmin {
-  display: flex;
-  justify-content: flex-start;
   gap: 12px;
   margin-top: 18px;
   flex-wrap: wrap;
@@ -508,66 +425,4 @@
 .detailsVide h1 {
   margin: 0 0 18px;
   font-weight: 400;
-}
-
-@media (max-width: 900px) {
-  .layoutDetails,
-  .carteDetails {
-    grid-template-columns: 1fr;
-  }
-
-  .resumeDetails {
-    position: static;
-  }
-
-  .colonneResumeDetails {
-    position: static;
-  }
-
-  .imageDetails {
-    max-height: 520px;
-  }
-}
-
-@media (max-width: 560px) {
-  .layoutDetails,
-  .blocDetails {
-    width: calc(100% - 28px);
-  }
-
-  .layoutDetails {
-    margin-top: 42px;
-  }
-
-  .titreDetails {
-    font-size: 42px;
-  }
-
-  .carteDetails,
-  .resumeDetails,
-  .blocDetails {
-    padding: 18px;
-  }
-
-  .basCommentaire {
-    grid-template-columns: 1fr;
-  }
-
-  .avisClients {
-    padding: 24px 18px;
-  }
-
-  .enteteAvis,
-  .hautCommentaire {
-    flex-direction: column;
-  }
-
-  .boutonAvis {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .texteCommentaire {
-    font-size: 17px;
-  }
 }
