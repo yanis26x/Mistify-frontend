@@ -1,24 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Contact.css";
+import "./contact.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { FiPhone, FiMapPin, FiClock } from "react-icons/fi";
+import { FiPhone } from "react-icons/fi";
 
 export default function Contact() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
-
-  const [formData, setFormData] = useState({
-    nom: "",
-    email: "",
-    type: "DEMANDE_GENERALE",
-    message: "",
-  });
+  const sectionCachee = useRef(null);
 
   useEffect(() => {
     checkUser();
@@ -35,191 +26,104 @@ export default function Contact() {
     }
   }
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
-
-  async function handleSubmit(e) {
+  function envoyerFormulaire(e) {
     e.preventDefault();
-    setError("");
-    setSuccess(false);
-
-    if (!formData.nom.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setError("Veuillez remplir tous les champs obligatoires");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/contacts",
-        formData,
-        {
-          withCredentials: true,
-        }
-      );
-
-      setSuccess(true);
-      setFormData({
-        nom: "",
-        email: "",
-        type: "DEMANDE_GENERALE",
-        message: "",
-      });
-
-
-      setTimeout(() => {
-        setSuccess(false);
-      }, 3000);
-    } catch (err) {
-      console.error("Erreur envoi formulaire:", err);
-      setError("Une erreur est survenue. Veuillez réessayer.");
-    } finally {
-      setLoading(false);
-    }
+    sectionCachee.current.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
-    <div className="contact-page">
+    <div className="page-contact">
       <Navbar user={user} onGoToCompte={() => navigate("/compte")} />
 
+      <main className="conteneur-contact">
+        <section className="haut-contact">
+          <div className="texte-aide">
+            <h1>Vous avez besoin d'aide?</h1>
+            <h2>Vous voulez faire un signalement ou nous envoyer un message?</h2>
+            <p>Et n'oubliez pas que chez Mistify, votre satifaction est loin detre notre prioriter</p>
+          </div>
 
-      <div className="contact-hero">
-        <h1 className="contact-title">Signalement & Support</h1>
-        <p className="contact-subtitle">
-          Votre satisfaction est notre signature. Comment pouvons-nous vous aider aujourd'hui ?
-        </p>
-      </div>
-
-      <div className="contact-container">
-        <div className="form-section">
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="nom" className="form-label">
-                  NOM COMPLET
-                </label>
-                <input
-                  type="text"
-                  id="nom"
-                  name="nom"
-                  value={formData.nom}
-                  onChange={handleChange}
-                  placeholder="Votre nom complet"
-                  className="form-input"
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email" className="form-label">
-                  ADRESSE EMAIL
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="votre@email.com"
-                  className="form-input"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="type" className="form-label">
-                TYPE DE DEMANDE
-              </label>
-              <select
-                id="type"
-                name="type"
-                value={formData.type}
-                onChange={handleChange}
-                className="form-select"
-              >
-                <option value="DEMANDE_GENERALE">Demande Générale</option>
-                <option value="SIGNALEMENT_PROBLEME">Signalement d'un Problème</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="message" className="form-label">
-                MESSAGE
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Décrivez votre demande..."
-                className="form-textarea"
-                rows="6"
-                required
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="form-button"
-              disabled={loading}
-            >
-              {loading ? "Envoi en cours..." : "ENVOYER MA DEMANDE"}
-            </button>
-
-            <p className="form-note">
-              Notre administrateur vous répondra sous un délai de 24 heures ouvrables
-            </p>
-
-            {success && (
-              <div className="success-message">
-                Votre demande a été envoyée avec succès !
-              </div>
-            )}
-
-            {error && (
-              <div className="error-message">
-                {error}
-              </div>
-            )}
+          <form className="formulaire-contact" onSubmit={envoyerFormulaire}>
+            <input type="text" placeholder="Votre nom" />
+            <input type="email" placeholder="Votre email" />
+            <select defaultValue="">
+              <option value="" disabled>
+                Raison du message
+              </option>
+              <option>Signalement</option>
+              <option>Insulte</option>
+              <option>Probleme avec ma commande</option>
+            </select>
+            <textarea placeholder="Votre message" rows="4"></textarea>
+            <button type="submit">Envoyer</button>
           </form>
+        </section>
+
+        <div className="sections-bas">
+          <section className="carte-contact">
+            <h2>Notre but</h2>
+            <p>
+              Notre but n'est pas de faire votre bonheur mais juste de passer le cours.
+            </p>
+          </section>
+
+          <section className="carte-contact">
+            <h2>Nous appeler</h2>
+
+            <div className="coordonnees-contact">
+              <div className="coordonnee-contact">
+                <FiPhone size={22} />
+                <span>1-877-737-4672</span>
+              </div>
+
+             <p>Numéro surtaxé, vérifiez nos disponibilités avant d’appeler dans le vide.</p>
+            </div>
+          </section>
+
+          <section className="carte-contact">
+            <h2>Les créateurs</h2>
+
+            <div className="liste-createurs">
+              <div className="personne-createur">
+                <strong>@rym31</strong>
+                <span>Aicha-Rym Souane</span>
+              </div>
+
+              <div className="personne-createur">
+                <strong>@el24s</strong>
+                <span>Ellyn Saint-Firmin</span>
+              </div>
+
+              <div className="personne-createur">
+                <strong>@yanis26x</strong>
+                <span>yanis djenadi</span>
+              </div>
+            </div>
+          </section>
         </div>
 
-        <div className="info-cards">
-          <div className="info-card">
-            <div className="info-icon">
-              <FiPhone size={32} />
-            </div>
-            <h3 className="info-title">TÉLÉPHONE</h3>
-            <p className="info-content">+1 (514) 555-0199</p>
+        <section className="disponibilites">
+          <h2>Nos disponibilites</h2>
+          <div className="liste-disponibilites">
+            <p>Lundi : indisponible</p>
+            <p>Mardi : indisponible</p>
+            <p>Mercredi : 22h a 22h25</p>
+            <p>Jeudi : indisponible</p>
+            <p>Vendredi : indisponible</p>
+            <p>Samedi : indisponible</p>
+            <p>Dimanche : indisponible</p>
           </div>
-
-          <div className="info-card">
-            <div className="info-icon">
-              <FiMapPin size={32} />
-            </div>
-            <h3 className="info-title">ADRESSE</h3>
-            <p className="info-content">Montréal, Canada</p>
-          </div>
-
-          <div className="info-card">
-            <div className="info-icon">
-              <FiClock size={32} />
-            </div>
-            <h3 className="info-title">HORAIRES</h3>
-            <p className="info-content">Lun - Ven | 10h - 19h</p>
-          </div>
-        </div>
-      </div>
+        </section>
+      </main>
 
       <Footer />
+
+      <section className="section-cachee" ref={sectionCachee}>
+        <p>
+          T'a vraiment cru que c'etait un vrais formulaire qui aller s'envoyer ?!!?
+          garde la peche, oublie pas qu'on rembourse rien.
+        </p>
+      </section>
     </div>
   );
 }
-

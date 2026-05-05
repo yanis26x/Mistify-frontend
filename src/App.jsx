@@ -4,7 +4,8 @@ import Home from "./pages/home/Home";
 import Compte from "./pages/account/Compte";
 import DetailsParfum from "./pages/detailsParfum/DetailsParfum";
 import Panier from "./pages/panier/Panier";
-import Contact from "./pages/contact/Contact";
+import Payment from "./pages/payment/Payment";
+import Contact from "./pages/contact/contact";
 import Profil from "./pages/profil/Profil"
 import {AjoutParfum}  from "./pages/ajoutParfum/AjoutParfum";
 
@@ -18,6 +19,9 @@ export default function App() {
       <Route path="/parfum/:id" element={<DetailsParfum />} />
       <Route path="/ajout-parfum/" element={<AjoutParfum />} />
       <Route path="/panier" element={<Panier />} />
+      <Route path="/payment" element={<Payment />} />
+      <Route path="/paiement" element={<Payment />} />
+      <Route path="/payement" element={<Payment />} />
       <Route path="/profil" element={<Profil />}/>
       <Route path="/contact" element={<Contact />} />
     </Routes>

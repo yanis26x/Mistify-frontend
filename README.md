@@ -1,83 +1,74 @@
-# Mistify Frontend
+# Mistify Frontend 𖤐
 
-## POUR TESTER LANCE DABBORD LE BACKEND ET LANCE LE FRONTEND EN MEME TEMPS !
+[ @yanis26x ](https://github.com/yanis26x)
+[ @el24s ](https://github.com/el24s)
+[ @rym31 ](https://github.com/rym31)
 
-#### dans le backend 
+Mistify est une application React pour consulter et acheter des parfums.
+Le frontend communique avec une API backend lancée en local sur `http://localhost:3000`.
+
+
+## Installation
 ```bash
-npm run start:dev
+npm install
 ```
-
-#### dnas le frontend (ici)
-```bash
-npm i
-```
+Lancer le projet en dev :
 ```bash
 npm run dev
 ```
 
-### fait avec axios
+> Backend doit être lancé simultanément pour fonctionner
 
+## Fonctionnalités
+- Création et connexion de compte
+- Page d'accueil avec parfum du moment
+- Recherche de parfums
+- Page détail d'un parfum
+- Affichage des notes olfactives :
+  - `topNotes`
+  - `middleNotes`
+  - `baseNotes`
+- Ajout au panier
+- Ajout, modification et suppression de parfums pour les admins
+- Commentaires et notes sur les parfums
+- Et bien + encore..
+## Routes frontend
 
+- `/` : accueil
+- `/vendreParfum` : ajouter des parfums
+- `/compte` : connexion / inscription
+- `/parfum/:id` : détails d'un parfum
+- `/panier` : panier
+- `/payment`: paiement
+- `/profil` : profil
+- `/contact` : contact
 
+## Format d'un parfum
 
+Exemple de données attendues par le frontend :
 
-
-
-
-
-
-
-
-
-
-const parfums = [
-  {
-    name: "Sauvage",
-    brand: "Dior",
-    price: 120,
-    imageUrl: "https://images.unsplash.com/photo-1594035910387-fea47794261f"
-  },
-  {
-    name: "Bleu de Chanel",
-    brand: "Chanel",
-    price: 135,
-    imageUrl: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd"
-  },
-  {
-    name: "Acqua di Gio",
-    brand: "Armani",
-    price: 110,
-    imageUrl: "https://images.unsplash.com/photo-1585386959984-a4155228c1c9"
-  },
-  {
-    name: "Le Male",
-    brand: "Jean Paul Gaultier",
-    price: 95,
-    imageUrl: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"
-  },
-  {
-    name: "Eros",
-    brand: "Versace",
-    price: 105,
-    imageUrl: "https://images.unsplash.com/photo-1541643600914-78b084683601"
-  }
-];
-
-async function ajouterParfums() {
-  for (const parfum of parfums) {
-    const res = await fetch("http://localhost:3000/parfums", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(parfum)
-    });
-
-    const data = await res.json();
-    console.log("Ajouté :", data);
-  }
-
-  console.log("Tous les parfums ont été ajoutés");
+```js
+{
+  name: "Sauvage",
+  brand: "Dior",
+  price: 120,
+  imageUrl: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539",
+  description: "Un parfum frais et puissant.",
+  topNotes: ["Bergamote", "Poivre"],
+  middleNotes: ["Lavande", "Patchouli"],
+  baseNotes: ["Ambroxan", "Cèdre"]
 }
+```
+> Pour ajouter des parfums run node seedParfums.js dans Backend
 
-ajouterParfums();
+## Structure du projet
+
+```txt
+src/
+  components/        Composants reutilisables
+  pages/             Pages principales
+  utils/             Helpers frontend
+  App.jsx            Routes de l'application
+  main.jsx           Point d'entree React
+public/              Images et assets statiques
+```

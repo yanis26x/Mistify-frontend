@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./VendreParfum.css";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -288,7 +289,7 @@ export default function VendreParfum() {
                   {parfum.imageUrl && (
                     <div className="imageBox">
                       <img
-                        src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/bloodd.png"}
+                        src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
                         alt={parfum.name}
                         className="parfumPreview"
                         onError={(e) => (e.target.src = "/bloodd.png")}
@@ -325,7 +326,7 @@ export default function VendreParfum() {
                   {oneParfum.imageUrl && (
                     <div className="imageBox">
                       <img
-                        src={oneParfum.imageUrl ? `${BACKEND_URL}${oneParfum.imageUrl}` : "/bloodd.png"}
+                        src={getImageUrl(oneParfum.imageUrl, BACKEND_URL)}
                         alt={oneParfum.name}
                         className="parfumPreview"
                         onError={(e) => (e.target.src = "/bloodd.png")}
