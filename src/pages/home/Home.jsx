@@ -17,14 +17,14 @@ import { IoIosIceCream } from "react-icons/io";
 export default function Home() {
   const navigate = useNavigate();
 
-  const backgrounds = [
-    "/coolBlue.jpeg",
-    "/frutiger/materialdictionary178_129.jpg",
-    "/frutiger/materialdictionary178_130.jpg",
-    "/frutiger/materialdictionary206_10.jpg",
-  ];
+  // const backgrounds = [
+  //   "/coolBlue.jpeg",
+  //   "/frutiger/materialdictionary178_129.jpg",
+  //   "/frutiger/materialdictionary178_130.jpg",
+  //   "/frutiger/materialdictionary206_10.jpg",
+  // ];
 
-  const [bgIndex, setBgIndex] = useState(0);
+  // const [bgIndex, setBgIndex] = useState(0);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -42,35 +42,31 @@ export default function Home() {
     checkUser();
   }, []);
 
-  function changeBackground() {
-    setBgIndex((prev) => (prev + 1) % backgrounds.length);
-  }
+  // function changeBackground() {
+  //   setBgIndex((prev) => (prev + 1) % backgrounds.length);
+  // }
 
   return (
     <div
       className="homeDiv"
-      style={{ backgroundImage: `url(${backgrounds[bgIndex]})` }}
+      // style={{ backgroundImage: `url(${backgrounds[bgIndex]})` }}
     >
       <Navbar
         user={user}
         onGoToAuth={() => navigate("/auth")}
         onGoToCommentaires={() => navigate("/Commentaire")}
-        onChangeTheme={changeBackground}
+        // onChangeTheme={changeBackground}
         // best way i think would be with context
         onGoToProfil={() => navigate("/profil", {state: {user}})}
         onGoToVendre={() => navigate("/vendreParfum")}
-        nextBackground={backgrounds[(bgIndex + 1) % backgrounds.length]}
+        // nextBackground={backgrounds[(bgIndex + 1) % backgrounds.length]}
         onGoToCompte={() => navigate("/compte")}
       />
 
 
       <ParfumDuMoment />
 
-
-
-      <ChercherParfum />
-
-
+      {/* <ChercherParfum /> */}
 
       <div className="info-cards">
         <div className="info-card">

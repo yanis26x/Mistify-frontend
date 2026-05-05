@@ -15,9 +15,6 @@ body {
 .compte-page {
   min-height: 100vh;
   padding: 80px 20px 40px;
-
-  background:
-    url("/frutigerBG.jpg") center / cover no-repeat fixed;
 }
 
 .compte-container {
