@@ -7,7 +7,8 @@ import Panier from "./pages/panier/Panier";
 import Payment from "./pages/payment/Payment";
 import Contact from "./pages/contact/contact";
 import Profil from "./pages/profil/Profil"
-import {AjoutParfum}  from "./pages/ajoutParfum/AjoutParfum";
+import AjoutParfum  from "./pages/AjoutParfum/AjoutParfum";
+import Parfums from "./pages/parfums/Parfums";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/compte" element={<Compte />} />
       <Route path="/parfum/:id" element={<DetailsParfum />} />
       <Route path="/ajout-parfum/" element={<AjoutParfum />} />
+      <Route path="/parfums/" element={<Parfums />} />
       <Route path="/panier" element={<Panier />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/paiement" element={<Payment />} />

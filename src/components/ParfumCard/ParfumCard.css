@@ -1,0 +1,80 @@
+.parfumCard {
+    background-color: #fff;
+    border-radius: 16px;
+    border: 1px solid #f0dde0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+  }
+  
+  .parfumCard:hover {
+    transform: translateY(-4px);
+  }
+  
+  .parfumCardImage {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .parfumCardBody {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .parfumCardMarque {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0;
+  }
+  
+  .parfumCardNom {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  
+  .parfumCardDesc {
+    font-size: 13px;
+    color: #777;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+  
+  .parfumCardPrix {
+    font-size: 22px;
+    font-weight: 700;
+    color: #8b1a3a;
+    margin: 8px 0 4px 0;
+  }
+  
+  .parfumCardBtn {
+    width: 100%;
+    padding: 14px;
+    background-color: #5c1a2e;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .parfumCardBtn:hover {
+    background-color: #8b1a3a;
+  }

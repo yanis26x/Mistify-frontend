@@ -1,0 +1,117 @@
+.parfumsPage {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .parfumsHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 16px;
+    background: #FFF;
+    box-shadow: 0 30px 50px 0 rgba(125, 43, 69, 0.08);
+  }
+  
+  
+  
+  .parfumsTitre {
+    color: #60142F;
+    text-align: center;
+    width: 100%;
+    font-family: "Cormorant Garamond";
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 70.4px;
+    letter-spacing: -1.28px;
+  
+  }
+  
+  .parfumsDesc {
+    color: #6A5B56;
+    text-align: center;
+    font-family: Jost;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 32px;
+    width: 100%;
+    margin-top: -32px;
+  }
+  
+  .parfumsGrille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  
+  .parfumsFiltres {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    background-color: #FFF;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .parfumsSelect,
+  .parfumsInput {
+    padding: 10px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(96, 20, 47, 0.2);
+    background-color: #fff;
+    color: #60142F;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .parfumsSelect option {
+    background-color: #fff;
+    color: #60142F;
+  }
+  
+  .parfumsInput::placeholder {
+    color: rgba(96, 20, 47, 0.4);
+  }
+  
+  .parfumsInput::-webkit-outer-spin-button,
+  .parfumsInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  
+  .parfumsResetBtn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(96, 20, 47, 0.3);
+    background-color: transparent;
+    color: #60142F;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .parfumsResetBtn:hover {
+    background-color: rgba(96, 20, 47, 0.08);
+  }
+  
+  .parfumsCount {
+    margin-left: auto;
+    color: #6A5B56;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  
+  .parfumsLoading,
+  .parfumsError {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    padding: 60px;
+  }

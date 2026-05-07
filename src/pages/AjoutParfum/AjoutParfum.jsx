@@ -3,14 +3,10 @@ import Navbar from "../../components/navbar/Navbar"
 import "./AjoutParfum.css"
 import { PiNumberCircleOneFill, PiNumberCircleTwoFill, PiNumberCircleThreeFill } from "react-icons/pi"
 
-export function AjoutParfum() {
-    
-    function save() {
-
-    }
+export default function AjoutParfum() {
 
     function submit() {
-
+        return "hello"
     }
 
     return(
@@ -27,7 +23,7 @@ export function AjoutParfum() {
 
             <div className="all">
                 <div className="left-side">
-                    <form action="save">
+                    <form>
                     <label htmlFor="Brand"> Marque: </label>
                     <input
                         type="brand"
@@ -128,7 +124,7 @@ export function AjoutParfum() {
                         <input type="file" id="file-input" name="ImageStyle" />
                         </div>
                     </div>
-                    {/* TODO check how to upload an img */}
+
                     <button onClick={submit}> 
                         <p> Soumettre la demande </p>
                     </button>

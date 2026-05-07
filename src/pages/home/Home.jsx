@@ -129,7 +129,7 @@ export default function Home() {
   </div>
 
 
-  <button className="home-demandeParfum-button" onClick={() => navigate("/demandeAjoutParfum")}>
+  <button className="home-demandeParfum-button" onClick={() => navigate("/ajout-parfum")}>
     Demander un parfum
   </button>
 </div>

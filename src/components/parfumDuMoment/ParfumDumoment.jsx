@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./ParfumDuMoment.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SellSection from "../sell/SellSection";
