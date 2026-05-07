@@ -1,0 +1,232 @@
+.chercherSection {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.chercherTitre {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.filtresSection {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hideFiltersBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.hideFiltersBtn:hover {
+  text-decoration: underline;
+}
+
+.filtresContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.filtresGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtresGroup label {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.filtresGroup select,
+.filtresGroup input {
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtresGroup select option {
+  background-color: white;
+  color: black;
+}
+
+.filtresGroup input::placeholder {
+  color: #999;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.clearFiltersBtn {
+  padding: 10px 20px;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.clearFiltersBtn:hover {
+  background-color: #b91c1c;
+}
+
+.showFiltersBtn {
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.showFiltersBtn:hover {
+  background-color: #f3f4f6;
+}
+
+.chercherBox {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.chercherBox input {
+  width: 300px;
+  padding: 12px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.chercherBox input::placeholder {
+  color: #999;
+}
+
+.chercherBtn {
+  padding: 12px 25px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chercherBtn:hover {
+  background-color: #f3f4f6;
+}
+
+.chercherMessage {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+
+.chercherResultats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.parfumTrouve {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 15px;
+  overflow: hidden;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.parfumTrouve:hover {
+  transform: scale(1.05);
+}
+
+.parfumImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.parfumContenu {
+  padding: 15px;
+}
+
+.parfumNom {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: white;
+}
+
+.parfumMarque {
+  font-size: 14px;
+  margin: 0 0 10px 0;
+  color: #ccc;
+}
+
+.parfumPrix {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  color: #ffd700;
+}
+
+.savoirPlusBtn {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.savoirPlusBtn:hover {
+  background-color: #f3f4f6;
+}
