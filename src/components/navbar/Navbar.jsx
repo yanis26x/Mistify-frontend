@@ -99,13 +99,13 @@ export default function Navbar({
         <Link to="/" className="nav-link">ACCUEIL</Link>
         <Link to="/parfums" className="nav-link">PARFUMS</Link>
         <Link to="/contact" className="nav-link">CONTACT</Link>
+        <Link to="/demande-admin" className="nav-link">DEMANDE ADMIN</Link>
       </nav>
       <NavbarRecherche />
 
       <div className="navbarDroiteActuelle">
         <nav className="nav-links">
-          <Link to="/ajout-parfum" className="nav-link"> DEMANDE PARFUM </Link>
-          <Link to="/contact" className="nav-link">CONTACT</Link>
+          <Link to="/ajout-parfum" className="nav-link">DEMANDE PARFUM</Link>
         </nav>
 
         <div className="nav-icons">

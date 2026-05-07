@@ -1,7 +1,7 @@
 .navbarRecherche {
-  position: absolute;
-  left: 50%;
-  width: min(430px, 34vw);
+  position: relative;
+  width: 100%;
+  min-width: 0;
   height: 42px;
   display: flex;
   align-items: center;
@@ -10,7 +10,6 @@
   border-radius: 20px;
   background: #fff;
   color: #111;
-  transform: translateX(-50%);
 }
 
 .navbarRechercheIcone {
@@ -118,10 +117,8 @@
 
 @media (max-width: 900px) {
   .navbarRecherche {
-    position: relative;
-    left: auto;
+    grid-column: 1 / -1;
     order: 3;
     width: 100%;
-    transform: none;
   }
 }
