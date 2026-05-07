@@ -1,4 +1,3 @@
-/* Color Palette & Font */
 :root {
   --mist-burgundy: #5c162e;
   --mist-beige: #f3e5e0;
@@ -6,58 +5,55 @@
   --mist-text: #4a4a4a;
 }
 
-body {
-  background-color: var(--mist-beige);
-  font-family: 'Playfair Display', serif; /* Use a luxury serif font */
-  margin: 0;
+.account-page {
+  min-height: 100vh;
+  background: var(--mist-beige);
+  padding: 120px 20px 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
-/* The main container */
-.grid {
-  display: flex;
-  width: 900px;
+.account-box {
+  width: min(1100px, 100%);
+  min-height: 620px;
   background: white;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  display: flex;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
-/* Left side (The Image) */
-/* In your JSX, you'll want to wrap the left side in a div or use a pseudo-element */
-.grid::before {
-  content: "";
+.account-image {
   flex: 1;
-  background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=1000');
+  background-image: url("https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=1000");
   background-size: cover;
   background-position: center;
-  min-height: 600px;
 }
 
-/* Right side (The Form Container) */
-.card {
-  flex: 1.2;
+.account-forms {
+  flex: 1.4;
   padding: 40px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-content: center;
+}
+
+.account-card {
+  width: 100%;
 }
 
 .titre {
-  font-weight: 400;
-  text-transform: uppercase;
+  font-size: 1rem;
   letter-spacing: 2px;
-  color: var(--mist-burgundy);
   border-bottom: 1px solid var(--mist-burgundy);
-  display: inline-block;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   margin-bottom: 30px;
-  font-size: 1.2rem;
+  color: var(--mist-burgundy);
+  text-transform: uppercase;
 }
 
-/* Form Layout */
 .form {
   display: flex;
   flex-direction: column;
@@ -65,12 +61,18 @@ body {
 }
 
 .form input {
+  width: 100%;
   background-color: var(--mist-input);
-  border: none;
-  padding: 15px;
+  border: 1px solid transparent;
+  padding: 13px 15px;
   border-radius: 5px;
-  font-family: inherit;
   color: var(--mist-text);
+}
+
+.form input:focus {
+  outline: none;
+  border-color: var(--mist-burgundy);
+  background-color: white;
 }
 
 .form input::placeholder {
@@ -80,120 +82,10 @@ body {
   letter-spacing: 1px;
 }
 
-/* Buttons */
-.btn-principal {
-  background-color: var(--mist-burgundy);
-  color: white;
-  border: none;
-  padding: 15px;
-  margin-top: 10px;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: opacity 0.3s;
-}
-
-.btn-principal:hover {
-  opacity: 0.9;
-}
-
-/* Admin/User quick buttons style */
-.btn-rapide {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.btn-secondaire {
-  background: none;
-  border: 1px solid var(--mist-burgundy);
-  color: var(--mist-burgundy);
-  padding: 5px 15px;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-/* Update your body to lose the grass */
-body {
-  background-color: #f3e5e0; /* That soft beige from the image */
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: 'Playfair Display', serif;
-}
-
-/* Adjust the main container */
-.grid {
-  display: flex;
-  background: white;
-  width: 1000px; /* Slightly wider to fit both forms comfortably */
-  min-height: 600px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-}
-
-/* Make sure the image container covers the full left side */
-.image-container { /* Add this class to your left div if you haven't */
-  flex: 1;
-  max-width: 40%;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* The container for both forms */
-.wrapper { 
-  flex: 2;
-  display: flex;
-  flex-direction: row;
-  padding: 60px 40px;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.card {
-  flex: 1;
-}
-
-.titre {
-  font-size: 1rem;
-  letter-spacing: 2px;
-  border-bottom: 1px solid #5c162e;
-  padding-bottom: 10px;
-  margin-bottom: 30px;
-  color: #5c162e;
-  text-align: left;
-}
-
-/* Inputs - thin and elegant */
-.form input {
-  width: 100%;
-  box-sizing: border-box; /* Prevents input from overflowing */
-  background-color: #faf5f3;
-  border: 1px solid transparent;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  transition: all 0.3s;
-}
-
-.form input:focus {
-  outline: none;
-  border-color: #5c162e;
-  background-color: white;
-}
-
-/* The buttons */
 .btn-principal {
   width: 100%;
   padding: 14px;
-  background-color: #5c162e;
+  background-color: var(--mist-burgundy);
   color: white;
   border: none;
   text-transform: uppercase;
@@ -203,97 +95,31 @@ body {
   margin-top: 10px;
 }
 
-.preferences {
-  margin: 20px 0;
-  text-align: left;
+.btn-principal:hover {
+  opacity: 0.9;
 }
 
-.title {
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  color: #8a7a75; /* A muted brown/grey */
-  margin-bottom: 15px;
-  text-transform: uppercase;
+.account-message {
+  grid-column: 1 / -1;
+  background: #faf5f3;
+  color: var(--mist-burgundy);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
 }
 
-.checkbox {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 15px 10px;
-}
+@media (max-width: 900px) {
+  .account-box {
+    flex-direction: column;
+  }
 
-.checkbox-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--mist-text);
-}
+  .account-image {
+    min-height: 220px;
+  }
 
-/* Custom Checkbox Styling */
-.checkbox-item input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--mist-burgundy); /* Makes the checkmark burgundy */
-  border: 1px solid #e5d1cb;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.checkbox-item span {
-  font-family: 'Playfair Display', serif; /* Or a light sans-serif if you prefer */
-}
-
-.checkbox {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Maintains the 3-column look */
-  gap: 12px 5px;
-  margin-top: 10px;
-}
-
-.checkbox-item {
-  display: flex;
-  align-items: center; /* Vertically centers the text with the box */
-  gap: 10px;           /* Space between box and text */
-  cursor: pointer;
-  font-size: 0.85rem;
-  line-height: 1;      /* Prevents text height from pushing the box down */
-}
-
-.checkbox-item input[type="checkbox"] {
-  /* Resets appearance to style it more accurately */
-  appearance: none;
-  -webkit-appearance: none;
-  
-  width: 16px;
-  height: 16px;
-  border: 1px solid #5c162e; /* Your burgundy color */
-  border-radius: 2px;
-  background-color: white;
-  position: relative;
-  cursor: pointer;
-  margin: 0; /* Removes default browser margins that cause shifting */
-  display: grid;
-  place-content: center; /* Centers the checkmark perfectly inside */
-}
-
-/* Creating a custom checkmark to ensure it's never off-center */
-.checkbox-item input[type="checkbox"]::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em #5c162e; /* The checkmark color */
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-}
-
-.checkbox-item input[type="checkbox"]:checked::before {
-  transform: scale(1); /* Shows the mark when checked */
-}
-
-.checkbox-item span {
-  font-family: 'Playfair Display', serif; /* Keeps it high-end */
-  color: #333;
+  .account-forms {
+    grid-template-columns: 1fr;
+  }
 }

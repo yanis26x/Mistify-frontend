@@ -2,16 +2,6 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  background: #050505;
-  color: white;
-}
-
-
-
 .compte-page {
   min-height: 100vh;
   padding: 80px 20px 40px;

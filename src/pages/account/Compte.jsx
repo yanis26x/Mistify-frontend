@@ -5,7 +5,7 @@ import Logged from "./Logged";
 import CreateAcc from "./CreateAcc";
 import "./Compte.css";
 
-const API = "http://localhost:3000/auth";
+const API = "http://localhost:3000/users";
 
 export default function Compte() {
   const navigate = useNavigate();
