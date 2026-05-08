@@ -38,22 +38,33 @@ export default function SellSection({ parfums }) {
       </div>
 
       <div className="sellContent">
-        <h2 className="sellTitre">
-          Vendre / ajouter des parfums sur Mistify !
-        </h2>
+        <img
+          className="sellLogoMistify"
+          src="/SpotifyLogoRed.webp"
+          alt="Mistify"
+        />
 
-        <p className="sellSoustitre">
-          (essayer de melanger vos parfum avec de l'eau pour augmenter le prix de vente...)
-        </p>
+        <div className="sellMessage">
+          <h2 className="sellTitre">rEaD tHiS, n0w!</h2>
 
-        <button
-          className="BTNvendre"
-          onClick={() => navigate("/vendreParfum")}
-        >
-          Vendre un parfum
-        </button>
+          <p className="sellSoustitre">
+            Je ne toucherai plus ce projet. Libre à vous de repartir de mon
+            travail : boite vocale ajoutée, gestion des ajouts de parfums par
+            les admins, notification promotionnelle quand un parfum est ajouté
+            pour les utilisateurs ayant choisi la même odeur, énorme correction
+            car rien ne marchait, et bien plus encore. Si mon travail ne vous
+            satisfait pas (99% le cas), corrigez-le vous-même ou n'utilisez
+            simplement pas ma version.
+          </p>
+
+          <button
+            className="BTNvendre"
+            onClick={() => navigate("/ajout-parfum")}
+          >
+            ajouter parfum
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-

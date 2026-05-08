@@ -44,11 +44,12 @@
 // }
 
 import "./Navbar.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
 import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
+import DialoguePersona from "../dialoguePersona/DialoguePersona";
 
 const API_URL = "http://localhost:3000";
 
@@ -58,6 +59,10 @@ export default function Navbar({
 }) {
   const photoProfil = user?.admin ? "/vampp.jpeg" : "/Hello-kitty.webp";
   const [nombrePanier, setNombrePanier] = useState(0);
+  const [messagesNonLus, setMessagesNonLus] = useState(0);
+  const [demandesEnAttente, setDemandesEnAttente] = useState(0);
+  const [afficherDialogueMessage, setAfficherDialogueMessage] = useState(false);
+  const dernierMessageAnnonce = useRef(0);
 
   useEffect(() => {
     async function chargerNombrePanier() {
@@ -88,6 +93,71 @@ export default function Navbar({
     };
   }, [user]);
 
+  useEffect(() => {
+    async function chargerDemandesEnAttente() {
+      if (!user?.admin) {
+        setDemandesEnAttente(0);
+        return;
+      }
+
+      try {
+        const res = await axios.get(`${API_URL}/ajout/demandes/en-attente`, {
+          withCredentials: true,
+        });
+        setDemandesEnAttente(Array.isArray(res.data) ? res.data.length : 0);
+      } catch {
+        setDemandesEnAttente(0);
+      }
+    }
+
+    chargerDemandesEnAttente();
+    window.addEventListener("demandes-parfum-change", chargerDemandesEnAttente);
+
+    return () => {
+      window.removeEventListener("demandes-parfum-change", chargerDemandesEnAttente);
+    };
+  }, [user]);
+
+  useEffect(() => {
+    async function chargerMessagesNonLus() {
+      if (!user) {
+        setMessagesNonLus(0);
+        dernierMessageAnnonce.current = 0;
+        return;
+      }
+
+      try {
+        const res = await axios.get(`${API_URL}/notifications/user-notifications`, {
+          withCredentials: true,
+        });
+        const messages = Array.isArray(res.data) ? res.data : [];
+        const total = messages.length;
+        const dernierMessage = messages.reduce((plusGrandId, message) => {
+          return Math.max(plusGrandId, Number(message.id) || 0);
+        }, 0);
+        const cleStockage = `dernier-message-annonce-${user.id}`;
+        const dernierMessageStocke = Number(localStorage.getItem(cleStockage)) || 0;
+
+        if (dernierMessage > dernierMessageStocke) {
+          setAfficherDialogueMessage(true);
+          localStorage.setItem(cleStockage, String(dernierMessage));
+        }
+
+        dernierMessageAnnonce.current = dernierMessage;
+        setMessagesNonLus(total);
+      } catch {
+        setMessagesNonLus(0);
+      }
+    }
+
+    chargerMessagesNonLus();
+    window.addEventListener("boite-vocale-change", chargerMessagesNonLus);
+
+    return () => {
+      window.removeEventListener("boite-vocale-change", chargerMessagesNonLus);
+    };
+  }, [user]);
+
   return (
     <header className="navbarMistify">
       <Link to="/" className="logo">
@@ -99,7 +169,15 @@ export default function Navbar({
         <Link to="/" className="nav-link">ACCUEIL</Link>
         <Link to="/parfums" className="nav-link">PARFUMS</Link>
         <Link to="/contact" className="nav-link">CONTACT</Link>
-        <Link to="/demande-admin" className="nav-link">DEMANDE ADMIN</Link>
+        <Link
+          to="/demande-admin"
+          className="nav-link nav-link-avec-badge"
+        >
+          DEMANDE ADMIN
+          {user?.admin && demandesEnAttente > 0 && (
+            <span className="notifPanier">{demandesEnAttente}</span>
+          )}
+        </Link>
       </nav>
       <NavbarRecherche />
 
@@ -121,6 +199,17 @@ export default function Navbar({
           </Link>
 
           <Link
+            to="/boite-vocale"
+            className="messages-navbar"
+            title="Boite vocale"
+          >
+            MESSAGES
+            {messagesNonLus > 0 && (
+              <span className="notifPanier">{messagesNonLus}</span>
+            )}
+          </Link>
+
+          <Link
             to="/compte"
             className={`icon-button ${user ? "profil-button" : ""}`}
             title="Compte"
@@ -134,6 +223,14 @@ export default function Navbar({
           </Link>
         </div>
       </div>
+
+      {afficherDialogueMessage && messagesNonLus > 0 && (
+        <DialoguePersona
+          key={messagesNonLus}
+          nom="@yanis26x"
+          texte="nouveau message dans la boite voale....!"
+        />
+      )}
     </header>
   );
 }

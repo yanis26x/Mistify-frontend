@@ -102,6 +102,52 @@
   margin-top: 18px;
 }
 
+.detailsCompletsParfum {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #f0e2df;
+}
+
+.detailsCompletsParfum h2 {
+  margin: 0 0 14px;
+  color: #4b3235;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.detailsGrilleParfum {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.detailsGrilleParfum div {
+  min-width: 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff7f4;
+}
+
+.detailsGrilleParfum span {
+  display: block;
+  margin-bottom: 4px;
+  color: #8d7a7d;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.detailsGrilleParfum strong {
+  display: block;
+  color: #4b3235;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.detailsImageUrl {
+  grid-column: 1 / -1;
+}
+
 .notesOlfactives strong {
   color: #6f1535;
 }
@@ -425,4 +471,10 @@
 .detailsVide h1 {
   margin: 0 0 18px;
   font-weight: 400;
+}
+
+@media (max-width: 700px) {
+  .detailsGrilleParfum {
+    grid-template-columns: 1fr;
+  }
 }

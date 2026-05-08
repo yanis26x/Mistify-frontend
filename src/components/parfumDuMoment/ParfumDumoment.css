@@ -12,17 +12,10 @@
 .momentTitre {
   margin: 0;
   font-size: 64px;
-  color: #1851ef;
+  color: #ef1818;
   font-family: 'Permanent Marker', cursive;
 }
 
-.momentSousTitre {
-  max-width: 760px;
-  margin: 8px auto 30px;
-  font-size: 20px;
-  color: rgb(255, 255, 255);
-  line-height: 1.4;
-}
 
 .momentContent {
   width: min(1120px, 100%);
@@ -50,7 +43,7 @@
   position: absolute;
   top: -12px;
   left: 20px;
-  background: #1852efae;
+  background: #ef2a18ae;
   color: white;
   padding: 6px 14px;
   border-radius: 999px;
@@ -114,13 +107,13 @@
 }
 
 .momentBtn.secondary {
-  background: #1852efae;
+  background: #ef1818ae;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .momentBtn.avantSecondary {
-  background: #6175adda;
+  background: #ad6161da;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
@@ -141,7 +134,7 @@
   position: absolute;
   top: -12px;
   left: 20px;
-  background: #1852efae;
+  background: #ef1818ae;
   color: white;
   padding: 6px 14px;
   border-radius: 999px;

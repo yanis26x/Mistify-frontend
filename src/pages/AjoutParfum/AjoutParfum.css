@@ -57,7 +57,7 @@ body {
     margin-top: 25px;
 }
 
-.left-side input, .left-side select {
+.left-side input, .left-side select, .left-side textarea {
     background-color: #F9F4F2;
     border: 1px solid transparent;
     padding: 18px;
@@ -65,10 +65,41 @@ body {
     width: 100%;
     color: #333;
     transition: 0.3s;
+    box-sizing: border-box;
 }
 
-.left-side input::placeholder {
+.left-side textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.left-side input::placeholder, .left-side textarea::placeholder {
     color: #BDBDBD;
+}
+
+.ligne-formulaire {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.message-demande {
+    color: #60142F;
+    font-weight: 700;
+    margin: 18px 0 0;
+}
+
+.message-connexion-demande {
+    display: grid;
+    gap: 18px;
+}
+
+.message-connexion-demande p {
+    color: #60142F;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
 }
 
 /* 4. THE RIGHT SIDEBAR (Steps) */
@@ -127,4 +158,26 @@ button.submit-btn {
     font-weight: 600;
     margin-top: 40px;
     cursor: pointer;
+}
+
+button.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 850px) {
+    .all {
+        flex-direction: column;
+        padding: 0 18px;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .ligne-formulaire {
+        grid-template-columns: 1fr;
+    }
 }

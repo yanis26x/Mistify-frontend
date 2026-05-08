@@ -94,7 +94,7 @@ export default function DetailsParfum() {
 
   const verifierUtilisateur = useCallback(async () => {
     try {
-      const reponse = await axios.get(`${API_URL}/auth/whoami`, {
+      const reponse = await axios.get(`${API_URL}/users/whoami`, {
         withCredentials: true,
       });
       setUtilisateur(reponse.data);
@@ -393,6 +393,18 @@ export default function DetailsParfum() {
 
   const sourceImage = getImageUrl(parfum.imageUrl, API_URL);
 
+  function afficherValeur(valeur, texteVide = "Non renseigné") {
+    if (valeur === null || valeur === undefined || valeur === "") {
+      return texteVide;
+    }
+
+    if (typeof valeur === "boolean") {
+      return valeur ? "Oui" : "Non";
+    }
+
+    return valeur;
+  }
+
   function donnerAvis() {
     if (!utilisateur) {
       alert("Tu dois être connecté pour donner un avis.....");
@@ -482,6 +494,67 @@ export default function DetailsParfum() {
 
 
             <p>{parfum.description || "Aucune description"}</p>
+
+            <div className="detailsCompletsParfum">
+              <h2>Détails du parfum</h2>
+
+              <div className="detailsGrilleParfum">
+                <div>
+                  <span>ID</span>
+                  <strong>{afficherValeur(parfum.id)}</strong>
+                </div>
+
+                <div>
+                  <span>Nom</span>
+                  <strong>{afficherValeur(parfum.name)}</strong>
+                </div>
+
+                <div>
+                  <span>Marque</span>
+                  <strong>{afficherValeur(parfum.brand)}</strong>
+                </div>
+
+                <div>
+                  <span>Famille</span>
+                  <strong>{afficherValeur(parfum.family)}</strong>
+                </div>
+
+                <div>
+                  <span>Note</span>
+                  <strong>{parfum.rating ? `${parfum.rating} / 5` : "Non renseignée"}</strong>
+                </div>
+
+                <div>
+                  <span>Volume</span>
+                  <strong>{parfum.volume ? `${parfum.volume} ml` : "Non renseigné"}</strong>
+                </div>
+
+                <div>
+                  <span>Prix</span>
+                  <strong>{parfum.price ? `${parfum.price}$` : "Non renseigné"}</strong>
+                </div>
+
+                <div>
+                  <span>Genre</span>
+                  <strong>{afficherValeur(parfum.gender)}</strong>
+                </div>
+
+                <div>
+                  <span>Année</span>
+                  <strong>{afficherValeur(parfum.year)}</strong>
+                </div>
+
+                <div>
+                  <span>Disponible</span>
+                  <strong>{afficherValeur(parfum.disponibility)}</strong>
+                </div>
+
+                <div className="detailsImageUrl">
+                  <span>Image URL</span>
+                  <strong>{afficherValeur(parfum.imageUrl)}</strong>
+                </div>
+              </div>
+            </div>
 
             <div className="notesOlfactives">
               {afficherNotesParfum(parfum.topNotes) && (

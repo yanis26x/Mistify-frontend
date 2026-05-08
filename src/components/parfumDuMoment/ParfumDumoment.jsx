@@ -55,14 +55,11 @@ export default function ParfumDuMoment() {
   return (
     <section className="momentSection">
       <h1 className="momentTitre">Mistify</h1>
-      <p className="momentSousTitre">
-        They didn't release you 'cause you're better, Daisy, they just gave up. You call this a life, hmm?
-      </p>
 
       <div className="momentContent">
         {parfum && (
           <div className="momentCarte">
-            <div className="momentNotif">Parfum du moment</div>
+            <div className="momentNotif">Dernier parfum</div>
 
             <img
               src={getImageUrl(parfum.imageUrl, BACKEND_URL)}

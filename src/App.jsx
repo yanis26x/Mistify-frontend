@@ -10,6 +10,7 @@ import Profil from "./pages/profil/Profil"
 import AjoutParfum  from "./pages/AjoutParfum/AjoutParfum";
 import Parfums from "./pages/parfums/Parfums";
 import DemandeAdmin from "./pages/demandeAdmin/DemandeAdmin";
+import BoiteVocale from "./pages/boiteVocale/BoiteVocale";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
       <Route path="/parfum/:id" element={<DetailsParfum />} />
       <Route path="/ajout-parfum/" element={<AjoutParfum />} />
       <Route path="/demande-admin" element={<DemandeAdmin />} />
+      <Route path="/boite-vocale" element={<BoiteVocale />} />
       <Route path="/parfums/" element={<Parfums />} />
       <Route path="/panier" element={<Panier />} />
       <Route path="/payment" element={<Payment />} />
