@@ -60,7 +60,8 @@
   gap: 15px;
 }
 
-.form input {
+.form input,
+.form select {
   width: 100%;
   background-color: var(--mist-input);
   border: 1px solid transparent;
@@ -69,7 +70,8 @@
   color: var(--mist-text);
 }
 
-.form input:focus {
+.form input:focus,
+.form select:focus {
   outline: none;
   border-color: var(--mist-burgundy);
   background-color: white;

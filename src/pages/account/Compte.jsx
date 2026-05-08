@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Logged from "./Logged";
 import CreateAcc from "./CreateAcc";
+import Navbar from "../../components/navbar/Navbar";
 import "./Compte.css";
 
 const API = "http://localhost:3000/users";
@@ -28,14 +29,14 @@ export default function Compte() {
       });
 
       setUser(res.data);
-    } catch (err) {
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
     }
   }
 
-  async function handleSignup({ name, email, password }) {
+  async function handleSignup({ name, email, password, preferencesOlfactives }) {
     setMessage("");
 
     try {
@@ -45,6 +46,7 @@ export default function Compte() {
           name,
           email,
           password,
+          preferencesOlfactives,
         },
         {
           withCredentials: true,
@@ -173,35 +175,33 @@ export default function Compte() {
   }
 
   return (
-    <div className="compte-page">
-      <button className="BTNretour" onClick={() => navigate("/")}>
-        ← Retour au menu
-      </button>
+    <>
+      {user && <Navbar user={user} onGoToCompte={() => navigate("/compte")} />}
 
-      <div className="compte-container">
-
-        {loading ? (
-          <div className="comptee">
-          </div>
-        ) : user ? (
-          <Logged
-            user={user}
-            users={users}
-            message={message}
-            onRefreshUser={handleRefreshUser}
-            onSignout={handleSignout}
-            onGetAllUsers={handleGetAllUsers}
-            onDeleteUser={handleDeleteUser}
-            onDeleteAllUsers={handleDeleteAllUsers}
-          />
-        ) : (
-          <CreateAcc
-            message={message}
-            onSignup={handleSignup}
-            onSignin={handleSignin}
-          />
-        )}
+      <div className="compte-page">
+        <div className="compte-container">
+          {loading ? (
+            <div className="comptee"></div>
+          ) : user ? (
+            <Logged
+              user={user}
+              users={users}
+              message={message}
+              onRefreshUser={handleRefreshUser}
+              onSignout={handleSignout}
+              onGetAllUsers={handleGetAllUsers}
+              onDeleteUser={handleDeleteUser}
+              onDeleteAllUsers={handleDeleteAllUsers}
+            />
+          ) : (
+            <CreateAcc
+              message={message}
+              onSignup={handleSignup}
+              onSignin={handleSignin}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

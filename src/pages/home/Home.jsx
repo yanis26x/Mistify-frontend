@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ChercherParfum from "../../components/chercherParfum/ChercherParfum";
 import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -30,11 +29,11 @@ export default function Home() {
   useEffect(() => {
     async function checkUser() {
       try {
-        const res = await axios.get("http://localhost:3000/auth/whoami", {
+        const res = await axios.get("http://localhost:3000/users/whoami", {
           withCredentials: true,
         });
         setUser(res.data);
-      } catch (error) {
+      } catch {
         setUser(null);
       }
     }

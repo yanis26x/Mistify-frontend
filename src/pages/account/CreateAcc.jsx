@@ -9,6 +9,7 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [preferencesOlfactives, setPreferencesOlfactives] = useState("");
 
   const [signinEmail, setSigninEmail] = useState("");
   const [signinPassword, setSigninPassword] = useState("");
@@ -25,6 +26,7 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
       name: `${prenom} ${name}`.trim(),
       email: signupEmail,
       password: signupPassword,
+      preferencesOlfactives,
     });
   }
 
@@ -91,6 +93,18 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
+
+                <select
+                  value={preferencesOlfactives}
+                  onChange={(e) => setPreferencesOlfactives(e.target.value)}
+                  required
+                >
+                  <option value="">Préférence olfactive</option>
+                  <option value="Frais">Frais</option>
+                  <option value="Sucré">Sucré</option>
+                  <option value="Boisé">Boisé</option>
+                  <option value="Épicé">Épicé</option>
+                </select>
 
                 <button type="submit" className="btn-principal">
                   Créer un compte

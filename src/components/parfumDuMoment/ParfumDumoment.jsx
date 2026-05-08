@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SellSection from "../sell/SellSection";
 import { getImageUrl } from "../../utils/imageUrl";
+import "./ParfumDumoment.css";
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -12,20 +13,20 @@ export default function ParfumDuMoment() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    async function fetchParfums() {
+      try {
+        const res = await fetch("http://localhost:3000/parfums");
+        const data = await res.json();
+
+        const lastParfums = data.slice().reverse();
+        setParfums(lastParfums);
+      } catch {
+        console.log("Erreur chargement parfums");
+      }
+    }
+
     fetchParfums();
   }, []);
-
-  async function fetchParfums() {
-    try {
-      const res = await fetch("http://localhost:3000/parfums");
-      const data = await res.json();
-
-      const lastParfums = data.slice().reverse();
-      setParfums(lastParfums);
-    } catch (error) {
-      console.log("Erreur chargement parfums");
-    }
-  }
 
   async function ajouterAuPanier() {
     if (!parfum) return;
@@ -53,11 +54,10 @@ export default function ParfumDuMoment() {
 
   return (
     <section className="momentSection">
-        <h1 className="momentTitre">Mistify</h1>
-        <p className="momentSousTitre">
-          They didn't release you 'cause you're better, Daisy, they just gave up. You call this a life, hmm?
-        </p>
-
+      <h1 className="momentTitre">Mistify</h1>
+      <p className="momentSousTitre">
+        They didn't release you 'cause you're better, Daisy, they just gave up. You call this a life, hmm?
+      </p>
 
       <div className="momentContent">
         {parfum && (
@@ -69,13 +69,13 @@ export default function ParfumDuMoment() {
               onError={(e) => (e.target.src = "/bloodd.png")}
               alt={parfum.name}
               className="momentImage"
-              />
+            />
 
             <div className="momentInfos">
               <h2 className="momentParfumNom">{parfum.name}</h2>
 
               <p className="momentMarque">
-                <strong >Marque :</strong> {parfum.brand}
+                <strong>Marque :</strong> {parfum.brand}
               </p>
 
               <p className="momentDescription">
@@ -83,18 +83,15 @@ export default function ParfumDuMoment() {
                 {parfum.description || "Aucune description"}
               </p>
 {/* RATING A FAIRE !!!!!!!!!!!!! */}
-              <p className="momentDescription"> 
-                <strong>NOTE :</strong>{" "}
-A FAIRE !!!
+              <p className="momentDescription">
+                <strong>NOTE :</strong> A FAIRE !!!
               </p>
 
 
               <div className="momentAutreParfum">
-
-
                 <button className="momentBtn avantSecondary" onClick={ajouterAuPanier}>
-  Ajouter au panier
-</button>
+                  Ajouter au panier
+                </button>
 
                 <button
                   className="momentBtn secondary"
@@ -103,19 +100,12 @@ A FAIRE !!!
                   En savoir plus
                 </button>
                 <button className="momentBtn" onClick={nextParfum}>
-                  Next ➜
+                  Suivant
                 </button>
-
-                
               </div>
             </div>
           </div>
         )}
-
-
-
-
-        {/* STAT */}
 
         <div className="statsCard">
           <div className="statsNotif">want 2 know + about us?</div>
@@ -128,19 +118,13 @@ A FAIRE !!!
 
             <div className="statItem">
               <p className="statNom">Ellyn Saint-Firmin</p>
-              <h3 className="statValeur">
-                @el24s
-              </h3>
+              <h3 className="statValeur">@el24s</h3>
             </div>
 
             <div className="statItem">
               <p className="statNom">Djenadi yanis</p>
-              <h3 className="statValeur small">
-                @yanis26x
-              </h3>
+              <h3 className="statValeur small">@yanis26x</h3>
             </div>
-
-
           </div>
         </div>
       </div>

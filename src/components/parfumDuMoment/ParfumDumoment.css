@@ -1,6 +1,6 @@
 .momentSection {
   width: 100%;
-  padding: 50px 20px 30px;
+  padding: 55px 20px 35px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,42 +11,39 @@
 
 .momentTitre {
   margin: 0;
-  font-size: 72px;
-
+  font-size: 64px;
   color: #1851ef;
-  /* font-family: 'Play', sans-serif; */
   font-family: 'Permanent Marker', cursive;
-  /* font-family: 'Sedgwick Ave Display', cursive; */
 }
 
 .momentSousTitre {
+  max-width: 760px;
+  margin: 8px auto 30px;
   font-size: 20px;
   color: rgb(255, 255, 255);
+  line-height: 1.4;
 }
 
 .momentContent {
-  width: 100%;
-  display: flex;
-  gap: 20px;
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 22px;
   align-items: stretch;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .momentCarte {
   position: relative;
-  flex: 1;
-  min-width: 320px;
-  max-width: 860px;
   display: flex;
   align-items: center;
   gap: 22px;
-  padding: 22px;
-  border-radius: 24px;
+  padding: 24px;
+  border-radius: 18px;
   background: rgba(255, 251, 251, 0.904);
-
   color: rgb(0, 0, 0);
-  box-shadow: 0 18px 45px rgb(0, 0, 0);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45);
+  min-width: 0;
 }
 
 .momentNotif {
@@ -62,10 +59,11 @@
 }
 
 .momentImage {
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 14px;
+  flex-shrink: 0;
 }
 
 .momentInfos {
@@ -75,7 +73,7 @@
 
 .momentParfumNom{
   margin: 0 0 10px;
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 900;
   font-family: 'Permanent Marker', cursive;
 }
@@ -89,7 +87,8 @@
 .momentPrix {
   margin-top: 14px;
   font-size: 26px;
-  font-weight: 900;color: rgb(0, 145, 255);
+  font-weight: 900;
+  color: rgb(0, 145, 255);
 }
 
 .momentAutreParfum {
@@ -102,11 +101,12 @@
 .momentBtn {
   padding: 12px 18px;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   background: rgb(0, 0, 0);
   color: rgb(255, 253, 253);
   font-weight: 900;
   transition: 0.2s ease;
+  cursor: pointer;
 }
 
 .momentBtn:hover {
@@ -114,35 +114,26 @@
 }
 
 .momentBtn.secondary {
-  
   background: #1852efae;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .momentBtn.avantSecondary {
-  
   background: #6175adda;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-
-
-
-
-
-/* STAT */
-
 .statsCard {
   position: relative;
   width: 280px;
-  min-height: 266px;
+  min-height: 100%;
   padding: 22px 18px;
-  border-radius: 24px;
+  border-radius: 18px;
   background: rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(12px);
-  box-shadow: 0 18px 45px rgb(0, 0, 0);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45);
   color: white;
 }
 
@@ -167,16 +158,14 @@
 
 .statItem {
   background: rgb(0, 0, 0);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 12px 14px;
-  
 }
 
 .statNom {
   margin: 0;
   font-size: 13px;
   opacity: 0.75;
-
 }
 
 .statValeur {
@@ -189,23 +178,52 @@
   font-size: 18px;
 }
 
+@media (max-width: 900px) {
+  .momentTitre {
+    font-size: 48px;
+  }
 
+  .momentSousTitre {
+    font-size: 16px;
+  }
 
-.ajouterPanierBtn {
-  margin-top: 12px;
-  padding: 12px;
-  width: 100%;
-  border-radius: 12px;
-  border: none;
-  background-color: #2025b2;
-  color: white;
-  font-weight: 900;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s ease;
+  .momentContent {
+    grid-template-columns: 1fr;
+  }
+
+  .momentCarte {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .momentImage {
+    width: 100%;
+    height: 280px;
+  }
+
+  .statsCard {
+    width: 100%;
+  }
 }
 
-.ajouterPanierBtn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
+@media (max-width: 520px) {
+  .momentSection {
+    padding: 35px 14px 25px;
+  }
+
+  .momentTitre {
+    font-size: 40px;
+  }
+
+  .momentCarte {
+    padding: 20px;
+  }
+
+  .momentImage {
+    height: 220px;
+  }
+
+  .momentBtn {
+    width: 100%;
+  }
 }

@@ -19,7 +19,7 @@ export default function Panier() {
   const [utilisateur, setUtilisateur] = useState(null);
   const [chargementUser, setChargementUser] = useState(true);
 
-  const API_AUTH = "http://localhost:3000/auth/whoami";
+  const API_AUTH = "http://localhost:3000/users/whoami";
 
   useEffect(() => {
     verifierUtilisateur();
