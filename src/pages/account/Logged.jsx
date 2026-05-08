@@ -1,99 +1,31 @@
-import { useState } from "react";
 import "./Logged.css";
 
-export default function Logged({
-  user,
-  users,
-  message,
-  onRefreshUser,
-  onSignout,
-  onGetAllUsers,
-  onDeleteUser,
-  onDeleteAllUsers,
-}) {
-  const [deleteUserId, setDeleteUserId] = useState("");
-
-  function handleDeleteClick() {
-    onDeleteUser(deleteUserId);
-    setDeleteUserId("");
-  }
+export default function Logged({ user, message, onSignout }) {
+  const photo = user.admin ? "/vampp.jpeg" : "/sora.jpg";
 
   return (
-    <>
-      <div className="logged-topbar">
-        <div className="logged-user-mini">
-         <img
-  src={
-    user.admin
-      ? user.profileImage || "/Hello-kitty.webp"
-      : "/sora.jpg"
-  }
-  alt="Photo de profil"
-  className="logged-avatar"
-/>
+    <section className="compte-connecte">
+      <div className="profil-connecte">
+        <img src={photo} alt="Photo de profil" />
 
-          <div className="logged-user-texts">
-            <p className="logged-mini-text">
-              Connecté en tant que <strong>{user.name}</strong>
-            </p>
-
-            <p className={`roleCompte`}>
-              {user.admin ? "ADMIN" : "UTILISATEUR"}
-            </p>
-          </div>
+        <div>
+          <p>
+            Connecté en tant que <strong>{user.name}</strong>
+          </p>
+          <h2>{user.admin ? "ADMIN" : "UTILISATEUR"}</h2>
+          <button onClick={onSignout}>Se déconnecter</button>
         </div>
-
-        <button className="logged-danger-btn logged-top-logout" onClick={onSignout}>
-          Se déconnecter
-        </button>
       </div>
 
-      {message && <p className="logged-message logged-success-message">{message}</p>}
+      {message && <p className="message-compte">{message}</p>}
 
-      <div className="logged-panel">
-        <h2 className="logged-section-title">Session</h2>
-
-        <div className="logged-quick-buttons">
-          <button className="logged-primary-btn" onClick={onRefreshUser}>
-            Actualiser la session
-          </button>
-        </div>
-
-        <pre className="logged-json-box">
-          {JSON.stringify(user, null, 2)}
-        </pre>
+      <div className="infos-compte">
+        <h2>Infos du compte</h2>
+        <p><span>Nom:</span> {user.name}</p>
+        <p><span>Email:</span> {user.email}</p>
+        <p><span>Préférence:</span> {user.preferencesOlfactives || "Non renseigné"}</p>
+        <p><span>ID:</span> {user.id}</p>
       </div>
-
-      <div className="logged-panel">
-        <h2 className="logged-section-title">Administration</h2>
-
-        <div className="logged-quick-buttons">
-          <button className="logged-primary-btn" onClick={onGetAllUsers}>
-            Voir tous les users
-          </button>
-          <button className="logged-danger-btn" onClick={onDeleteAllUsers}>
-            Supprimer tous les users
-          </button>
-        </div>
-
-        <div className="logged-delete-row">
-          <input
-            type="number"
-            placeholder="ID du user à supprimer"
-            value={deleteUserId}
-            onChange={(e) => setDeleteUserId(e.target.value)}
-          />
-          <button className="logged-danger-btn" onClick={handleDeleteClick}>
-            Supprimer
-          </button>
-        </div>
-
-        <pre className="logged-json-box">
-          {users.length > 0
-            ? JSON.stringify(users, null, 2)
-            : "Aucun user chargé"}
-        </pre>
-      </div>
-    </>
+    </section>
   );
 }
