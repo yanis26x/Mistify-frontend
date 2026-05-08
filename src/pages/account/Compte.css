@@ -4,11 +4,13 @@
 
 .compte-page {
   min-height: 100vh;
-  padding: 80px 20px 40px;
+  padding: 0;
+  width: 100%;
 }
 
 .compte-container {
-  max-width: 900px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -53,6 +55,5 @@
   border: 1px solid rgba(0, 255, 106, 0.2);
   color: #86ffae;
 }
-
 
 

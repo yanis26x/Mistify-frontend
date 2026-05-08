@@ -54,6 +54,7 @@ export default function Compte() {
       );
 
       setUser(res.data);
+      window.dispatchEvent(new Event("auth-change"));
       setMessage("Compte créé avec succès.");
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur lors du signup.");
@@ -76,6 +77,7 @@ export default function Compte() {
       );
 
       setUser(res.data);
+      window.dispatchEvent(new Event("auth-change"));
       setMessage("Connexion réussie.");
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur lors du signin.");
@@ -96,6 +98,7 @@ export default function Compte() {
 
       setUser(null);
       setUsers([]);
+      window.dispatchEvent(new Event("auth-change"));
       setMessage("Déconnexion réussie.");
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur lors du signout.");
@@ -111,6 +114,7 @@ export default function Compte() {
       });
 
       setUser(res.data);
+      window.dispatchEvent(new Event("auth-change"));
       setMessage("Session mise à jour.");
     } catch (err) {
       setUser(null);

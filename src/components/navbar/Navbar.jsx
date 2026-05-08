@@ -57,7 +57,9 @@ export default function Navbar({
   user,
   onGoToCompte,
 }) {
-  const photoProfil = user?.admin ? "/vampp.jpeg" : "/Hello-kitty.webp";
+  const [utilisateurSession, setUtilisateurSession] = useState(user || null);
+  const utilisateurActuel = user || utilisateurSession;
+  const photoProfil = utilisateurActuel?.admin ? "/vampp.jpeg" : "/Hello-kitty.webp";
   const [nombrePanier, setNombrePanier] = useState(0);
   const [messagesNonLus, setMessagesNonLus] = useState(0);
   const [demandesEnAttente, setDemandesEnAttente] = useState(0);
@@ -65,8 +67,30 @@ export default function Navbar({
   const dernierMessageAnnonce = useRef(0);
 
   useEffect(() => {
+    async function chargerUtilisateurSession() {
+      if (user) return;
+
+      try {
+        const res = await axios.get(`${API_URL}/users/whoami`, {
+          withCredentials: true,
+        });
+        setUtilisateurSession(res.data);
+      } catch {
+        setUtilisateurSession(null);
+      }
+    }
+
+    chargerUtilisateurSession();
+    window.addEventListener("auth-change", chargerUtilisateurSession);
+
+    return () => {
+      window.removeEventListener("auth-change", chargerUtilisateurSession);
+    };
+  }, [user]);
+
+  useEffect(() => {
     async function chargerNombrePanier() {
-      if (!user) {
+      if (!utilisateurActuel) {
         setNombrePanier(0);
         return;
       }
@@ -91,11 +115,11 @@ export default function Navbar({
     return () => {
       window.removeEventListener("panier-change", chargerNombrePanier);
     };
-  }, [user]);
+  }, [utilisateurActuel]);
 
   useEffect(() => {
     async function chargerDemandesEnAttente() {
-      if (!user?.admin) {
+      if (!utilisateurActuel?.admin) {
         setDemandesEnAttente(0);
         return;
       }
@@ -116,11 +140,11 @@ export default function Navbar({
     return () => {
       window.removeEventListener("demandes-parfum-change", chargerDemandesEnAttente);
     };
-  }, [user]);
+  }, [utilisateurActuel]);
 
   useEffect(() => {
     async function chargerMessagesNonLus() {
-      if (!user) {
+      if (!utilisateurActuel) {
         setMessagesNonLus(0);
         dernierMessageAnnonce.current = 0;
         return;
@@ -135,7 +159,7 @@ export default function Navbar({
         const dernierMessage = messages.reduce((plusGrandId, message) => {
           return Math.max(plusGrandId, Number(message.id) || 0);
         }, 0);
-        const cleStockage = `dernier-message-annonce-${user.id}`;
+        const cleStockage = `dernier-message-annonce-${utilisateurActuel.id}`;
         const dernierMessageStocke = Number(localStorage.getItem(cleStockage)) || 0;
 
         if (dernierMessage > dernierMessageStocke) {
@@ -156,7 +180,7 @@ export default function Navbar({
     return () => {
       window.removeEventListener("boite-vocale-change", chargerMessagesNonLus);
     };
-  }, [user]);
+  }, [utilisateurActuel]);
 
   return (
     <header className="navbarMistify">
@@ -174,7 +198,7 @@ export default function Navbar({
           className="nav-link nav-link-avec-badge"
         >
           DEMANDE ADMIN
-          {user?.admin && demandesEnAttente > 0 && (
+          {utilisateurActuel?.admin && demandesEnAttente > 0 && (
             <span className="notifPanier">{demandesEnAttente}</span>
           )}
         </Link>
@@ -211,11 +235,11 @@ export default function Navbar({
 
           <Link
             to="/compte"
-            className={`icon-button ${user ? "profil-button" : ""}`}
+            className={`icon-button ${utilisateurActuel ? "profil-button" : ""}`}
             title="Compte"
             onClick={onGoToCompte}
           >
-            {user ? (
+            {utilisateurActuel ? (
               <img src={photoProfil} alt="Compte" className="photoProfilNavbar" />
             ) : (
               <FiUser />

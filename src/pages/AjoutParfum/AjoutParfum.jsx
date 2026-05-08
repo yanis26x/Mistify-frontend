@@ -220,13 +220,13 @@ export default function AjoutParfum() {
                         onChange={changerChamp}
                         placeholder="https://exemple.com/image.jpg" />
 
-                    <label htmlFor="description"> Pourquoi devrions-nous l'ajouter ? </label>
+                    <label htmlFor="description"> Description du parfum: </label>
                     <textarea
                         name="description"
                         id="description"
                         value={formulaire.description}
                         onChange={changerChamp}
-                        placeholder="Décrivez brièvement le parfum ou votre expérience..." />
+                        placeholder="Décrivez ses notes, son style, son intensité ou l'ambiance du parfum..." />
 
                     {message && <p className="message-demande">{message}</p>}
 

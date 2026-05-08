@@ -26,7 +26,7 @@ export default function Logged({
   src={
     user.admin
       ? user.profileImage || "/Hello-kitty.webp"
-      : "/loginPfp.jpeg"
+      : "/sora.jpg"
   }
   alt="Photo de profil"
   className="logged-avatar"

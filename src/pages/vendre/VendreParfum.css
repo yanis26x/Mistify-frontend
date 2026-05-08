@@ -80,7 +80,8 @@ body {
   font-size: 28px;
 }
 
-.section input {
+.section input,
+.section textarea {
   width: 100%;
   max-width: 360px;
   padding: 12px 14px;
@@ -94,7 +95,14 @@ body {
   outline: none;
 }
 
-.section input:focus {
+.section textarea {
+  min-height: 110px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.section input:focus,
+.section textarea:focus {
   border-color: rgba(255, 255, 255, 0.28);
 }
 

@@ -10,7 +10,7 @@ export default function VendreParfum() {
   const navigate = useNavigate();
 
   const API = "http://localhost:3000/parfums";
-  const AUTH_API = "http://localhost:3000/auth/whoami";
+  const AUTH_API = "http://localhost:3000/users/whoami";
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,6 +18,7 @@ export default function VendreParfum() {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
   const [parfums, setParfums] = useState([]);
@@ -43,7 +44,7 @@ export default function VendreParfum() {
         withCredentials: true,
       });
       setUser(res.data);
-    } catch (error) {
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
@@ -58,6 +59,7 @@ export default function VendreParfum() {
         name: name,
         brand: brand,
         price: price ? Number(price) : undefined,
+        description: description.trim() || undefined,
         imageUrl: imageUrl.trim() || undefined,
       };
 
@@ -81,8 +83,9 @@ export default function VendreParfum() {
       setName("");
       setBrand("");
       setPrice("");
+      setDescription("");
       setImageUrl("");
-    } catch (error) {
+    } catch {
       setMessage("Erreur serveur");
     }
   }
@@ -102,7 +105,7 @@ export default function VendreParfum() {
       }
 
       setParfums(data);
-    } catch (error) {
+    } catch {
       setMessage("Erreur lors du chargement des parfums");
     }
   }
@@ -123,7 +126,7 @@ export default function VendreParfum() {
 
       const data = await response.json();
       setOneParfum(data);
-    } catch (error) {
+    } catch {
       setMessage("Erreur lors de la recherche");
     }
   }
@@ -153,7 +156,7 @@ export default function VendreParfum() {
       setMessage("Prix modifié avec succès");
       setUpdateId("");
       setNewPrice("");
-    } catch (error) {
+    } catch {
       setMessage("Erreur serveur");
     }
   }
@@ -170,7 +173,9 @@ export default function VendreParfum() {
       let data = null;
       try {
         data = await response.json();
-      } catch {}
+      } catch {
+        data = null;
+      }
 
       if (!response.ok) {
         setMessage(data?.message || "Erreur lors de la suppression");
@@ -179,7 +184,7 @@ export default function VendreParfum() {
 
       setMessage("Parfum supprimé avec succès");
       setDeleteId("");
-    } catch (error) {
+    } catch {
       setMessage("Erreur serveur");
     }
   }
@@ -260,6 +265,12 @@ export default function VendreParfum() {
           placeholder="Prix"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+        />
+
+        <textarea
+          placeholder="Description du parfum"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
 
         <input

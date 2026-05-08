@@ -12,19 +12,19 @@ export default function Contact() {
   const sectionCachee = useRef(null);
 
   useEffect(() => {
+    async function checkUser() {
+      try {
+        const res = await axios.get("http://localhost:3000/users/whoami", {
+          withCredentials: true,
+        });
+        setUser(res.data);
+      } catch {
+        setUser(null);
+      }
+    }
+
     checkUser();
   }, []);
-
-  async function checkUser() {
-    try {
-      const res = await axios.get("http://localhost:3000/auth/whoami", {
-        withCredentials: true,
-      });
-      setUser(res.data);
-    } catch (error) {
-      setUser(null);
-    }
-  }
 
   function envoyerFormulaire(e) {
     e.preventDefault();

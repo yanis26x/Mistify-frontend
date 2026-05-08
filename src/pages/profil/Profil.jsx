@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./Profil.css";
-import { useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 
 
 export default function Profil() {
+  const navigate = useNavigate();
 
   function compte() {
     navigate("/compte");

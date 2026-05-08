@@ -37,7 +37,7 @@ export default function ChercherParfum() {
       } else {
         setMessage(`${resultats.length} parfum trouvé!`);
       }
-    } catch (error) {
+    } catch {
       setMessage("Erreur lors de la recherche");
     }
   }

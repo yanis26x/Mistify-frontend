@@ -8,14 +8,14 @@
 .account-page {
   min-height: 100vh;
   background: var(--mist-beige);
-  padding: 120px 20px 60px;
+  padding: 80px 32px 60px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .account-box {
-  width: min(1100px, 100%);
+  width: min(1280px, 100%);
   min-height: 620px;
   background: white;
   border-radius: 20px;
@@ -32,8 +32,8 @@
 }
 
 .account-forms {
-  flex: 1.4;
-  padding: 40px;
+  flex: 1.6;
+  padding: 48px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 35px;
@@ -113,6 +113,10 @@
 }
 
 @media (max-width: 900px) {
+  .account-page {
+    padding: 40px 16px;
+  }
+
   .account-box {
     flex-direction: column;
   }

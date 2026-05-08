@@ -107,6 +107,11 @@ export default function DetailsParfum() {
     chargerParfum();
     chargerCommentaires();
     verifierUtilisateur();
+    window.addEventListener("auth-change", verifierUtilisateur);
+
+    return () => {
+      window.removeEventListener("auth-change", verifierUtilisateur);
+    };
   }, [chargerParfum, chargerCommentaires, verifierUtilisateur]);
 
   async function ajouterAuPanier() {
@@ -135,6 +140,7 @@ export default function DetailsParfum() {
 
     if (!utilisateur) {
       alert("Connecte-toi pour commenter.....");
+      navigate("/compte");
       return;
     }
 
@@ -408,6 +414,7 @@ export default function DetailsParfum() {
   function donnerAvis() {
     if (!utilisateur) {
       alert("Tu dois être connecté pour donner un avis.....");
+      navigate("/compte");
       return;
     }
 
