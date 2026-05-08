@@ -45,7 +45,7 @@ export default function SellSection({ parfums }) {
         />
 
         <div className="sellMessage">
-          <h2 className="sellTitre">rEaD tHiS, n0w!</h2>
+          <h2 className="sellTitre">rEaD tHiS, n0w! 𖤐</h2>
 
           <p className="sellSoustitre">
             Je ne toucherai plus ce projet. Libre à vous de repartir de mon
