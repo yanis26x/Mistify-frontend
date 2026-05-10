@@ -297,3 +297,39 @@ body {
   font-family: 'Playfair Display', serif; /* Keeps it high-end */
   color: #333;
 }
+
+/* Style du Titre (Commun aux deux) */
+.titre {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 5px;
+  display: inline-block;
+  color: #60142f;
+  border-bottom: 2px solid #60142f; /* Ta ligne bordeaux */
+}
+
+/* Style du Switch (Commun aux deux) */
+.switch {
+  display: block;      /* Force l'affichage en bloc */
+  margin-top: 10px !important; 
+  margin-bottom: 20px;
+  text-align: left;    /* Aligné avec le titre */
+  font-size: 0.95rem;
+  color: #333 !important; /* Force la visibilité en gris foncé */
+  padding: 0;
+}
+
+.switch span {
+  color: #60142f;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+}
+
+.switch span:hover {
+  color: #a82e50;
+  transform: scale(1.05);
+  display: inline-block;
+}

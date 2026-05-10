@@ -82,6 +82,7 @@
     border-bottom: 1px solid #F0DBD4;
     padding-bottom: 20px;
     margin-bottom: 30px;
+    color: #60142F;
 }
 
 .label-category {
@@ -122,20 +123,75 @@
     margin: 0;
 }
 
+/* Le conteneur de la commande */
 .order-item-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #FBF8F7;
-    padding: 24px;
-    border-radius: 8px;
+    background: #F9F0EE; /* Un rose très pâle pour contraster avec le blanc */
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #F0DBD4; /* Une fine bordure pour définir les limites */
+    transition: transform 0.3s ease;
 }
 
-.brand-name { font-family: "Cormorant Garamond"; font-size: 22px; margin: 4px 0; }
-.order-number { font-size: 10px; color: rgba(96,20,47,0.4); }
-.price-tag { font-family: "Cormorant Garamond"; font-size: 20px; font-weight: 600; margin: 0;}
-.details-link { font-size: 12px; text-decoration: underline; cursor: pointer; text-align: right; }
+.order-item-box:hover {
+    transform: translateY(-2px); /* Petit effet au survol */
+    box-shadow: 0 5px 15px rgba(96, 20, 47, 0.1);
+}
 
+/* Le numéro de commande (ex: #MYST-88291) */
+.order-number { 
+    font-size: 11px; 
+    color: #A67C89; /* Un vieux rose pour le côté "label" */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Le nom du parfum (L'Ombre des Fleurs) */
+.brand-name { 
+    font-family: "Cormorant Garamond", serif; 
+    font-size: 24px; 
+    color: #60142F; /* Ton bordeaux signature */
+    margin: 4px 0;
+    font-weight: 500;
+}
+
+/* Le type de parfum (Eau de Parfum - 100ml) */
+.order-item-box p {
+    color: rgba(96, 20, 47, 0.7); /* Bordeaux avec un peu de transparence */
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Le prix (175,00$) */
+.price-tag { 
+    font-family: "Cormorant Garamond", serif; 
+    font-size: 22px; 
+    font-weight: 700; 
+    color: #60142F;
+    margin: 0;
+}
+
+/* Le lien détails */
+.details-link { 
+    font-size: 12px; 
+    color: #60142F;
+    text-decoration: underline; 
+    cursor: pointer; 
+    text-align: right;
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.details-link:hover {
+    opacity: 1;
+    color: #FF99B3; /* Rose plus vif au survol */
+}
 .banner-dark {
     background: #60142F;
     color: white;

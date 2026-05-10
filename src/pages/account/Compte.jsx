@@ -14,6 +14,7 @@ export default function Compte() {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  // const PROFIL = navigate("/profil")
 
   useEffect(() => {
     checkWhoAmI();
@@ -53,6 +54,7 @@ export default function Compte() {
 
       setUser(res.data);
       setMessage("Compte créé avec succès.");
+      // PROFIL
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur lors du signup.");
     }
@@ -75,6 +77,7 @@ export default function Compte() {
 
       setUser(res.data);
       setMessage("Connexion réussie.");
+      // PROFIL
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur lors du signin.");
     }

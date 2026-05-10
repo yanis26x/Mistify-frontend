@@ -15,7 +15,7 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
   const [preferences, setPreferences] = useState([]);
   const scentOptions = ["Floral","Chypré","Fougère","Cuir","Boisé", "Oriental","Hespéridé"];
 
-  const [isActive, setIsActive] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
   
   function autoAdmin() {
     setSigninEmail("yanis26x@hotmail.com");
@@ -53,106 +53,103 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
 
   return (
     <>
-      {/* {message && <p className="msg msg-ok">{message}</p>} */}
       <Navbar/>
       <div className="wrapper">
 
       <div className="grid">
-        <div className="card">
-          <h2 className="titre">Créer un compte</h2>
-          <h2 className="titre"> Connexion </h2>
+      {isRegister? (
 
-          <form onSubmit={handleSubmitSignup} className="form">
-            <input
-              type="text"
-              placeholder="Prénom"
-              value={prenom}
-              onChange={(e) => setPrenom(e.target.value)}
-              />
-            
-            <input
-              type="text"
-              placeholder="Nom"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              />
+      <div className="card">
+            <h2 className="titre">Créer un compte</h2>
+                  <p className="switch">
+                    Déjà un compte? {""}
+                    <span onClick={() => setIsRegister(false)}>Connectez-vous </span>
+                  </p>
+            <form onSubmit={handleSubmitSignup} className="form">
+              <input
+                type="text"
+                placeholder="Prénom"
+                value={prenom}
+                onChange={(e) => setPrenom(e.target.value)} />
 
-            <input
-              type="email"
-              placeholder="Email"
-              value={signupEmail}
-              onChange={(e) => setSignupEmail(e.target.value)}
-              />
+              <input
+                type="text"
+                placeholder="Nom"
+                value={name}
+                onChange={(e) => setName(e.target.value)} />
 
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              value={signupPassword}
-              onChange={(e) => setSignupPassword(e.target.value)}
-              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={signupEmail}
+                onChange={(e) => setSignupEmail(e.target.value)} />
 
-            <input
-              type="password"
-              placeholder="......"
-              value={signupPassword}
-              onChange={(e) => setSignupPassword(e.target.value)}
-              />
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                value={signupPassword}
+                onChange={(e) => setSignupPassword(e.target.value)} />
 
-            <div className="preferences">
-              <p className="title"> Préférences Olfactives </p>
-              <div className="checkbox">
-                {scentOptions.map((scent) => (
-                <label key={scent} className="checkbox-item">
-                  <input 
-                  type="checkbox"
-                  checked={preferences.includes(scent)}
-                  onChange={() => handleCheckboxChange(scent)}
-                  />
-                    <span> {scent} </span>
-                </label>
-                ))}
+              <input
+                type="confirm-password"
+                placeholder="Confirmer votre mot de passe"
+                value={signupPassword}
+                onChange={(e) => setSignupPassword(e.target.value)} 
+                // validate= (val=string) {
+                // if (watch('password') != 'confirm-password') {
+                //   return "Your passwords do not match";
+                // }}
+                />
+
+              <div className="preferences">
+                <p className="title"> Préférences Olfactives </p>
+                <div className="checkbox">
+                  {scentOptions.map((scent) => (
+                    <label key={scent} className="checkbox-item">
+                      <input
+                        type="checkbox"
+                        checked={preferences.includes(scent)}
+                        onChange={() => handleCheckboxChange(scent)} />
+                      <span> {scent} </span>
+                    </label>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <button type="submit" className="btn-principal">
-              Créer un compte
-            </button>
-          </form>
-        </div>
-
-        {/* <div className="card">
-          <h2 className="titre">Connexion</h2>
-
-          <div className="btn-rapide">
-            <button type="button" className="btn-secondaire" onClick={autoAdmin}>
-              Admin
-            </button>
-
-            <button type="button" className="btn-secondaire" onClick={autoNormal}>
-              User
-            </button>
+              <button type="submit" className="btn-principal">
+                Créer un compte
+              </button>
+            </form>
+            
           </div>
+          ) : (
+            <div className="card">
+              <h2 className="titre">Connexion</h2>
+              <p className="switch"> 
+                Pas encore de compte? {""}
+                <span onClick={() => setIsRegister(true)}>Créez-en un ici</span>
+              </p>
+                  <form onSubmit={handleSubmitSignin} className="form">
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={signinEmail}
+                      onChange={(e) => setSigninEmail(e.target.value)} />
 
-          <form onSubmit={handleSubmitSignin} className="form">
-            <input
-              type="email"
-              placeholder="Email"
-              value={signinEmail}
-              onChange={(e) => setSigninEmail(e.target.value)}
-              />
+                    <input
+                      type="password"
+                      placeholder="Mot de passe"
+                      value={signinPassword}
+                      onChange={(e) => setSigninPassword(e.target.value)} />
 
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              value={signinPassword}
-              onChange={(e) => setSigninPassword(e.target.value)}
-            />
-
-            <button type="submit" className="btn-principal">
-              Se connecter
-            </button>
-          </form>
-        </div> */}
+                    <button type="submit" className="btn-principal">
+                      Se connecter
+                    </button>
+                  </form>
+                  
+                
+              </div>
+            )}
       </div>
       </div>
       <Footer/>

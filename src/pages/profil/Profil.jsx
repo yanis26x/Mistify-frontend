@@ -3,13 +3,24 @@ import "./Profil.css";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-
+import handleSignout from "../../pages/account/Compte"
 
 export default function Profil() {
+  const navigate = useNavigate();
 
-  function compte() {
-    navigate("/compte");
+  const name = "Jane Doe"
+  const member = "Membre Privilège"
+  const email = "janedoe@gmail.com"
+  const address = "7000 Rue Marie-Victorin, Montreal Quebec H1G 2J6"
+  function wishlist() {
+    navigate("/favoris");
   }
+
+  function collection() {
+    navigate("/parfums")
+  }
+
+
 return (
   <div className="profil-page">
     <Navbar
@@ -25,14 +36,14 @@ return (
       <aside className="menuProfil">
         <div className="profile-header">
           <img src="https://i.pinimg.com/474x/b1/48/8f/b1488fdac4488b4a116c6964c1735f60.jpg?nii=t" alt="Jane Doe" />
-          <p className="user-name">Jane Doe</p>
-          <p className="member-status">Membre Privilège</p>
+          <p className="user-name">{name}</p>
+          <p className="member-status">{member}</p>
         </div>
 
         <div className="sidebar-links">
-          <button onClick={compte} className="link-active">Mon Compte</button>
-          <button>Ma wishlist</button>
-          <button className="logout-btn">Déconnexion</button>
+          <button className="link-active">Mon Compte</button>
+          <button onClick={wishlist}>Ma wishlist</button>
+          <button onClick={handleSignout} className="logout-btn">Déconnexion</button>
         </div>
       </aside>
 
@@ -52,15 +63,15 @@ return (
           <div className="info-grid">
             <div className="field">
               <label>Nom Complet</label>
-              <p>Jane Doe</p>
+              <p>{name}</p>
             </div>
             <div className="field">
               <label>Adresse E-mail</label>
-              <p>janedoe@gmail.com</p>
+              <p>{email}</p>
             </div>
             <div className="field full-width">
               <label>Adresse De Livraison Principale</label>
-              <p>7000 Rue Marie-Victorin, Montreal Quebec H1G 2J6 </p>
+              <p>{address} </p>
             </div>
           </div>
         </section>
@@ -93,7 +104,7 @@ return (
             un échantillon de notre nouvelle collection 'Éclat de Nuit' pour
             votre prochaine visite.
           </p>
-          <button className="banner-btn">Découvrir la collection</button>
+          <button onClick={collection} className="banner-btn">Découvrir la collection</button>
         </section>
 
       </div>
