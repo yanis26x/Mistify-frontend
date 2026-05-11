@@ -114,7 +114,7 @@ export default function Compte() {
       setUser(null);
       setMessage("Tous les utilisateurs ont été supprimés!");
     } catch (err) {
-      setMessage(err?.response?.data?.message || "euuuuu...");
+      setMessage(err?.response?.data?.message || "Erreur lors de la suppression de tous les utilisateurs");
     }
   }
 

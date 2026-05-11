@@ -67,7 +67,7 @@ export default function AdminInventaire() {
             <p className="invDesc">Suivez et gérez votre collection de parfums.</p>
           </div>
           <button className="invBtnAjouter" onClick={() => navigate("/ajout-parfum")}>
-            + Ajouter un parfum
+            Ajouter un parfum
           </button>
         </div>
 

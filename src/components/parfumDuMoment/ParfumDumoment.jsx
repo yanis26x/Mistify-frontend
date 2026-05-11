@@ -21,7 +21,7 @@ export default function ParfumDuMoment() {
         const lastParfums = data.slice().reverse();
         setParfums(lastParfums);
       } catch {
-        console.log("Erreur chargement parfums");
+        console.log("Erreur lors du chargement des parfums");
       }
     }
 
@@ -79,7 +79,7 @@ export default function ParfumDuMoment() {
                 <strong>Description :</strong>{" "}
                 {parfum.description || "Aucune description"}
               </p>
-{/* RATING A FAIRE !!!!!!!!!!!!! */}
+{/* RATING A FAIRE !!!!!!!!!!!!! TODO*/}
               <p className="momentDescription">
                 <strong>NOTE :</strong> A FAIRE !!!
               </p>
@@ -105,7 +105,7 @@ export default function ParfumDuMoment() {
         )}
 
         <div className="statsCard">
-          <div className="statsNotif">want 2 know + about us?</div>
+          <div className="statsNotif">En savoir plus sur les créateurs</div>
 
           <div className="statsList">
             <div className="statItem">
@@ -119,7 +119,7 @@ export default function ParfumDuMoment() {
             </div>
 
             <div className="statItem">
-              <p className="statNom">Djenadi yanis</p>
+              <p className="statNom">Yanis Djenadi</p>
               <h3 className="statValeur small">@yanis26x</h3>
             </div>
           </div>

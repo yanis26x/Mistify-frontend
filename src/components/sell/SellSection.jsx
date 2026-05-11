@@ -22,16 +22,6 @@ export default function SellSection({ parfums }) {
             <p className="statNom">Parfums Total</p>
             <h3 className="statValeur">{parfums.length}</h3>
           </div>
-
-          <div className="statItem">
-            <p className="statNom">Utilisateurs Total</p>
-            <h3 className="statValeur">Au moins 3....</h3>
-          </div>
-
-          <div className="statItem">
-            <p className="statNom">Moyenne des Prix</p>
-            <h3 className="statValeur">{moyenne}$</h3>
-          </div>
         </div>
       </div>
 

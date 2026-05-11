@@ -65,7 +65,7 @@ export default function NavbarRecherche() {
               </button>
             ))
           ) : (
-            <div className="navbarRechercheVide">Aucun parfum trouve...</div>
+            <div className="navbarRechercheVide">Aucun parfum trouvé...</div>
           )}
         </div>
       )}

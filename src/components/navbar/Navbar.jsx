@@ -88,12 +88,12 @@ export default function Navbar({ user, onGoToCompte }) {
       <nav className="nav-links">
         <Link to="/" className="nav-link">ACCUEIL</Link>
         <Link to="/parfums" className="nav-link">PARFUMS</Link>
-        <Link to="/contact" className="nav-link">CONTACT</Link>
+        <Link to="/ajout-parfum" className="nav-link">DEMANDE PARFUM</Link>
       </nav>
 
       <div className="navbarDroiteActuelle">
         <div className="nav-icons">
-          <Link to="/ajout-parfum" className="nav-link">DEMANDE PARFUM</Link>
+        <Link to="/contact" className="nav-link">CONTACT</Link>
 
           {utilisateurActuel?.admin && (
             <>

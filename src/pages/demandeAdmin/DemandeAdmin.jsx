@@ -72,9 +72,9 @@ export default function DemandeAdmin() {
         anciennesDemandes.filter((demande) => demande.id !== id)
       );
       window.dispatchEvent(new Event("demandes-parfum-change"));
-      setMessage("Demande acceptee. Le parfum a ete ajoute dans la base de donne");
+      setMessage("Demande acceptée. Le parfum a été ajouté dans la base de données");
     } catch (err) {
-      setMessage(err?.response?.data?.message || "Erreur pendant l'acceptation.");
+      setMessage(err?.response?.data?.message || "Erreur lors de l'ajout du parfum dans la base de données.");
     }
   }
 
@@ -96,9 +96,9 @@ export default function DemandeAdmin() {
         anciennesDemandes.filter((demande) => demande.id !== id)
       );
       window.dispatchEvent(new Event("demandes-parfum-change"));
-      setMessage("Demande refusee et supprimee.");
+      setMessage("Demande refusée et supprimée.");
     } catch (err) {
-      setMessage(err?.response?.data?.message || "Erreur..");
+      setMessage(err?.response?.data?.message || "Erreur...");
     }
   }
 
@@ -111,7 +111,7 @@ export default function DemandeAdmin() {
           <p>Chargement...</p>
         ) : !user ? (
           <div className="demandeAdminMessage">
-            <p>Vous devez etre connecte en ADMIN pour voir cette page.</p>
+            <p>Vous devez être connecté en tant qu'ADMIN pour voir cette page.</p>
             <button type="button" onClick={() => navigate("/compte")}>
               Se connecter
             </button>
@@ -125,7 +125,7 @@ export default function DemandeAdmin() {
             {message && <p className="demandeAdminInfo">{message}</p>}
 
             {demandes.length === 0 ? (
-              <p>Aucune demande en attente......</p>
+              <p>Aucune demande en attente...</p>
             ) : (
               <div className="demandesListe">
                 {demandes.map((demande) => (
@@ -136,11 +136,11 @@ export default function DemandeAdmin() {
                       </h2>
                       <p>{demande.description || "Pas de description."}</p>
                       <div className="demandeDetails">
-                        <span>Genre: {demande.gender || "Non precise"}</span>
-                        <span>Famille: {demande.family || "Non precisee"}</span>
-                        <span>Prix: {demande.price ? `${demande.price}$` : "Non precise"}</span>
-                        <span>Volume: {demande.volume ? `${demande.volume} ml` : "Non precise"}</span>
-                        <span>Annee: {demande.year || "Non precisee"}</span>
+                        <span>Genre: {demande.gender || "Non précisé"}</span>
+                        <span>Famille: {demande.family || "Non précisée"}</span>
+                        <span>Prix: {demande.price ? `${demande.price}$` : "Non précisé"}</span>
+                        <span>Volume: {demande.volume ? `${demande.volume} ml` : "Non précisé"}</span>
+                        <span>Annee: {demande.year || "Non précisée"}</span>
                         <span>Utilisateur: {demande.user?.name || "Inconnu"}</span>
                       </div>
                     </div>
@@ -150,13 +150,13 @@ export default function DemandeAdmin() {
                     )}
 
                     <label className="messageAdminLabel">
-                      Message personnalise pour l'utilisateur
+                      Message personnalisé pour l'utilisateur
                       <textarea
                         value={messagesAdmin[demande.id] || ""}
                         onChange={(event) =>
                           changerMessageAdmin(demande.id, event.target.value)
                         }
-                        placeholder="Ex: Merci pour ta demande, on l'a acceptee car..."
+                        placeholder="Ex: Merci pour ta demande, on l'a acceptée car..."
                       />
                     </label>
 
@@ -174,7 +174,7 @@ export default function DemandeAdmin() {
             )}
           </section>
         ) : (
-          <p>Reserve uniquement aux admins, vous ne l'etes pas...</p>
+          <p>Réservé uniquement aux admins, vous ne l'êtes pas...</p>
         )}
       </main>
     </>

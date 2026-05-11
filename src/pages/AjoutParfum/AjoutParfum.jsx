@@ -53,7 +53,7 @@ export default function AjoutParfum() {
         setMessage("")
 
         if (!user) {
-            setMessage("Vous devez etre connecte pour faire une demande.")
+            setMessage("Vous devez être connecté pour faire une demande.")
             navigate("/compte")
             return
         }
@@ -94,7 +94,7 @@ export default function AjoutParfum() {
                 volume: "",
                 year: "",
             })
-            setMessage("Demande envoyee. Elle est maintenant en attente de validation admin.")
+            setMessage("Demande envoyée. Elle est maintenant en attente de la validation de l'admin.")
             alert("Parfum soumis, en attente d'approbation par un admin.")
         } catch (err) {
             setMessage(err?.response?.data?.message || "Erreur pendant l'envoi de la demande.")
@@ -119,7 +119,7 @@ export default function AjoutParfum() {
                 <div className="left-side">
                     {!user ? (
                         <div className="message-connexion-demande">
-                            <p>Vous devez etre connecte pour demander l'ajout d'un parfum.</p>
+                            <p>Vous devez être connecté pour demander l'ajout d'un parfum.</p>
                             <button type="button" className="submit-btn" onClick={() => navigate("/compte")}>
                                 Se connecter
                             </button>
@@ -153,7 +153,7 @@ export default function AjoutParfum() {
                         value={formulaire.gender}
                         onChange={changerChamp}
                     >
-                        <option value="" disabled> -Choisir </option>
+                        <option value="" disabled> --Choisir </option>
                         <option value="woman"> Femme </option>
                         <option value="man"> Homme </option>
                         <option value="unisexe"> Unisexe </option>
@@ -167,7 +167,7 @@ export default function AjoutParfum() {
                         onChange={changerChamp}
                         required
                     >
-                        <option value=""> -Choisir </option>
+                        <option value=""> --Choisir </option>
                         <option value="Floral"> Floral </option>
                         <option value="Hespéridé"> Hespéridé </option>
                         <option value="Oriental"> Oriental </option>
@@ -266,8 +266,8 @@ export default function AjoutParfum() {
                         <div className="step-content">
                             <h2> Mise en ligne </h2>
                             <p>
-                                Si la demande est acceptee, le parfum est cree
-                                dans la base de donnees.    
+                                Si la demande est acceptée, le parfum est crée
+                                dans la base de données.    
                             </p>
                         </div>
                     </div>

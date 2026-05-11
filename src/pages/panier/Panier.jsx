@@ -10,7 +10,7 @@ import { FaCcVisa, FaCcMastercard, FaCcAmex, FaCcPaypal, FaApplePay } from "reac
 
 
 const BACKEND_URL = "http://localhost:3000";
-const LIVRAISON = 96;
+const LIVRAISON = 10;
 
 export default function Panier() {
   const navigate = useNavigate();
@@ -109,16 +109,12 @@ export default function Panier() {
           nextBackground="/bluePurpleBackground.jpg"
           onGoToCompte={() => navigate("/compte")}
         />
-        <DialoguePersona
-          nom="@yanis26x"
-          texte="tU pEuX pAs aVoIr Un pAnIeR sAnS cOmPtE... cEsT lA vIe."
-        />
 
         <div className="pasConnecteBox">
-          <h2>tes serieux....? Cree toi un compte dabord et revien -_-</h2>
+          <h2> Il faut se créer un compte d'abord</h2>
 
           <button className="btnCompte" onClick={() => navigate("/compte")}>
-            se connecter
+            Se connecter
           </button>
         </div>
       </div>
@@ -134,15 +130,11 @@ export default function Panier() {
         nextBackground="/bluePurpleBackground.jpg"
         onGoToCompte={() => navigate("/compte")}
       />
-      <DialoguePersona
-        nom="@yanis26x"
-        texte="C'est tout c'que tu prend.....?!!"
-      />
 
       <div className="hautPanier">
         <h1 className="titrePanier">Panier</h1>
         <p className="sousTitrePanier">
-          Sephora, c'est sûrement moins cher et + fiable... j'dis ça, j'dis rien.
+          Votre panier
         </p>
       </div>
 
@@ -225,7 +217,7 @@ export default function Panier() {
                 <span>{LIVRAISON}$</span>
               </div>
 
-              <div className="petitTexteResume">Livraison standard (7 à 10 mois)</div>
+              <div className="petitTexteResume">Livraison standard (1 à 2 semaines)</div>
 
               <div className="ligneResume totalResume">
                 <span>Total</span>
@@ -233,7 +225,7 @@ export default function Panier() {
               </div>
 
               <button className="btnVider" onClick={viderPanier}>
-                Vider tout le panier parce que t'as pas d'argent sale lâche
+                Vider tout le panier
               </button>
 
               <button className="btnValider" onClick={validerPanier}>
@@ -257,7 +249,7 @@ export default function Panier() {
                 <div className="texteSangBox">
                   
                   <p className="texteSangPaiement">
-                    aucun remboursement ne sera effectuer, garde la peche
+                    Aucun remboursement sans raison valable
                   </p>
                 </div>
               </div>

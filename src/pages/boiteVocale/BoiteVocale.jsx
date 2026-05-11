@@ -26,7 +26,7 @@ export default function BoiteVocale() {
         });
         setMessages(messagesRes.data);
       } catch (err) {
-        setErreur(err?.response?.data?.message || "Vous devez etre connecte pour voir la boite vocale.....");
+        setErreur(err?.response?.data?.message || "Vous devez être connecté pour voir la boîte vocale.");
       } finally {
         setChargement(false);
       }
@@ -49,7 +49,7 @@ export default function BoiteVocale() {
       );
       window.dispatchEvent(new Event("boite-vocale-change"));
     } catch {
-      setErreur("Impossible de supprimer...");
+      setErreur("Impossible de supprimer le message.");
     }
   }
 
@@ -71,7 +71,7 @@ export default function BoiteVocale() {
               </button>
             </div>
           ) : messages.length === 0 ? (
-            <p>Aucun message.....</p>
+            <p>Aucun message.</p>
           ) : (
             <div className="boiteVocaleListe">
               {messages.map((message) => (
