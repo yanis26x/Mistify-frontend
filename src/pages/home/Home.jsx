@@ -100,8 +100,6 @@ export default function Home() {
           </div>
           <p className="info-content">Musk</p>
         </div>
-
-
       </div>
 
 

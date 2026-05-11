@@ -11,6 +11,7 @@ import AjoutParfum  from "./pages/AjoutParfum/AjoutParfum";
 import Parfums from "./pages/parfums/Parfums";
 import DemandeAdmin from "./pages/demandeAdmin/DemandeAdmin";
 import BoiteVocale from "./pages/boiteVocale/BoiteVocale";
+import Favoris from "./pages/favoris/Favoris";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
       <Route path="/ajout-parfum/" element={<AjoutParfum />} />
       <Route path="/demande-admin" element={<DemandeAdmin />} />
       <Route path="/boite-vocale" element={<BoiteVocale />} />
+      <Route path="/favoris" element={<Favoris />} />
       <Route path="/parfums/" element={<Parfums />} />
       <Route path="/panier" element={<Panier />} />
       <Route path="/payment" element={<Payment />} />

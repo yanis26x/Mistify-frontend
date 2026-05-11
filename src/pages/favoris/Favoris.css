@@ -1,0 +1,45 @@
+.pageFavoris {
+  min-height: 100vh;
+  background: #000;
+}
+
+.sectionFavoris {
+  min-height: calc(100vh - 90px);
+  padding: 90px 40px 60px;
+  background: #ffffff;
+  color: #fff;
+}
+
+.texteFavoris {
+  max-width: 900px;
+  margin: 0 auto 42px;
+}
+
+.texteFavoris h1 {
+  margin: 0 0 14px;
+  color: #ff0000;
+  font-size: 72px;
+  line-height: 1;
+}
+
+.texteFavoris p {
+  margin: 0;
+  color: #000000;
+  font-size: 22px;
+}
+
+.imagesFavoris {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.imagesFavoris img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+
