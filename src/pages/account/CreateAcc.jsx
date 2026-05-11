@@ -135,6 +135,34 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
                 <button type="submit" className="btn-principal">
                   Se connecter
                 </button>
+
+
+
+                <div className="profils-demo">
+                  <div
+                    className="profil-demo"
+                    onClick={() => {
+                      setSigninEmail("yanis@mail.com");
+                      setSigninPassword("123");
+                    }}
+                  >
+                    <img src="/vampp.jpeg" alt="Admin" />
+                    <p>ADMIN</p>
+                  </div>
+
+                  <div
+                    className="profil-demo"
+                    onClick={() => {
+                      setSigninEmail("sora26@mail.com");
+                      setSigninPassword("123");
+                    }}
+                  >
+                    <img src="/sora.jpg" alt="User" />
+                    <p>USER</p>
+                  </div>
+                </div>
+
+
               </form>
             </section>
           </div>

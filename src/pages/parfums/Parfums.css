@@ -10,9 +10,6 @@
     align-items: flex-start;
     gap: 8px;
     align-self: stretch;
-    border-radius: 16px;
-    background: #FFF;
-    box-shadow: 0 30px 50px 0 rgba(125, 43, 69, 0.08);
   }
   
   
@@ -88,7 +85,7 @@
   
   .parfumsResetBtn {
     padding: 10px 20px;
-    border-radius: 50px;
+    border-radius: 25px;
     border: 1px solid rgba(96, 20, 47, 0.3);
     background-color: transparent;
     color: #60142F;

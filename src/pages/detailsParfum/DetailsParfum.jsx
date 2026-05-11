@@ -532,7 +532,7 @@ export default function DetailsParfum() {
             src={sourceImage}
             alt={parfum.name}
             onError={(e) => {
-              e.currentTarget.src = "/bloodd.png";
+              e.currentTarget.src = "/Remover.jpeg";
             }}
           />
 

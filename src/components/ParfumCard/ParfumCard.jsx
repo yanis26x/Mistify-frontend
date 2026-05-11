@@ -13,7 +13,7 @@ export default function ParfumCard({ parfum }) {
         src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
         alt={parfum.name}
         className="parfumCardImage"
-        onError={(e) => (e.target.src = "/bloodd.png")}
+        onError={(e) => (e.target.src = "/Remover.jpeg")}
       />
       <div className="parfumCardBody">
         <p className="parfumCardMarque">{parfum.brand}</p>

@@ -112,6 +112,36 @@
   font-weight: 600;
 }
 
+
+
+/* CSS minimal */
+
+.profils-demo {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.profil-demo {
+  text-align: center;
+  cursor: pointer;
+}
+
+.profil-demo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profil-demo p {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #5c162e;
+}
+
 @media (max-width: 900px) {
   .account-page {
     padding: 40px 16px;

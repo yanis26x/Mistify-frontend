@@ -35,7 +35,7 @@ const messages = [
     lien: "/boite-vocale",
   },
   {
-    sousTitre: "Tout les parfums sont melangés à de l'eau pour maximiser les profits..",
+    sousTitre: "Tout les parfums sont melangés avec de l'eau pour maximiser les profits..",
   },
 ];
 

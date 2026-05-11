@@ -75,14 +75,14 @@ export default function ParfumDuMoment() {
       <div className="momentContent">
         {parfum && (
           <div className="momentCarte">
-            <div className="momentNotif">Dernier parfum ajouté</div>
+            <div className="momentNotif">𖤐Parfums</div>
 
-            <img
-              src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
-              onError={(e) => (e.target.src = "/bloodd.png")}
-              alt={parfum.name}
-              className="momentImage"
-            />
+  <img
+    src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
+    onError={(e) => (e.target.src = "/Remover.jpeg")}
+    alt={parfum.name}
+    className="momentImage"/>
+
 
             <div className="momentInfos">
               <h2 className="momentParfumNom">{parfum.name}</h2>
