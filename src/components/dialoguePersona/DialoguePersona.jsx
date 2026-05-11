@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import "./DialoguePersona.css";
 
+// JE N'EST PAS ECRIT CE CODE MOI MEME, IL VIENT DINTENET!!!
+//YANIS26X
+
+
 export default function DialoguePersona({
   nom = "@yanis26x",
   texte = "ughhh yea!?",
@@ -46,17 +50,19 @@ export default function DialoguePersona({
 
   return (
     <div className={`dialoguePersona${disparition ? " dialoguePersonaDisparition" : ""}`}>
-      <button
-        className="fermerDialoguePersona"
-        onClick={() => setVisible(false)}
-        aria-label="Fermer le dialogue"
-      >
-        X
-      </button>
+      <div className="bulleDialoguePersona">
+        <button
+          className="fermerDialoguePersona"
+          onClick={() => setVisible(false)}
+          aria-label="Fermer le dialogue"
+        >
+          X
+        </button>
 
-      <div className="nomDialoguePersona">{nom}</div>
+        <div className="nomDialoguePersona">{nom}</div>
 
-      <p className="texteDialoguePersona">{texteAffiche}</p>
+        <p className="texteDialoguePersona">{texteAffiche}</p>
+      </div>
     </div>
   );
 }

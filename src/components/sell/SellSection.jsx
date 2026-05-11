@@ -45,24 +45,26 @@ export default function SellSection({ parfums }) {
         />
 
         <div className="sellMessage">
-          <h2 className="sellTitre">rEaD tHiS, n0w! 𖤐</h2>
+          <h2 className="sellTitre">𖤐 YOUR AD HERE  </h2>
 
           <p className="sellSoustitre">
-            Je ne toucherai plus ce projet. Libre à vous de repartir de mon
-            travail : boite vocale ajoutée, gestion des ajouts de parfums par
-            les admins, notification promotionnelle quand un parfum est ajouté
-            pour les utilisateurs ayant choisi la même odeur, énorme correction
-            car rien ne marchait, et bien plus encore. Si mon travail ne vous
-            satisfait pas (99% le cas), corrigez-le vous-même ou n'utilisez
-            simplement pas ma version.
+   N’oubliez pas que
+  votre satisfaction n’a absolument aucune importance pour nous. On vend des
+  parfums, pas du bonheur. Si l’odeur dure plus de 3 heures, estimez-vous
+  chanceux, puisqu’on ajoute de l’eau dans la majorité de nos parfums pour
+  maximiser les profits
           </p>
 
-          <button
+          <p className="TextBelek">
+           NE PAS MODIFIER CETTE SECTION
+          </p>
+
+          {/* <button
             className="BTNvendre"
             onClick={() => navigate("/ajout-parfum")}
           >
             ajouter parfum
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

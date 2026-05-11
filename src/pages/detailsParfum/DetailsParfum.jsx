@@ -203,7 +203,14 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("on arrive pas a le supprimer....");
+        let erreur = null;
+        try {
+          erreur = await reponse.json();
+        } catch {
+          erreur = null;
+        }
+
+        alert(erreur?.message || "on arrive pas a le supprimer....");
         return;
       }
 
@@ -362,7 +369,14 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("on arrive pas a le supprimer....");
+        let erreur = null;
+        try {
+          erreur = await reponse.json();
+        } catch {
+          erreur = null;
+        }
+
+        alert(erreur?.message || "on arrive pas a le supprimer....");
         return;
       }
 

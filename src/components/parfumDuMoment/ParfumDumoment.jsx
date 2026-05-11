@@ -54,7 +54,7 @@ export default function ParfumDuMoment() {
 
   return (
     <section className="momentSection">
-      <h1 className="momentTitre">Mistify</h1>
+      {/* <h1 className="momentTitre">Mistify</h1> */}
 
       <div className="momentContent">
         {parfum && (
@@ -79,9 +79,8 @@ export default function ParfumDuMoment() {
                 <strong>Description :</strong>{" "}
                 {parfum.description || "Aucune description"}
               </p>
-{/* RATING A FAIRE !!!!!!!!!!!!! */}
               <p className="momentDescription">
-                <strong>NOTE :</strong> A FAIRE !!!
+    
               </p>
 
 

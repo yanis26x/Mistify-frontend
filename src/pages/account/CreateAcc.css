@@ -26,7 +26,7 @@
 
 .account-image {
   flex: 1;
-  background-image: url("https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=1000");
+  background-image: url("/Hello-kitty.webp");
   background-size: cover;
   background-position: center;
 }

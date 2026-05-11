@@ -33,7 +33,7 @@
   gap: 22px;
   padding: 24px;
   border-radius: 18px;
-  background: rgba(255, 251, 251, 0.904);
+  background: rgb(255, 251, 251);
   color: rgb(0, 0, 0);
   box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45);
   min-width: 0;
@@ -43,7 +43,7 @@
   position: absolute;
   top: -12px;
   left: 20px;
-  background: #ef2a18ae;
+  background: #ff1500;
   color: white;
   padding: 6px 14px;
   border-radius: 999px;
@@ -81,7 +81,7 @@
   margin-top: 14px;
   font-size: 26px;
   font-weight: 900;
-  color: rgb(0, 145, 255);
+  color: rgb(255, 0, 0);
 }
 
 .momentAutreParfum {
@@ -95,7 +95,7 @@
   padding: 12px 18px;
   border: none;
   border-radius: 8px;
-  background: rgb(0, 0, 0);
+  background: rgb(255, 0, 0);
   color: rgb(255, 253, 253);
   font-weight: 900;
   transition: 0.2s ease;
@@ -107,15 +107,13 @@
 }
 
 .momentBtn.secondary {
-  background: #ef1818ae;
+  background: #000000;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .momentBtn.avantSecondary {
-  background: #ad6161da;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #000000;
+  color: rgb(255, 255, 255);
 }
 
 .statsCard {
@@ -124,7 +122,7 @@
   min-height: 100%;
   padding: 22px 18px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgb(255, 255, 255);
   backdrop-filter: blur(12px);
   box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45);
   color: white;
@@ -134,7 +132,7 @@
   position: absolute;
   top: -12px;
   left: 20px;
-  background: #ef1818ae;
+  background: #ff0000;
   color: white;
   padding: 6px 14px;
   border-radius: 999px;
@@ -158,13 +156,14 @@
 .statNom {
   margin: 0;
   font-size: 13px;
-  opacity: 0.75;
+  color: rgb(255, 255, 255);
 }
 
 .statValeur {
   margin: 6px 0 0;
   font-size: 24px;
   font-weight: 900;
+  color: rgb(254, 0, 0);
 }
 
 .statValeur.small {
