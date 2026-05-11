@@ -1,0 +1,311 @@
+.invPage {
+  min-height: 100vh;
+  background-color: #FFFAF5;
+}
+
+.invChargement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #60142F;
+  font-family: 'Jost', sans-serif;
+}
+
+.invMain {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.invEntete {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.invSurtitre {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #A73A5E;
+  font-family: 'Jost', sans-serif;
+  margin: 0 0 8px;
+}
+
+.invTitre {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: #60142F;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
+}
+
+.invDesc {
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  color: #6A5B56;
+  margin: 0;
+}
+
+.invBtnAjouter {
+  padding: 14px 28px;
+  background: #60142F;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.invBtnAjouter:hover {
+  background: #A73A5E;
+}
+
+.invStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.invStatCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(125, 43, 69, 0.08);
+}
+
+.invStatLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(96, 20, 47, 0.5);
+  font-family: 'Jost', sans-serif;
+  margin: 0 0 8px;
+}
+
+.invStatValeur {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: #60142F;
+  margin: 0;
+}
+
+.invMessage {
+  background: #FDF0F0;
+  color: #60142F;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  margin-bottom: 20px;
+  border-left: 3px solid #A73A5E;
+}
+
+.invRecherche {
+  margin-bottom: 24px;
+}
+
+
+.invTableau {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(125, 43, 69, 0.08);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.invTableauEntete {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 100px 120px 160px;
+  gap: 16px;
+  padding: 16px 24px;
+  background: #FDF0F0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(96, 20, 47, 0.6);
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+}
+
+.invLigne {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 100px 120px 160px;
+  gap: 16px;
+  padding: 16px 24px;
+  align-items: center;
+  border-top: 1px solid #FDF0F0;
+  transition: background 0.15s;
+}
+
+.invLigne:hover {
+  background: #FFFAF5;
+}
+
+.invColImage img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.invColNom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.invColNom strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: #60142F;
+}
+
+.invColNom small {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  color: rgba(96, 20, 47, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.invColMarque {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: #6A5B56;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.invColPrix {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: #60142F;
+  font-weight: 600;
+}
+
+.invColFamille {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  color: #6A5B56;
+  background: #FDF0F0;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.invColActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.invBtnModif {
+  padding: 6px 14px;
+  border: 1px solid rgba(96, 20, 47, 0.3);
+  border-radius: 20px;
+  background: transparent;
+  color: #60142F;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.invBtnModif:hover {
+  background: #60142F;
+  color: white;
+}
+
+.invBtnSuppr {
+  padding: 6px 14px;
+  border: 1px solid rgba(167, 58, 94, 0.3);
+  border-radius: 20px;
+  background: transparent;
+  color: #A73A5E;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.invBtnSuppr:hover {
+  background: #A73A5E;
+  color: white;
+}
+
+.invColModif input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid rgba(96, 20, 47, 0.2);
+  border-radius: 6px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: #60142F;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.invBtnSauv {
+  padding: 6px 12px;
+  background: #60142F;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.invBtnAnnuler {
+  padding: 6px 12px;
+  background: #f0d8d8;
+  color: #60142F;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.invVide {
+  padding: 40px;
+  text-align: center;
+  color: rgba(96, 20, 47, 0.5);
+  font-family: 'Jost', sans-serif;
+}
+
+.invCount {
+  text-align: right;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: rgba(96, 20, 47, 0.5);
+}
+
+@media (max-width: 900px) {
+  .invStats {
+    grid-template-columns: 1fr;
+  }
+
+  .invTableauEntete,
+  .invLigne {
+    grid-template-columns: 60px 1fr 100px 120px;
+  }
+
+  .invTableauEntete span:nth-child(3),
+  .invLigne .invColMarque,
+  .invTableauEntete span:nth-child(5),
+  .invLigne .invColFamille {
+    display: none;
+  }
+}

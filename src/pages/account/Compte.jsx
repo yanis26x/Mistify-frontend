@@ -22,12 +22,8 @@ export default function Compte() {
 
   async function checkWhoAmI() {
     setLoading(true);
-
     try {
-      const res = await axios.get(`${API}/whoami`, {
-        withCredentials: true,
-      });
-
+      const res = await axios.get(`${API}/whoami`, { withCredentials: true });
       setUser(res.data);
     } catch {
       setUser(null);
@@ -38,21 +34,8 @@ export default function Compte() {
 
   async function handleSignup({ name, email, password, preferencesOlfactives }) {
     setMessage("");
-
     try {
-      const res = await axios.post(
-        `${API}/signup`,
-        {
-          name,
-          email,
-          password,
-          preferencesOlfactives,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-
+      const res = await axios.post(`${API}/signup`, { name, email, password, preferencesOlfactives }, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Compte créé avec succès.");
@@ -63,19 +46,8 @@ export default function Compte() {
 
   async function handleSignin({ email, password }) {
     setMessage("");
-
     try {
-      const res = await axios.post(
-        `${API}/signin`,
-        {
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-
+      const res = await axios.post(`${API}/signin`, { email, password }, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Connexion réussie.");
@@ -86,16 +58,8 @@ export default function Compte() {
 
   async function handleSignout() {
     setMessage("");
-
     try {
-      await axios.post(
-        `${API}/signout`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
-
+      await axios.post(`${API}/signout`, {}, { withCredentials: true });
       setUser(null);
       setUsers([]);
       window.dispatchEvent(new Event("auth-change"));
@@ -107,12 +71,8 @@ export default function Compte() {
 
   async function handleRefreshUser() {
     setMessage("");
-
     try {
-      const res = await axios.get(`${API}/whoami`, {
-        withCredentials: true,
-      });
-
+      const res = await axios.get(`${API}/whoami`, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Session mise à jour.");
@@ -124,12 +84,8 @@ export default function Compte() {
 
   async function handleGetAllUsers() {
     setMessage("");
-
     try {
-      const res = await axios.get(`${API}`, {
-        withCredentials: true,
-      });
-
+      const res = await axios.get(`${API}`, { withCredentials: true });
       setUsers(res.data);
       setMessage("Liste des utilisateurs récupérée.");
     } catch (err) {
@@ -138,24 +94,12 @@ export default function Compte() {
   }
 
   async function handleDeleteUser(userId) {
-    if (!userId) {
-      setMessage("Entre un ID valide.");
-      return;
-    }
-
+    if (!userId) { setMessage("Entre un ID valide."); return; }
     setMessage("");
-
     try {
-      await axios.delete(`${API}/${userId}`, {
-        withCredentials: true,
-      });
-
+      await axios.delete(`${API}/${userId}`, { withCredentials: true });
       setUsers((prev) => prev.filter((u) => String(u.id) !== String(userId)));
-
-      if (user && String(user.id) === String(userId)) {
-        setUser(null);
-      }
-
+      if (user && String(user.id) === String(userId)) setUser(null);
       setMessage(`Utilisateur ${userId} supprimé.`);
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur suppression user!");
@@ -164,12 +108,8 @@ export default function Compte() {
 
   async function handleDeleteAllUsers() {
     setMessage("");
-
     try {
-      await axios.delete(`${API}`, {
-        withCredentials: true,
-      });
-
+      await axios.delete(`${API}`, { withCredentials: true });
       setUsers([]);
       setUser(null);
       setMessage("Tous les utilisateurs ont été supprimés!");
@@ -181,7 +121,6 @@ export default function Compte() {
   return (
     <>
       {user && <Navbar user={user} onGoToCompte={() => navigate("/compte")} />}
-
       <div className="compte-page">
         <div className="compte-container">
           {loading ? (

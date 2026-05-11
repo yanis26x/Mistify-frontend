@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SellSection from "../sell/SellSection";
 import { getImageUrl } from "../../utils/imageUrl";
 import "./ParfumDumoment.css";
 
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "";
 
 export default function ParfumDuMoment() {
   const [parfums, setParfums] = useState([]);
@@ -63,7 +63,7 @@ export default function ParfumDuMoment() {
 
             <img
               src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
-              onError={(e) => (e.target.src = "/bloodd.png")}
+              onError={(e) => (e.target.src = "/flacon-parfum.png")}
               alt={parfum.name}
               className="momentImage"
             />

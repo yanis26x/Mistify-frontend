@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import axios from "axios";
 import ParfumCard from "../../components/ParfumCard/ParfumCard";
 import "./Parfums.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import NavbarRecherche from "../../components/navbarRecherche/NavbarRecherche";
 
 const API = "http://localhost:3000";
 
@@ -56,6 +57,8 @@ export default function Parfums() {
         <h1 className="parfumsTitre">Notre Collection</h1>
         <p className="parfumsDesc">Découvrez notre sélection de parfums pour tous les goûts et toutes les occasions.</p>
         </div>
+
+        <NavbarRecherche />
 
         <div className="parfumsFiltres">
           <select

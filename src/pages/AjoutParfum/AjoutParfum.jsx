@@ -168,10 +168,12 @@ export default function AjoutParfum() {
                         required
                     >
                         <option value=""> -Choisir </option>
-                        <option value="Frais"> Frais </option>
-                        <option value="Sucré"> Sucré </option>
+                        <option value="Floral"> Floral </option>
+                        <option value="Hespéridé"> Hespéridé </option>
+                        <option value="Oriental"> Oriental </option>
                         <option value="Boisé"> Boisé </option>
-                        <option value="Épicé"> Épicé </option>
+                        <option value="Chypre"> Chypre </option>
+                        <option value="Fougère"> Fougère </option>
                     </select>
 
                     <div className="ligne-formulaire">

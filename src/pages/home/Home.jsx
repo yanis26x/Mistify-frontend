@@ -5,25 +5,14 @@ import axios from "axios";
 import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { FiCloud} from "react-icons/fi";
-import { LuFlower } from "react-icons/lu";
-import { FaWind } from "react-icons/fa";
+import { FiSun, FiWind } from "react-icons/fi";
+import { LuFlower, LuTrees } from "react-icons/lu";
 import { FaEarthAmericas } from "react-icons/fa6";
-import { LuTrees } from "react-icons/lu";
-import { IoIosIceCream } from "react-icons/io";
+import { GiOakLeaf } from "react-icons/gi";
 
 
 export default function Home() {
   const navigate = useNavigate();
-
-  // const backgrounds = [
-  //   "/coolBlue.jpeg",
-  //   "/frutiger/materialdictionary178_129.jpg",
-  //   "/frutiger/materialdictionary178_130.jpg",
-  //   "/frutiger/materialdictionary206_10.jpg",
-  // ];
-
-  // const [bgIndex, setBgIndex] = useState(0);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -37,106 +26,62 @@ export default function Home() {
         setUser(null);
       }
     }
-
     checkUser();
   }, []);
 
-  // function changeBackground() {
-  //   setBgIndex((prev) => (prev + 1) % backgrounds.length);
-  // }
-
   return (
-    <div
-      className="homeDiv"
-      // style={{ backgroundImage: `url(${backgrounds[bgIndex]})` }}
-    >
+    <div className="homeDiv">
       <Navbar
         user={user}
         onGoToAuth={() => navigate("/auth")}
         onGoToCommentaires={() => navigate("/Commentaire")}
-        // onChangeTheme={changeBackground}
-        // best way i think would be with context
         onGoToProfil={() => navigate("/profil", {state: {user}})}
         onGoToVendre={() => navigate("/vendreParfum")}
-        // nextBackground={backgrounds[(bgIndex + 1) % backgrounds.length]}
         onGoToCompte={() => navigate("/compte")}
       />
 
-
       <ParfumDuMoment />
-
-      {/* <ChercherParfum /> */}
 
       <div className="info-cards">
         <div className="info-card">
-          <div className="info-icon">
-            <LuFlower size={20} />
-          </div>
+          <div className="info-icon"><LuFlower size={20} /></div>
           <p className="info-content">Floral</p>
         </div>
-
         <div className="info-card">
-          <div className="info-icon">
-            <FaWind size={20} />
-          </div>
-          <p className="info-content">Frais</p>
+          <div className="info-icon"><FiSun size={20} /></div>
+          <p className="info-content">Hespéridé</p>
         </div>
-
         <div className="info-card">
-          <div className="info-icon">
-            <FaEarthAmericas size={20} />
-          </div>
+          <div className="info-icon"><FaEarthAmericas size={20} /></div>
           <p className="info-content">Oriental</p>
         </div>
-
         <div className="info-card">
-          <div className="info-icon">
-            <LuTrees size={20} />
-          </div>
+          <div className="info-icon"><LuTrees size={20} /></div>
           <p className="info-content">Boisé</p>
         </div>
-
         <div className="info-card">
-          <div className="info-icon">
-            <IoIosIceCream size={20} />
-          </div>
-          <p className="info-content">Gourmand</p>
+          <div className="info-icon"><GiOakLeaf size={20} /></div>
+          <p className="info-content">Chypre</p>
         </div>
-
         <div className="info-card">
-          <div className="info-icon">
-            <FiCloud size={20} />
-          </div>
-          <p className="info-content">Musk</p>
+          <div className="info-icon"><FiWind size={20} /></div>
+          <p className="info-content">Fougère</p>
         </div>
-
-
       </div>
 
-
-
-
-
-
-<div className="home-demandeParfum">
-
-  <div className="home-demandeParfum-text">
-    <h2 className="home-demandeParfum-title">Vous ne trouvez pas votre parfum ?</h2>
-    <p className="home-demandeParfum-description">
-      Faites-nous part de votre désir olfactif, et nous nous efforcerons de le trouver pour vous.
-    </p>
-  </div>
-
-
-  <button className="home-demandeParfum-button" onClick={() => navigate("/ajout-parfum")}>
-    Demander un parfum
-  </button>
-</div>
-
+      <div className="home-demandeParfum">
+        <div className="home-demandeParfum-text">
+          <h2 className="home-demandeParfum-title">Vous ne trouvez pas votre parfum ?</h2>
+          <p className="home-demandeParfum-description">
+            Faites-nous part de votre désir olfactif, et nous nous efforcerons de le trouver pour vous.
+          </p>
+        </div>
+        <button className="home-demandeParfum-button" onClick={() => navigate("/ajout-parfum")}>
+          Demander un parfum
+        </button>
+      </div>
 
       <Footer />
-
-
     </div>
   );
 }

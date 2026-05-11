@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+﻿import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
@@ -10,7 +10,7 @@ const PHOTOS_PROFIL = [
   { titre: "VaMP", src: "/vampp.jpeg" },
   { titre: "hElL0 - kItTy", src: "/Hello-kitty.webp" },
   { titre: "sora", src: "/sora.jpg" },
-  { titre: "I AM MUSIC", src: "/SpotifyLogoRed.webp" },
+  { titre: "I AM MUSIC", src: "/logo-mistify.png" },
 ];
 
 export default function DetailsParfum() {
@@ -423,7 +423,7 @@ export default function DetailsParfum() {
 
   function afficherEtoiles(note) {
     const noteNombre = Number(note) || 0;
-    return "★".repeat(noteNombre) + "☆".repeat(5 - noteNombre);
+    return "â˜…".repeat(noteNombre) + "â˜†".repeat(5 - noteNombre);
   }
 
   function afficherNotesParfum(notes) {
@@ -482,7 +482,7 @@ export default function DetailsParfum() {
             src={sourceImage}
             alt={parfum.name}
             onError={(e) => {
-              e.currentTarget.src = "/bloodd.png";
+              e.currentTarget.src = "/flacon-parfum.png";
             }}
           />
 
@@ -606,7 +606,7 @@ export default function DetailsParfum() {
 
         <div className="colonneResumeDetails">
           <aside className="resumeDetails">
-            <h2>Resumé 𖤐</h2>
+            <h2>Résumé</h2>
 
             <div className="ligneDetails">
               <span>Prix</span>

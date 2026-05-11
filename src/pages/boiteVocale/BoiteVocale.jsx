@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
@@ -21,7 +21,7 @@ export default function BoiteVocale() {
         });
         setUser(userRes.data);
 
-        const messagesRes = await axios.get(`${API_URL}/notifications/user-notifications`, {
+        const messagesRes = await axios.get(`${API_URL}/notifications/mes-notifications`, {
           withCredentials: true,
         });
         setMessages(messagesRes.data);
@@ -59,7 +59,7 @@ export default function BoiteVocale() {
 
       <main className="boiteVocalePage">
         <section className="boiteVocaleBloc">
-          <h1>Boite vocale</h1>
+          <h1>Mes Notifications</h1>
 
           {chargement ? (
             <p>Chargement...</p>

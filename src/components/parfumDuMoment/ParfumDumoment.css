@@ -4,18 +4,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
   box-sizing: border-box;
 }
 
-
 .momentTitre {
-  margin: 0;
-  font-size: 64px;
-  color: #ef1818;
-  font-family: 'Permanent Marker', cursive;
+  margin: 0 0 32px;
+  font-size: 72px;
+  color: #A73A5E;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
-
 
 .momentContent {
   width: min(1120px, 100%);
@@ -31,11 +30,10 @@
   display: flex;
   align-items: center;
   gap: 22px;
-  padding: 24px;
-  border-radius: 18px;
-  background: rgba(255, 251, 251, 0.904);
-  color: rgb(0, 0, 0);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45);
+  padding: 32px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  box-shadow: 0 30px 50px rgba(125, 43, 69, 0.08);
   min-width: 0;
 }
 
@@ -43,19 +41,21 @@
   position: absolute;
   top: -12px;
   left: 20px;
-  background: #ef2a18ae;
+  background: #A73A5E;
   color: white;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 900;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 1px;
 }
 
 .momentImage {
-  width: 240px;
-  height: 240px;
+  width: 220px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 12px;
   flex-shrink: 0;
 }
 
@@ -64,120 +64,139 @@
   text-align: left;
 }
 
-.momentParfumNom{
-  margin: 0 0 10px;
+.momentParfumNom {
+  margin: 0 0 12px;
   font-size: 32px;
-  font-weight: 900;
-  font-family: 'Permanent Marker', cursive;
+  font-weight: 300;
+  font-family: 'Cormorant Garamond', serif;
+  color: #60142F;
+  letter-spacing: 1px;
 }
 
 .momentMarque,
 .momentDescription {
   margin: 6px 0;
-  font-size: 16px;
+  font-size: 14px;
+  color: #6A5B56;
+  font-family: 'Jost', sans-serif;
 }
 
 .momentPrix {
   margin-top: 14px;
-  font-size: 26px;
-  font-weight: 900;
-  color: rgb(0, 145, 255);
+  font-size: 24px;
+  font-weight: 600;
+  color: #60142F;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .momentAutreParfum {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .momentBtn {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 8px;
-  background: rgb(0, 0, 0);
-  color: rgb(255, 253, 253);
-  font-weight: 900;
-  transition: 0.2s ease;
+  padding: 12px 20px;
+  border: 1px solid rgba(96, 20, 47, 0.2);
+  border-radius: 50px;
+  background: transparent;
+  color: #60142F;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .momentBtn:hover {
-  transform: translateY(-2px);
+  background: #60142F;
+  color: white;
 }
 
 .momentBtn.secondary {
-  background: #ef1818ae;
+  background: #60142F;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-color: #60142F;
+}
+
+.momentBtn.secondary:hover {
+  background: #A73A5E;
+  border-color: #A73A5E;
 }
 
 .momentBtn.avantSecondary {
-  background: #ad6161da;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #FDF0F0;
+  color: #60142F;
+  border-color: #FDF0F0;
+}
+
+.momentBtn.avantSecondary:hover {
+  background: #f0d8d8;
 }
 
 .statsCard {
   position: relative;
   width: 280px;
   min-height: 100%;
-  padding: 22px 18px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45);
-  color: white;
+  padding: 28px 20px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  box-shadow: 0 30px 50px rgba(125, 43, 69, 0.08);
 }
 
 .statsNotif {
   position: absolute;
   top: -12px;
   left: 20px;
-  background: #ef1818ae;
+  background: #A73A5E;
   color: white;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 900;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 1px;
 }
 
 .statsList {
-  margin-top: 10px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .statItem {
-  background: rgb(0, 0, 0);
-  border-radius: 12px;
-  padding: 12px 14px;
+  background: #FDF0F0;
+  border-radius: 10px;
+  padding: 12px 16px;
 }
 
 .statNom {
   margin: 0;
-  font-size: 13px;
-  opacity: 0.75;
+  font-size: 12px;
+  color: rgba(96, 20, 47, 0.5);
+  font-family: 'Jost', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .statValeur {
-  margin: 6px 0 0;
-  font-size: 24px;
-  font-weight: 900;
+  margin: 4px 0 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #60142F;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .statValeur.small {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 @media (max-width: 900px) {
   .momentTitre {
-    font-size: 48px;
-  }
-
-  .momentSousTitre {
-    font-size: 16px;
+    font-size: 36px;
   }
 
   .momentContent {
@@ -205,7 +224,7 @@
   }
 
   .momentTitre {
-    font-size: 40px;
+    font-size: 28px;
   }
 
   .momentCarte {

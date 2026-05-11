@@ -28,8 +28,6 @@ export default function SellSection({ parfums }) {
             <h3 className="statValeur">Au moins 3....</h3>
           </div>
 
-
-
           <div className="statItem">
             <p className="statNom">Moyenne des Prix</p>
             <h3 className="statValeur">{moyenne}$</h3>
@@ -40,28 +38,26 @@ export default function SellSection({ parfums }) {
       <div className="sellContent">
         <img
           className="sellLogoMistify"
-          src="/SpotifyLogoRed.webp"
+          src="/logo-mistify.png"
           alt="Mistify"
         />
 
         <div className="sellMessage">
-          <h2 className="sellTitre">rEaD tHiS, n0w! 𖤐</h2>
+          <h2 className="sellTitre">L'art de la fragrance, à votre portée.</h2>
 
           <p className="sellSoustitre">
-            Je ne toucherai plus ce projet. Libre à vous de repartir de mon
-            travail : boite vocale ajoutée, gestion des ajouts de parfums par
-            les admins, notification promotionnelle quand un parfum est ajouté
-            pour les utilisateurs ayant choisi la même odeur, énorme correction
-            car rien ne marchait, et bien plus encore. Si mon travail ne vous
-            satisfait pas (99% le cas), corrigez-le vous-même ou n'utilisez
-            simplement pas ma version.
+            Mistify est votre destination exclusive pour découvrir, explorer et
+            acquérir les plus belles fragrances du monde. Que vous soyez
+            amateur ou connaisseur, notre collection soigneusement sélectionnée
+            saura éveiller vos sens et vous transporter dans un univers
+            olfactif unique.
           </p>
 
           <button
             className="BTNvendre"
-            onClick={() => navigate("/ajout-parfum")}
+            onClick={() => navigate("/parfums")}
           >
-            ajouter parfum
+            Découvrir la collection
           </button>
         </div>
       </div>

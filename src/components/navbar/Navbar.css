@@ -3,17 +3,17 @@
 
 .navbarMistify {
   width: 100%;
-  display: grid;
-  grid-template-columns: auto auto minmax(220px, 360px) auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 18px;
-  padding: 12px 24px;
+  padding: 12px 32px;
   box-sizing: border-box;
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #FFFFFF;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background-color: #FFFAF5;
+  border-bottom: 1px solid #EEE;
   min-height: 62px;
 }
 
@@ -22,16 +22,16 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: #000000;
-  font-size: 24px;
+  color: #A73A5E;
+  font-size: 22px;
   font-weight: 900;
-  letter-spacing: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+  font-family: 'Playfair Display', serif;
 }
 
 .logoImage {
-  width: 1em;
-  height: 1em;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   display: block;
 }
@@ -40,26 +40,30 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 4px;
   min-width: 0;
 }
 
 .nav-links{
   display: flex;
   flex-wrap: nowrap;
-  gap: 14px;
-  justify-content: flex-end;
+  gap: 24px;
   align-items: center;
   white-space: nowrap;
 }
 
 .nav-link{
   text-decoration: none;
-  color:#111111;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  color: #999;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Playfair Display', serif;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #A73A5E;
 }
 
 .nav-link-avec-badge {
@@ -76,13 +80,18 @@
 .icon-button {
   position: relative;
   background: none;
-  border:  none;
-  color: #000000;
+  border: none;
+  color: #999;
   cursor: pointer;
   padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.icon-button:hover {
+  color: #A73A5E;
 }
 
 .notifPanier {
@@ -104,12 +113,18 @@
 
 .messages-navbar {
   position: relative;
-  color: #111111;
+  color: #999;
   text-decoration: none;
-  font-size: 11px;
-  font-weight: 900;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
   padding: 8px;
+  transition: color 0.3s ease;
+}
+
+.messages-navbar:hover {
+  color: #A73A5E;
 }
 
 .profil-button {

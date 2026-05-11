@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
@@ -140,9 +140,9 @@ export default function Panier() {
       />
 
       <div className="hautPanier">
-        <h1 className="titrePanier">Panier𖤐</h1>
+        <h1 className="titrePanier">Panier</h1>
         <p className="sousTitrePanier">
-          Sephora, c’est sûrement moins cher et + fiable... j’dis ça, j’dis rien.
+          Sephora, c'est sûrement moins cher et + fiable... j'dis ça, j'dis rien.
         </p>
       </div>
 
@@ -233,7 +233,7 @@ export default function Panier() {
               </div>
 
               <button className="btnVider" onClick={viderPanier}>
-                Vider tout le panier parce que t’as pas d’argent sale lâche
+                Vider tout le panier parce que t'as pas d'argent sale lâche
               </button>
 
               <button className="btnValider" onClick={validerPanier}>

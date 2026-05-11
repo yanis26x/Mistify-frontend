@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import "./CreateAcc.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -100,10 +100,12 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
                   required
                 >
                   <option value="">Préférence olfactive</option>
-                  <option value="Frais">Frais</option>
-                  <option value="Sucré">Sucré</option>
+                  <option value="Floral">Floral</option>
+                  <option value="Hespéridé">Hespéridé</option>
+                  <option value="Oriental">Oriental</option>
                   <option value="Boisé">Boisé</option>
-                  <option value="Épicé">Épicé</option>
+                  <option value="Chypre">Chypre</option>
+                  <option value="Fougère">Fougère</option>
                 </select>
 
                 <button type="submit" className="btn-principal">

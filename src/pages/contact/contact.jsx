@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./contact.css";
@@ -76,7 +76,7 @@ export default function Contact() {
                 <span>1-877-737-4672</span>
               </div>
 
-             <p>Numéro surtaxé, vérifiez nos disponibilités avant d’appeler dans le vide.</p>
+             <p>Numéro surtaxé, vérifiez nos disponibilités avant d'appeler dans le vide.</p>
             </div>
           </section>
 

@@ -1,4 +1,4 @@
-import "./Logged.css";
+﻿import "./Logged.css";
 
 export default function Logged({ user, message, onSignout }) {
   const photo = user.admin ? "/vampp.jpeg" : "/sora.jpg";
