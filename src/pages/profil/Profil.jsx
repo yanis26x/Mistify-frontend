@@ -6,9 +6,7 @@ import Footer from "../../components/footer/Footer";
 export default function Profil() {
   const navigate = useNavigate();
 
-  function compte() {
-    navigate("/compte");
-  }
+
 
   return (
     <div className="profil-page">
@@ -23,7 +21,7 @@ export default function Profil() {
           </div>
 
           <div className="sidebar-links">
-            <button onClick={compte} className="link-active">Mon Compte</button>
+            <button className="link-active">Mon Compte</button>
             <button className="logout-btn">Déconnexion</button>
           </div>
         </aside>
