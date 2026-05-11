@@ -15,15 +15,6 @@ import { IoIosIceCream } from "react-icons/io";
 
 export default function Home() {
   const navigate = useNavigate();
-
-  // const backgrounds = [
-  //   "/coolBlue.jpeg",
-  //   "/frutiger/materialdictionary178_129.jpg",
-  //   "/frutiger/materialdictionary178_130.jpg",
-  //   "/frutiger/materialdictionary206_10.jpg",
-  // ];
-
-  // const [bgIndex, setBgIndex] = useState(0);
   const [user, setUser] = useState(null);
 
   useEffect(() => {

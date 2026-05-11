@@ -1,11 +1,29 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import SellSection from "../sell/SellSection";
+import MessagePerso from "../MsgPerso/MessagePerso";
 import { getImageUrl } from "../../utils/imageUrl";
 import "./ParfumDumoment.css";
 
 const BACKEND_URL = "http://localhost:3000";
+
+const createurs = [
+  {
+    nom: "Aicha-Rym Souane",
+    pseudo: "@rym31",
+    lien: "https://github.com/rym31",
+  },
+  {
+    nom: "Ellyn Saint-Firmin",
+    pseudo: "@el24s",
+    lien: "https://github.com/el24s",
+  },
+  {
+    nom: "Djenadi yanis",
+    pseudo: "@yanis26x",
+    lien: "https://yanis26x.github.io/yanis26x/",
+  },
+];
 
 export default function ParfumDuMoment() {
   const [parfums, setParfums] = useState([]);
@@ -54,12 +72,10 @@ export default function ParfumDuMoment() {
 
   return (
     <section className="momentSection">
-      {/* <h1 className="momentTitre">Mistify</h1> */}
-
       <div className="momentContent">
         {parfum && (
           <div className="momentCarte">
-            <div className="momentNotif">Dernier parfum</div>
+            <div className="momentNotif">Dernier parfum ajouté</div>
 
             <img
               src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
@@ -107,24 +123,22 @@ export default function ParfumDuMoment() {
           <div className="statsNotif">want 2 know + about us?</div>
 
           <div className="statsList">
-            <div className="statItem">
-              <p className="statNom">Aicha-Rym Souane</p>
-              <h3 className="statValeur">@rym31</h3>
-            </div>
-
-            <div className="statItem">
-              <p className="statNom">Ellyn Saint-Firmin</p>
-              <h3 className="statValeur">@el24s</h3>
-            </div>
-
-            <div className="statItem">
-              <p className="statNom">Djenadi yanis</p>
-              <h3 className="statValeur small">@yanis26x</h3>
-            </div>
+            {createurs.map((createur) => (
+              <a
+                key={createur.pseudo}
+                className="statItem"
+                href={createur.lien}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <p className="statNom">{createur.nom}</p>
+                <h3 className="statValeur">{createur.pseudo}</h3>
+              </a>
+            ))}
           </div>
         </div>
       </div>
-      <SellSection parfums={parfums} />
+      <MessagePerso />
     </section>
   );
 }
