@@ -52,8 +52,9 @@
 
 .messageAleatoireBtn {
   width: 100%;
-  padding: 13px 16px;
+  padding: 13px;
   border: none;
+  border-radius: 14px;
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   font-size: 15px;

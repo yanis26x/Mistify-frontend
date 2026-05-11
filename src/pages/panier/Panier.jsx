@@ -111,7 +111,7 @@ export default function Panier() {
         />
         <DialoguePersona
           nom="@yanis26x"
-          texte="tU pEuX pAs aVoIr Un pAnIeR sAnS cOmPtE... cEsT lA vIe."
+          texte="Connecte-toi d’abord..."
         />
 
         <div className="pasConnecteBox">

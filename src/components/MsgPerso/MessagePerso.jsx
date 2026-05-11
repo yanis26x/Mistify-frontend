@@ -51,7 +51,7 @@ export default function MessagePerso() {
   useEffect(() => {
     const minuteur = setInterval(() => {
       setMessageActuel(choisirMessagePerso());
-    }, 8000);
+    }, 8000); // chq 8 secondes
 
     return () => clearInterval(minuteur);
   }, []);
@@ -89,7 +89,7 @@ export default function MessagePerso() {
         />
 
         <div className="messagePersoContenu">
-          <h2 className="messagePersoTitre">𖤐 YOUR AD HERE</h2>
+          <h2 className="messagePersoTitre">YOUR AD HERE 𖤐 </h2>
 
           <p className="messagePersoSousTitre">
             N’oubliez pas que votre satisfaction n’a absolument aucune
@@ -100,7 +100,7 @@ export default function MessagePerso() {
           </p>
 
           <p className="messagePersoTexteDiscret">
-            NE PAS MODIFIER CETTE SECTION
+            DOWNLOAD Qibla++ ON THE APP STORE NOW!!
           </p>
         </div>
       </div>
