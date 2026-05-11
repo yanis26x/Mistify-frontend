@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./contact.css";
@@ -12,19 +12,19 @@ export default function Contact() {
   const sectionCachee = useRef(null);
 
   useEffect(() => {
+    async function checkUser() {
+      try {
+        const res = await axios.get("http://localhost:3000/users/whoami", {
+          withCredentials: true,
+        });
+        setUser(res.data);
+      } catch {
+        setUser(null);
+      }
+    }
+
     checkUser();
   }, []);
-
-  async function checkUser() {
-    try {
-      const res = await axios.get("http://localhost:3000/auth/whoami", {
-        withCredentials: true,
-      });
-      setUser(res.data);
-    } catch (error) {
-      setUser(null);
-    }
-  }
 
   function envoyerFormulaire(e) {
     e.preventDefault();
@@ -40,7 +40,7 @@ export default function Contact() {
           <div className="texte-aide">
             <h1>Vous avez besoin d'aide?</h1>
             <h2>Vous voulez faire un signalement ou nous envoyer un message?</h2>
-            <p>Et n'oubliez pas que chez Mistify, votre satifaction est loin detre notre prioriter</p>
+            <p>Chez Mistify, votre satifaction est notre prioritée</p>
           </div>
 
           <form className="formulaire-contact" onSubmit={envoyerFormulaire}>
@@ -63,7 +63,7 @@ export default function Contact() {
           <section className="carte-contact">
             <h2>Notre but</h2>
             <p>
-              Notre but n'est pas de faire votre bonheur mais juste de passer le cours.
+              Notre but est de faire votre bonheur tout en sentant bon.
             </p>
           </section>
 
@@ -76,7 +76,7 @@ export default function Contact() {
                 <span>1-877-737-4672</span>
               </div>
 
-             <p>Numéro surtaxé, vérifiez nos disponibilités avant d’appeler dans le vide.</p>
+             <p>Vérifiez nos disponibilités avant d'appeler.</p>
             </div>
           </section>
 
@@ -96,7 +96,7 @@ export default function Contact() {
 
               <div className="personne-createur">
                 <strong>@yanis26x</strong>
-                <span>yanis djenadi</span>
+                <span>Yanis Djenadi</span>
               </div>
             </div>
           </section>
@@ -105,25 +105,18 @@ export default function Contact() {
         <section className="disponibilites">
           <h2>Nos disponibilites</h2>
           <div className="liste-disponibilites">
-            <p>Lundi : indisponible</p>
-            <p>Mardi : indisponible</p>
-            <p>Mercredi : 22h a 22h25</p>
-            <p>Jeudi : indisponible</p>
-            <p>Vendredi : indisponible</p>
-            <p>Samedi : indisponible</p>
-            <p>Dimanche : indisponible</p>
+            <p>Lundi : 9h à 19h</p>
+            <p>Mardi : 8h à 17h</p>
+            <p>Mercredi : 9h à 19h</p>
+            <p>Jeudi : 9h à 19h</p>
+            <p>Vendredi : 9h à 19h</p>
+            <p>Samedi : Indisponible</p>
+            <p>Dimanche : Indisponible</p>
           </div>
         </section>
       </main>
 
       <Footer />
-
-      <section className="section-cachee" ref={sectionCachee}>
-        <p>
-          T'a vraiment cru que c'etait un vrais formulaire qui aller s'envoyer ?!!?
-          garde la peche, oublie pas qu'on rembourse rien.
-        </p>
-      </section>
     </div>
   );
 }

@@ -1,0 +1,87 @@
+.boiteVocalePage {
+  min-height: calc(100vh - 76px);
+  padding: 32px;
+  box-sizing: border-box;
+  background: #f2ddd6;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.boiteVocaleBloc {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.boiteVocaleBloc h1 {
+  margin: 0 0 22px;
+  color: #60142f;
+  font-size: 28px;
+}
+
+.boiteVocaleListe {
+  display: grid;
+  gap: 14px;
+}
+
+.boiteVocaleCarte {
+  background: #fff;
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: 0 18px 35px rgba(125, 43, 69, 0.08);
+}
+
+.boiteVocaleCarte p {
+  margin: 0 0 8px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.boiteVocaleCarte .texteMessageNouveau {
+  color: #ff0033;
+}
+
+.boiteVocaleCarte span {
+  color: #666;
+  font-size: 12px;
+}
+
+.boiteVocaleActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.boiteVocaleActions a,
+.boiteVocaleActions button,
+.boiteVocaleMessage button {
+  border: 1px solid #60142f;
+  background: #60142f;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.boiteVocaleMessage {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+@media (max-width: 700px) {
+  .boiteVocalePage {
+    padding: 20px;
+  }
+
+  .boiteVocaleCarte {
+    flex-direction: column;
+  }
+}

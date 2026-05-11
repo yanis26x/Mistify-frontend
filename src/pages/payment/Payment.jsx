@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Payment.css";
@@ -60,7 +60,7 @@ export default function Payment() {
       window.dispatchEvent(new Event("panier-change"));
       setCommandeValidee(true);
     } catch {
-      setMessageErreur("Impossible de vider le panier apres le paiement.");
+      setMessageErreur("Impossible de vider le panier après le paiement.");
     }
   }
 
@@ -76,11 +76,11 @@ export default function Payment() {
     return (
       <div className="pagePaiement">
         <div className="boitePaiement confirmationPaiement">
-          <h1>Commande confirmee</h1>
-          <p>Ton paiement est passe. Un recu va etre envoye par email.</p>
+          <h1>Commande confirmée</h1>
+          <p>Ton paiement est passé. Un reçu va être envoyé par email.</p>
 
           <button className="boutonPayer" onClick={() => navigate("/")}>
-            Retour a l'accueil
+            Retour à l'accueil
           </button>
         </div>
       </div>
@@ -99,7 +99,7 @@ export default function Payment() {
           </div>
         ) : (
           <div className="resumePaiement">
-            <span>Total a payer</span>
+            <span>Total à payer</span>
             <strong>{totalPanier.toFixed(2)}$</strong>
           </div>
         )}

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+﻿import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 // import VendreParfum from "./pages/vendre/VendreParfum";
 import Compte from "./pages/account/Compte";
@@ -10,6 +10,8 @@ import Profil from "./pages/profil/Profil"
 import AjoutParfum  from "./pages/AjoutParfum/AjoutParfum";
 import Parfums from "./pages/parfums/Parfums";
 import DemandeAdmin from "./pages/demandeAdmin/DemandeAdmin";
+import BoiteVocale from "./pages/boiteVocale/BoiteVocale";
+import AdminInventaire from "./pages/adminInventaire/AdminInventaire";
 
 export default function App() {
   return (
@@ -21,6 +23,7 @@ export default function App() {
       <Route path="/parfum/:id" element={<DetailsParfum />} />
       <Route path="/ajout-parfum/" element={<AjoutParfum />} />
       <Route path="/demande-admin" element={<DemandeAdmin />} />
+      <Route path="/boite-vocale" element={<BoiteVocale />} />
       <Route path="/parfums/" element={<Parfums />} />
       <Route path="/panier" element={<Panier />} />
       <Route path="/payment" element={<Payment />} />
@@ -28,6 +31,7 @@ export default function App() {
       <Route path="/payement" element={<Payment />} />
       <Route path="/profil" element={<Profil />}/>
       <Route path="/contact" element={<Contact />} />
+      <Route path="/admin-inventaire" element={<AdminInventaire />} />
     </Routes>
   );
 }

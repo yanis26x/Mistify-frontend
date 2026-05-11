@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import "./NavbarRecherche.css";
 import { getImageUrl } from "../../utils/imageUrl";
 
 const API_URL = "http://localhost:3000";
+const IMAGE_URL = "";
 
 export default function NavbarRecherche() {
   const navigate = useNavigate();
@@ -50,10 +51,10 @@ export default function NavbarRecherche() {
                 onMouseDown={() => navigate(`/parfum/${parfum.id}`)}
               >
                 <img
-                  src={getImageUrl(parfum.imageUrl, API_URL)}
+                  src={getImageUrl(parfum.imageUrl, IMAGE_URL)}
                   alt={parfum.name}
                   onError={(e) => {
-                    e.currentTarget.src = "/bloodd.png";
+                    e.currentTarget.src = "/flacon-parfum.png";
                   }}
                 />
                 <span>
@@ -64,7 +65,7 @@ export default function NavbarRecherche() {
               </button>
             ))
           ) : (
-            <div className="navbarRechercheVide">Aucun parfum trouve...</div>
+            <div className="navbarRechercheVide">Aucun parfum trouvé...</div>
           )}
         </div>
       )}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+﻿import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
@@ -10,7 +10,7 @@ const PHOTOS_PROFIL = [
   { titre: "VaMP", src: "/vampp.jpeg" },
   { titre: "hElL0 - kItTy", src: "/Hello-kitty.webp" },
   { titre: "sora", src: "/sora.jpg" },
-  { titre: "I AM MUSIC", src: "/SpotifyLogoRed.webp" },
+  { titre: "I AM MUSIC", src: "/logo-mistify.png" },
 ];
 
 export default function DetailsParfum() {
@@ -94,7 +94,7 @@ export default function DetailsParfum() {
 
   const verifierUtilisateur = useCallback(async () => {
     try {
-      const reponse = await axios.get(`${API_URL}/auth/whoami`, {
+      const reponse = await axios.get(`${API_URL}/users/whoami`, {
         withCredentials: true,
       });
       setUtilisateur(reponse.data);
@@ -107,6 +107,11 @@ export default function DetailsParfum() {
     chargerParfum();
     chargerCommentaires();
     verifierUtilisateur();
+    window.addEventListener("auth-change", verifierUtilisateur);
+
+    return () => {
+      window.removeEventListener("auth-change", verifierUtilisateur);
+    };
   }, [chargerParfum, chargerCommentaires, verifierUtilisateur]);
 
   async function ajouterAuPanier() {
@@ -123,7 +128,7 @@ export default function DetailsParfum() {
         { withCredentials: true }
       );
       window.dispatchEvent(new Event("panier-change"));
-      alert("Ajoute au panier !");
+      alert("Ajouter au panier !");
       // ou montrer persona dialogue !!!!1
     } catch {
       alert("Impossible d'ajouter au panier.");
@@ -135,11 +140,12 @@ export default function DetailsParfum() {
 
     if (!utilisateur) {
       alert("Connecte-toi pour commenter.....");
+      navigate("/compte");
       return;
     }
 
     if (!texteCommentaire.trim()) {
-      alert("T'essaye vraiment de rien poster?! #$%!@");
+      alert("Il faut écrire un commentaire pour le poster.");
       return;
     }
 
@@ -187,7 +193,7 @@ export default function DetailsParfum() {
   }
 
   async function supprimerCommentaire(commentaireId) {
-    const confirmation = window.confirm("tu veux vraimment supp ce commentaire?!?!");
+    const confirmation = window.confirm("Voulez-vous supprimer votre commentaire.");
     if (!confirmation) return;
 
     try {
@@ -197,7 +203,7 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("on arrive pas a le supprimer....");
+        alert("Problème lors de la suppression du commentaire.");
         return;
       }
 
@@ -223,7 +229,7 @@ export default function DetailsParfum() {
     e.preventDefault();
 
     if (!texteModification.trim()) {
-      alert("T'essaye vraiment de rien poster?! #$%!@");
+      alert("Tu ne peux pas poster un commentaire vide.");
       return;
     }
 
@@ -259,7 +265,7 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "on arrive pas a le modifier....");
+        alert(erreur?.message || "Problème lors de la modification du commentaire.");
         return;
       }
 
@@ -276,7 +282,7 @@ export default function DetailsParfum() {
       fermerModificationCommentaire();
       await chargerCommentaires();
     } catch {
-      alert("erreur....");
+      alert("Erreur...");
     } finally {
       setEnvoiModificationCommentaire(false);
     }
@@ -311,7 +317,7 @@ export default function DetailsParfum() {
       }
 
       if (Object.keys(parfumModifie).length === 0) {
-        alert("tes serieux!? ta rien changer!");
+        alert("Il n'y a eu aucune modification.");
         return;
       }
 
@@ -330,7 +336,7 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "on arrive pas a le modifier....");
+        alert(erreur?.message || "La modification n'est pas possible.");
         return;
       }
 
@@ -345,7 +351,7 @@ export default function DetailsParfum() {
   }
 
   async function supprimerParfum() {
-    const confirmation = window.confirm("Tu veux vraiment supprimer ce parfum ?!");
+    const confirmation = window.confirm("Voulez-vous supprimer votre parfum.");
     if (!confirmation) return;
 
     try {
@@ -356,7 +362,7 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("on arrive pas a le supprimer....");
+        alert("Erreur lors de la suppression du parfum.");
         return;
       }
 
@@ -372,7 +378,7 @@ export default function DetailsParfum() {
     return (
       <div className="pageDetails">
         <Navbar user={utilisateur} onGoToCompte={() => navigate("/compte")} />
-        <p className="detailsMessage">en cours...</p>
+        <p className="detailsMessage">En cours...</p>
       </div>
     );
   }
@@ -384,7 +390,7 @@ export default function DetailsParfum() {
         <div className="detailsVide">
           <h1>Parfum introuvable...</h1>
           <button className="boutonPrincipal" onClick={() => navigate("/")}>
-            Retour accueil?!
+            Retour à l'accueil
           </button>
         </div>
       </div>
@@ -393,9 +399,22 @@ export default function DetailsParfum() {
 
   const sourceImage = getImageUrl(parfum.imageUrl, API_URL);
 
+  function afficherValeur(valeur, texteVide = "Non renseigné") {
+    if (valeur === null || valeur === undefined || valeur === "") {
+      return texteVide;
+    }
+
+    if (typeof valeur === "boolean") {
+      return valeur ? "Oui" : "Non";
+    }
+
+    return valeur;
+  }
+
   function donnerAvis() {
     if (!utilisateur) {
-      alert("Tu dois être connecté pour donner un avis.....");
+      alert("Vous devez être connecté pour donner un avis.");
+      navigate("/compte");
       return;
     }
 
@@ -404,7 +423,7 @@ export default function DetailsParfum() {
 
   function afficherEtoiles(note) {
     const noteNombre = Number(note) || 0;
-    return "★".repeat(noteNombre) + "☆".repeat(5 - noteNombre);
+    return "â˜…".repeat(noteNombre) + "â˜†".repeat(5 - noteNombre);
   }
 
   function afficherNotesParfum(notes) {
@@ -463,7 +482,7 @@ export default function DetailsParfum() {
             src={sourceImage}
             alt={parfum.name}
             onError={(e) => {
-              e.currentTarget.src = "/bloodd.png";
+              e.currentTarget.src = "/flacon-parfum.png";
             }}
           />
 
@@ -483,22 +502,83 @@ export default function DetailsParfum() {
 
             <p>{parfum.description || "Aucune description"}</p>
 
+            <div className="detailsCompletsParfum">
+              <h2>Détails du parfum</h2>
+
+              <div className="detailsGrilleParfum">
+                <div>
+                  <span>ID</span>
+                  <strong>{afficherValeur(parfum.id)}</strong>
+                </div>
+
+                <div>
+                  <span>Nom</span>
+                  <strong>{afficherValeur(parfum.name)}</strong>
+                </div>
+
+                <div>
+                  <span>Marque</span>
+                  <strong>{afficherValeur(parfum.brand)}</strong>
+                </div>
+
+                <div>
+                  <span>Famille</span>
+                  <strong>{afficherValeur(parfum.family)}</strong>
+                </div>
+
+                <div>
+                  <span>Note</span>
+                  <strong>{parfum.rating ? `${parfum.rating} / 5` : "Non renseignée"}</strong>
+                </div>
+
+                <div>
+                  <span>Volume</span>
+                  <strong>{parfum.volume ? `${parfum.volume} ml` : "Non renseigné"}</strong>
+                </div>
+
+                <div>
+                  <span>Prix</span>
+                  <strong>{parfum.price ? `${parfum.price}$` : "Non renseigné"}</strong>
+                </div>
+
+                <div>
+                  <span>Genre</span>
+                  <strong>{afficherValeur(parfum.gender)}</strong>
+                </div>
+
+                <div>
+                  <span>Année</span>
+                  <strong>{afficherValeur(parfum.year)}</strong>
+                </div>
+
+                <div>
+                  <span>Disponible</span>
+                  <strong>{afficherValeur(parfum.disponibility)}</strong>
+                </div>
+
+                <div className="detailsImageUrl">
+                  <span>Image URL</span>
+                  <strong>{afficherValeur(parfum.imageUrl)}</strong>
+                </div>
+              </div>
+            </div>
+
             <div className="notesOlfactives">
               {afficherNotesParfum(parfum.topNotes) && (
                 <p>
-                  <strong>notes primaire :</strong> {afficherNotesParfum(parfum.topNotes)}
+                  <strong>Notes Primaire :</strong> {afficherNotesParfum(parfum.topNotes)}
                 </p>
               )}
 
               {afficherNotesParfum(parfum.middleNotes) && (
                 <p>
-                  <strong>notes du milieu :</strong> {afficherNotesParfum(parfum.middleNotes)}
+                  <strong>Notes du milieu :</strong> {afficherNotesParfum(parfum.middleNotes)}
                 </p>
               )}
 
               {afficherNotesParfum(parfum.baseNotes) && (
                 <p>
-                  <strong>notes la + faible :</strong> {afficherNotesParfum(parfum.baseNotes)}
+                  <strong>Notes la plus faible :</strong> {afficherNotesParfum(parfum.baseNotes)}
                 </p>
               )}
             </div>
@@ -510,7 +590,7 @@ export default function DetailsParfum() {
                   className="boutonAdmin"
                   onClick={() => setModifier(!modifier)}
                 >
-                  {modifier ? "modifie les infos mtn...." : "Modifier ce parfum (admin)"}
+                  {modifier ? "Modifie les informations..." : "Modifier ce parfum (admin)"}
                 </button>
                 <button
                   className="boutonAdmin"
@@ -526,7 +606,7 @@ export default function DetailsParfum() {
 
         <div className="colonneResumeDetails">
           <aside className="resumeDetails">
-            <h2>Resumé 𖤐</h2>
+            <h2>Résumé</h2>
 
             <div className="ligneDetails">
               <span>Prix</span>
@@ -545,12 +625,6 @@ export default function DetailsParfum() {
               Ajouter au panier
             </button>
           </aside>
-
-          <div className="boxTexteResume">
-            <h3>
-              INSTALLEZ <span>Qibla++</span> SUR L'APPSTORE! 0kAyY?!
-            </h3>
-          </div>
         </div>
       </main>
 
@@ -606,7 +680,7 @@ export default function DetailsParfum() {
         {afficherFormulaireAvis && (
           <form className="formulaireCommentaire" onSubmit={envoyerCommentaire}>
             <div className="choixPhotoProfil">
-              <p>Choisis ta photo de profil!!</p>
+              <p>Choisis ta photo de profil</p>
 
               <div className="listePhotosProfil">
                 {PHOTOS_PROFIL.map((photo) => (
@@ -655,7 +729,7 @@ export default function DetailsParfum() {
         {chargementCommentaires ? (
           <p className="texteDiscret">Chargement des commentaires...</p>
         ) : commentaires.length === 0 ? (
-          <p className="texteDiscret">Aucun commentaire pour ce parfum.....</p>
+          <p className="texteDiscret">Aucun commentaire pour ce parfum.</p>
         ) : (
           <div className="listeCommentaires">
             {commentaires.map((commentaire) => (
@@ -671,7 +745,7 @@ export default function DetailsParfum() {
                       <p>
                         <strong>{commentaire.user?.name || "Utilisateur"}</strong>
                         {commentaireModifie(commentaire) && (
-                          <span>commentaire modifié</span>
+                          <span>Commentaire Modifié</span>
                         )}
                       </p>
                       <div className="etoilesCommentaire">

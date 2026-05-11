@@ -22,38 +22,35 @@ export default function SellSection({ parfums }) {
             <p className="statNom">Parfums Total</p>
             <h3 className="statValeur">{parfums.length}</h3>
           </div>
-
-          <div className="statItem">
-            <p className="statNom">Utilisateurs Total</p>
-            <h3 className="statValeur">Au moins 3....</h3>
-          </div>
-
-
-
-          <div className="statItem">
-            <p className="statNom">Moyenne des Prix</p>
-            <h3 className="statValeur">{moyenne}$</h3>
-          </div>
         </div>
       </div>
 
       <div className="sellContent">
-        <h2 className="sellTitre">
-          Vendre / ajouter des parfums sur Mistify !
-        </h2>
+        <img
+          className="sellLogoMistify"
+          src="/logo-mistify.png"
+          alt="Mistify"
+        />
 
-        <p className="sellSoustitre">
-          (essayer de melanger vos parfum avec de l'eau pour augmenter le prix de vente...)
-        </p>
+        <div className="sellMessage">
+          <h2 className="sellTitre">L'art de la fragrance, à votre portée.</h2>
 
-        <button
-          className="BTNvendre"
-          onClick={() => navigate("/vendreParfum")}
-        >
-          Vendre un parfum
-        </button>
+          <p className="sellSoustitre">
+            Mistify est votre destination exclusive pour découvrir, explorer et
+            acquérir les plus belles fragrances du monde. Que vous soyez
+            amateur ou connaisseur, notre collection soigneusement sélectionnée
+            saura éveiller vos sens et vous transporter dans un univers
+            olfactif unique.
+          </p>
+
+          <button
+            className="BTNvendre"
+            onClick={() => navigate("/parfums")}
+          >
+            Découvrir la collection
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-

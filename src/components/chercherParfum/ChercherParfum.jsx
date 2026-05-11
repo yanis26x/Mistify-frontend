@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ChercherParfum.css";
@@ -37,7 +37,7 @@ export default function ChercherParfum() {
       } else {
         setMessage(`${resultats.length} parfum trouvé!`);
       }
-    } catch (error) {
+    } catch {
       setMessage("Erreur lors de la recherche");
     }
   }
@@ -49,7 +49,7 @@ export default function ChercherParfum() {
       {showFilters && (
         <div className="filtresSection">
           <button className="hideFiltersBtn" onClick={() => setShowFilters(false)}>
-            🔻 Hide Filters
+            ðŸ”» Hide Filters
           </button>
           
           <div className="filtresContainer">
@@ -89,14 +89,14 @@ export default function ChercherParfum() {
             setYear("");
             setPrice("");
           }}>
-            ✕ Clear Filters
+            âœ• Clear Filters
           </button>
         </div>
       )}
 
       {!showFilters && (
         <button className="showFiltersBtn" onClick={() => setShowFilters(true)}>
-          🔼 Show Filters
+          ðŸ”¼ Show Filters
         </button>
       )}
 
@@ -122,7 +122,7 @@ export default function ChercherParfum() {
               src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
               alt={parfum.name}
               className="parfumImage"
-              onError={(e) => (e.target.src = "/bloodd.png")}
+              onError={(e) => (e.target.src = "/flacon-parfum.png")}
             />
 
             <div className="parfumContenu">
