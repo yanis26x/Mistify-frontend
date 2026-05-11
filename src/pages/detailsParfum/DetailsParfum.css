@@ -147,46 +147,57 @@
   overflow-wrap: anywhere;
 }
 
-.indiceEditionAdmin {
-  margin: -2px 0 10px;
+.detailsImageUrl {
+  grid-column: 1 / -1;
+}
+
+.formulaireEditionParfum {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.formulaireEditionParfum label {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.formulaireEditionParfum span {
   color: #8d7a7d;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.formulaireEditionParfum input,
+.formulaireEditionParfum textarea,
+.formulaireEditionParfum select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #ead8d2;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff7f4;
+  color: #4b3235;
+  font-size: 14px;
   font-weight: 700;
 }
 
-.valeurDetailAdmin {
-  display: block;
-  width: 100%;
-  border: none;
-  padding: 0;
-  background: transparent;
-  color: #4b3235;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 800;
-  text-align: left;
-  overflow-wrap: anywhere;
-  cursor: pointer;
+.formulaireEditionParfum textarea {
+  min-height: 96px;
+  resize: vertical;
 }
 
-.valeurDetailAdmin:hover {
-  color: #b51d3b;
-  text-decoration: underline;
-}
-
-.champDetailAdmin {
-  width: 100%;
-  border: 1px solid #ead8d2;
-  border-radius: 8px;
-  padding: 8px;
-  background: #fffdfb;
-  color: #4b3235;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.detailsImageUrl {
+.champLargeEdition,
+.actionsEditionParfum {
   grid-column: 1 / -1;
+}
+
+.actionsEditionParfum {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
 }
 
 .notesOlfactives strong {
@@ -508,7 +519,9 @@
 }
 
 @media (max-width: 700px) {
-  .detailsGrilleParfum {
+  .detailsGrilleParfum,
+  .formulaireEditionParfum,
+  .actionsEditionParfum {
     grid-template-columns: 1fr;
   }
 }

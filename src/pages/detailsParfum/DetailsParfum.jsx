@@ -47,8 +47,18 @@ export default function DetailsParfum() {
   const [noteModification, setNoteModification] = useState("5");
   const [envoiModificationCommentaire, setEnvoiModificationCommentaire] = useState(false);
 
-  const [champEnEdition, setChampEnEdition] = useState("");
-  const [valeurEnEdition, setValeurEnEdition] = useState("");
+  const [formulaireEditionParfum, setFormulaireEditionParfum] = useState({
+    name: "",
+    brand: "",
+    description: "",
+    family: "",
+    volume: "",
+    price: "",
+    gender: "",
+    year: "",
+    disponibility: "false",
+    imageUrl: "",
+  });
   const [envoiEditionDetail, setEnvoiEditionDetail] = useState(false);
   const [suppression, setSuppression] = useState(false);
 
@@ -104,6 +114,23 @@ export default function DetailsParfum() {
       window.removeEventListener("auth-change", verifierUtilisateur);
     };
   }, [chargerParfum, chargerCommentaires, verifierUtilisateur]);
+
+  useEffect(() => {
+    if (!parfum) return;
+
+    setFormulaireEditionParfum({
+      name: parfum.name || "",
+      brand: parfum.brand || "",
+      description: parfum.description || "",
+      family: parfum.family || "",
+      volume: parfum.volume === null || parfum.volume === undefined ? "" : String(parfum.volume),
+      price: parfum.price === null || parfum.price === undefined ? "" : String(parfum.price),
+      gender: parfum.gender || "",
+      year: parfum.year === null || parfum.year === undefined ? "" : String(parfum.year),
+      disponibility: parfum.disponibility ? "true" : "false",
+      imageUrl: parfum.imageUrl || "",
+    });
+  }, [parfum]);
 
   async function ajouterAuPanier() {
     if (!utilisateur) {
@@ -286,15 +313,6 @@ export default function DetailsParfum() {
     }
   }
 
-  function ouvrirEditionDetail(champ, valeur) {
-    if (!utilisateur?.admin) return;
-
-    setChampEnEdition(champ);
-    setValeurEnEdition(
-      valeur === null || valeur === undefined ? "" : String(valeur)
-    );
-  }
-
   function convertirValeurDetail(champ, valeur) {
     const valeurNettoyee = valeur.trim();
 
@@ -311,18 +329,32 @@ export default function DetailsParfum() {
     return valeurNettoyee;
   }
 
-  async function enregistrerEditionDetail(champ) {
-    if (!champ || envoiEditionDetail) return;
+  function modifierChampEditionParfum(champ, valeur) {
+    setFormulaireEditionParfum((formulaireActuel) => ({
+      ...formulaireActuel,
+      [champ]: valeur,
+    }));
+  }
+
+  async function enregistrerEditionDetail(e) {
+    e.preventDefault();
+    if (envoiEditionDetail) return;
 
     try {
       setEnvoiEditionDetail(true);
-      const nouvelleValeur = convertirValeurDetail(champ, valeurEnEdition);
+      const donneesParfum = Object.entries(formulaireEditionParfum).reduce(
+        (donnees, [champ, valeur]) => ({
+          ...donnees,
+          [champ]: convertirValeurDetail(champ, valeur),
+        }),
+        {}
+      );
 
       const reponse = await fetch(`${API_URL}/parfums/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ [champ]: nouvelleValeur }),
+        body: JSON.stringify(donneesParfum),
       });
 
       if (!reponse.ok) {
@@ -338,19 +370,15 @@ export default function DetailsParfum() {
       }
 
       const data = await reponse.json();
-      setParfum(data);
-      setChampEnEdition("");
-      setValeurEnEdition("");
+      setParfum((parfumActuel) => ({
+        ...parfumActuel,
+        ...data,
+      }));
     } catch {
       alert("erreur....");
     } finally {
       setEnvoiEditionDetail(false);
     }
-  }
-
-  function annulerEditionDetail() {
-    setChampEnEdition("");
-    setValeurEnEdition("");
   }
 
   async function supprimerParfum() {
@@ -419,46 +447,6 @@ export default function DetailsParfum() {
     }
 
     return valeur;
-  }
-
-  function afficherDetailAdmin(champ, valeur, texteAffiche) {
-    const estEnEdition = champEnEdition === champ;
-
-    if (estEnEdition) {
-      return (
-        <input
-          className="champDetailAdmin"
-          value={valeurEnEdition}
-          autoFocus
-          disabled={envoiEditionDetail}
-          onChange={(e) => setValeurEnEdition(e.target.value)}
-          onBlur={() => enregistrerEditionDetail(champ)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.currentTarget.blur();
-            }
-
-            if (e.key === "Escape") {
-              annulerEditionDetail();
-            }
-          }}
-        />
-      );
-    }
-
-    if (!utilisateur?.admin) {
-      return <strong>{texteAffiche}</strong>;
-    }
-
-    return (
-      <button
-        className="valeurDetailAdmin"
-        type="button"
-        onClick={() => ouvrirEditionDetail(champ, valeur)}
-      >
-        {texteAffiche}
-      </button>
-    );
   }
 
   function donnerAvis() {
@@ -612,81 +600,153 @@ export default function DetailsParfum() {
           <section className="detailsCompletsParfum">
             <h2>Détails du parfum</h2>
 
-            {utilisateur?.admin && (
-              <p className="indiceEditionAdmin">
-                Clique sur une valeur pour la modifier.(admin)
-              </p>
+            {utilisateur?.admin ? (
+              <form className="formulaireEditionParfum" onSubmit={enregistrerEditionDetail}>
+                <label>
+                  <span>Nom</span>
+                  <input
+                    value={formulaireEditionParfum.name}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("name", e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  <span>Marque</span>
+                  <input
+                    value={formulaireEditionParfum.brand}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("brand", e.target.value)}
+                  />
+                </label>
+
+                <label className="champLargeEdition">
+                  <span>Description</span>
+                  <textarea
+                    value={formulaireEditionParfum.description}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("description", e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  <span>Famille</span>
+                  <input
+                    value={formulaireEditionParfum.family}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("family", e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  <span>Volume</span>
+                  <input
+                    type="number"
+                    value={formulaireEditionParfum.volume}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("volume", e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  <span>Prix</span>
+                  <input
+                    type="number"
+                    value={formulaireEditionParfum.price}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("price", e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  <span>Genre</span>
+                  <input
+                    value={formulaireEditionParfum.gender}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("gender", e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  <span>Année</span>
+                  <input
+                    type="number"
+                    value={formulaireEditionParfum.year}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("year", e.target.value)}
+                  />
+                </label>
+
+                <label>
+                  <span>Disponible</span>
+                  <select
+                    value={formulaireEditionParfum.disponibility}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("disponibility", e.target.value)}
+                  >
+                    <option value="true">Oui</option>
+                    <option value="false">Non</option>
+                  </select>
+                </label>
+
+                <label className="champLargeEdition">
+                  <span>Image URL</span>
+                  <input
+                    value={formulaireEditionParfum.imageUrl}
+                    disabled={envoiEditionDetail}
+                    onChange={(e) => modifierChampEditionParfum("imageUrl", e.target.value)}
+                  />
+                </label>
+
+                <div className="actionsEditionParfum">
+                  <button className="boutonAdmin" disabled={envoiEditionDetail}>
+                    {envoiEditionDetail ? "Enregistrement..." : "Enregistrer"}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className="detailsGrilleParfum">
+                <div>
+                  <span>ID</span>
+                  <strong>{afficherValeur(parfum.id)}</strong>
+                </div>
+
+                <div>
+                  <span>Famille</span>
+                  <strong>{afficherValeur(parfum.family)}</strong>
+                </div>
+
+                <div>
+                  <span>Volume</span>
+                  <strong>{parfum.volume ? `${parfum.volume} ml` : "Non renseigné"}</strong>
+                </div>
+
+                <div>
+                  <span>Prix</span>
+                  <strong>{parfum.price ? `${parfum.price}$` : "Non renseigné"}</strong>
+                </div>
+
+                <div>
+                  <span>Genre</span>
+                  <strong>{afficherValeur(parfum.gender)}</strong>
+                </div>
+
+                <div>
+                  <span>Année</span>
+                  <strong>{afficherValeur(parfum.year)}</strong>
+                </div>
+
+                <div>
+                  <span>Disponible</span>
+                  <strong>{afficherValeur(parfum.disponibility)}</strong>
+                </div>
+
+                <div className="detailsImageUrl">
+                  <span>Image URL</span>
+                  <strong>{afficherValeur(parfum.imageUrl)}</strong>
+                </div>
+              </div>
             )}
-
-            <div className="detailsGrilleParfum">
-              <div>
-                <span>ID</span>
-                <strong>{afficherValeur(parfum.id)}</strong>
-              </div>
-
-              <div>
-                <span>Famille</span>
-                {afficherDetailAdmin(
-                  "family",
-                  parfum.family,
-                  afficherValeur(parfum.family)
-                )}
-              </div>
-
-              <div>
-                <span>Volume</span>
-                {afficherDetailAdmin(
-                  "volume",
-                  parfum.volume,
-                  parfum.volume ? `${parfum.volume} ml` : "Non renseigné"
-                )}
-              </div>
-
-              <div>
-                <span>Prix</span>
-                {afficherDetailAdmin(
-                  "price",
-                  parfum.price,
-                  parfum.price ? `${parfum.price}$` : "Non renseigné"
-                )}
-              </div>
-
-              <div>
-                <span>Genre</span>
-                {afficherDetailAdmin(
-                  "gender",
-                  parfum.gender,
-                  afficherValeur(parfum.gender)
-                )}
-              </div>
-
-              <div>
-                <span>Année</span>
-                {afficherDetailAdmin(
-                  "year",
-                  parfum.year,
-                  afficherValeur(parfum.year)
-                )}
-              </div>
-
-              <div>
-                <span>Disponible</span>
-                {afficherDetailAdmin(
-                  "disponibility",
-                  parfum.disponibility,
-                  afficherValeur(parfum.disponibility)
-                )}
-              </div>
-
-              <div className="detailsImageUrl">
-                <span>Image URL</span>
-                {afficherDetailAdmin(
-                  "imageUrl",
-                  parfum.imageUrl,
-                  afficherValeur(parfum.imageUrl)
-                )}
-              </div>
-            </div>
           </section>
         </div>
       </main>
