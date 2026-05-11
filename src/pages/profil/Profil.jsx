@@ -1,25 +1,69 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Profil.css";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import handleSignout from "../../pages/account/Compte"
 
 export default function Profil() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [user, setUser] = useState(location.state?.user || null);
+  const [loading, setLoading] = useState(!location.state?.user);
+  const [modify, setModify] = useState(false);
+  const [message, setMessage] = useState("");
+  const wishlist = () => navigate("/favoris");
+  const collection = () => navigate("/parfums");
 
-  const name = "Jane Doe"
-  const member = "Membre Privilège"
-  const email = "janedoe@gmail.com"
-  const address = "7000 Rue Marie-Victorin, Montreal Quebec H1G 2J6"
-  function wishlist() {
-    navigate("/favoris");
+  useEffect(() => {
+  
+  if(user) {
+    setLoading(false);
+    return;
   }
 
-  function collection() {
-    navigate("/parfums")
+  async function checkUser() {
+    try {
+      const res = await axios.get("http://localhost:3000/users/whoami", {
+        withCredentials: true,
+      });
+      setUser(res.data);
+    } catch (err){
+      console.error("Pas authentifier", err);
+      navigate("/compte");
+    } finally {
+      setLoading(false);
+    }
+  }
+  checkUser();
+}, [user, navigate]);
+
+  if (loading) {
+    return <div className="loading"> Chargement... </div>;
   }
 
+  if (!user) return null;
+
+  const {name, email, address} = user;
+  
+  const member = "Membre Privilège";
+  
+  async function handleSignout() {
+
+    try {
+      await axios.post(
+        `${API}/signout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      setUser(null);
+      setUsers([]);
+    } catch (err) {
+    }
+  }
 
 return (
   <div className="profil-page">
@@ -42,15 +86,13 @@ return (
 
         <div className="sidebar-links">
           <button className="link-active">Mon Compte</button>
-          <button onClick={wishlist}>Ma wishlist</button>
+          <button onClick={wishlist}>Liste de favoris</button>
           <button onClick={handleSignout} className="logout-btn">Déconnexion</button>
         </div>
       </aside>
 
      
       <div className="right-section">
-        
-       
         <section className="card-white espacePerso">
           <div className="card-top-bar">
             <div>

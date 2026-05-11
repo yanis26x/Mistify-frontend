@@ -30,7 +30,7 @@ export default function Home() {
   useEffect(() => {
     async function checkUser() {
       try {
-        const res = await axios.get("http://localhost:3000/auth/whoami", {
+        const res = await axios.get("http://localhost:3000/users/whoami", {
           withCredentials: true,
         });
         setUser(res.data);

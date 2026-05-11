@@ -5,7 +5,7 @@ import Logged from "./Logged";
 import CreateAcc from "./CreateAcc";
 import "./Compte.css";
 
-const API = "http://localhost:3000/auth";
+const API = "http://localhost:3000/users";
 
 export default function Compte() {
   const navigate = useNavigate();
@@ -14,7 +14,6 @@ export default function Compte() {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  // const PROFIL = navigate("/profil")
 
   useEffect(() => {
     checkWhoAmI();
@@ -54,7 +53,7 @@ export default function Compte() {
 
       setUser(res.data);
       setMessage("Compte créé avec succès.");
-      // PROFIL
+      navigate("/profil")
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur lors du signup.");
     }
@@ -77,7 +76,7 @@ export default function Compte() {
 
       setUser(res.data);
       setMessage("Connexion réussie.");
-      // PROFIL
+      navigate("/profil")
     } catch (err) {
       setMessage(err?.response?.data?.message || "Erreur lors du signin.");
     }

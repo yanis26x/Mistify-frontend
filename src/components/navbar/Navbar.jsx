@@ -91,21 +91,19 @@ export default function Navbar({
   return (
     <header className="navbarMistify">
       <Link to="/" className="logo">
-        <img src="/SpotifyLogoRed.webp" alt="" className="logoImage" />
+        {/* <img src="/SpotifyLogoRed.webp" alt="" className="logoImage" /> */}
         Mistify
       </Link>
 
       <nav className="nav-links">
         <Link to="/" className="nav-link">ACCUEIL</Link>
         <Link to="/parfums" className="nav-link">PARFUMS</Link>
-        <Link to="/ajout-parfum" className="nav-link"> DEMANDE PARFUM </Link>
-        <Link to="/contact" className="nav-link">CONTACT</Link>
       </nav>
       <NavbarRecherche />
 
       <div className="navbarDroiteActuelle">
         <nav className="nav-links">
-          <Link to="/parfums" className="nav-link">PARFUMS</Link>
+          <Link to="/ajout-parfum" className="nav-link"> DEMANDE PARFUM </Link>
           <Link to="/contact" className="nav-link">CONTACT</Link>
         </nav>
 

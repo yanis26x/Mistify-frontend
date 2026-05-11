@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Logged.css";
+import Profil from "../profil/Profil";
 
 export default function Logged({
   user,
@@ -87,13 +88,15 @@ export default function Logged({
             Supprimer
           </button>
         </div>
-
+        
         <pre className="logged-json-box">
           {users.length > 0
             ? JSON.stringify(users, null, 2)
             : "Aucun user chargé"}
         </pre>
+        
       </div>
+      
     </>
   );
 }

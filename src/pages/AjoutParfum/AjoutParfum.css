@@ -114,17 +114,17 @@ body {
     margin: 0;
 }
 
-/* 5. THE BUTTON */
-button.submit-btn {
-    background-color: #60142F;
-    color: #FFF;
-    width: 317px;
-    height: 56px;
-    border-radius: 16px;
-    border: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    margin-top: 40px;
-    cursor: pointer;
+button {
+  width: 50%;
+  border-radius: 10px;
+  padding: 14px;
+  background-color: #5c162e;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 150px;
 }

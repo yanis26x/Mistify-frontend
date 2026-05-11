@@ -30,8 +30,9 @@
     width: 280px;
     background: #FFF;
     border-radius: 12px;
-    padding: 40px 24px;
+    padding: 40px 0;
     text-align: center;
+    overflow: hidden;
 }
 
 .menuProfil img {
@@ -55,10 +56,16 @@
     margin: 4px 0 30px;
 }
 
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+}
 .sidebar-links button {
     width: 100%;
     text-align: left;
-    padding: 12px 20px;
+    padding: 15px 25px;
     border: none;
     background: transparent;
     font-family: "Jost", sans-serif;
@@ -67,7 +74,9 @@
     letter-spacing: 1px;
     color: #60142F;
     cursor: pointer;
-    border-radius: 8px;
+    /* border-radius: 8px; */
+    box-sizing: border-box;
+    transition: all 0.2s ease;
 }
 
 .link-active {
@@ -121,6 +130,19 @@
     border-bottom: 1px solid #F0DBD4;
     padding-bottom: 10px;
     margin: 0;
+}
+.btn-outline {
+  width: 20%;
+  padding: 14px;
+  border-radius: 15px;
+  background-color: #5c162e;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 /* Le conteneur de la commande */
