@@ -103,36 +103,39 @@
 }
 
 .detailsCompletsParfum {
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid #f0e2df;
+  margin-top: 18px;
+  padding: 18px;
+  background: #fffdfb;
+  border: 1px solid #f0e2df;
+  border-radius: 14px;
+  color: #4b3235;
 }
 
 .detailsCompletsParfum h2 {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   color: #4b3235;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 .detailsGrilleParfum {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .detailsGrilleParfum div {
   min-width: 0;
-  padding: 10px;
+  padding: 8px;
   border-radius: 8px;
   background: #fff7f4;
 }
 
 .detailsGrilleParfum span {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   color: #8d7a7d;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -142,6 +145,44 @@
   color: #4b3235;
   font-size: 14px;
   overflow-wrap: anywhere;
+}
+
+.indiceEditionAdmin {
+  margin: -2px 0 10px;
+  color: #8d7a7d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.valeurDetailAdmin {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: #4b3235;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.valeurDetailAdmin:hover {
+  color: #b51d3b;
+  text-decoration: underline;
+}
+
+.champDetailAdmin {
+  width: 100%;
+  border: 1px solid #ead8d2;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fffdfb;
+  color: #4b3235;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .detailsImageUrl {
@@ -219,13 +260,6 @@
   gap: 12px;
 }
 
-.boxTexteResume {
-  margin-top: 18px;
-  padding: 14px;
-  border-radius: 10px;
-  background: #000000;
-  color: #ffffff;
-}
 
 .blocDetails {
   width: calc(100% - 48px);

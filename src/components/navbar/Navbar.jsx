@@ -47,7 +47,7 @@ import "./Navbar.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
+import { FiUser, FiHeart, FiShoppingCart, FiMail } from "react-icons/fi";
 import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
 import DialoguePersona from "../dialoguePersona/DialoguePersona";
 
@@ -224,10 +224,10 @@ export default function Navbar({
 
           <Link
             to="/boite-vocale"
-            className="messages-navbar"
+            className="icon-button messages-navbar"
             title="Boite vocale"
           >
-            MESSAGES
+            <FiMail />
             {messagesNonLus > 0 && (
               <span className="notifPanier">{messagesNonLus}</span>
             )}

@@ -47,13 +47,9 @@ export default function DetailsParfum() {
   const [noteModification, setNoteModification] = useState("5");
   const [envoiModificationCommentaire, setEnvoiModificationCommentaire] = useState(false);
 
-  const [modifier, setModifier] = useState(false);
-  const [nom, setNom] = useState("");
-  const [marque, setMarque] = useState("");
-  const [prix, setPrix] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [envoiModification, setEnvoiModification] = useState(false);
+  const [champEnEdition, setChampEnEdition] = useState("");
+  const [valeurEnEdition, setValeurEnEdition] = useState("");
+  const [envoiEditionDetail, setEnvoiEditionDetail] = useState(false);
   const [suppression, setSuppression] = useState(false);
 
   const chargerParfum = useCallback(async () => {
@@ -65,11 +61,6 @@ export default function DetailsParfum() {
       const data = await reponse.json();
 
       setParfum(data);
-      setNom(data.name || "");
-      setMarque(data.brand || "");
-      setPrix(data.price || "");
-      setImageUrl(data.imageUrl || "");
-      setDescription(data.description || "");
     } catch {
       setParfum(null);
     } finally {
@@ -295,44 +286,43 @@ export default function DetailsParfum() {
     }
   }
 
-  async function modifierParfum(e) {
-    e.preventDefault();
+  function ouvrirEditionDetail(champ, valeur) {
+    if (!utilisateur?.admin) return;
+
+    setChampEnEdition(champ);
+    setValeurEnEdition(
+      valeur === null || valeur === undefined ? "" : String(valeur)
+    );
+  }
+
+  function convertirValeurDetail(champ, valeur) {
+    const valeurNettoyee = valeur.trim();
+
+    if (["price", "volume", "year"].includes(champ)) {
+      return valeurNettoyee === "" ? undefined : Number(valeurNettoyee);
+    }
+
+    if (champ === "disponibility") {
+      return ["oui", "true", "1", "disponible"].includes(
+        valeurNettoyee.toLowerCase()
+      );
+    }
+
+    return valeurNettoyee;
+  }
+
+  async function enregistrerEditionDetail(champ) {
+    if (!champ || envoiEditionDetail) return;
 
     try {
-      setEnvoiModification(true);
-
-      const parfumModifie = {};
-
-      if (nom.trim() !== "" && nom !== parfum.name) {
-        parfumModifie.name = nom.trim();
-      }
-
-      if (marque.trim() !== "" && marque !== parfum.brand) {
-        parfumModifie.brand = marque.trim();
-      }
-
-      if (prix !== "" && Number(prix) !== Number(parfum.price)) {
-        parfumModifie.price = Number(prix);
-      }
-
-      if (imageUrl.trim() !== "" && imageUrl !== parfum.imageUrl) {
-        parfumModifie.imageUrl = imageUrl.trim();
-      }
-
-      if (description !== parfum.description) {
-        parfumModifie.description = description;
-      }
-
-      if (Object.keys(parfumModifie).length === 0) {
-        alert("tes serieux!? ta rien changer!");
-        return;
-      }
+      setEnvoiEditionDetail(true);
+      const nouvelleValeur = convertirValeurDetail(champ, valeurEnEdition);
 
       const reponse = await fetch(`${API_URL}/parfums/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(parfumModifie),
+        body: JSON.stringify({ [champ]: nouvelleValeur }),
       });
 
       if (!reponse.ok) {
@@ -349,12 +339,18 @@ export default function DetailsParfum() {
 
       const data = await reponse.json();
       setParfum(data);
-      setModifier(false);
+      setChampEnEdition("");
+      setValeurEnEdition("");
     } catch {
       alert("erreur....");
     } finally {
-      setEnvoiModification(false);
+      setEnvoiEditionDetail(false);
     }
+  }
+
+  function annulerEditionDetail() {
+    setChampEnEdition("");
+    setValeurEnEdition("");
   }
 
   async function supprimerParfum() {
@@ -423,6 +419,46 @@ export default function DetailsParfum() {
     }
 
     return valeur;
+  }
+
+  function afficherDetailAdmin(champ, valeur, texteAffiche) {
+    const estEnEdition = champEnEdition === champ;
+
+    if (estEnEdition) {
+      return (
+        <input
+          className="champDetailAdmin"
+          value={valeurEnEdition}
+          autoFocus
+          disabled={envoiEditionDetail}
+          onChange={(e) => setValeurEnEdition(e.target.value)}
+          onBlur={() => enregistrerEditionDetail(champ)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.currentTarget.blur();
+            }
+
+            if (e.key === "Escape") {
+              annulerEditionDetail();
+            }
+          }}
+        />
+      );
+    }
+
+    if (!utilisateur?.admin) {
+      return <strong>{texteAffiche}</strong>;
+    }
+
+    return (
+      <button
+        className="valeurDetailAdmin"
+        type="button"
+        onClick={() => ouvrirEditionDetail(champ, valeur)}
+      >
+        {texteAffiche}
+      </button>
+    );
   }
 
   function donnerAvis() {
@@ -516,67 +552,6 @@ export default function DetailsParfum() {
 
             <p>{parfum.description || "Aucune description"}</p>
 
-            <div className="detailsCompletsParfum">
-              <h2>Détails du parfum</h2>
-
-              <div className="detailsGrilleParfum">
-                <div>
-                  <span>ID</span>
-                  <strong>{afficherValeur(parfum.id)}</strong>
-                </div>
-
-                <div>
-                  <span>Nom</span>
-                  <strong>{afficherValeur(parfum.name)}</strong>
-                </div>
-
-                <div>
-                  <span>Marque</span>
-                  <strong>{afficherValeur(parfum.brand)}</strong>
-                </div>
-
-                <div>
-                  <span>Famille</span>
-                  <strong>{afficherValeur(parfum.family)}</strong>
-                </div>
-
-                <div>
-                  <span>Note</span>
-                  <strong>{parfum.rating ? `${parfum.rating} / 5` : "Non renseignée"}</strong>
-                </div>
-
-                <div>
-                  <span>Volume</span>
-                  <strong>{parfum.volume ? `${parfum.volume} ml` : "Non renseigné"}</strong>
-                </div>
-
-                <div>
-                  <span>Prix</span>
-                  <strong>{parfum.price ? `${parfum.price}$` : "Non renseigné"}</strong>
-                </div>
-
-                <div>
-                  <span>Genre</span>
-                  <strong>{afficherValeur(parfum.gender)}</strong>
-                </div>
-
-                <div>
-                  <span>Année</span>
-                  <strong>{afficherValeur(parfum.year)}</strong>
-                </div>
-
-                <div>
-                  <span>Disponible</span>
-                  <strong>{afficherValeur(parfum.disponibility)}</strong>
-                </div>
-
-                <div className="detailsImageUrl">
-                  <span>Image URL</span>
-                  <strong>{afficherValeur(parfum.imageUrl)}</strong>
-                </div>
-              </div>
-            </div>
-
             <div className="notesOlfactives">
               {afficherNotesParfum(parfum.topNotes) && (
                 <p>
@@ -600,12 +575,6 @@ export default function DetailsParfum() {
 
             {utilisateur?.admin && (
               <div className="actionsAdmin">
-                <button
-                  className="boutonAdmin"
-                  onClick={() => setModifier(!modifier)}
-                >
-                  {modifier ? "modifie les infos mtn...." : "Modifier ce parfum (admin)"}
-                </button>
                 <button
                   className="boutonAdmin"
                   onClick={supprimerParfum}
@@ -640,47 +609,87 @@ export default function DetailsParfum() {
             </button>
           </aside>
 
-          <div className="boxTexteResume">
-            <h3>
-              INSTALLEZ <span>Qibla++</span> SUR L'APPSTORE! 0kAyY?!
-            </h3>
-          </div>
+          <section className="detailsCompletsParfum">
+            <h2>Détails du parfum</h2>
+
+            {utilisateur?.admin && (
+              <p className="indiceEditionAdmin">
+                Clique sur une valeur pour la modifier.(admin)
+              </p>
+            )}
+
+            <div className="detailsGrilleParfum">
+              <div>
+                <span>ID</span>
+                <strong>{afficherValeur(parfum.id)}</strong>
+              </div>
+
+              <div>
+                <span>Famille</span>
+                {afficherDetailAdmin(
+                  "family",
+                  parfum.family,
+                  afficherValeur(parfum.family)
+                )}
+              </div>
+
+              <div>
+                <span>Volume</span>
+                {afficherDetailAdmin(
+                  "volume",
+                  parfum.volume,
+                  parfum.volume ? `${parfum.volume} ml` : "Non renseigné"
+                )}
+              </div>
+
+              <div>
+                <span>Prix</span>
+                {afficherDetailAdmin(
+                  "price",
+                  parfum.price,
+                  parfum.price ? `${parfum.price}$` : "Non renseigné"
+                )}
+              </div>
+
+              <div>
+                <span>Genre</span>
+                {afficherDetailAdmin(
+                  "gender",
+                  parfum.gender,
+                  afficherValeur(parfum.gender)
+                )}
+              </div>
+
+              <div>
+                <span>Année</span>
+                {afficherDetailAdmin(
+                  "year",
+                  parfum.year,
+                  afficherValeur(parfum.year)
+                )}
+              </div>
+
+              <div>
+                <span>Disponible</span>
+                {afficherDetailAdmin(
+                  "disponibility",
+                  parfum.disponibility,
+                  afficherValeur(parfum.disponibility)
+                )}
+              </div>
+
+              <div className="detailsImageUrl">
+                <span>Image URL</span>
+                {afficherDetailAdmin(
+                  "imageUrl",
+                  parfum.imageUrl,
+                  afficherValeur(parfum.imageUrl)
+                )}
+              </div>
+            </div>
+          </section>
         </div>
       </main>
-
-      {utilisateur?.admin && modifier && (
-        <section className="blocDetails">
-          <h2>Modifier le parfum</h2>
-
-          <form className="formulaireDetails" onSubmit={modifierParfum}>
-            <input value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Nom" />
-            <input
-              value={marque}
-              onChange={(e) => setMarque(e.target.value)}
-              placeholder="Marque"
-            />
-            <input
-              type="number"
-              value={prix}
-              onChange={(e) => setPrix(e.target.value)}
-              placeholder="Prix"
-            />
-            <input
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Image URL"
-            />
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description"
-            />
-            <button className="boutonPrincipal" disabled={envoiModification}>
-              {envoiModification ? "Enregistrement..." : "Enregistrer"}
-            </button>
-          </form>
-        </section>
-      )}
 
       <section className="blocDetails avisClients">
         <div className="enteteAvis">
