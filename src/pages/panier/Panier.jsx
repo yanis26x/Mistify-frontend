@@ -139,7 +139,7 @@ export default function Panier() {
       </div>
 
       {panier.length === 0 ? (
-        <p className="panierVide">Ton panier est vide! remplie le !</p>
+        <p className="panierVide">Ton panier est vide. </p>
       ) : (
         <div className="layoutPanier">
           <div className="gauchePanier">

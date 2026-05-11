@@ -69,6 +69,7 @@ body {
 }
 
 .left-side textarea {
+    max-height: 120px;
     min-height: 120px;
     resize: vertical;
     font-family: inherit;
@@ -158,6 +159,7 @@ button.submit-btn {
     font-weight: 600;
     margin-top: 40px;
     cursor: pointer;
+    margin-left: 24%;
 }
 
 button.submit-btn:disabled {
