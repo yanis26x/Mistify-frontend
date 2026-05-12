@@ -23,18 +23,10 @@ export default function BoiteVocale() {
         });
         setUser(reponseUtilisateur.data);
 
-<<<<<<< HEAD
         const messagesRes = await axios.get(`${API_URL}/notifications/mes-notifications`, {
           withCredentials: true,
         });
         setMessages(messagesRes.data);
-=======
-        const reponseMessages = await axios.get(
-          `${API_URL}/notifications/user-notifications`,
-          { withCredentials: true }
-        );
-        setMessages(reponseMessages.data);
->>>>>>> be14bbd627b457727c203252fda9d1e5f5f6d701
       } catch (err) {
         setErreur(
           err?.response?.data?.message ||
