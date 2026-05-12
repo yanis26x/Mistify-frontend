@@ -1,4 +1,4 @@
-# Mistify Frontend 𖤐
+# Mistify Frontend
 
 [ @yanis26x ](https://github.com/yanis26x)
 [ @el24s ](https://github.com/el24s)
