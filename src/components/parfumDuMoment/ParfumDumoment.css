@@ -9,14 +9,6 @@
 }
 
 
-.momentTitre {
-  margin: 0;
-  font-size: 64px;
-  color: #ef1818;
-  font-family: 'Permanent Marker', cursive;
-}
-
-
 .momentContent {
   width: min(1120px, 100%);
   display: grid;
@@ -74,13 +66,6 @@
 .momentDescription {
   margin: 6px 0;
   font-size: 16px;
-}
-
-.momentPrix {
-  margin-top: 14px;
-  font-size: 26px;
-  font-weight: 900;
-  color: rgb(255, 0, 0);
 }
 
 .momentAutreParfum {
@@ -174,14 +159,6 @@
 
 
 @media (max-width: 900px) {
-  .momentTitre {
-    font-size: 48px;
-  }
-
-  .momentSousTitre {
-    font-size: 16px;
-  }
-
   .momentContent {
     grid-template-columns: 1fr;
   }
@@ -204,10 +181,6 @@
 @media (max-width: 520px) {
   .momentSection {
     padding: 35px 14px 25px;
-  }
-
-  .momentTitre {
-    font-size: 40px;
   }
 
   .momentCarte {

@@ -13,7 +13,7 @@ const commentaires = [
     texte: "RENDEZ MOI MON ARGENT !!",
   },
   {
-    nom: "Ryad",
+    nom: "Alucard",
     photo: "/vampp.jpeg",
     texte: "ca fait 9 mois que j'attends mon colis.....",
   },

@@ -38,20 +38,11 @@ export default function Home() {
     >
       <Navbar
         user={user}
-        onGoToAuth={() => navigate("/auth")}
-        onGoToCommentaires={() => navigate("/Commentaire")}
-        // onChangeTheme={changeBackground}
-        // best way i think would be with context
-        onGoToProfil={() => navigate("/profil", {state: {user}})}
-        onGoToVendre={() => navigate("/vendreParfum")}
-        // nextBackground={backgrounds[(bgIndex + 1) % backgrounds.length]}
         onGoToCompte={() => navigate("/compte")}
       />
 
 
       <ParfumDuMoment />
-
-      {/* <ChercherParfum /> */}
 
       <h2 className="titrePkConfiance">𖤐POURQUOI NOUS FAIRE CONFIANCE ?!</h2>
 

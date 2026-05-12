@@ -110,10 +110,6 @@
 }
 
 @media (max-width: 760px) {
-  .messagePersoPub {
-    grid-template-columns: 1fr;
-  }
-
   .messagePersoLogo {
     width: 120px;
     height: 120px;

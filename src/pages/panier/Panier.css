@@ -16,24 +16,6 @@
   box-shadow: none;
 }
 
-.pagePanier .userText {
-  color: #9a1640;
-}
-
-.pagePanier .navBtn {
-  color: #bd6378;
-  border: 1px solid #ead8d2;
-  background: #fffdfb;
-}
-
-.pagePanier .navBtn:hover {
-  transform: scale(1.05);
-}
-
-.pagePanier .panierText {
-  color: white;
-}
-
 .hautPanier {
   width: calc(100% - 48px);
   max-width: 1200px;

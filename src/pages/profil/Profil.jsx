@@ -11,14 +11,10 @@ export default function Profil() {
     navigate("/compte");
   }
 return (
-  <div className="profil-page">
-    <Navbar
-            onGoToAuth={() => navigate("/auth")}
-            onGoToCommentaires={() => navigate("/Commentaire")}
-            onGoToProfil={() => navigate("/profil")}
-            onGoToVendre={() => navigate("/vendreParfum")}
-            onGoToCompte={() => navigate("/compte")}
-          />
+	  <div className="profil-page">
+	    <Navbar
+	            onGoToCompte={() => navigate("/compte")}
+	          />
 
     <div className="container-profil">
       

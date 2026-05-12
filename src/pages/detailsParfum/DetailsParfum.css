@@ -279,7 +279,6 @@
   padding: 26px;
 }
 
-.formulaireDetails,
 .formulaireCommentaire {
   display: grid;
   gap: 14px;
@@ -293,8 +292,6 @@
   background: #fffdfb;
 }
 
-.formulaireDetails input,
-.formulaireDetails textarea,
 .formulaireCommentaire textarea,
 .basCommentaire select {
   width: 100%;
@@ -306,7 +303,6 @@
   font-size: 15px;
 }
 
-.formulaireDetails textarea,
 .formulaireCommentaire textarea {
   min-height: 120px;
   resize: vertical;

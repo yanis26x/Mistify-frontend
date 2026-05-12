@@ -38,7 +38,6 @@ USER mail:sora26@mail.com mdp 123
 ## Routes frontend
 
 - `/` : accueil
-- `/vendreParfum` : ajouter des parfums
 - `/compte` : connexion / inscription
 - `/parfum/:id` : détails d'un parfum
 - `/panier` : panier

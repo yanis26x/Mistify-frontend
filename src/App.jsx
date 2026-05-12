@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-// import VendreParfum from "./pages/vendre/VendreParfum";
 import Compte from "./pages/account/Compte";
 import DetailsParfum from "./pages/detailsParfum/DetailsParfum";
 import Panier from "./pages/panier/Panier";
@@ -18,7 +17,6 @@ export default function App() {
     
     <Routes>
       <Route path="/" element={<Home />} />
-      {/* <Route path="/vendreParfum" element={<VendreParfum />} /> */}
       <Route path="/compte" element={<Compte />} />
       <Route path="/parfum/:id" element={<DetailsParfum />} />
       <Route path="/ajout-parfum/" element={<AjoutParfum />} />
