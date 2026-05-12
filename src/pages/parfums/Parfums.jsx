@@ -15,24 +15,14 @@ export default function Parfums() {
 
   const [gender, setGender] = useState("All");
   const [prixMax, setPrixMax] = useState("");
-  const [anneeMin, setAnneeMin] = useState("");
+  const [famille, setFamille] = useState("All");
 
   useEffect(() => {
     async function fetchParfums() {
       setLoading(true);
       setError("");
       try {
-        let url = `${API}/parfums`;
-
-        if (gender !== "All") {
-          url = `${API}/parfums/filter/gender/${gender}`;
-        } else if (prixMax !== "") {
-          url = `${API}/parfums/filter/price/${prixMax}`;
-        } else if (anneeMin !== "") {
-          url = `${API}/parfums/filter/year/${anneeMin}`;
-        }
-
-        const res = await axios.get(url);
+        const res = await axios.get(`${API}/parfums`);
         setParfums(res.data);
       } catch {
         setError("Erreur lors du chargement des parfums");
@@ -41,12 +31,16 @@ export default function Parfums() {
       }
     }
     fetchParfums();
-  }, [gender, prixMax, anneeMin]);
+  }, []);
 
   const parfumsFiltres = parfums.filter((p) => {
+    const matchGender = gender !== "All" ? p.gender === gender : true;
     const matchPrix = prixMax !== "" ? p.price <= parseFloat(prixMax) : true;
-    const matchAnnee = anneeMin !== "" ? p.year >= parseInt(anneeMin) : true;
-    return matchPrix && matchAnnee;
+    const familleParfum = p.famille?.name ?? p.family ?? "";
+    const matchFamille = famille !== "All"
+      ? familleParfum.toLowerCase() === famille.toLowerCase()
+      : true;
+    return matchGender && matchPrix && matchFamille;
   });
 
   return (
@@ -80,20 +74,27 @@ export default function Parfums() {
             onChange={(e) => setPrixMax(e.target.value)}
           />
 
-          <input
-            className="parfumsInput"
-            type="number"
-            placeholder="Année min"
-            value={anneeMin}
-            onChange={(e) => setAnneeMin(e.target.value)}
-          />
+          <select
+            className="parfumsSelect"
+            value={famille}
+            onChange={(e) => setFamille(e.target.value)}
+          >
+            <option value="All">Toutes les familles</option>
+            <option value="hesperidee">Hespéridée</option>
+            <option value="florale">Florale</option>
+            <option value="fougere">Fougère</option>
+            <option value="chypree">Chyprée</option>
+            <option value="boisee">Boisée</option>
+            <option value="orientale">Orientale</option>
+            <option value="aromatique">Aromatique</option>
+          </select>
 
           <button
             className="parfumsResetBtn"
             onClick={() => {
               setGender("All");
               setPrixMax("");
-              setAnneeMin("");
+              setFamille("All");
             }}
           >
             Réinitialiser

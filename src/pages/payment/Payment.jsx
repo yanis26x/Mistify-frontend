@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Payment.css";
+import Footer from "../../components/footer/Footer";
 
 const API_URL = "http://localhost:3000";
 const LIVRAISON = 96;
@@ -53,14 +54,22 @@ export default function Payment() {
     }
 
     try {
-      await axios.delete(`${API_URL}/panier`, {
-        withCredentials: true,
-      });
+      const total = panier.reduce(
+        (acc, p) => acc + Number(p.price || 0) * Number(p.quantite || 0), 0
+      ) + LIVRAISON;
+
+      await axios.post(
+        `${API_URL}/commandes`,
+        { items: panier, total },
+        { withCredentials: true }
+      );
+
+      await axios.delete(`${API_URL}/panier`, { withCredentials: true });
       setPanier([]);
       window.dispatchEvent(new Event("panier-change"));
       setCommandeValidee(true);
     } catch {
-      setMessageErreur("Impossible de vider le panier apres le paiement.");
+      setMessageErreur("Impossible de finaliser la commande.");
     }
   }
 
@@ -91,7 +100,7 @@ export default function Payment() {
     <div className="pagePaiement">
       <form className="boitePaiement" onSubmit={handleSubmit}>
         <h1>Paiement</h1>
-        <p>Remplis tes informations pour recevoir ta commande.</p>
+        <p>Veuillez renseigner vos informations pour finaliser votre commande.</p>
 
         {panier.length === 0 ? (
           <div className="messagePaiement erreurPaiement">
@@ -192,6 +201,7 @@ export default function Payment() {
           Retour au panier
         </button>
       </form>
+      <Footer />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 import "./DetailsParfum.css";
 import { getImageUrl } from "../../utils/imageUrl";
 
@@ -317,7 +318,7 @@ export default function DetailsParfum() {
       }
 
       if (Object.keys(parfumModifie).length === 0) {
-        alert("tes serieux!? ta rien changer!");
+        alert("Aucune modification détectée.");
         return;
       }
 
@@ -423,7 +424,7 @@ export default function DetailsParfum() {
 
   function afficherEtoiles(note) {
     const noteNombre = Number(note) || 0;
-    return "â˜…".repeat(noteNombre) + "â˜†".repeat(5 - noteNombre);
+    return "★".repeat(noteNombre) + "☆".repeat(5 - noteNombre);
   }
 
   function afficherNotesParfum(notes) {
@@ -523,7 +524,7 @@ export default function DetailsParfum() {
 
                 <div>
                   <span>Famille</span>
-                  <strong>{afficherValeur(parfum.family)}</strong>
+                  <strong>{afficherValeur(parfum.famille?.name)}</strong>
                 </div>
 
                 <div>
@@ -626,11 +627,6 @@ export default function DetailsParfum() {
             </button>
           </aside>
 
-          <div className="boxTexteResume">
-            <h3>
-              INSTALLEZ <span>Qibla++</span> SUR L'APPSTORE! 0kAyY?!
-            </h3>
-          </div>
         </div>
       </main>
 
@@ -844,6 +840,7 @@ export default function DetailsParfum() {
           </div>
         )}
       </section>
+      <Footer />
     </div>
   );
 }

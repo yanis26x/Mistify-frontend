@@ -6,7 +6,7 @@ import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { FiSun, FiWind } from "react-icons/fi";
-import { LuFlower, LuTrees } from "react-icons/lu";
+import { LuFlower, LuTrees, LuLeaf } from "react-icons/lu";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { GiOakLeaf } from "react-icons/gi";
 
@@ -42,31 +42,38 @@ export default function Home() {
 
       <ParfumDuMoment />
 
+      <div className="familles-section">
+        <h2 className="familles-title">Les familles olfactives</h2>
       <div className="info-cards">
         <div className="info-card">
-          <div className="info-icon"><LuFlower size={20} /></div>
-          <p className="info-content">Floral</p>
-        </div>
-        <div className="info-card">
           <div className="info-icon"><FiSun size={20} /></div>
-          <p className="info-content">Hespéridé</p>
+          <p className="info-content">Hespéridée</p>
         </div>
         <div className="info-card">
-          <div className="info-icon"><FaEarthAmericas size={20} /></div>
-          <p className="info-content">Oriental</p>
-        </div>
-        <div className="info-card">
-          <div className="info-icon"><LuTrees size={20} /></div>
-          <p className="info-content">Boisé</p>
-        </div>
-        <div className="info-card">
-          <div className="info-icon"><GiOakLeaf size={20} /></div>
-          <p className="info-content">Chypre</p>
+          <div className="info-icon"><LuFlower size={20} /></div>
+          <p className="info-content">Florale</p>
         </div>
         <div className="info-card">
           <div className="info-icon"><FiWind size={20} /></div>
           <p className="info-content">Fougère</p>
         </div>
+        <div className="info-card">
+          <div className="info-icon"><GiOakLeaf size={20} /></div>
+          <p className="info-content">Chyprée</p>
+        </div>
+        <div className="info-card">
+          <div className="info-icon"><LuTrees size={20} /></div>
+          <p className="info-content">Boisée</p>
+        </div>
+        <div className="info-card">
+          <div className="info-icon"><FaEarthAmericas size={20} /></div>
+          <p className="info-content">Orientale</p>
+        </div>
+        <div className="info-card">
+          <div className="info-icon"><LuLeaf size={20} /></div>
+          <p className="info-content">Aromatique</p>
+        </div>
+      </div>
       </div>
 
       <div className="home-demandeParfum">

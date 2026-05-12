@@ -23,7 +23,7 @@ export default function Logged({ user, message, onSignout }) {
         <h2>Infos du compte</h2>
         <p><span>Nom:</span> {user.name}</p>
         <p><span>Email:</span> {user.email}</p>
-        <p><span>Préférence:</span> {user.preferencesOlfactives || "Non renseigné"}</p>
+        <p><span>Préférence:</span> {user.preference?.name || "Non renseigné"}</p>
         <p><span>ID:</span> {user.id}</p>
       </div>
     </section>

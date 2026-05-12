@@ -121,7 +121,7 @@ export default function AdminInventaire() {
                 </div>
                 <span className="invColMarque">{parfum.brand}</span>
                 <span className="invColPrix">{parfum.price} $</span>
-                <span className="invColFamille">{parfum.family || "—"}</span>
+                <span className="invColFamille">{parfum.famille?.name || "—"}</span>
                 <div className="invColActions">
                   <button className="invBtnSuppr" onClick={() => supprimerParfum(parfum.id)}>Supprimer</button>
                 </div>

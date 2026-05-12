@@ -168,12 +168,13 @@ export default function AjoutParfum() {
                         required
                     >
                         <option value=""> -Choisir </option>
-                        <option value="Floral"> Floral </option>
-                        <option value="Hespéridé"> Hespéridé </option>
-                        <option value="Oriental"> Oriental </option>
-                        <option value="Boisé"> Boisé </option>
-                        <option value="Chypre"> Chypre </option>
-                        <option value="Fougère"> Fougère </option>
+                        <option value="hesperidee"> Hespéridée </option>
+                        <option value="florale"> Florale </option>
+                        <option value="fougere"> Fougère </option>
+                        <option value="chypree"> Chyprée </option>
+                        <option value="boisee"> Boisée </option>
+                        <option value="orientale"> Orientale </option>
+                        <option value="aromatique"> Aromatique </option>
                     </select>
 
                     <div className="ligne-formulaire">

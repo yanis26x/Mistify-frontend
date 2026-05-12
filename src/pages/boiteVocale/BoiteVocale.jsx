@@ -2,6 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 import "./BoiteVocale.css";
 
 const API_URL = "http://localhost:3000";
@@ -101,6 +102,7 @@ export default function BoiteVocale() {
           )}
         </section>
       </main>
+      <Footer />
     </>
   );
 }

@@ -11,58 +11,67 @@
   border-radius: 24px;
 }
 
-.statsCard {
-  position: relative;
-  width: 280px;
+.sellStatsCard {
+  width: 240px;
   flex-shrink: 0;
-  padding: 28px 20px;
+  padding: 36px 28px;
   border-radius: 16px;
-  background: #FFFFFF;
-  box-shadow: 0 30px 50px rgba(125, 43, 69, 0.08);
-}
-
-.statsNotif {
-  position: absolute;
-  top: -12px;
-  left: 20px;
-  background: #A73A5E;
-  color: white;
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  font-family: 'Jost', sans-serif;
-  letter-spacing: 1px;
-}
-
-.statsList {
-  margin-top: 16px;
+  background: #60142F;
+  box-shadow: 0 30px 50px rgba(125, 43, 69, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
 }
 
-.statItem {
-  background: #FDF0F0;
-  border-radius: 10px;
-  padding: 12px 16px;
-}
-
-.statNom {
+.sellStatsLabel {
   margin: 0;
-  font-size: 12px;
-  color: rgba(96, 20, 47, 0.5);
+  font-size: 11px;
   font-family: 'Jost', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.statValeur {
-  margin: 4px 0 0;
-  font-size: 22px;
-  font-weight: 600;
-  color: #60142F;
+.sellStatsBrand {
+  margin: 0;
+  font-size: 32px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.sellStatsDivider {
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 8px 0;
+}
+
+.sellStatsCount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.sellStatsNumber {
+  font-size: 56px;
   font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.sellStatsUnit {
+  font-size: 12px;
+  font-family: 'Jost', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .sellContent {

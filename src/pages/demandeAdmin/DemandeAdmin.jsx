@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 import "./DemandeAdmin.css";
 
 const API_URL = "http://localhost:3000";
@@ -174,9 +175,10 @@ export default function DemandeAdmin() {
             )}
           </section>
         ) : (
-          <p>Reserve uniquement aux admins, vous ne l'etes pas...</p>
+          <p>Accès restreint. Cette page est réservée aux administrateurs.</p>
         )}
       </main>
+      <Footer />
     </>
   );
 }

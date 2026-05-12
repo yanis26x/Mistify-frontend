@@ -4,34 +4,16 @@ import "./SellSection.css";
 export default function SellSection({ parfums }) {
   const navigate = useNavigate();
 
-  const moyenne =
-    parfums.length > 0
-      ? (
-          parfums.reduce((acc, parfum) => acc + (Number(parfum.price) || 0), 0) /
-          parfums.length
-        ).toFixed(2)
-      : "0";
 
   return (
     <div className="sellSection">
-      <div className="statsCard">
-        <div className="statsNotif">Statistiques</div>
-
-        <div className="statsList">
-          <div className="statItem">
-            <p className="statNom">Parfums Total</p>
-            <h3 className="statValeur">{parfums.length}</h3>
-          </div>
-
-          <div className="statItem">
-            <p className="statNom">Utilisateurs Total</p>
-            <h3 className="statValeur">Au moins 3....</h3>
-          </div>
-
-          <div className="statItem">
-            <p className="statNom">Moyenne des Prix</p>
-            <h3 className="statValeur">{moyenne}$</h3>
-          </div>
+      <div className="sellStatsCard">
+        <p className="sellStatsLabel">Notre collection</p>
+        <h2 className="sellStatsBrand">Mistify</h2>
+        <div className="sellStatsDivider" />
+        <div className="sellStatsCount">
+          <span className="sellStatsNumber">{parfums.length}</span>
+          <span className="sellStatsUnit">parfums</span>
         </div>
       </div>
 

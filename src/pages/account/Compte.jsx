@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Logged from "./Logged";
 import CreateAcc from "./CreateAcc";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 import "./Compte.css";
 
 const API = "http://localhost:3000/users";
@@ -145,6 +146,7 @@ export default function Compte() {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 }

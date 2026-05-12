@@ -79,10 +79,11 @@ export default function ParfumDuMoment() {
                 <strong>Description :</strong>{" "}
                 {parfum.description || "Aucune description"}
               </p>
-{/* RATING A FAIRE !!!!!!!!!!!!! */}
-              <p className="momentDescription">
-                <strong>NOTE :</strong> A FAIRE !!!
-              </p>
+              {parfum.famille?.name && (
+                <p className="momentDescription">
+                  <strong>Famille :</strong> {parfum.famille.name}
+                </p>
+              )}
 
 
               <div className="momentAutreParfum">
@@ -105,7 +106,7 @@ export default function ParfumDuMoment() {
         )}
 
         <div className="statsCard">
-          <div className="statsNotif">want 2 know + about us?</div>
+          <div className="statsNotif">L'équipe Mistify</div>
 
           <div className="statsList">
             <div className="statItem">

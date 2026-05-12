@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
 import "./Panier.css";
 import { getImageUrl } from "../../utils/imageUrl";
@@ -111,14 +112,14 @@ export default function Panier() {
         />
         <DialoguePersona
           nom="@yanis26x"
-          texte="tU pEuX pAs aVoIr Un pAnIeR sAnS cOmPtE... cEsT lA vIe."
+          texte="Veuillez vous connecter pour accéder à votre panier."
         />
 
         <div className="pasConnecteBox">
-          <h2>tes serieux....? Cree toi un compte dabord et revien -_-</h2>
+          <h2>Connectez-vous pour accéder à votre panier.</h2>
 
           <button className="btnCompte" onClick={() => navigate("/compte")}>
-            se connecter
+            Se connecter
           </button>
         </div>
       </div>
@@ -136,18 +137,18 @@ export default function Panier() {
       />
       <DialoguePersona
         nom="@yanis26x"
-        texte="C'est tout c'que tu prend.....?!!"
+        texte="Votre sélection vous attend."
       />
 
       <div className="hautPanier">
         <h1 className="titrePanier">Panier</h1>
         <p className="sousTitrePanier">
-          Sephora, c'est sûrement moins cher et + fiable... j'dis ça, j'dis rien.
+          Retrouvez ici tous les articles que vous avez sélectionnés.
         </p>
       </div>
 
       {panier.length === 0 ? (
-        <p className="panierVide">Ton panier est vide! remplie le !</p>
+        <p className="panierVide">Votre panier est vide. Explorez notre collection.</p>
       ) : (
         <div className="layoutPanier">
           <div className="gauchePanier">
@@ -225,7 +226,7 @@ export default function Panier() {
                 <span>{LIVRAISON}$</span>
               </div>
 
-              <div className="petitTexteResume">Livraison standard (7 à 10 mois)</div>
+              <div className="petitTexteResume">Livraison standard (5 à 7 jours ouvrables)</div>
 
               <div className="ligneResume totalResume">
                 <span>Total</span>
@@ -233,7 +234,7 @@ export default function Panier() {
               </div>
 
               <button className="btnVider" onClick={viderPanier}>
-                Vider tout le panier parce que t'as pas d'argent sale lâche
+                Vider le panier
               </button>
 
               <button className="btnValider" onClick={validerPanier}>
@@ -257,7 +258,7 @@ export default function Panier() {
                 <div className="texteSangBox">
                   
                   <p className="texteSangPaiement">
-                    aucun remboursement ne sera effectuer, garde la peche
+                    Les commandes sont définitives. Aucun remboursement ne sera effectué.
                   </p>
                 </div>
               </div>
@@ -265,6 +266,7 @@ export default function Panier() {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }

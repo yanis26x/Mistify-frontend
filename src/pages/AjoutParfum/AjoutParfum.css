@@ -113,8 +113,8 @@ body {
 
 .right-side h3 {
     color: #60142F;
-    font-size: 14px;
-    text-transform: lowercase; /* Matches "comment ça fonctionne ?" style */
+    font-size: 22px;
+    text-transform: none;
     font-style: italic;
     margin-bottom: 30px;
 }

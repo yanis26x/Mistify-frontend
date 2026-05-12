@@ -13,12 +13,27 @@ body {
   text-align: center;
 }
 
-.info-cards {
+.familles-section {
   width: min(1100px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 35px 0;
+  padding-top: 40px;
+}
+
+.familles-title {
+  font-family: 'Playfair Display', serif;
+  color: #7a3b4a;
+  font-size: 36px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.info-cards {
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 0 35px;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 18px;
 }
 
