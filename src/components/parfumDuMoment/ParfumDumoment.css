@@ -150,7 +150,7 @@
   position: absolute;
   top: -12px;
   left: 20px;
-  background: #A73A5E;
+  background: #ef1818ae;
   color: white;
   padding: 6px 16px;
   border-radius: 999px;
@@ -191,7 +191,7 @@
 }
 
 .statValeur.small {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 @media (max-width: 900px) {

@@ -11,6 +11,7 @@ import Parfums from "./pages/parfums/Parfums";
 import DemandeAdmin from "./pages/demandeAdmin/DemandeAdmin";
 import BoiteVocale from "./pages/boiteVocale/BoiteVocale";
 import AdminInventaire from "./pages/adminInventaire/AdminInventaire";
+import Favoris from "./pages/favoris/Favoris";
 
 export default function App() {
   return (

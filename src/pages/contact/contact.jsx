@@ -116,11 +116,11 @@ export default function Contact() {
 
       <Footer />
 
-      <section className="section-cachee" ref={sectionCachee}>
+      {/* <section className="section-cachee" ref={sectionCachee}>
         <p>
           Merci pour votre message. Notre équipe vous répondra dans les plus brefs délais.
         </p>
-      </section>
+      </section> */}
     </div>
   );
 }
