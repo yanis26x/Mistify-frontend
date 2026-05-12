@@ -1,0 +1,44 @@
+.fauxCommentaires {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto 34px;
+}
+
+.fauxCommentaires h2 {
+  margin: 0 0 10px;
+  color: #000;
+  font-size: 38px;
+  font-weight: 900;
+  text-align: right;
+}
+
+.carteFauxCommentaire {
+  min-height: 150px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #000000da;
+  border-radius: 12px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.carteFauxCommentaire img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #050505;
+}
+
+.carteFauxCommentaire h3 {
+  margin: 0 0 8px;
+  color: #ff0808;
+  font-size: 22px;
+}
+
+.carteFauxCommentaire p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+}

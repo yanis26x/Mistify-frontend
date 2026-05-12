@@ -13,7 +13,6 @@ export default function Compte() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
-  const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -62,7 +61,6 @@ export default function Compte() {
     try {
       await axios.post(`${API}/signout`, {}, { withCredentials: true });
       setUser(null);
-      setUsers([]);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Déconnexion réussie.");
     } catch (err) {
@@ -129,13 +127,8 @@ export default function Compte() {
           ) : user ? (
             <Logged
               user={user}
-              users={users}
               message={message}
-              onRefreshUser={handleRefreshUser}
               onSignout={handleSignout}
-              onGetAllUsers={handleGetAllUsers}
-              onDeleteUser={handleDeleteUser}
-              onDeleteAllUsers={handleDeleteAllUsers}
             />
           ) : (
             <CreateAcc

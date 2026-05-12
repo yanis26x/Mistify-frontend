@@ -19,6 +19,9 @@ npm run dev
 
 > Backend doit être lancé simultanément pour fonctionner
 
+ADMIN mail:yanis@mail.com mdp:123
+USER mail:sora26@mail.com mdp 123
+
 ## Fonctionnalités
 - Création et connexion de compte
 - Page d'accueil avec parfum du moment
@@ -35,7 +38,6 @@ npm run dev
 ## Routes frontend
 
 - `/` : accueil
-- `/vendreParfum` : ajouter des parfums
 - `/compte` : connexion / inscription
 - `/parfum/:id` : détails d'un parfum
 - `/panier` : panier

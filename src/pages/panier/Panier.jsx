@@ -105,9 +105,6 @@ export default function Panier() {
       <div className="pagePanier">
         <Navbar
           user={utilisateur}
-          onChangeTheme={() => {}}
-          onGoToVendre={() => navigate("/vendreParfum")}
-          nextBackground="/bluePurpleBackground.jpg"
           onGoToCompte={() => navigate("/compte")}
         />
         <DialoguePersona
@@ -130,9 +127,6 @@ export default function Panier() {
     <div className="pagePanier">
       <Navbar
         user={utilisateur}
-        onChangeTheme={() => {}}
-        onGoToVendre={() => navigate("/vendreParfum")}
-        nextBackground="/bluePurpleBackground.jpg"
         onGoToCompte={() => navigate("/compte")}
       />
       <DialoguePersona

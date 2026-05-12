@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FiUser, FiShoppingCart, FiMail } from "react-icons/fi";
+import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
 import DialoguePersona from "../dialoguePersona/DialoguePersona";
 
 const API_URL = "http://localhost:3000";
@@ -89,9 +90,21 @@ export default function Navbar({ user, onGoToCompte }) {
         <Link to="/" className="nav-link">ACCUEIL</Link>
         <Link to="/parfums" className="nav-link">PARFUMS</Link>
         <Link to="/contact" className="nav-link">CONTACT</Link>
+        <Link
+          to="/demande-admin"
+          className="nav-link nav-link-avec-badge"
+        > ADMIN
+          {utilisateurActuel?.admin && demandesEnAttente > 0 && (
+            <span className="notifPanier">{demandesEnAttente}</span>
+          )}
+        </Link>
       </nav>
 
       <div className="navbarDroiteActuelle">
+        <nav className="nav-links">
+          <Link to="/ajout-parfum" className="nav-link">AJOUT PARFUM</Link>
+        </nav>
+
         <div className="nav-icons">
           <Link to="/ajout-parfum" className="nav-link">DEMANDE PARFUM</Link>
 
@@ -110,9 +123,15 @@ export default function Navbar({ user, onGoToCompte }) {
             {nombrePanier > 0 && <span className="notifPanier">{nombrePanier}</span>}
           </Link>
 
-          <Link to="/boite-vocale" className="icon-button" title="Messages">
+          <Link
+            to="/boite-vocale"
+            className="icon-button messages-navbar"
+            title="Boite vocale"
+          >
             <FiMail />
-            {messagesNonLus > 0 && <span className="notifPanier">{messagesNonLus}</span>}
+            {messagesNonLus > 0 && (
+              <span className="notifPanier">{messagesNonLus}</span>
+            )}
           </Link>
 
           <Link

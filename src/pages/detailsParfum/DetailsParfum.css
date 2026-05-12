@@ -103,36 +103,39 @@
 }
 
 .detailsCompletsParfum {
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid #f0e2df;
+  margin-top: 18px;
+  padding: 18px;
+  background: #fffdfb;
+  border: 1px solid #f0e2df;
+  border-radius: 14px;
+  color: #4b3235;
 }
 
 .detailsCompletsParfum h2 {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   color: #4b3235;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 .detailsGrilleParfum {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .detailsGrilleParfum div {
   min-width: 0;
-  padding: 10px;
+  padding: 8px;
   border-radius: 8px;
   background: #fff7f4;
 }
 
 .detailsGrilleParfum span {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   color: #8d7a7d;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -146,6 +149,55 @@
 
 .detailsImageUrl {
   grid-column: 1 / -1;
+}
+
+.formulaireEditionParfum {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.formulaireEditionParfum label {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.formulaireEditionParfum span {
+  color: #8d7a7d;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.formulaireEditionParfum input,
+.formulaireEditionParfum textarea,
+.formulaireEditionParfum select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #ead8d2;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff7f4;
+  color: #4b3235;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.formulaireEditionParfum textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.champLargeEdition,
+.actionsEditionParfum {
+  grid-column: 1 / -1;
+}
+
+.actionsEditionParfum {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
 }
 
 .notesOlfactives strong {
@@ -219,13 +271,6 @@
   gap: 12px;
 }
 
-.boxTexteResume {
-  margin-top: 18px;
-  padding: 14px;
-  border-radius: 10px;
-  background: #000000;
-  color: #ffffff;
-}
 
 .blocDetails {
   width: calc(100% - 48px);
@@ -234,7 +279,6 @@
   padding: 26px;
 }
 
-.formulaireDetails,
 .formulaireCommentaire {
   display: grid;
   gap: 14px;
@@ -248,8 +292,6 @@
   background: #fffdfb;
 }
 
-.formulaireDetails input,
-.formulaireDetails textarea,
 .formulaireCommentaire textarea,
 .basCommentaire select {
   width: 100%;
@@ -261,7 +303,6 @@
   font-size: 15px;
 }
 
-.formulaireDetails textarea,
 .formulaireCommentaire textarea {
   min-height: 120px;
   resize: vertical;
@@ -474,7 +515,9 @@
 }
 
 @media (max-width: 700px) {
-  .detailsGrilleParfum {
+  .detailsGrilleParfum,
+  .formulaireEditionParfum,
+  .actionsEditionParfum {
     grid-template-columns: 1fr;
   }
 }

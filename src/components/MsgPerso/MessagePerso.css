@@ -1,4 +1,4 @@
-.sellSection {
+.messagePersoSection {
   width: 100%;
   max-width: 1180px;
   margin-top: 24px;
@@ -74,7 +74,7 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-.sellContent {
+.messagePerso {
   flex: 1;
   min-width: 300px;
   text-align: left;
@@ -94,7 +94,7 @@
   object-fit: contain;
 }
 
-.sellMessage {
+.messagePersoContenu {
   min-width: 0;
 }
 
@@ -139,11 +139,7 @@
 }
 
 @media (max-width: 760px) {
-  .sellContent {
-    grid-template-columns: 1fr;
-  }
-
-  .sellLogoMistify {
+  .messagePersoLogo {
     width: 120px;
     height: 120px;
   }

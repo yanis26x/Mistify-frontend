@@ -48,13 +48,19 @@ export default function DetailsParfum() {
   const [noteModification, setNoteModification] = useState("5");
   const [envoiModificationCommentaire, setEnvoiModificationCommentaire] = useState(false);
 
-  const [modifier, setModifier] = useState(false);
-  const [nom, setNom] = useState("");
-  const [marque, setMarque] = useState("");
-  const [prix, setPrix] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [envoiModification, setEnvoiModification] = useState(false);
+  const [formulaireEditionParfum, setFormulaireEditionParfum] = useState({
+    name: "",
+    brand: "",
+    description: "",
+    family: "",
+    volume: "",
+    price: "",
+    gender: "",
+    year: "",
+    disponibility: "false",
+    imageUrl: "",
+  });
+  const [envoiEditionDetail, setEnvoiEditionDetail] = useState(false);
   const [suppression, setSuppression] = useState(false);
 
   const chargerParfum = useCallback(async () => {
@@ -66,11 +72,6 @@ export default function DetailsParfum() {
       const data = await reponse.json();
 
       setParfum(data);
-      setNom(data.name || "");
-      setMarque(data.brand || "");
-      setPrix(data.price || "");
-      setImageUrl(data.imageUrl || "");
-      setDescription(data.description || "");
     } catch {
       setParfum(null);
     } finally {
@@ -114,6 +115,23 @@ export default function DetailsParfum() {
       window.removeEventListener("auth-change", verifierUtilisateur);
     };
   }, [chargerParfum, chargerCommentaires, verifierUtilisateur]);
+
+  useEffect(() => {
+    if (!parfum) return;
+
+    setFormulaireEditionParfum({
+      name: parfum.name || "",
+      brand: parfum.brand || "",
+      description: parfum.description || "",
+      family: parfum.family || "",
+      volume: parfum.volume === null || parfum.volume === undefined ? "" : String(parfum.volume),
+      price: parfum.price === null || parfum.price === undefined ? "" : String(parfum.price),
+      gender: parfum.gender || "",
+      year: parfum.year === null || parfum.year === undefined ? "" : String(parfum.year),
+      disponibility: parfum.disponibility ? "true" : "false",
+      imageUrl: parfum.imageUrl || "",
+    });
+  }, [parfum]);
 
   async function ajouterAuPanier() {
     if (!utilisateur) {
@@ -204,7 +222,14 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("on arrive pas a le supprimer....");
+        let erreur = null;
+        try {
+          erreur = await reponse.json();
+        } catch {
+          erreur = null;
+        }
+
+        alert(erreur?.message || "on arrive pas a le supprimer....");
         return;
       }
 
@@ -289,44 +314,48 @@ export default function DetailsParfum() {
     }
   }
 
-  async function modifierParfum(e) {
+  function convertirValeurDetail(champ, valeur) {
+    const valeurNettoyee = valeur.trim();
+
+    if (["price", "volume", "year"].includes(champ)) {
+      return valeurNettoyee === "" ? undefined : Number(valeurNettoyee);
+    }
+
+    if (champ === "disponibility") {
+      return ["oui", "true", "1", "disponible"].includes(
+        valeurNettoyee.toLowerCase()
+      );
+    }
+
+    return valeurNettoyee;
+  }
+
+  function modifierChampEditionParfum(champ, valeur) {
+    setFormulaireEditionParfum((formulaireActuel) => ({
+      ...formulaireActuel,
+      [champ]: valeur,
+    }));
+  }
+
+  async function enregistrerEditionDetail(e) {
     e.preventDefault();
+    if (envoiEditionDetail) return;
 
     try {
-      setEnvoiModification(true);
-
-      const parfumModifie = {};
-
-      if (nom.trim() !== "" && nom !== parfum.name) {
-        parfumModifie.name = nom.trim();
-      }
-
-      if (marque.trim() !== "" && marque !== parfum.brand) {
-        parfumModifie.brand = marque.trim();
-      }
-
-      if (prix !== "" && Number(prix) !== Number(parfum.price)) {
-        parfumModifie.price = Number(prix);
-      }
-
-      if (imageUrl.trim() !== "" && imageUrl !== parfum.imageUrl) {
-        parfumModifie.imageUrl = imageUrl.trim();
-      }
-
-      if (description !== parfum.description) {
-        parfumModifie.description = description;
-      }
-
-      if (Object.keys(parfumModifie).length === 0) {
-        alert("Aucune modification détectée.");
-        return;
-      }
+      setEnvoiEditionDetail(true);
+      const donneesParfum = Object.entries(formulaireEditionParfum).reduce(
+        (donnees, [champ, valeur]) => ({
+          ...donnees,
+          [champ]: convertirValeurDetail(champ, valeur),
+        }),
+        {}
+      );
 
       const reponse = await fetch(`${API_URL}/parfums/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(parfumModifie),
+        body: JSON.stringify(donneesParfum),
       });
 
       if (!reponse.ok) {
@@ -342,12 +371,14 @@ export default function DetailsParfum() {
       }
 
       const data = await reponse.json();
-      setParfum(data);
-      setModifier(false);
+      setParfum((parfumActuel) => ({
+        ...parfumActuel,
+        ...data,
+      }));
     } catch {
       alert("erreur....");
     } finally {
-      setEnvoiModification(false);
+      setEnvoiEditionDetail(false);
     }
   }
 
@@ -363,7 +394,14 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        alert("on arrive pas a le supprimer....");
+        let erreur = null;
+        try {
+          erreur = await reponse.json();
+        } catch {
+          erreur = null;
+        }
+
+        alert(erreur?.message || "on arrive pas a le supprimer....");
         return;
       }
 
@@ -589,12 +627,6 @@ export default function DetailsParfum() {
               <div className="actionsAdmin">
                 <button
                   className="boutonAdmin"
-                  onClick={() => setModifier(!modifier)}
-                >
-                  {modifier ? "modifie les infos mtn...." : "Modifier ce parfum (admin)"}
-                </button>
-                <button
-                  className="boutonAdmin"
                   onClick={supprimerParfum}
                   disabled={suppression}
                 >
@@ -629,40 +661,6 @@ export default function DetailsParfum() {
 
         </div>
       </main>
-
-      {utilisateur?.admin && modifier && (
-        <section className="blocDetails">
-          <h2>Modifier le parfum</h2>
-
-          <form className="formulaireDetails" onSubmit={modifierParfum}>
-            <input value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Nom" />
-            <input
-              value={marque}
-              onChange={(e) => setMarque(e.target.value)}
-              placeholder="Marque"
-            />
-            <input
-              type="number"
-              value={prix}
-              onChange={(e) => setPrix(e.target.value)}
-              placeholder="Prix"
-            />
-            <input
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Image URL"
-            />
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description"
-            />
-            <button className="boutonPrincipal" disabled={envoiModification}>
-              {envoiModification ? "Enregistrement..." : "Enregistrer"}
-            </button>
-          </form>
-        </section>
-      )}
 
       <section className="blocDetails avisClients">
         <div className="enteteAvis">

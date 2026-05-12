@@ -1,4 +1,5 @@
-﻿import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getImageUrl } from "../../utils/imageUrl";
 import "./ParfumCard.css";
 
 const BACKEND_URL = "http://localhost:3000";
@@ -9,10 +10,10 @@ export default function ParfumCard({ parfum }) {
   return (
     <div className="parfumCard">
       <img
-        src={parfum.imageUrl ? `${BACKEND_URL}${parfum.imageUrl}` : "/flacon-parfum.png"}
+        src={getImageUrl(parfum.imageUrl, BACKEND_URL)}
         alt={parfum.name}
         className="parfumCardImage"
-        onError={(e) => (e.target.src = "/flacon-parfum.png")}
+        onError={(e) => (e.target.src = "/Remover.jpeg")}
       />
       <div className="parfumCardBody">
         <p className="parfumCardMarque">{parfum.brand}</p>

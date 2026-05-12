@@ -1,19 +1,30 @@
 .dialoguePersona {
   position: fixed;
-  left: 50%;
+  left: 0;
   bottom: 18px;
   z-index: 200;
-  width: min(920px, calc(100vw - 28px));
-  min-height: 235px;
-  background: url("/dialogue.png") center / 100% 100% no-repeat;
-  transform: translateX(-50%);
+  width: 100vw;
+  min-height: clamp(280px, 34vw, 430px);
   opacity: 1;
   transition: opacity 2s ease;
+  pointer-events: none;
 }
 
 .dialoguePersonaDisparition {
   opacity: 0;
   pointer-events: none;
+}
+
+.bulleDialoguePersona {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 3;
+  width: min(920px, calc(100vw - 28px));
+  min-height: 235px;
+  background: url("/dialogue.png") center / 100% 100% no-repeat;
+  transform: translateX(-50%);
+  pointer-events: auto;
 }
 
 .fermerDialoguePersona {
@@ -66,6 +77,11 @@
 @media (max-width: 640px) {
   .dialoguePersona {
     bottom: 10px;
+    min-height: 240px;
+  }
+
+  .bulleDialoguePersona {
+    width: min(920px, calc(100vw - 28px));
     min-height: 170px;
   }
 

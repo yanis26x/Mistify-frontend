@@ -1,4 +1,4 @@
-﻿export function getImageUrl(imageUrl, backendUrl = "http://localhost:3000") {
+export function getImageUrl(imageUrl, backendUrl = "http://localhost:3000") {
   if (!imageUrl) return "/flacon-parfum.png";
 
   const trimmedUrl = String(imageUrl).trim();

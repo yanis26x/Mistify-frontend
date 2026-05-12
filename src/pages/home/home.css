@@ -5,7 +5,7 @@ body {
 .homeDiv {
   min-height: 100vh;
   width: 100%;
-  background-image: url("/bluePurpleBackground.jpg");
+  background-image: url("/assets/homeBackground.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -35,38 +35,33 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 18px;
+  align-items: stretch;
 }
 
 .info-card {
-  background-color: white;
+  background-color: rgb(0, 0, 0);
   padding: 22px 16px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  min-height: 150px;
+  min-height: 170px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.info-icon {
-  width: 80px;
-  height: 80px;
-  background-color: #F5EBE0;
-  border-radius: 50%;
+.info-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 15px;
-  color: #A73A5E;
-}
-
-.info-content {
+  flex: 1;
   font-size: 14px;
   font-weight: 600;
-  color: #666;
+  color: #ff0808;
   margin: 0;
+  line-height: 1.35;
 }
 
 .home-demandeParfum {
@@ -139,14 +134,15 @@ body {
     gap: 12px;
   }
 
-  .info-card {
-    min-height: 130px;
-    padding: 18px 12px;
+  .titrePkConfiance {
+    width: min(420px, calc(100% - 28px));
+    margin-top: 22px;
+    font-size: 28px;
   }
 
-  .info-icon {
-    width: 58px;
-    height: 58px;
+  .info-card {
+    min-height: 150px;
+    padding: 18px 12px;
   }
 
   .home-demandeParfum {
