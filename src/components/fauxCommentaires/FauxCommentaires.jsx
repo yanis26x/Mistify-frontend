@@ -22,6 +22,11 @@ const commentaires = [
     photo: "/sora.jpg",
     texte: "C'est le pire site que j'ai vue de ma vie, jespere quil va fermer bientot!",
   },
+  {
+    nom: "Light",
+    photo: "/Deathnote.jpg",
+    texte: "ughh...?",
+  },
 ];
 
 function choisirIndexAleatoire(indexActuel) {

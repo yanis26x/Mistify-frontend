@@ -13,13 +13,13 @@
 
 .carteFauxCommentaire {
   min-height: 150px;
-  padding: 24px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   gap: 18px;
-  background: #00000000;
+  background: #000000da;
   border-radius: 12px;
-  color: #000000;
+  color: #ffffff;
   text-align: left;
 }
 
@@ -39,6 +39,6 @@
 
 .carteFauxCommentaire p {
   margin: 0;
-  color: #0c0c0c;
-  font-size: 24px;
+  color: #ffffff;
+  font-size: 22px;
 }

@@ -9,6 +9,7 @@ const imagesFavoris = [
   "/vampp.jpeg",
   "/SpotifyLogoRed.webp",
   "/tacheSang.png",
+  "/Deathnote.jpg",
   "/frutigerBG.jpg",
 ];
 
