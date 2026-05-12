@@ -5,12 +5,7 @@ import axios from "axios";
 import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { FiCloud} from "react-icons/fi";
-import { LuFlower } from "react-icons/lu";
-import { FaWind } from "react-icons/fa";
-import { FaEarthAmericas } from "react-icons/fa6";
-import { LuTrees } from "react-icons/lu";
-import { IoIosIceCream } from "react-icons/io";
+import FauxCommentaires from "../../components/fauxCommentaires/FauxCommentaires";
 
 
 export default function Home() {
@@ -58,49 +53,31 @@ export default function Home() {
 
       {/* <ChercherParfum /> */}
 
+      <h2 className="titrePkConfiance">𖤐POURQUOI NOUS FAIRE CONFIANCE ?!</h2>
+
       <div className="info-cards">
         <div className="info-card">
-          <div className="info-icon">
-            <LuFlower size={20} />
-          </div>
-          <p className="info-content">Floral</p>
+          <p className="info-content">On est super lent</p>
         </div>
 
         <div className="info-card">
-          <div className="info-icon">
-            <FaWind size={20} />
-          </div>
-          <p className="info-content">Frais</p>
+          <p className="info-content">On charge beaucoup plus que nos concurrents</p>
         </div>
 
         <div className="info-card">
-          <div className="info-icon">
-            <FaEarthAmericas size={20} />
-          </div>
-          <p className="info-content">Oriental</p>
+          <p className="info-content">On a aucun savoir-faire</p>
         </div>
 
         <div className="info-card">
-          <div className="info-icon">
-            <LuTrees size={20} />
-          </div>
-          <p className="info-content">Boisé</p>
+          <p className="info-content">100% de clients decus par leur commande</p>
         </div>
 
         <div className="info-card">
-          <div className="info-icon">
-            <IoIosIceCream size={20} />
-          </div>
-          <p className="info-content">Gourmand</p>
-        </div>
-
-        <div className="info-card">
-          <div className="info-icon">
-            <FiCloud size={20} />
-          </div>
-          <p className="info-content">Musk</p>
+          <p className="info-content">Nos parfums sont vraiment pas de bonne qualité</p>
         </div>
       </div>
+
+      <FauxCommentaires />
 
 
 
