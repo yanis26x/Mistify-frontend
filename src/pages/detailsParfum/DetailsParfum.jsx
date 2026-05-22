@@ -62,6 +62,7 @@ export default function DetailsParfum() {
   });
   const [envoiEditionDetail, setEnvoiEditionDetail] = useState(false);
   const [suppression, setSuppression] = useState(false);
+  const [message, setMessage] = useState("");
 
   const chargerParfum = useCallback(async () => {
     try {
@@ -135,7 +136,6 @@ export default function DetailsParfum() {
 
   async function ajouterAuPanier() {
     if (!utilisateur) {
-      alert("Connecte-toi pour ajouter au panier.");
       navigate("/compte");
       return;
     }
@@ -147,10 +147,9 @@ export default function DetailsParfum() {
         { withCredentials: true }
       );
       window.dispatchEvent(new Event("panier-change"));
-      alert("Ajoute au panier !");
-      // ou montrer persona dialogue !!!!1
+      setMessage("Parfum ajouté au panier.");
     } catch {
-      alert("Impossible d'ajouter au panier.");
+      setMessage("Impossible d'ajouter au panier.");
     }
   }
 
@@ -158,13 +157,12 @@ export default function DetailsParfum() {
     e.preventDefault();
 
     if (!utilisateur) {
-      alert("Connecte-toi pour commenter.....");
       navigate("/compte");
       return;
     }
 
     if (!texteCommentaire.trim()) {
-      alert("T'essaye vraiment de rien poster?! #$%!@");
+      setMessage("Le commentaire ne peut pas être vide.");
       return;
     }
 
@@ -189,7 +187,7 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "erreur....");
+        setMessage(erreur?.message || "Erreur lors de l'envoi.");
         return;
       }
 
@@ -205,14 +203,14 @@ export default function DetailsParfum() {
       setAfficherFormulaireAvis(false);
       await chargerCommentaires();
     } catch {
-      alert("erreur.....");
+      setMessage("Une erreur est survenue.");
     } finally {
       setEnvoiCommentaire(false);
     }
   }
 
   async function supprimerCommentaire(commentaireId) {
-    const confirmation = window.confirm("tu veux vraimment supp ce commentaire?!?!");
+    const confirmation = window.confirm("Supprimer ce commentaire ?");
     if (!confirmation) return;
 
     try {
@@ -229,13 +227,13 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "on arrive pas a le supprimer....");
+        setMessage(erreur?.message || "Impossible de supprimer le commentaire.");
         return;
       }
 
       await chargerCommentaires();
     } catch {
-      alert("Erreur...");
+      setMessage("Une erreur est survenue.");
     }
   }
 
@@ -255,7 +253,7 @@ export default function DetailsParfum() {
     e.preventDefault();
 
     if (!texteModification.trim()) {
-      alert("T'essaye vraiment de rien poster?! #$%!@");
+      setMessage("Le commentaire ne peut pas être vide.");
       return;
     }
 
@@ -291,7 +289,7 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "on arrive pas a le modifier....");
+        setMessage(erreur?.message || "Impossible de modifier le commentaire.");
         return;
       }
 
@@ -308,7 +306,7 @@ export default function DetailsParfum() {
       fermerModificationCommentaire();
       await chargerCommentaires();
     } catch {
-      alert("erreur....");
+      setMessage("Une erreur est survenue.");
     } finally {
       setEnvoiModificationCommentaire(false);
     }
@@ -383,7 +381,7 @@ export default function DetailsParfum() {
   }
 
   async function supprimerParfum() {
-    const confirmation = window.confirm("Tu veux vraiment supprimer ce parfum ?!");
+    const confirmation = window.confirm("Supprimer ce parfum ?");
     if (!confirmation) return;
 
     try {
@@ -401,13 +399,13 @@ export default function DetailsParfum() {
           erreur = null;
         }
 
-        alert(erreur?.message || "on arrive pas a le supprimer....");
+        setMessage(erreur?.message || "Impossible de supprimer ce parfum.");
         return;
       }
 
       navigate("/");
     } catch {
-      alert("Erreur....");
+      setMessage("Une erreur est survenue.");
     } finally {
       setSuppression(false);
     }
@@ -452,7 +450,6 @@ export default function DetailsParfum() {
 
   function donnerAvis() {
     if (!utilisateur) {
-      alert("Tu dois être connecté pour donner un avis.....");
       navigate("/compte");
       return;
     }
@@ -640,6 +637,11 @@ export default function DetailsParfum() {
         <div className="colonneResumeDetails">
           <aside className="resumeDetails">
             <h2>Résumé</h2>
+            {message && (
+              <p style={{ color: "#60142F", fontSize: "13px", marginBottom: "12px", fontFamily: "Jost, sans-serif" }}>
+                {message}
+              </p>
+            )}
 
             <div className="ligneDetails">
               <span>Prix</span>

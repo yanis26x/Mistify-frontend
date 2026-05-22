@@ -142,20 +142,3 @@
   color: #5c162e;
 }
 
-@media (max-width: 900px) {
-  .account-page {
-    padding: 40px 16px;
-  }
-
-  .account-box {
-    flex-direction: column;
-  }
-
-  .account-image {
-    min-height: 220px;
-  }
-
-  .account-forms {
-    grid-template-columns: 1fr;
-  }
-}

@@ -74,35 +74,3 @@
   overflow-wrap: anywhere;
 }
 
-@media (max-width: 640px) {
-  .dialoguePersona {
-    bottom: 10px;
-    min-height: 240px;
-  }
-
-  .bulleDialoguePersona {
-    width: min(920px, calc(100vw - 28px));
-    min-height: 170px;
-  }
-
-  .fermerDialoguePersona {
-    top: 12px;
-    right: 18px;
-    width: 30px;
-    height: 30px;
-  }
-
-  .nomDialoguePersona {
-    top: 46px;
-    left: 66px;
-    font-size: 15px;
-  }
-
-  .texteDialoguePersona {
-    left: 50px;
-    right: 54px;
-    top: 66px;
-    bottom: 35px;
-    font-size: 15px;
-  }
-}

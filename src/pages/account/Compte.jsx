@@ -81,41 +81,6 @@ export default function Compte() {
     }
   }
 
-  async function handleGetAllUsers() {
-    setMessage("");
-    try {
-      const res = await axios.get(`${API}`, { withCredentials: true });
-      setUsers(res.data);
-      setMessage("Liste des utilisateurs récupérée.");
-    } catch (err) {
-      setMessage(err?.response?.data?.message || "Erreur récupération users.");
-    }
-  }
-
-  async function handleDeleteUser(userId) {
-    if (!userId) { setMessage("Entre un ID valide."); return; }
-    setMessage("");
-    try {
-      await axios.delete(`${API}/${userId}`, { withCredentials: true });
-      setUsers((prev) => prev.filter((u) => String(u.id) !== String(userId)));
-      if (user && String(user.id) === String(userId)) setUser(null);
-      setMessage(`Utilisateur ${userId} supprimé.`);
-    } catch (err) {
-      setMessage(err?.response?.data?.message || "Erreur suppression user!");
-    }
-  }
-
-  async function handleDeleteAllUsers() {
-    setMessage("");
-    try {
-      await axios.delete(`${API}`, { withCredentials: true });
-      setUsers([]);
-      setUser(null);
-      setMessage("Tous les utilisateurs ont été supprimés!");
-    } catch (err) {
-      setMessage(err?.response?.data?.message || "euuuuu...");
-    }
-  }
 
   return (
     <>

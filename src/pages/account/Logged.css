@@ -73,14 +73,3 @@
   color: #5c162e;
 }
 
-@media (max-width: 700px) {
-  .profil-connecte {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .profil-connecte img {
-    width: 100%;
-    height: auto;
-  }
-}

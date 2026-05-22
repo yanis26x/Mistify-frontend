@@ -176,28 +176,3 @@
   margin: 0;
 }
 
-@media (max-width: 760px) {
-  .conteneur-contact {
-    margin: 40px auto;
-  }
-
-  .haut-contact {
-    flex-direction: column;
-  }
-
-  .formulaire-contact {
-    width: 100%;
-  }
-
-  .sections-bas {
-    grid-template-columns: 1fr;
-  }
-
-  .texte-aide h1 {
-    font-size: 34px;
-  }
-
-  .carte-contact {
-    padding: 22px;
-  }
-}

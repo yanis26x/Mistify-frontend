@@ -165,19 +165,3 @@ button.submit-btn:disabled {
     cursor: not-allowed;
 }
 
-@media (max-width: 850px) {
-    .all {
-        flex-direction: column;
-        padding: 0 18px;
-    }
-
-    .left-side,
-    .right-side {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .ligne-formulaire {
-        grid-template-columns: 1fr;
-    }
-}

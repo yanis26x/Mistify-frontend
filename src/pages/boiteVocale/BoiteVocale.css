@@ -84,12 +84,3 @@
   justify-items: start;
 }
 
-@media (max-width: 700px) {
-  .boiteVocalePage {
-    padding: 20px;
-  }
-
-  .boiteVocaleCarte {
-    flex-direction: column;
-  }
-}

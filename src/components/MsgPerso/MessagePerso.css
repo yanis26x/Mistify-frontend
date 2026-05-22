@@ -138,13 +138,4 @@
   color: #60142F;
 }
 
-@media (max-width: 760px) {
-  .messagePersoLogo {
-    width: 120px;
-    height: 120px;
-  }
 
-  .sellTitre {
-    font-size: 26px;
-  }
-}

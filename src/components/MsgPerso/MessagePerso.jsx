@@ -4,38 +4,46 @@ import "./MessagePerso.css";
 
 const messages = [
   {
-    titre: "𖤐NOTRE COLLECTION",
-    sousTitre: "Va voir tous les parfums disponibles dans notre collection.",
+    titre: "NOTRE COLLECTION",
+    sousTitre: "Explorez notre sélection de parfums et trouvez celui qui vous correspond.",
     bouton: "Voir les parfums",
     lien: "/parfums",
   },
   {
-    titre: "𖤐AJOUTE UN PARFUM",
-    sousTitre: "Partage ton parfum préféré et enrichis la collection 2 Mistify.",
-    bouton: "Ajouter un parfum",
+    titre: "VOUS NE TROUVEZ PAS ?",
+    sousTitre: "Soumettez une demande et on cherche le parfum pour vous.",
+    bouton: "Faire une demande",
     lien: "/ajout-parfum",
   },
   {
-    sousTitre: "© 2026 Mistify - all rights reserved.",
+    titre: "COMMANDEZ EN LIGNE",
+    sousTitre: "Ajoutez vos parfums au panier et finalisez votre commande en quelques clics.",
+    bouton: "Voir les parfums",
+    lien: "/parfums",
   },
   {
-    titre: "𖤐MISTIFY",
-    sousTitre: "votre satifaction est loin d'être notre prioriter",
+    titre: "UN COMPTE MISTIFY",
+    sousTitre: "Créez un compte pour suivre vos commandes et indiquer vos préférences olfactives.",
+    bouton: "Créer un compte",
+    lien: "/compte",
   },
   {
-    titre: "𖤐CONTACTEZ-NOUS",
-    sousTitre: "Une question, une insulte, une suggestion ou une demande ? On lit parfois nos messages",
+    titre: "CONTACTEZ-NOUS",
+    sousTitre: "Une question ou une suggestion ? Notre équipe est disponible pour vous répondre.",
     bouton: "Nous contacter",
     lien: "/contact",
   },
   {
-    titre: "𖤐BOÎTE VOCALE",
-    sousTitre: "Regarde tes messages",
-    bouton: "Voir les messages",
+    titre: "BOÎTE VOCALE",
+    sousTitre: "Consultez vos notifications et les réponses à vos demandes de parfums.",
+    bouton: "Voir mes messages",
     lien: "/boite-vocale",
   },
   {
-    sousTitre: "Tout les parfums sont melangés avec de l'eau pour maximiser les profits..",
+    titre: "7 FAMILLES OLFACTIVES",
+    sousTitre: "Florale, boisée, orientale, hespéridée… trouvez la famille qui vous correspond.",
+    bouton: "Explorer",
+    lien: "/parfums",
   },
 ];
 
@@ -89,18 +97,16 @@ export default function MessagePerso() {
         />
 
         <div className="messagePersoContenu">
-          <h2 className="messagePersoTitre">YOUR AD HERE 𖤐 </h2>
+          <h2 className="messagePersoTitre">Mistify</h2>
 
           <p className="messagePersoSousTitre">
-            N'oubliez pas que votre satisfaction n'a absolument aucune
-            importance pour nous. On vend des parfums, pas du bonheur. Si
-            l'odeur dure plus de 3 heures, estimez-vous chanceux, puisqu'on
-            ajoute de l'eau dans la majorité de nos parfums pour maximiser les
-            profits.
+            Mistify est un site de vente de parfums. Parcourez la collection,
+            filtrez par famille olfactive, genre ou prix, et commandez en quelques clics.
+            Vous ne trouvez pas ce que vous cherchez ? Soumettez une demande et on s'en occupe.
           </p>
 
           <p className="messagePersoTexteDiscret">
-            DOWNLOAD Qibla++ ON THE APP STORE NOW!!
+            © 2026 Mistify — tous droits réservés
           </p>
         </div>
       </div>

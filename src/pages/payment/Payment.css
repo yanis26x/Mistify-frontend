@@ -113,18 +113,3 @@
   margin-top: 8px;
 }
 
-@media (max-width: 560px) {
-  .pagePaiement {
-    align-items: flex-start;
-    padding: 16px;
-  }
-
-  .boitePaiement {
-    padding: 20px;
-  }
-
-  .lignePaiement {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-}

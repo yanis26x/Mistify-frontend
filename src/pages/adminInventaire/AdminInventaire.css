@@ -292,20 +292,3 @@
   color: rgba(96, 20, 47, 0.5);
 }
 
-@media (max-width: 900px) {
-  .invStats {
-    grid-template-columns: 1fr;
-  }
-
-  .invTableauEntete,
-  .invLigne {
-    grid-template-columns: 60px 1fr 100px 120px;
-  }
-
-  .invTableauEntete span:nth-child(3),
-  .invLigne .invColMarque,
-  .invTableauEntete span:nth-child(5),
-  .invLigne .invColFamille {
-    display: none;
-  }
-}
