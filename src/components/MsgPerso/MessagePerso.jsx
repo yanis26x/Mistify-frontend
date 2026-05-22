@@ -92,10 +92,10 @@ export default function MessagePerso() {
           <h2 className="messagePersoTitre">YOUR AD HERE 𖤐 </h2>
 
           <p className="messagePersoSousTitre">
-            N’oubliez pas que votre satisfaction n’a absolument aucune
+            N'oubliez pas que votre satisfaction n'a absolument aucune
             importance pour nous. On vend des parfums, pas du bonheur. Si
-            l’odeur dure plus de 3 heures, estimez-vous chanceux, puisqu’on
-            ajoute de l’eau dans la majorité de nos parfums pour maximiser les
+            l'odeur dure plus de 3 heures, estimez-vous chanceux, puisqu'on
+            ajoute de l'eau dans la majorité de nos parfums pour maximiser les
             profits.
           </p>
 

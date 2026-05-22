@@ -14,6 +14,7 @@ import { GiOakLeaf } from "react-icons/gi";
 export default function Home() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [parfumsCount, setParfumsCount] = useState(0);
 
   useEffect(() => {
     async function checkUser() {
@@ -26,7 +27,16 @@ export default function Home() {
         setUser(null);
       }
     }
+    async function fetchCount() {
+      try {
+        const res = await axios.get("http://localhost:3000/parfums");
+        setParfumsCount(res.data.length);
+      } catch {
+        setParfumsCount(0);
+      }
+    }
     checkUser();
+    fetchCount();
   }, []);
 
   return (
@@ -41,6 +51,23 @@ export default function Home() {
       />
 
       <ParfumDuMoment />
+
+      <div className="home-stats-section">
+        <div className="home-stats-left">
+          <span className="home-stats-number">{parfumsCount}</span>
+          <span className="home-stats-label">parfums disponibles</span>
+        </div>
+        <div className="home-stats-divider" />
+        <div className="home-stats-right">
+          <img src="/logo-mistify.png" alt="Mistify" className="home-stats-logo" />
+          <p className="home-stats-desc">
+            Mistify est un site de vente de parfums. Parcourez la collection, filtrez par famille olfactive,
+            genre ou prix, et commandez en quelques clics. Créez un compte pour suivre vos commandes
+            et indiquer vos préférences olfactives. Vous ne trouvez pas ce que vous cherchez ?
+            Soumettez une demande et on s'en occupe.
+          </p>
+        </div>
+      </div>
 
       <div className="familles-section">
         <h2 className="familles-title">Les familles olfactives</h2>

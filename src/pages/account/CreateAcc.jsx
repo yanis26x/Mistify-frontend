@@ -1,7 +1,6 @@
 ﻿import { useState } from "react";
 import "./CreateAcc.css";
 import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer";
 
 export default function CreateAcc({ onSignup, onSignin, message }) {
   const [name, setName] = useState("");
@@ -172,7 +171,6 @@ export default function CreateAcc({ onSignup, onSignin, message }) {
         </div>
       </main>
 
-      <Footer />
     </>
   );
 }

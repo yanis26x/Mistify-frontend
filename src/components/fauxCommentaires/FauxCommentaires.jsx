@@ -55,7 +55,7 @@ export default function FauxCommentaires() {
 
   return (
     <section className="fauxCommentaires">
-      <h2>COMMENTAIRES DE CLIENTS SATISFAITS𖤐</h2>
+      <h2>COMMENTAIRES DE CLIENTS SATISFAITS</h2>
 
       <article className="carteFauxCommentaire">
         <img src={commentaire.photo} alt={commentaire.nom} />

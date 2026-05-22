@@ -22,7 +22,16 @@ export default function Parfums() {
       setLoading(true);
       setError("");
       try {
-        const res = await axios.get(`${API}/parfums`);
+        const params = new URLSearchParams();
+        if (gender !== "All") params.append("gender", gender);
+        if (famille !== "All") params.append("family", famille);
+        if (prixMax !== "") params.append("prixMax", prixMax);
+
+        const url = params.toString()
+          ? `${API}/parfums/filter?${params.toString()}`
+          : `${API}/parfums`;
+
+        const res = await axios.get(url);
         setParfums(res.data);
       } catch {
         setError("Erreur lors du chargement des parfums");
@@ -31,17 +40,7 @@ export default function Parfums() {
       }
     }
     fetchParfums();
-  }, []);
-
-  const parfumsFiltres = parfums.filter((p) => {
-    const matchGender = gender !== "All" ? p.gender === gender : true;
-    const matchPrix = prixMax !== "" ? p.price <= parseFloat(prixMax) : true;
-    const familleParfum = p.famille?.name ?? p.family ?? "";
-    const matchFamille = famille !== "All"
-      ? familleParfum.toLowerCase() === famille.toLowerCase()
-      : true;
-    return matchGender && matchPrix && matchFamille;
-  });
+  }, [gender, famille, prixMax]);
 
   return (
     <>
@@ -101,7 +100,7 @@ export default function Parfums() {
           </button>
 
           {!loading && !error && (
-            <p className="parfumsCount">{parfumsFiltres.length} parfum(s)</p>
+            <p className="parfumsCount">{parfums.length} parfum(s)</p>
           )}
         </div>
 
@@ -109,13 +108,11 @@ export default function Parfums() {
         {error && <p className="parfumsError">{error}</p>}
 
         {!loading && !error && (
-          <>
-            <div className="parfumsGrille">
-              {parfumsFiltres.map((parfum) => (
-                <ParfumCard key={parfum.id} parfum={parfum} />
-              ))}
-            </div>
-          </>
+          <div className="parfumsGrille">
+            {parfums.map((parfum) => (
+              <ParfumCard key={parfum.id} parfum={parfum} />
+            ))}
+          </div>
         )}
       </section>
       <Footer />

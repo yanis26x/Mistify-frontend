@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Payment.css";
 import Footer from "../../components/footer/Footer";
+import Navbar from "../../components/navbar/Navbar";
 
 const API_URL = "http://localhost:3000";
 const LIVRAISON = 96;
@@ -76,6 +77,7 @@ export default function Payment() {
   if (chargement) {
     return (
       <div className="pagePaiement">
+        <Navbar />
         <div className="boitePaiement">Chargement...</div>
       </div>
     );
@@ -84,6 +86,7 @@ export default function Payment() {
   if (commandeValidee) {
     return (
       <div className="pagePaiement">
+        <Navbar />
         <div className="boitePaiement confirmationPaiement">
           <h1>Commande confirmee</h1>
           <p>Ton paiement est passe. Un recu va etre envoye par email.</p>
@@ -98,6 +101,7 @@ export default function Payment() {
 
   return (
     <div className="pagePaiement">
+      <Navbar />
       <form className="boitePaiement" onSubmit={handleSubmit}>
         <h1>Paiement</h1>
         <p>Veuillez renseigner vos informations pour finaliser votre commande.</p>

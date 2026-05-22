@@ -13,12 +13,91 @@ body {
   text-align: center;
 }
 
+.home-stats-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: min(1200px, calc(100% - 40px));
+  margin: 40px auto;
+  background: white;
+  border-radius: 18px;
+  padding: 40px 50px;
+}
+
+.home-stats-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.home-stats-number {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 72px;
+  font-weight: 300;
+  color: #60142F;
+  line-height: 1;
+}
+
+.home-stats-label {
+  font-family: "Jost", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(96, 20, 47, 0.5);
+}
+
+.home-stats-divider {
+  width: 1px;
+  height: 80px;
+  background: #F0DBD4;
+  flex-shrink: 0;
+}
+
+.home-stats-right {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  flex: 1;
+}
+
+.home-stats-logo {
+  height: 200px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.home-stats-desc {
+  font-family: "Jost", sans-serif;
+  font-size: 15px;
+  color: #6A5B56;
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+}
+
+.familles-section {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.familles-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: #60142F;
+  text-align: center;
+  margin: 0 0 8px;
+  letter-spacing: 1px;
+}
+
 .info-cards {
-  width: min(1100px, calc(100% - 40px));
+  width: min(1200px, calc(100% - 40px));
   margin: 0 auto;
   padding: 35px 0;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 18px;
 }
 
@@ -109,7 +188,7 @@ body {
 
 @media (max-width: 1000px) {
   .info-cards {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
