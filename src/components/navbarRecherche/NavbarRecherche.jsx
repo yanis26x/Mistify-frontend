@@ -4,7 +4,6 @@ import { FiSearch } from "react-icons/fi";
 import "./NavbarRecherche.css";
 import { getImageUrl } from "../../utils/imageUrl";
 
-
 const IMAGE_URL = "";
 
 export default function NavbarRecherche() {

@@ -1,6 +1,6 @@
 ﻿import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./DetailsParfum.css";
@@ -141,7 +141,7 @@ export default function DetailsParfum() {
     }
 
     try {
-      await axios.post(
+      await api.post(
         `/panier`,
         { parfumId: parfum.id, quantite: 1 },
         { withCredentials: true }

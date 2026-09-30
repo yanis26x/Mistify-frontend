@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 import "./Payment.css";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
@@ -59,13 +59,13 @@ export default function Payment() {
         (acc, p) => acc + Number(p.price || 0) * Number(p.quantite || 0), 0
       ) + LIVRAISON;
 
-      await axios.post(
+      await api.post(
         `/commandes`,
         { items: panier, total },
         { withCredentials: true }
       );
 
-      await axios.delete(`/panier`, { withCredentials: true });
+      await api.delete(`/panier`, { withCredentials: true });
       setPanier([]);
       window.dispatchEvent(new Event("panier-change"));
       setCommandeValidee(true);

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Logged from "./Logged";
 import CreateAcc from "./CreateAcc";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./Compte.css";
+import api from "../../utils/api";
 
-const API = "/users";
 
 export default function Compte() {
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ export default function Compte() {
   async function checkWhoAmI() {
     setLoading(true);
     try {
-      const res = await api.get(`/whoami`, { withCredentials: true });
+      const res = await api.get(`/users/whoami`, { withCredentials: true });
       setUser(res.data);
     } catch {
       setUser(null);
@@ -35,7 +34,7 @@ export default function Compte() {
   async function handleSignup({ name, email, password, preferencesOlfactives }) {
     setMessage("");
     try {
-      const res = await axios.post(`/signup`, { name, email, password, preferencesOlfactives }, { withCredentials: true });
+      const res = await api.post(`/users/auth/signup`, { name, email, password, preferencesOlfactives }, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Compte créé avec succès.");
@@ -47,7 +46,7 @@ export default function Compte() {
   async function handleSignin({ email, password }) {
     setMessage("");
     try {
-      const res = await axios.post(`/signin`, { email, password }, { withCredentials: true });
+      const res = await api.post(`/users/auth/signin`, { email, password }, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Connexion réussie.");
@@ -59,7 +58,7 @@ export default function Compte() {
   async function handleSignout() {
     setMessage("");
     try {
-      await axios.post(`/signout`, {}, { withCredentials: true });
+      await api.post(`/users/auth/signout`, {}, { withCredentials: true });
       setUser(null);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Déconnexion réussie.");
@@ -71,7 +70,7 @@ export default function Compte() {
   async function handleRefreshUser() {
     setMessage("");
     try {
-      const res = await api.get(`/whoami`, { withCredentials: true });
+      const res = await api.get(`/users/whoami`, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Session mise à jour.");

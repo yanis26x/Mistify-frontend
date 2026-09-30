@@ -4,6 +4,7 @@ import "./AjoutParfum.css"
 import { PiNumberCircleOneFill, PiNumberCircleTwoFill, PiNumberCircleThreeFill } from "react-icons/pi"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import api from "../../utils/api";
 
 
 export default function AjoutParfum() {
@@ -77,7 +78,7 @@ export default function AjoutParfum() {
                 userId: user.id,
             }
 
-            await axios.post(`/ajout/demandeParfum`, demande, {
+            await api.post(`/ajout/demandeParfum`, demande, {
                 withCredentials: true,
             })
 

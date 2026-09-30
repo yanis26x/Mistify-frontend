@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 import "./Profil.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -31,7 +31,7 @@ export default function Profil() {
 
   async function handleSignout() {
     try {
-      await axios.post(`/users/signout`, {}, { withCredentials: true });
+      await api.post(`/users/signout`, {}, { withCredentials: true });
       window.dispatchEvent(new Event("auth-change"));
       navigate("/compte");
     } catch {

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./home.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../utils/api";
 import ParfumDuMoment from "../../components/parfumDuMoment/ParfumDumoment";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";

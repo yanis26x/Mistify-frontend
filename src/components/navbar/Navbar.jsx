@@ -1,12 +1,10 @@
 import "./Navbar.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 import { FiUser, FiShoppingCart, FiMail } from "react-icons/fi";
 import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
 import DialoguePersona from "../dialoguePersona/DialoguePersona";
-
-
 
 export default function Navbar({ user, onGoToCompte }) {
   const [utilisateurSession, setUtilisateurSession] = useState(user || null);

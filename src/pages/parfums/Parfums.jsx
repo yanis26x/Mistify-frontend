@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../utils/api";
 import ParfumCard from "../../components/ParfumCard/ParfumCard";
 import "./Parfums.css";
 import Navbar from "../../components/navbar/Navbar";

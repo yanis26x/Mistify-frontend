@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 import { FiTrash2 } from "react-icons/fi";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -42,7 +42,7 @@ export default function BoiteVocale() {
 
   async function supprimerMessage(id) {
     try {
-      await axios.delete(`/notifications/${id}`, {
+      await api.delete(`/notifications/${id}`, {
         withCredentials: true,
       });
 

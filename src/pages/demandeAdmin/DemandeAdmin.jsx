@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./DemandeAdmin.css";
@@ -59,7 +59,7 @@ export default function DemandeAdmin() {
     setMessage("");
 
     try {
-      await axios.post(
+      await api.post(
         `/ajout/accepter/${id}`,
         {
           messageAdmin: messagesAdmin[id] || "",
@@ -83,7 +83,7 @@ export default function DemandeAdmin() {
     setMessage("");
 
     try {
-      await axios.post(
+      await api.post(
         `/ajout/refuser/${id}`,
         {
           messageAdmin: messagesAdmin[id] || "",

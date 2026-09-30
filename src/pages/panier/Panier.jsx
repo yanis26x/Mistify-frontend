@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import DialoguePersona from "../../components/dialoguePersona/DialoguePersona";
@@ -49,7 +49,7 @@ export default function Panier() {
     const parfum = panier.find((item) => item.id === id);
     if (!parfum) return;
 
-    const res = await axios.patch(
+    const res = await api.patch(
       `/panier/${id}`,
       { quantite: parfum.quantite + 1 },
       { withCredentials: true }
@@ -62,7 +62,7 @@ export default function Panier() {
     const parfum = panier.find((item) => item.id === id);
     if (!parfum) return;
 
-    const res = await axios.patch(
+    const res = await api.patch(
       `/panier/${id}`,
       { quantite: parfum.quantite - 1 },
       { withCredentials: true }
@@ -72,7 +72,7 @@ export default function Panier() {
   }
 
   async function supprimerParfum(id) {
-    const res = await axios.delete(`/panier/${id}`, {
+    const res = await api.delete(`/panier/${id}`, {
       withCredentials: true,
     });
     setPanier(Array.isArray(res.data) ? res.data : []);
@@ -80,7 +80,7 @@ export default function Panier() {
   }
 
   async function viderPanier() {
-    const res = await axios.delete(`/panier`, {
+    const res = await api.delete(`/panier`, {
       withCredentials: true,
     });
     setPanier(Array.isArray(res.data) ? res.data : []);
