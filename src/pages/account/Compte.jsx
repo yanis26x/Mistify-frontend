@@ -23,7 +23,7 @@ export default function Compte() {
   async function checkWhoAmI() {
     setLoading(true);
     try {
-      const res = await axios.get(`${API}/whoami`, { withCredentials: true });
+      const res = await api.get(`/whoami`, { withCredentials: true });
       setUser(res.data);
     } catch {
       setUser(null);
@@ -35,7 +35,7 @@ export default function Compte() {
   async function handleSignup({ name, email, password, preferencesOlfactives }) {
     setMessage("");
     try {
-      const res = await axios.post(`${API}/signup`, { name, email, password, preferencesOlfactives }, { withCredentials: true });
+      const res = await axios.post(`/signup`, { name, email, password, preferencesOlfactives }, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Compte créé avec succès.");
@@ -47,7 +47,7 @@ export default function Compte() {
   async function handleSignin({ email, password }) {
     setMessage("");
     try {
-      const res = await axios.post(`${API}/signin`, { email, password }, { withCredentials: true });
+      const res = await axios.post(`/signin`, { email, password }, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Connexion réussie.");
@@ -59,7 +59,7 @@ export default function Compte() {
   async function handleSignout() {
     setMessage("");
     try {
-      await axios.post(`${API}/signout`, {}, { withCredentials: true });
+      await axios.post(`/signout`, {}, { withCredentials: true });
       setUser(null);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Déconnexion réussie.");
@@ -71,7 +71,7 @@ export default function Compte() {
   async function handleRefreshUser() {
     setMessage("");
     try {
-      const res = await axios.get(`${API}/whoami`, { withCredentials: true });
+      const res = await api.get(`/whoami`, { withCredentials: true });
       setUser(res.data);
       window.dispatchEvent(new Event("auth-change"));
       setMessage("Session mise à jour.");

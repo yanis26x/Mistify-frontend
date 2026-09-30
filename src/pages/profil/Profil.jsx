@@ -5,7 +5,7 @@ import "./Profil.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 
-const API_URL = "";
+
 
 export default function Profil() {
   const navigate = useNavigate();
@@ -16,9 +16,9 @@ export default function Profil() {
   useEffect(() => {
     async function checkUser() {
       try {
-        const res = await axios.get(`${API_URL}/users/whoami`, { withCredentials: true });
+        const res = await api.get(`/users/whoami`, { withCredentials: true });
         setUser(res.data);
-        const resCommandes = await axios.get(`${API_URL}/commandes/mes-commandes`, { withCredentials: true });
+        const resCommandes = await api.get(`/commandes/mes-commandes`, { withCredentials: true });
         setCommandes(resCommandes.data);
       } catch {
         navigate("/compte");
@@ -31,7 +31,7 @@ export default function Profil() {
 
   async function handleSignout() {
     try {
-      await axios.post(`${API_URL}/users/signout`, {}, { withCredentials: true });
+      await axios.post(`/users/signout`, {}, { withCredentials: true });
       window.dispatchEvent(new Event("auth-change"));
       navigate("/compte");
     } catch {

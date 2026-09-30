@@ -5,7 +5,7 @@ import "./Payment.css";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 
-const API_URL = "";
+
 const LIVRAISON = 96;
 
 export default function Payment() {
@@ -18,7 +18,7 @@ export default function Payment() {
   useEffect(() => {
     async function chargerPanier() {
       try {
-        const res = await axios.get(`${API_URL}/panier`, {
+        const res = await api.get(`/panier`, {
           withCredentials: true,
         });
         setPanier(Array.isArray(res.data) ? res.data : []);
@@ -60,12 +60,12 @@ export default function Payment() {
       ) + LIVRAISON;
 
       await axios.post(
-        `${API_URL}/commandes`,
+        `/commandes`,
         { items: panier, total },
         { withCredentials: true }
       );
 
-      await axios.delete(`${API_URL}/panier`, { withCredentials: true });
+      await axios.delete(`/panier`, { withCredentials: true });
       setPanier([]);
       window.dispatchEvent(new Event("panier-change"));
       setCommandeValidee(true);

@@ -30,7 +30,7 @@ export default function VendreParfum() {
   async function checkUser() {
     setLoading(true);
     try {
-      const res = await axios.get(`${BACKEND_URL}/users/whoami`, { withCredentials: true });
+      const res = await api.get(`/users/whoami`, { withCredentials: true });
       setUser(res.data);
     } catch {
       setUser(null);
@@ -42,7 +42,7 @@ export default function VendreParfum() {
   async function createParfum() {
     setMessage("");
     try {
-      const response = await fetch(`${BACKEND_URL}/parfums`, {
+      const response = await fetch(`/parfums`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -58,7 +58,7 @@ export default function VendreParfum() {
   async function getAllParfums() {
     setMessage("");
     try {
-      const response = await fetch(`${BACKEND_URL}/parfums`, { credentials: "include" });
+      const response = await fetch(`/parfums`, { credentials: "include" });
       const data = await response.json();
       if (!response.ok) { setMessage("Erreur lors du chargement des parfums"); return; }
       setParfums(data);
@@ -68,7 +68,7 @@ export default function VendreParfum() {
   async function getOneParfum() {
     setMessage("");
     try {
-      const response = await fetch(`${BACKEND_URL}/parfums/${oneId}`, { credentials: "include" });
+      const response = await fetch(`/parfums/${oneId}`, { credentials: "include" });
       if (!response.ok) { setMessage("Parfum introuvable"); setOneParfum(null); return; }
       setOneParfum(await response.json());
     } catch { setMessage("Erreur lors de la recherche"); }
@@ -77,7 +77,7 @@ export default function VendreParfum() {
   async function updateParfum() {
     setMessage("");
     try {
-      const response = await fetch(`${BACKEND_URL}/parfums/${updateId}`, {
+      const response = await fetch(`/parfums/${updateId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -93,7 +93,7 @@ export default function VendreParfum() {
   async function deleteParfum() {
     setMessage("");
     try {
-      const response = await fetch(`${BACKEND_URL}/parfums/${deleteId}`, { method: "DELETE", credentials: "include" });
+      const response = await fetch(`/parfums/${deleteId}`, { method: "DELETE", credentials: "include" });
       let data = null;
       try { data = await response.json(); } catch { data = null; }
       if (!response.ok) { setMessage(data?.message || "Erreur lors de la suppression"); return; }

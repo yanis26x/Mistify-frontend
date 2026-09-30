@@ -6,7 +6,7 @@ import Footer from "../../components/footer/Footer";
 import "./DetailsParfum.css";
 import { getImageUrl } from "../../utils/imageUrl";
 
-const API_URL = "";
+
 const PHOTOS_PROFIL = [
   { titre: "VaMP", src: "/vampp.jpeg" },
   { titre: "hElL0 - kItTy", src: "/Hello-kitty.webp" },
@@ -67,7 +67,7 @@ export default function DetailsParfum() {
   const chargerParfum = useCallback(async () => {
     try {
       setChargement(true);
-      const reponse = await fetch(`${API_URL}/parfums/${id}`, {
+      const reponse = await fetch(`/parfums/${id}`, {
         credentials: "include",
       });
       const data = await reponse.json();
@@ -83,7 +83,7 @@ export default function DetailsParfum() {
   const chargerCommentaires = useCallback(async () => {
     try {
       setChargementCommentaires(true);
-      const reponse = await fetch(`${API_URL}/parfums/${id}/commentaires`, {
+      const reponse = await fetch(`/parfums/${id}/commentaires`, {
         credentials: "include",
       });
       const data = await reponse.json();
@@ -97,7 +97,7 @@ export default function DetailsParfum() {
 
   const verifierUtilisateur = useCallback(async () => {
     try {
-      const reponse = await axios.get(`${API_URL}/users/whoami`, {
+      const reponse = await api.get(`/users/whoami`, {
         withCredentials: true,
       });
       setUtilisateur(reponse.data);
@@ -142,7 +142,7 @@ export default function DetailsParfum() {
 
     try {
       await axios.post(
-        `${API_URL}/panier`,
+        `/panier`,
         { parfumId: parfum.id, quantite: 1 },
         { withCredentials: true }
       );
@@ -168,7 +168,7 @@ export default function DetailsParfum() {
 
     try {
       setEnvoiCommentaire(true);
-      const reponse = await fetch(`${API_URL}/parfums/${id}/commentaires`, {
+      const reponse = await fetch(`/parfums/${id}/commentaires`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -214,7 +214,7 @@ export default function DetailsParfum() {
     if (!confirmation) return;
 
     try {
-      const reponse = await fetch(`${API_URL}/commentaires/${commentaireId}`, {
+      const reponse = await fetch(`/commentaires/${commentaireId}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -265,7 +265,7 @@ export default function DetailsParfum() {
         rating: Number(noteModification),
       };
 
-      let reponse = await fetch(`${API_URL}/commentaires/${commentaireId}`, {
+      let reponse = await fetch(`/commentaires/${commentaireId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -273,7 +273,7 @@ export default function DetailsParfum() {
       });
 
       if (!reponse.ok) {
-        reponse = await fetch(`${API_URL}/commentaires/${commentaireId}`, {
+        reponse = await fetch(`/commentaires/${commentaireId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -349,7 +349,7 @@ export default function DetailsParfum() {
         {}
       );
 
-      const reponse = await fetch(`${API_URL}/parfums/${id}`, {
+      const reponse = await fetch(`/parfums/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -386,7 +386,7 @@ export default function DetailsParfum() {
 
     try {
       setSuppression(true);
-      const reponse = await fetch(`${API_URL}/parfums/${id}`, {
+      const reponse = await fetch(`/parfums/${id}`, {
         method: "DELETE",
         credentials: "include",
       });

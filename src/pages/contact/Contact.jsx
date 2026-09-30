@@ -6,7 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { FiPhone } from "react-icons/fi";
 
-const API_URL = "";
+
 export default function Contact() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -15,7 +15,7 @@ export default function Contact() {
   useEffect(() => {
     async function checkUser() {
       try {
-        const res = await axios.get(`${API_URL}/users/whoami`, {
+        const res = await api.get(`/users/whoami`, {
           withCredentials: true,
         });
         setUser(res.data);

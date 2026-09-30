@@ -6,7 +6,7 @@ import { FiUser, FiShoppingCart, FiMail } from "react-icons/fi";
 import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
 import DialoguePersona from "../dialoguePersona/DialoguePersona";
 
-const API_URL = "";
+
 
 export default function Navbar({ user, onGoToCompte }) {
   const [utilisateurSession, setUtilisateurSession] = useState(user || null);
@@ -23,7 +23,7 @@ export default function Navbar({ user, onGoToCompte }) {
     async function chargerUtilisateurSession() {
       if (user) return;
       try {
-        const res = await axios.get(`${API_URL}/users/whoami`, { withCredentials: true });
+        const res = await api.get(`/users/whoami`, { withCredentials: true });
         setUtilisateurSession(res.data);
       } catch {
         setUtilisateurSession(null);
@@ -38,7 +38,7 @@ export default function Navbar({ user, onGoToCompte }) {
     async function chargerNombrePanier() {
       if (!utilisateurActuel) { setNombrePanier(0); return; }
       try {
-        const res = await axios.get(`${API_URL}/panier`, { withCredentials: true });
+        const res = await api.get(`/panier`, { withCredentials: true });
         const panier = Array.isArray(res.data) ? res.data : [];
         const total = panier.reduce((somme, parfum) => somme + Number(parfum.quantite || 0), 0);
         setNombrePanier(total);
@@ -55,7 +55,7 @@ export default function Navbar({ user, onGoToCompte }) {
     async function chargerDemandesEnAttente() {
       if (!utilisateurActuel?.admin) { setDemandesEnAttente(0); return; }
       try {
-        const res = await axios.get(`${API_URL}/ajout/demandes/en-attente`, { withCredentials: true });
+        const res = await api.get(`/ajout/demandes/en-attente`, { withCredentials: true });
         setDemandesEnAttente(Array.isArray(res.data) ? res.data.length : 0);
       } catch {
         setDemandesEnAttente(0);
@@ -69,11 +69,11 @@ export default function Navbar({ user, onGoToCompte }) {
   useEffect(() => {
     if (!utilisateurActuel) { setMessagesNonLus(0); return; }
 
-    axios.get(`${API_URL}/notifications/mes-notifications`, { withCredentials: true })
+    api.get(`/notifications/mes-notifications`, { withCredentials: true })
       .then(res => setMessagesNonLus(Array.isArray(res.data) ? res.data.length : 0))
       .catch(() => setMessagesNonLus(0));
 
-    const sse = new EventSource(`${API_URL}/notifications/notifications-parfums`, { withCredentials: true });
+    const sse = new EventSource(`/notifications/notifications-parfums`, { withCredentials: true });
     sse.onmessage = (event) => {
       setMessagesNonLus(prev => prev + 1);
       setAfficherDialogueMessage(true);

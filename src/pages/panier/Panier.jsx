@@ -28,12 +28,12 @@ export default function Panier() {
 
   async function verifierUtilisateur() {
     try {
-      const res = await axios.get(API_AUTH, {
+      const res = await api.get(API_AUTH, {
         withCredentials: true,
       });
       setUtilisateur(res.data);
 
-      const reponsePanier = await axios.get(`${BACKEND_URL}/panier`, {
+      const reponsePanier = await api.get(`/panier`, {
         withCredentials: true,
       });
       setPanier(Array.isArray(reponsePanier.data) ? reponsePanier.data : []);
@@ -50,7 +50,7 @@ export default function Panier() {
     if (!parfum) return;
 
     const res = await axios.patch(
-      `${BACKEND_URL}/panier/${id}`,
+      `/panier/${id}`,
       { quantite: parfum.quantite + 1 },
       { withCredentials: true }
     );
@@ -63,7 +63,7 @@ export default function Panier() {
     if (!parfum) return;
 
     const res = await axios.patch(
-      `${BACKEND_URL}/panier/${id}`,
+      `/panier/${id}`,
       { quantite: parfum.quantite - 1 },
       { withCredentials: true }
     );
@@ -72,7 +72,7 @@ export default function Panier() {
   }
 
   async function supprimerParfum(id) {
-    const res = await axios.delete(`${BACKEND_URL}/panier/${id}`, {
+    const res = await axios.delete(`/panier/${id}`, {
       withCredentials: true,
     });
     setPanier(Array.isArray(res.data) ? res.data : []);
@@ -80,7 +80,7 @@ export default function Panier() {
   }
 
   async function viderPanier() {
-    const res = await axios.delete(`${BACKEND_URL}/panier`, {
+    const res = await axios.delete(`/panier`, {
       withCredentials: true,
     });
     setPanier(Array.isArray(res.data) ? res.data : []);

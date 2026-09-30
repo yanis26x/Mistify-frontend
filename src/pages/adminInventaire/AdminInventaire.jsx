@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { getImageUrl } from "../../utils/imageUrl";
 import NavbarRecherche from "../../components/navbarRecherche/NavbarRecherche";
 import "./AdminInventaire.css";
-
-const API_URL = "";
+import api from "../../utils/api";
 
 export default function AdminInventaire() {
   const navigate = useNavigate();
@@ -19,10 +17,10 @@ export default function AdminInventaire() {
   useEffect(() => {
     async function chargerPage() {
       try {
-        const resUser = await axios.get(`${API_URL}/users/whoami`, { withCredentials: true });
+        const resUser = await api.get(`/users/whoami`, { withCredentials: true });
         if (!resUser.data?.admin) { navigate("/"); return; }
         setUser(resUser.data);
-        const resParfums = await axios.get(`${API_URL}/parfums`, { withCredentials: true });
+        const resParfums = await api.get(`/parfums`, { withCredentials: true });
         setParfums(Array.isArray(resParfums.data) ? resParfums.data : []);
       } catch {
         navigate("/");
@@ -36,7 +34,7 @@ export default function AdminInventaire() {
   async function supprimerParfum(id) {
     if (!window.confirm("Supprimer ce parfum ?")) return;
     try {
-      await axios.delete(`${API_URL}/parfums/${id}`, { withCredentials: true });
+      await api.delete(`/parfums/${id}`, { withCredentials: true });
       setParfums((prev) => prev.filter((p) => p.id !== id));
       setMessage("Parfum supprimé.");
     } catch {

@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import "./NavbarRecherche.css";
 import { getImageUrl } from "../../utils/imageUrl";
 
-const API_URL = "";
+
 const IMAGE_URL = "";
 
 export default function NavbarRecherche() {
@@ -14,7 +14,7 @@ export default function NavbarRecherche() {
   const [rechercheActive, setRechercheActive] = useState(false);
 
   useEffect(() => {
-    fetch(`${API_URL}/parfums`)
+    fetch(`/parfums`)
       .then((reponse) => reponse.json())
       .then((data) => setParfums(Array.isArray(data) ? data : []))
       .catch(() => setParfums([]));

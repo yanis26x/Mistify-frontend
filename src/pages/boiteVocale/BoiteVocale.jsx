@@ -6,7 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./BoiteVocale.css";
 
-const API_URL = "";
+
 
 export default function BoiteVocale() {
   const navigate = useNavigate();
@@ -18,12 +18,12 @@ export default function BoiteVocale() {
   useEffect(() => {
     async function chargerPage() {
       try {
-        const reponseUtilisateur = await axios.get(`${API_URL}/users/whoami`, {
+        const reponseUtilisateur = await api.get(`/users/whoami`, {
           withCredentials: true,
         });
         setUser(reponseUtilisateur.data);
 
-        const messagesRes = await axios.get(`${API_URL}/notifications/mes-notifications`, {
+        const messagesRes = await api.get(`/notifications/mes-notifications`, {
           withCredentials: true,
         });
         setMessages(messagesRes.data);
@@ -42,7 +42,7 @@ export default function BoiteVocale() {
 
   async function supprimerMessage(id) {
     try {
-      await axios.delete(`${API_URL}/notifications/${id}`, {
+      await axios.delete(`/notifications/${id}`, {
         withCredentials: true,
       });
 

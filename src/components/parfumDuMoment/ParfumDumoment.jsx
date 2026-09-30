@@ -33,7 +33,7 @@ export default function ParfumDuMoment() {
   useEffect(() => {
     async function fetchParfums() {
       try {
-        const res = await fetch(`${BACKEND_URL}/parfums`);
+        const res = await fetch(`/parfums`);
         const data = await res.json();
 
         const lastParfums = data.slice().reverse();
@@ -51,7 +51,7 @@ export default function ParfumDuMoment() {
 
     try {
       await axios.post(
-        `${BACKEND_URL}/panier`,
+        `/panier`,
         { parfumId: parfum.id, quantite: 1 },
         { withCredentials: true }
       );

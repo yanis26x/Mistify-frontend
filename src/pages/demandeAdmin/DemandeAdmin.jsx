@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./DemandeAdmin.css";
 
-const API_URL = "";
+
 
 export default function DemandeAdmin() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function DemandeAdmin() {
   useEffect(() => {
     async function verifierUtilisateur() {
       try {
-        const res = await axios.get(`${API_URL}/users/whoami`, {
+        const res = await api.get(`/users/whoami`, {
           withCredentials: true,
         });
 
@@ -38,7 +38,7 @@ export default function DemandeAdmin() {
 
   async function chargerDemandes() {
     try {
-      const res = await axios.get(`${API_URL}/ajout/demandes/en-attente`, {
+      const res = await api.get(`/ajout/demandes/en-attente`, {
         withCredentials: true,
       });
 
@@ -60,7 +60,7 @@ export default function DemandeAdmin() {
 
     try {
       await axios.post(
-        `${API_URL}/ajout/accepter/${id}`,
+        `/ajout/accepter/${id}`,
         {
           messageAdmin: messagesAdmin[id] || "",
         },
@@ -84,7 +84,7 @@ export default function DemandeAdmin() {
 
     try {
       await axios.post(
-        `${API_URL}/ajout/refuser/${id}`,
+        `/ajout/refuser/${id}`,
         {
           messageAdmin: messagesAdmin[id] || "",
         },

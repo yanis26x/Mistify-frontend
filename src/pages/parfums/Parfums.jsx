@@ -6,7 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import NavbarRecherche from "../../components/navbarRecherche/NavbarRecherche";
 
-const API_URL = "";
+
 
 export default function Parfums() {
   const [parfums, setParfums] = useState([]);
@@ -28,10 +28,10 @@ export default function Parfums() {
         if (prixMax !== "") params.append("prixMax", prixMax);
 
         const url = params.toString()
-          ? `${API_URL}/parfums/filter?${params.toString()}`
-          : `${API_URL}/parfums`;
+          ? `/parfums/filter?${params.toString()}`
+          : `/parfums`;
 
-        const res = await axios.get(url);
+        const res = await api.get(url);
         setParfums(res.data);
       } catch {
         setError("Erreur lors du chargement des parfums");

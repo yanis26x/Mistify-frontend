@@ -3,10 +3,8 @@ import Navbar from "../../components/navbar/Navbar"
 import "./AjoutParfum.css"
 import { PiNumberCircleOneFill, PiNumberCircleTwoFill, PiNumberCircleThreeFill } from "react-icons/pi"
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
-const API_URL = "";
 
 export default function AjoutParfum() {
     const navigate = useNavigate()
@@ -28,7 +26,7 @@ export default function AjoutParfum() {
     useEffect(() => {
         async function chargerUtilisateur() {
             try {
-                const res = await axios.get(`${API_URL}/users/whoami`, {
+                const res = await api.get(`/users/whoami`, {
                     withCredentials: true,
                 })
                 setUser(res.data)
@@ -79,7 +77,7 @@ export default function AjoutParfum() {
                 userId: user.id,
             }
 
-            await axios.post(`${API_URL}/ajout/demandeParfum`, demande, {
+            await axios.post(`/ajout/demandeParfum`, demande, {
                 withCredentials: true,
             })
 
