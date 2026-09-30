@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../utils/imageUrl";
 import "./ParfumCard.css";
 
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "";
 
 export default function ParfumCard({ parfum }) {
   const navigate = useNavigate();

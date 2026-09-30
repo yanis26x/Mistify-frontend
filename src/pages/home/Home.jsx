@@ -10,7 +10,7 @@ import { LuFlower, LuTrees, LuLeaf } from "react-icons/lu";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { GiOakLeaf } from "react-icons/gi";
 
-
+const API_URL = "";
 export default function Home() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     async function checkUser() {
       try {
-        const res = await axios.get("http://localhost:3000/users/whoami", {
+        const res = await axios.get(`${API_URL}/users/whoami`, {
           withCredentials: true,
         });
         setUser(res.data);
@@ -29,7 +29,7 @@ export default function Home() {
     }
     async function fetchCount() {
       try {
-        const res = await axios.get("http://localhost:3000/parfums");
+        const res = await axios.get(`${API_URL}/parfums`);
         setParfumsCount(res.data.length);
       } catch {
         setParfumsCount(0);

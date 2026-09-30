@@ -4,7 +4,7 @@ import Compte from "./pages/account/Compte";
 import DetailsParfum from "./pages/detailsParfum/DetailsParfum";
 import Panier from "./pages/panier/Panier";
 import Payment from "./pages/payment/Payment";
-import Contact from "./pages/contact/contact";
+import Contact from "./pages/contact/Contact";
 import Profil from "./pages/profil/Profil"
 import AjoutParfum  from "./pages/AjoutParfum/AjoutParfum";
 import Parfums from "./pages/parfums/Parfums";

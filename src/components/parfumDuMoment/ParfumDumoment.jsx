@@ -33,7 +33,7 @@ export default function ParfumDuMoment() {
   useEffect(() => {
     async function fetchParfums() {
       try {
-        const res = await fetch("http://localhost:3000/parfums");
+        const res = await fetch(`${BACKEND_URL}/parfums`);
         const data = await res.json();
 
         const lastParfums = data.slice().reverse();

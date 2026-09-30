@@ -7,7 +7,7 @@ import { getImageUrl } from "../../utils/imageUrl";
 import NavbarRecherche from "../../components/navbarRecherche/NavbarRecherche";
 import "./AdminInventaire.css";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "";
 
 export default function AdminInventaire() {
   const navigate = useNavigate();

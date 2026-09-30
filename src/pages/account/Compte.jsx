@@ -7,7 +7,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./Compte.css";
 
-const API = "http://localhost:3000/users";
+const API = "/users";
 
 export default function Compte() {
   const navigate = useNavigate();

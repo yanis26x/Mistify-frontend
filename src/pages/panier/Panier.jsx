@@ -10,7 +10,7 @@ import { FaCcVisa, FaCcMastercard, FaCcAmex, FaCcPaypal, FaApplePay } from "reac
 
 
 
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "";
 const LIVRAISON = 96;
 
 export default function Panier() {
@@ -20,7 +20,7 @@ export default function Panier() {
   const [utilisateur, setUtilisateur] = useState(null);
   const [chargementUser, setChargementUser] = useState(true);
 
-  const API_AUTH = "http://localhost:3000/users/whoami";
+  const API_AUTH = "/users/whoami";
 
   useEffect(() => {
     verifierUtilisateur();

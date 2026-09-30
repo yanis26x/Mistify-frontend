@@ -6,7 +6,7 @@ import Footer from "../../components/footer/Footer";
 import "./DetailsParfum.css";
 import { getImageUrl } from "../../utils/imageUrl";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "";
 const PHOTOS_PROFIL = [
   { titre: "VaMP", src: "/vampp.jpeg" },
   { titre: "hElL0 - kItTy", src: "/Hello-kitty.webp" },

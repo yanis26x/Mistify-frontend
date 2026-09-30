@@ -5,7 +5,7 @@ import "./Payment.css";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "";
 const LIVRAISON = 96;
 
 export default function Payment() {

@@ -1,11 +1,12 @@
 ﻿import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./contact.css";
+import "./Contact.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { FiPhone } from "react-icons/fi";
 
+const API_URL = "";
 export default function Contact() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -14,7 +15,7 @@ export default function Contact() {
   useEffect(() => {
     async function checkUser() {
       try {
-        const res = await axios.get("http://localhost:3000/users/whoami", {
+        const res = await axios.get(`${API_URL}/users/whoami`, {
           withCredentials: true,
         });
         setUser(res.data);

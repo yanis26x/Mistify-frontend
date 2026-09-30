@@ -6,7 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import NavbarRecherche from "../../components/navbarRecherche/NavbarRecherche";
 
-const API = "http://localhost:3000";
+const API_URL = "";
 
 export default function Parfums() {
   const [parfums, setParfums] = useState([]);
@@ -28,8 +28,8 @@ export default function Parfums() {
         if (prixMax !== "") params.append("prixMax", prixMax);
 
         const url = params.toString()
-          ? `${API}/parfums/filter?${params.toString()}`
-          : `${API}/parfums`;
+          ? `${API_URL}/parfums/filter?${params.toString()}`
+          : `${API_URL}/parfums`;
 
         const res = await axios.get(url);
         setParfums(res.data);

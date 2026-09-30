@@ -6,7 +6,7 @@ import { FiUser, FiShoppingCart, FiMail } from "react-icons/fi";
 import NavbarRecherche from "../navbarRecherche/NavbarRecherche";
 import DialoguePersona from "../dialoguePersona/DialoguePersona";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "";
 
 export default function Navbar({ user, onGoToCompte }) {
   const [utilisateurSession, setUtilisateurSession] = useState(user || null);
